@@ -5,15 +5,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Project Flare</title>
 	
+	<!-- Library scripts -->
+	<script type="text/javascript" src="src/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="src/jquery.gamequery-0.7.1.js"></script>
+	
+	<!-- objects -->
+	<script type ="text/javascript" src='src/entity.js'></script>
+	<script type ="text/javascript" src='src/tile.js'></script>
+	<script type ="text/javascript" src='src/room.js'></script>
+	<script type ="text/javascript" src='src/level.js'></script>
+	
+	<!-- main script goes last -->
 	<script type ="text/javascript" src='src/flareMain.js'></script>
 	
 	<link href="flare.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
-	<canvas id='world' width='800' height='600' style="z-index: 1; position:absolute; left:0px; top:0px;"></canvas>
-	<canvas id='dark' width='800' height='600' style="z-index: 2; position:absolute; left:0px; top:0px;"></canvas>
-	<canvas id='ui' width='800' height='600' style="z-index: 3; position:absolute; left:0px; top:0px;"></canvas>
+	<canvas id='world' width='800' height='600' style="z-index: 1; position:absolute; left:20px; top:20px;"></canvas>
+	<canvas id='dark' width='800' height='600' style="z-index: 2; position:absolute; left:20px; top:20px;"></canvas>
+	<canvas id='ui' width='800' height='600' style="z-index: 3; position:absolute; left:20px; top:20px;"></canvas>
 </body>
 </html>
