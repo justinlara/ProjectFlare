@@ -1,10 +1,15 @@
 var x = 10;
 var y = 10;
+var testImg;
 
 function initGame() {
+	//this is where we make sure the images and sounds have loaded, so we can safely use them!
+
 	//generate the level
 	
 	//create a player instance
+	testImg = new Image();
+	testImg.src = "assets/testkitteh.png";
 }
 
 //main update loop, called at regular intervals
@@ -21,6 +26,7 @@ function draw() {
 	ctxWorld.rect(0, 0, 800,600); 
 	ctxWorld.closePath();
 	ctxWorld.fill();
+	ctxWorld.drawImage(testImg, 600, 10);
 	
 	//directly draw darkness, accessing player position
 	//this is only an example
@@ -31,7 +37,7 @@ function draw() {
 	ctxDark.rect(x, y, 20, 10); 
 	ctxDark.closePath();
 	ctxDark.fill();
-	if (y<600) {
+	if (y<500) {
 		x++;
 		y++; 
 	}
@@ -50,7 +56,7 @@ function initDrawUpdate() {
 	initGame();
 	
 	//return setInterval(function(){draw()}, 30);//ms between updates
-	//more efficient version:
+	//more efficient version using requestAnimationFrame:
 	draw();
 }
 
