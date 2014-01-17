@@ -1,7 +1,4 @@
-//global variables
-var ctxWorld;
-var ctxDark;
-var ctxUI;
+
 
 function initGame() {
 	//generate the level
