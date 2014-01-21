@@ -1,15 +1,17 @@
 //generic tile object
 
 function Tile(i, t) {
-	var image = i;
-	var type = t; //acceptable types: floor, wall, lamp
+	this.image = i;
+	 this.type = t; //acceptable types: floor, wall, lamp
 	
 	//methods
-	getType() {
-		return type;
-	}
+	Tile.porototype.getType = function() 
+	{
+		return this.type;
+	};
 	
-	getImage() {
-		return image;
-	}
+	Tile.porototype.getImage = function() 
+	{
+		return this.image;
+	};
 }
