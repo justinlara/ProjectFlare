@@ -2,15 +2,15 @@
 
 function Tile(i, t) {
 	this.image = i;
-	 this.type = t; //acceptable types: floor, wall, lamp
+	this.type = t; //acceptable types: floor, wall, lamp
 	
 	//methods
-	Tile.porototype.getType = function() 
+	Tile.prototype.getType = function() 
 	{
 		return this.type;
 	};
 	
-	Tile.porototype.getImage = function() 
+	Tile.prototype.getImage = function() 
 	{
 		return this.image;
 	};

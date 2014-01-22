@@ -1,19 +1,29 @@
 {
 	"entrance": [
-	{"1": "wwwwww"},
-	{"2": "wffffw"},
-	{"3": "wffffw"},
-	{"4": "wffffw"},
-	{"5": "wffffw"},
-	{"6": "wwwwww"}
+	{"1": "wwwwwwwwwwwwwww"},
+	{"2": "wfffffffffffffw"},
+	{"3": "wfffffffffffffw"},
+	{"4": "wfffffffffffffw"},
+	{"5": "wfffffffffffffw"},
+	{"6": "wfffffffffffffw"},
+	{"7": "wfffffffffffffw"},
+	{"8": "wfffffffffffffw"},
+	{"9": "wfffffffffffffw"},
+	{"10": "wfffffffffffffw"},
+	{"11": "wwwwwwwwwwwwwww"}
 	]
 	
 	"r1": [
-	{"1": "wwwwww"},
-	{"2": "wfblfw"},
-	{"3": "wfbffw"},
-	{"4": "wfbffw"},
-	{"5": "wffffw"},
-	{"6": "wwwwww"}
+	{"1": "wwwwwwwwwwwwwww"},
+	{"2": "wffbfflfffffffw"},
+	{"3": "wffbffffffffffw"},
+	{"4": "wffbffffffffffw"},
+	{"5": "wffbffffffffffw"},
+	{"6": "wffbffffffffffw"},
+	{"7": "wfffffffffffffw"},
+	{"8": "wfffffffffffffw"},
+	{"9": "wfffffffffffffw"},
+	{"10": "wfffffffffffffw"},
+	{"11": "wwwwwwwwwwwwwww"}
 	}
 }

@@ -14,6 +14,10 @@
 		var ctxWorld;
 		var ctxDark;
 		var ctxUI;
+		
+		//game size: 15x11 tiles, each tile 64x64 pixels
+		var GAME_WIDTH = 960;
+		var GAME_HEIGHT = 704;
 	</script>
 	
 	<!-- objects -->
@@ -32,8 +36,8 @@
 
 </head>
 <body>
-	<canvas id='world' width='800' height='600' style="z-index: 1; position:absolute; left:20px; top:20px;"></canvas>
-	<canvas id='dark' width='800' height='600' style="z-index: 2; position:absolute; left:20px; top:20px;"></canvas>
-	<canvas id='ui' width='800' height='600' style="z-index: 3; position:absolute; left:20px; top:20px;"></canvas>
+	<canvas id='world' width='960' height='704' style="z-index: 1; position:absolute; left:20px; top:20px;"></canvas>
+	<canvas id='dark' width='960' height='704' style="z-index: 2; position:absolute; left:20px; top:20px;"></canvas>
+	<canvas id='ui' width='960' height='704' style="z-index: 3; position:absolute; left:20px; top:20px;"></canvas>
 </body>
 </html>

@@ -26,18 +26,18 @@ function draw() {
 	// call the level draw method, which will draw the room and then all entities in it
 	//don't forget to clear the canvas before drawing the next frame
 	
-	ctxWorld.clearRect(0, 0, 800, 600);
+	ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
 	ctxWorld.fillStyle = "white";
 	ctxWorld.beginPath();
-	ctxWorld.rect(0, 0, 800,600); 
+	ctxWorld.rect(0, 0, GAME_WIDTH,GAME_HEIGHT); 
 	ctxWorld.closePath();
 	ctxWorld.fill();
 	//ctxWorld.drawImage(testImg, 600, 10);
 	
 	//directly draw darkness, accessing player position
 	//this is only an example
-	ctxDark.clearRect(0, 0, 800, 600);
+	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	 
 	 
 // !!!!!!!!!!!!!!!!!!!!!!!!!
