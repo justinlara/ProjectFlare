@@ -6,16 +6,16 @@
 // South-Facing Windows
 // ICS 169A, Winter 2014
 
-    
+
 // Define the number of rooms of the level.
-const numberOfRooms = 15;
+const numberOfRooms = 10;
 
 // Height and width of the 2D array will be dependent on the numberOfRooms.
 const height = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
 const width = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
 
 // Characters that correspond to the types of rooms (starting room counts as an active room).
-const inactiveRoom = "-";
+const inactiveRoom = "\u00A0"; // this is a space, e.g. " "
 const activeRoom = "O";
 const startingRoom = "$";
 
@@ -24,8 +24,9 @@ document.write("Number of Rooms:  " + numberOfRooms + "<br>" +
                "Width:  " + width + "<br>" +
                "Height:  " + height + "<br><br>" +
                "$ = Starting Position<br>" +
-               "O = Active Room<br>" +
-               "- = Inactive Room<br><br>");
+               "O = Active Room<br><br>" +
+               "n/w/e/s = what direction door the room has<br>" +
+               "(e.g. \"Onew\" means this is an active room with doors to the north, east, and west sides<br><br>");
 
 
 
@@ -97,7 +98,8 @@ function pickRoom()
         for (var c = 0; c < width; c++)
         {
             // If this room is an active room...
-            if(level[r][c] == activeRoom || level[r][c] == startingRoom)
+            //if(level[r][c] == activeRoom || level[r][c] == startingRoom)
+            if (level[r][c].indexOf(activeRoom) != -1 || level[r][c].indexOf(startingRoom) != -1)
             {
                 // Increment the counter.
                 count++;
@@ -144,7 +146,7 @@ function pickNextRoom(picked)
             // If the SOUTH room is an inactive room...
             if(level[pr+1][pc] == inactiveRoom)
             {
-                openSides += startingRoom;
+                openSides += "S";
             }
     }
     // Check room EAST of this room.
@@ -172,28 +174,41 @@ function pickNextRoom(picked)
         // "chooseSide" = random integer between 1 and length of openSides.
         var chooseSide = Math.floor((Math.random()*openSides.length) + 1);
         
+        // Pick one of the sides based on the above random number.
         var pickedSide = openSides.substring(chooseSide-1, chooseSide);
+        
+        // For the side picked, make it an active room and add a door in the
+        // opposite direction.
+        // Then, go to the door picked and add the door.
         if (pickedSide == "N")
         {
-            level[pr-1][pc] = activeRoom
+            level[pr-1][pc] = activeRoom + "s";
+            level[pr][pc] += "n";
         }
-        else if (pickedSide == startingRoom)
+        else if (pickedSide == "S")
         {
-            level[pr+1][pc] = activeRoom
+            level[pr+1][pc] = activeRoom + "n";
+            level[pr][pc] += "s";
         }
         else if (pickedSide == "E")
         {
-            level[pr][pc+1] = activeRoom
+            level[pr][pc+1] = activeRoom + "w";
+            level[pr][pc] += "e";
         }
         else if (pickedSide == "W")
         {
-            level[pr][pc-1] = activeRoom
+            level[pr][pc-1] = activeRoom + "e";
+            level[pr][pc] += "w";
         }
         
         return true;
     }
-    
-    return false;
+    // If this side did not have an adjacent inactive room, return false
+    // which will not increment the counter for the number of rooms added.
+    else
+    {
+        return false;
+    }
 }
 
 // Ghetto text representation of the level.
@@ -206,13 +221,24 @@ function drawLevel()
     for (var r = 0; r < height; r++)
     {
         // Print the row and then a line break.
-        document.write(level[r].join(" ") + "<br>");
+        //document.write(level[r].join(" ") + "<br>");
+        
+        for (var c = 0; c < width; c++)
+        {
+            // Make sure each index is a size of four for mono-width array.
+            while (level[r][c].length < 5)
+            {
+                level[r][c] += "\u00A0"; // this is a space, e.g. " "
+            }
+            
+            document.write(level[r][c] + " ");
+        }
+        document.write("<br>");
     }
     
     // Close tag for the Consolas font.
     document.write("</font>");
 }
-
 
 
 
