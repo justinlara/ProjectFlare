@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
-<body>
-<script src="RandomLevelGeneratorAlgorithm.js"></script>
-</body>
+    <head>
+        <script type="text/javascript" src="RandomLevelGeneratorAlgorithm.js"></script>
+    </head>
+    <body>
+        <form id="levelGeneratorForm" name="levelGeneratorForm" onsubmit="createRandomLevel();">
+            <table summary="Random Level Generator Form">
+              <tr>
+                <td>Number of Rooms:</td>
+                <td valign="top"><input name="rooms" type="text" id="rooms" size="3" /></td>
+              </tr>
+              <tr>
+                <td><input type="submit" value="Generate" /></td>
+              </tr>
+            </table>
+        </form>
+    </body>
 </html>

@@ -7,73 +7,83 @@
 // ICS 169A, Winter 2014
 
 
-// Define the number of rooms of the level.
-const numberOfRooms = 10;
-
-// Height and width of the 2D array will be dependent on the numberOfRooms.
-const height = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
-const width = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
+// Fields needed to generate the level.
+var numberOfRooms;
+var height;
+var width;
+var level;
+var roomCount;
 
 // Characters that correspond to the types of rooms (starting room counts as an active room).
 const inactiveRoom = "\u00A0"; // this is a space, e.g. " "
 const activeRoom = "O";
 const startingRoom = "$";
 
-// Print for debugging purposes.
-document.write("Number of Rooms:  " + numberOfRooms + "<br>" +
-               "Width:  " + width + "<br>" +
-               "Height:  " + height + "<br><br>" +
-               "$ = Starting Position<br>" +
-               "O = Active Room<br><br>" +
-               "n/w/e/s = what direction door the room has<br>" +
-               "(e.g. \"Onew\" means this is an active room with doors to the north, east, and west sides<br><br>");
 
-
-
-// Make a 2D array to represent the rooms of the level.
-var level = new Array(height);
-for (var r = 0; r < height; r++)
+function createRandomLevel()
 {
-    level[r] = new Array(width);
-}
-
-// Initialize all rooms to be inactive rooms.
-for (var r = 0; r < height; r++)
-{
-    for (var c = 0; c < width; c++)
-    {
-        level[r][c] = inactiveRoom;
-    }
-}
-
-// Randomly pick coordinates for the starting room.
-startRow = Math.floor((Math.random()*height));
-startCol = Math.floor((Math.random()*width));
-
-// Make this location the startingRoom of the level
-level[startRow][startCol] = startingRoom;
-
-// Keep track of number of rooms generated so far.
-var roomCount = 1;
-
-// Generate rooms until desired number reached.
-while (roomCount < numberOfRooms)
-{
-    // Pick a random room.
-    var pick = pickRoom();
+    // Currently, grab the number from the form.
+    numberOfRooms = levelGeneratorForm.rooms.value;
+    // numberOfRooms = 10;
     
-    // If there is an inactive room adjacent to this randomly picked room...
-    if(pickNextRoom(pick))
+    // Height and width of the 2D array will be dependent on the numberOfRooms.
+    height = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
+    width = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
+    
+    
+    // Print for debugging purposes.
+    document.write("Number of Rooms:  " + numberOfRooms + "<br>" +
+                   "Width:  " + width + "<br>" +
+                   "Height:  " + height + "<br><br>" +
+                   "$ = Starting Position<br>" +
+                   "O = Active Room<br><br>" +
+                   "n/w/e/s = what direction door the room has<br>" +
+                   "(e.g. \"Onew\" means this is an active room with doors to the north, east, and west sides)<br><br>");
+    
+    
+    // Make a 2D array to represent the rooms of the level.
+    level = new Array(height);
+    for (var r = 0; r < height; r++)
     {
-        roomCount++;
+        level[r] = new Array(width);
     }
+    
+    // Initialize all rooms to be inactive rooms.
+    for (var r = 0; r < height; r++)
+    {
+        for (var c = 0; c < width; c++)
+        {
+            level[r][c] = inactiveRoom;
+        }
+    }
+    
+    // Randomly pick coordinates for the starting room.
+    startRow = Math.floor((Math.random()*height));
+    startCol = Math.floor((Math.random()*width));
+    
+    // Make this location the startingRoom of the level
+    level[startRow][startCol] = startingRoom;
+    
+    // Keep track of number of rooms generated so far.
+    roomCount = 1;
+    
+    // Generate rooms until desired number reached.
+    while (roomCount < numberOfRooms)
+    {
+        // Pick a random room.
+        var pick = pickRoom(roomCount);
+        
+        // If there is an inactive room adjacent to this randomly picked room...
+        if(pickNextRoom(pick))
+        {
+            roomCount++;
+        }
+    }
+    // Draw the level.
+    drawLevel();
+    
+    return true;
 }
-
-// Draw the level.
-drawLevel();
-
-
-
 
 
 
