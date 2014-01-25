@@ -1,4 +1,4 @@
-var currentRoom; //move this to level object, should be a main thing
+var currentRoom; //move this to level object, shouldn't be a main thing
 
 /*function loadAssets() {
 	//uncommenting this breaks things
@@ -52,6 +52,8 @@ function initGame() {
 	//this is where we make sure the images and sounds have loaded, so we can safely use them!
 
 	//generate the level
+	//init the first current room (level.currentRoom)
+	//this block of room code should probably go into the level when its ready
 	var allTiles = new AllTiles();
 	var thisRoom = allTiles.entrance;
 	currentRoom = new Room(thisRoom);
@@ -66,11 +68,11 @@ function draw() {
 	window.requestAnimationFrame(draw);
 
 	//draw each canvas one at a time
-	// call the level draw method, which will draw the room and then all entities in it
 	//don't forget to clear the canvas before drawing the next frame
 	
 	ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
+	//draw room
 	var wid = MEASURE_UNIT;
 	var hei = MEASURE_UNIT;
 	currentRoom.draw(wid, hei);

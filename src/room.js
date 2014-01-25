@@ -3,7 +3,7 @@ function Room(gridObj) {
 	//just pass the json object of the room you will build
 	//list of valid entities, tracked even when you leave the room
 
-	//booleans, for lit, and is exit on that side (for door drawing)
+	//booleans, for lit, and if exit on that side (for door drawing)
 	this.isLit = false;
 	this.exitN;
 	this.exitS;
@@ -35,8 +35,6 @@ function Room(gridObj) {
 			this.grid[i][j] = new Tile(img, type);
 		}
 	}
-	//console.log("room constructed");
-	
 	
 
 	//draw function
