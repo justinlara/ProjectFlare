@@ -5,19 +5,24 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Project Flare</title>
 	
+	
 	<!-- Library scripts -->
 	<script type="text/javascript" src="src/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="src/jquery.gamequery-0.7.1.js"></script>
 	
 	<!-- global variables -->
 	<script type="text/javascript">
+		//canvases, set on initGame
 		var ctxWorld;
 		var ctxDark;
 		var ctxUI;
 		
-		//game size: 15x11 tiles, each tile 64x64 pixels
-		var GAME_WIDTH = 960;
-		var GAME_HEIGHT = 704;
+		//game size, set in resize function
+		var GAME_WIDTH;
+		var GAME_HEIGHT;
+		
+		//"world unit", in pixels, set in the resize function
+		var MEASURE_UNIT;
 	</script>
 	
 	<!-- objects -->
@@ -36,8 +41,10 @@
 
 </head>
 <body>
-	<canvas id='world' width='960' height='704' style="z-index: 1; position:absolute; left:20px; top:20px;"></canvas>
-	<canvas id='dark' width='960' height='704' style="z-index: 2; position:absolute; left:20px; top:20px;"></canvas>
-	<canvas id='ui' width='960' height='704' style="z-index: 3; position:absolute; left:20px; top:20px;"></canvas>
+	<div id = "gameScreen">
+		<canvas id='world'></canvas>
+		<canvas id='dark'></canvas>
+		<canvas id='ui'></canvas>
+	</div>
 </body>
 </html>
