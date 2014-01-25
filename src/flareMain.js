@@ -1,3 +1,5 @@
+var currentRoom; //move this to level object, should be a main thing
+
 /*function loadAssets() {
 	//uncommenting this breaks things
 	//I will add the loading function here
@@ -50,6 +52,9 @@ function initGame() {
 	//this is where we make sure the images and sounds have loaded, so we can safely use them!
 
 	//generate the level
+	var allTiles = new AllTiles();
+	var thisRoom = allTiles.entrance;
+	currentRoom = new Room(thisRoom);
 	
 	//create a player instance
     mainGuy =  new Player("assets/testkitteh.png" );
@@ -66,12 +71,9 @@ function draw() {
 	
 	ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
-	//take out this block when we get tiles rendering
-	ctxWorld.fillStyle = "white";
-	ctxWorld.beginPath();
-	ctxWorld.rect(0, 0, GAME_WIDTH,GAME_HEIGHT); 
-	ctxWorld.closePath();
-	ctxWorld.fill();
+	var wid = MEASURE_UNIT;
+	var hei = MEASURE_UNIT;
+	currentRoom.draw(wid, hei);
 	 
 	//the player should be drawn here, on top of the world
 	//player drawing and updates:
