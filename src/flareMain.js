@@ -1,4 +1,5 @@
 var currentRoom; //move this to level object, shouldn't be a main thing
+var ALLTILES = new AllTiles();
 
 /*function loadAssets() {
 	//uncommenting this breaks things
@@ -54,8 +55,8 @@ function initGame() {
 	//generate the level
 	//init the first current room (level.currentRoom)
 	//this block of room code should probably go into the level when its ready
-	var allTiles = new AllTiles();
-	var thisRoom = allTiles.entrance;
+	//var thisLevel = new Level(1, 1); //when the level is ready
+	var thisRoom = ALLTILES.entrance;
 	currentRoom = new Room(thisRoom);
 	
 	//create a player instance
@@ -73,9 +74,7 @@ function draw() {
 	ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
 	//draw room
-	var wid = MEASURE_UNIT;
-	var hei = MEASURE_UNIT;
-	currentRoom.draw(wid, hei);
+	/*thisLevel.*/currentRoom.draw();
 	 
 	//the player should be drawn here, on top of the world
 	//player drawing and updates:
@@ -115,7 +114,6 @@ window.addEventListener("load", initDrawUpdate, false);
 
 //account for user resizing the window
 window.addEventListener('resize', resizeScreen, false);
-window.addEventListener('orientationchange', resizeScreen, false);
 
 // for the movement control
 window.addEventListener('keyup', function(event) { controls.onKeyup(event); }, false);

@@ -11,4 +11,11 @@ function AllTiles() {
 	this.entrance[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	
+	/*AllTiles.prototype.getRandom() = function() {
+		//code for picking a random room goes here
+		//return 2D grid array
+		return this.entrance;
+	};*/
 }
