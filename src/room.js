@@ -31,49 +31,48 @@ function Room(gridObj) {
 			this.grid[i][j] = new Tile(img, type);
 		}
 	}
-	
+}	
 
-	//draw function
-	//parameters: tile width and height
-	Room.prototype.draw = function() {	
-		//for each tile, draw it onto world
-		var gx = 0;
-		var gy = 0;
-		var gw = MEASURE_UNIT; //change if we want tiles larger/smaller than 1 unit
-		var gh = MEASURE_UNIT;
-		for (var i = 0; i<this.grid.length; i++) {
-			for (var j = 0; j<this.grid[i].length; j++) {
-			
-				ctxWorld.drawImage(this.grid[i][j].getImage(), gx, gy, gw, gh);
-				gx += gw; //update draw position
-			}
-			gy += gh;
-			gx = 0;
+//draw function
+//parameters: tile width and height
+Room.prototype.draw = function() {	
+	//for each tile, draw it onto world
+	var gx = 0;
+	var gy = 0;
+	var gw = MEASURE_UNIT; //change if we want tiles larger/smaller than 1 unit
+	var gh = MEASURE_UNIT;
+	for (var i = 0; i<this.grid.length; i++) {
+		for (var j = 0; j<this.grid[i].length; j++) {
+		
+			ctxWorld.drawImage(this.grid[i][j].image, gx, gy, gw, gh);
+			gx += gw; //update draw position
 		}
-	};
-	
-	Room.prototype.setDoor = function(door) {
-		//change the correct tile in the grid to a door
-		switch (door) {
-			case "n":
-				this.grid[0][7] = new Tile("assets/errorTile.png", "door"); //i'm sorry for hardcoding this...
-				break;
-			case "s":
-				this.grid[10][7] = new Tile("assets/errorTile.png", "door");
-				break;
-			case "e":
-				this.grid[5][14] = new Tile("assets/errorTile.png", "door");
-				break;
-			case "w":
-				this.grid[5][0] = new Tile("assets/errorTile.png", "door");
-				break;
-			default:
-		}
-	};
-	
-	Room.prototype.setLit = function(lit) {
-		if (lit) { 
-			isLit = true; }
-		else isLit = false;
+		gy += gh;
+		gx = 0;
 	}
+};
+	
+Room.prototype.setDoor = function(door) {
+	//change the correct tile in the grid to a door
+	switch (door) {
+		case "n":
+			this.grid[0][7] = new Tile("assets/errorTile.png", "door"); //i'm sorry for hardcoding this...
+			break;
+		case "s":
+			this.grid[10][7] = new Tile("assets/errorTile.png", "door");
+			break;
+		case "e":
+			this.grid[5][14] = new Tile("assets/errorTile.png", "door");
+			break;
+		case "w":
+			this.grid[5][0] = new Tile("assets/errorTile.png", "door");
+			break;
+		default:
+	}
+};
+	
+Room.prototype.setLit = function(lit) {
+	if (lit) { 
+		isLit = true; }
+	else isLit = false;
 }

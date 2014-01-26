@@ -21,13 +21,13 @@ function Level(numberOfRooms, floorNumber) {
 	//when you want to add a door:
 	//var door = ""; //can be n, s, e, w
 	//newRoom.setDoor(door);
-	
-	//function for loading the next currentRoom
-	//determine the next room based on the door the player hit
-	Level.prototype.loadRoom() = function() {
-		var i=0;
-		var j=0;
-		var newRoom = layout[i][j];
-		currentRoom = newRoom;
-	};
 }
+
+//function for loading the next currentRoom
+//determine the next room based on the door the player hit
+Level.prototype.loadRoom() = function() {
+	var i=0;
+	var j=0;
+	var newRoom = layout[i][j];
+	this.currentRoom = newRoom;
+};

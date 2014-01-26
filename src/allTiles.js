@@ -13,7 +13,7 @@ function AllTiles() {
 	this.entrance[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
 	
-	/*AllTiles.prototype.getRandom() = function() {
+	/*this.getRandom() = function() {
 		//code for picking a random room goes here
 		//return 2D grid array
 		return this.entrance;

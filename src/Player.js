@@ -1,14 +1,16 @@
-function Player(spriteImage) 
+function Player() 
 {
    
   p = { pos: [0,0], I: new Image()};
-  p.I.src = "assets/testkitteh.png";
+  p.I.src = "assets/Character.png";
 }
 
 Player.prototype.draw = function(w) 
 {
-
-  w.drawImage(p.I, p.pos[0], p.pos[1]);
+	var playerScale = 1;
+	var pw = MEASURE_UNIT * playerScale;
+	var ph = MEASURE_UNIT * playerScale;
+  w.drawImage(p.I, p.pos[0], p.pos[1], pw, ph);
   //I.src = im;
   
 };

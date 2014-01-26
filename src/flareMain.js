@@ -60,7 +60,7 @@ function initGame() {
 	currentRoom = new Room(thisRoom);
 	
 	//create a player instance
-    mainGuy =  new Player("assets/testkitteh.png" );
+    mainGuy =  new Player();
     
 }
 
@@ -84,12 +84,12 @@ function draw() {
 
 	
 	//directly draw darkness, accessing player position
-	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT); 
+	//ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT); 
 
     
 	//directly draw the UI, asking for player resources with accessors
 	//no need for a subclass unless we want to animate the gauges
-	ctxUI.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT); 
+	//ctxUI.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT); 
 	
 }
 
