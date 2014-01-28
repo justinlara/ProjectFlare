@@ -39,9 +39,9 @@ function resizeScreen() {
 	var darkC = document.getElementById('dark');
 	darkC.width = newWidth;
 	darkC.height = newHeight;
-	var uiC = document.getElementById('ui');
+	/*var uiC = document.getElementById('ui');
 	darkC.width = newWidth;
-	darkC.height = newHeight;
+	darkC.height = newHeight;*/
 	
 	//set the global width and height:
 	GAME_WIDTH = newWidth;
@@ -93,6 +93,8 @@ function draw() {
 	//directly draw darkness, accessing player position
 	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
+	//only draw if lit
+	//if (!thisLevel.currentRoom.isLit)
 	// Coordinates for the center of the circle of light, aka the tip of the arc.
 	var centerX = 250;
 	var centerY = 200;
@@ -126,7 +128,7 @@ function initDrawUpdate() {
 	//set up contexts:
 	ctxWorld = document.getElementById('world').getContext('2d');
 	ctxDark = document.getElementById('dark').getContext('2d');
-	ctxUI = document.getElementById('ui').getContext('2d');
+	//ctxUI = document.getElementById('ui').getContext('2d');
 	
 	//set up gameplay elements
 	initGame();
