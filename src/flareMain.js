@@ -101,6 +101,8 @@ function draw() {
 	ctxDark.fillRect(100, 100, 300, 300);
 	// Set transparency using the "xor" operation.
 	ctxDark.globalCompositeOperation = 'xor';
+	// Set the black background to not be completely transparent.
+	ctxDark.globalAlpha = 0.95;
 	// Draw the white arc to represent the light from the character's lantern.
 	ctxDark.fillStyle = 'white';
 	ctxDark.beginPath();
