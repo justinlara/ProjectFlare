@@ -6,6 +6,9 @@ var ALLTILES = new AllTiles();
 	//I will add the loading function here
 )*/
 
+var x = 0;
+var y = 0;
+
 function resizeScreen() {
 	//thanks to Gopherwood studios on html5rocks.com on how to do this
 	var screen = document.getElementById('gameScreen');
@@ -83,10 +86,31 @@ function draw() {
 	mainGuy.update();
 
 	
-	//directly draw darkness, accessing player position
-	//ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT); 
+	
 
-    
+	
+	
+	//directly draw darkness, accessing player position
+	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	
+	// Coordinates for the center of the circle of light, aka the tip of the arc.
+	var centerX = 250;
+	var centerY = 200;
+	// Draw the field of darkness.
+	ctxDark.fillStyle = 'black';
+	ctxDark.fillRect(100, 100, 300, 300);
+	// Set transparency using the "xor" operation.
+	ctxDark.globalCompositeOperation = 'xor';
+	// Draw the white arc to represent the light from the character's lantern.
+	ctxDark.fillStyle = 'white';
+	ctxDark.beginPath();
+	ctxDark.moveTo(centerX+x, centerY+y);
+	ctxDark.arc(centerX+x, centerY+y, 80, Math.PI*3/4, Math.PI*1/4, true);
+	ctxDark.lineTo(centerX+x, centerY+y);
+	ctxDark.fill();
+	ctxDark.close();
+
+	
 	//directly draw the UI, asking for player resources with accessors
 	//no need for a subclass unless we want to animate the gauges
 	//ctxUI.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT); 
