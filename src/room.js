@@ -24,6 +24,10 @@ function Room(gridObj) {
 					type = "floor";
 					img = "assets/tempfloor.png";
 					break;
+				case 3:
+					type = "lamp";
+					img = "assets/Lamp1.png";
+					break;
 				default:
 					type = "error";
 					img = "assets/errorTile.png";

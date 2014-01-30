@@ -1,13 +1,19 @@
 var currentRoom; //move this to level object, shouldn't be a main thing
 var ALLTILES = new AllTiles();
+//variables for drawing lantern light
+var arcStart = Math.PI*3/4;
+var arcEnd = Math.PI*1/4;
+var x = 0;
+var y = 0;
+
+//test
+var imgEnemy = new Image();
+imgEnemy.src = "assets/Miles_Enemy1.png";
 
 /*function loadAssets() {
 	//uncommenting this breaks things
 	//I will add the loading function here
 )*/
-
-var x = 0;
-var y = 0;
 
 function resizeScreen() {
 	//thanks to Gopherwood studios on html5rocks.com on how to do this
@@ -49,7 +55,15 @@ function resizeScreen() {
 	//set the unit size in pixels
 	//assuming one unit will be one tiles width
 	//6.6% is ~15 tiles
+	var oldUnit = MEASURE_UNIT;
 	MEASURE_UNIT = Math.floor(newWidth * .066);
+	
+	//adjust player position
+	if ('undefined' !== typeof mainGuy) {
+		//new pos = currentPos/OLD_MEASURE_UNIT * NEW_MEASURE_UNIT
+		mainGuy.p.pos[0] = Math.floor((mainGuy.p.pos[0]/oldUnit) * MEASURE_UNIT);
+		mainGuy.p.pos[1] = Math.floor((mainGuy.p.pos[1]/oldUnit) * MEASURE_UNIT);
+	}
 }
 
 function initGame() {
@@ -98,7 +112,9 @@ function draw() {
 
 	mainGuy.update();
 
-
+	//draw enemies
+	//test
+	ctxWorld.drawImage(imgEnemy,MEASURE_UNIT,MEASURE_UNIT,MEASURE_UNIT,MEASURE_UNIT);
 
 	
 	
@@ -108,11 +124,11 @@ function draw() {
 	//only draw if lit
 	//if (!thisLevel.currentRoom.isLit)
 	// Coordinates for the center of the circle of light, aka the tip of the arc.
-	var centerX = 250;
-	var centerY = 200;
+	var centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
+	var centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
 	// Draw the field of darkness.
 	ctxDark.fillStyle = 'black';
-	ctxDark.fillRect(100, 100, 300, 300);
+	ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	// Set transparency using the "xor" operation.
 	ctxDark.globalCompositeOperation = 'xor';
 	// Set the black background to not be completely transparent.
@@ -120,8 +136,9 @@ function draw() {
 	// Draw the white arc to represent the light from the character's lantern.
 	ctxDark.fillStyle = 'white';
 	ctxDark.beginPath();
-	ctxDark.moveTo(centerX+x, centerY+y);
-	ctxDark.arc(centerX+x, centerY+y, 80, Math.PI*3/4, Math.PI*1/4, true);
+	//ctxDark.moveTo(centerX+x, centerY+y);
+	var r = MEASURE_UNIT*1.5;	
+	ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
 	ctxDark.lineTo(centerX+x, centerY+y);
 	ctxDark.fill();
 
