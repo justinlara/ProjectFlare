@@ -64,7 +64,20 @@ function initGame() {
 	
 	//create a player instance
     mainGuy =  new Player();
-    
+
+    //setup of the sound manager
+    soundManager.setup({
+        url: 'src/swf/',
+        onready: function () {
+            var music1 = soundManager.createSound({
+                id: 'spookyMusic',
+                url: './assets/spookyMusic.mp3',
+                autoLoad: true,
+                autoPlay: true,
+                stream: true
+            });
+        }
+    });
 }
 
 //main update loop, called at regular intervals
@@ -85,8 +98,7 @@ function draw() {
 
 	mainGuy.update();
 
-	
-	
+
 
 	
 	
@@ -112,7 +124,6 @@ function draw() {
 	ctxDark.arc(centerX+x, centerY+y, 80, Math.PI*3/4, Math.PI*1/4, true);
 	ctxDark.lineTo(centerX+x, centerY+y);
 	ctxDark.fill();
-	ctxDark.close();
 
 	
 	//directly draw the UI, asking for player resources with accessors
