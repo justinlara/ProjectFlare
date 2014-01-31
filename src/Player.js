@@ -46,8 +46,14 @@ Player.prototype.moveDown = function()
 
 Player.prototype.update = function() 
 {
+  //if (controls.isDown(controls.UP)) this.moveUp();
+  //if (controls.isDown(controls.LEFT)) this.moveLeft();
+  //if (controls.isDown(controls.DOWN)) this.moveDown();
+  //if (controls.isDown(controls.RIGHT)) this.moveRight();
+  
   if (controls.isDown(controls.UP)) this.moveUp();
+  else if (controls.isDown(controls.DOWN)) this.moveDown();
+  
   if (controls.isDown(controls.LEFT)) this.moveLeft();
-  if (controls.isDown(controls.DOWN)) this.moveDown();
-  if (controls.isDown(controls.RIGHT)) this.moveRight();
+  else if (controls.isDown(controls.RIGHT)) this.moveRight();
 };

@@ -30,17 +30,6 @@ function createRandomLevel()
     height = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
     width = Math.ceil(Math.sqrt(numberOfRooms)) * 2;
     
-    
-    // Print for debugging purposes.
-    document.write("Number of Rooms:  " + numberOfRooms + "<br>" +
-                   "Width:  " + width + "<br>" +
-                   "Height:  " + height + "<br><br>" +
-                   "$ = Starting Position<br>" +
-                   "O = Active Room<br><br>" +
-                   "n/w/e/s = what direction door the room has<br>" +
-                   "(e.g. \"Onew\" means this is an active room with doors to the north, east, and west sides)<br><br>");
-    
-    
     // Make a 2D array to represent the rooms of the level.
     level = new Array(height);
     for (var r = 0; r < height; r++)
@@ -224,6 +213,15 @@ function pickNextRoom(picked)
 // Ghetto text representation of the level.
 function drawLevel()
 {
+    // Print for debugging purposes.
+    document.write("1Number of Rooms:  " + numberOfRooms + "<br>" +
+                   "Width:  " + width + "<br>" +
+                   "Height:  " + height + "<br><br>" +
+                   "$ = Starting Position<br>" +
+                   "O = Active Room<br><br>" +
+                   "n/w/e/s = what direction door the room has<br>" +
+                   "(e.g. \"Onew\" means this is an active room with doors to the north, east, and west sides)<br><br>");
+    
     // Use Consolas, a fixed-width font.
     document.write("<font face=\"Consolas\">");
     

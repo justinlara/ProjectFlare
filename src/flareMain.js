@@ -46,8 +46,8 @@ function resizeScreen() {
 	darkC.width = newWidth;
 	darkC.height = newHeight;
 	/*var uiC = document.getElementById('ui');
-	darkC.width = newWidth;
-	darkC.height = newHeight;*/
+	uiC.width = newWidth;
+	uiC.height = newHeight;*/
 	
 	//set the global width and height:
 	GAME_WIDTH = newWidth;
@@ -73,6 +73,9 @@ function initGame() {
 	//init the first current room (level.currentRoom)
 	//this block of room code should probably go into the level when its ready
 	//var thisLevel = new Level(1, 1); //when the level is ready
+	
+	// Use the algorithm to generate the randomly generated 2D array of the level.
+	
 	var thisRoom = ALLTILES.entrance;
 	currentRoom = new Room(thisRoom);
 	
