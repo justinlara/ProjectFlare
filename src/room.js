@@ -6,6 +6,9 @@ function Room(gridObj) {
 	//booleans, for lit
 	this.isLit = false;
 	
+	//array of enemy objects present in the room
+	this.enemies = new Array();
+	
 	//2D grid part, 15x11
 	//take info from 2d array passed in and create tiles
 	//if this is the entrance room, set isLit to true
@@ -27,6 +30,18 @@ function Room(gridObj) {
 				case 3:
 					type = "lamp";
 					img = "assets/Lamp1.png";
+					break;
+				case 4:
+					type = "block";
+					img = "assets/errorTile.png";;
+					break;
+				case 5: //example enemy case, add a floor tile and make a new enemy
+					type = "floor";
+					img = "assets/tempfloor.png";
+					var miles = new Enemy();
+					miles.posX = (MEASURE_UNIT * j);
+					miles.posY = (MEASURE_UNIT * i);
+					this.enemies.push(miles);
 					break;
 				default:
 					type = "error";
@@ -54,6 +69,14 @@ Room.prototype.draw = function() {
 		gy += gh;
 		gx = 0;
 	}
+	
+	//also handle enemies if the room is not lit
+	if (!this.isLit) {
+		for (var i = 0; i < this.enemies.length; i++) {
+			this.enemies[i].move(); //may want to move this update to an enemy controller object
+			this.enemies[i].draw();
+		} 
+	}
 };
 	
 Room.prototype.setDoor = function(door) {
@@ -77,6 +100,6 @@ Room.prototype.setDoor = function(door) {
 	
 Room.prototype.setLit = function(lit) {
 	if (lit) { 
-		isLit = true; }
-	else isLit = false;
+		this.isLit = true; }
+	else this.isLit = false;
 }

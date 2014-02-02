@@ -3,8 +3,9 @@
 
 function Entity() 
 {
-	var posX;
-	var posY;
+	this.posX = 0;
+	this.posY = 0;
+	this.image = new Image();
 
 	 this.collisionWorld;// = colWorld;
 	//move method, should take some movement input and update position

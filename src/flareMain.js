@@ -6,9 +6,6 @@ var arcEnd = Math.PI*1/4;
 var x = 0;
 var y = 0;
 
-//test
-var imgEnemy = new Image();
-imgEnemy.src = "assets/Miles_Enemy1.png";
 
 /*function loadAssets() {
 	//uncommenting this breaks things
@@ -115,11 +112,6 @@ function draw() {
 
 	mainGuy.update();
 
-	//draw enemies
-	//test
-	ctxWorld.drawImage(imgEnemy,MEASURE_UNIT,MEASURE_UNIT,MEASURE_UNIT,MEASURE_UNIT);
-
-	
 	
 	//directly draw darkness, accessing player position
 	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
