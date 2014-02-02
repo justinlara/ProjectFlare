@@ -7,10 +7,22 @@ var x = 0;
 var y = 0;
 
 
-/*function loadAssets() {
-	//uncommenting this breaks things
-	//I will add the loading function here
-)*/
+function loadAssets() {
+
+	// just have to list everything like so
+	// when we put this on a website, we can simplify this with PHP
+	var images = new Array();
+	var imgNumber = 6;
+	for (var i = 0; i < imgNumber; i++) {
+		images[i] = new Image();
+	}
+	images[0].src = "assets/Character.png";
+	images[1].src = "assets/errorTile.png";
+	images[2].src = "assets/Lamp1.png";
+	images[3].src = "assets/tempfloor.png";
+	images[4].src = "assets/tempwall.png";
+	images[5].src = "assets/Miles_Enemy1.png";
+}
 
 function resizeScreen() {
 	//thanks to Gopherwood studios on html5rocks.com on how to do this
@@ -155,6 +167,9 @@ function initDrawUpdate() {
 	ctxWorld = document.getElementById('world').getContext('2d');
 	ctxDark = document.getElementById('dark').getContext('2d');
 	ctxUI = document.getElementById('ui').getContext('2d');
+	
+	//load images
+	loadAssets();
 	
 	//set up gameplay elements
 	initGame();
