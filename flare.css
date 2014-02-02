@@ -10,19 +10,22 @@ body {
 
 #world {
   position: absolute;
-  width: 100%;
+  right:0;
+  width: 85%;
   height: 100%;
   z-index: 1;
 }
 #dark {
   position: absolute;
-  width: 100%;
+  right:0;
+  width: 85%;
   height: 100%;
   z-index: 2;
 }
 #ui {
-  position: absolute;
-  width: 100%;
+  position:absolute;
+  left:0;
+  width: 15%;
   height: 100%;
-  z-index: 3;
+  z-index:2;
 }

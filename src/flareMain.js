@@ -15,7 +15,7 @@ var y = 0;
 function resizeScreen() {
 	//thanks to Gopherwood studios on html5rocks.com on how to do this
 	var screen = document.getElementById('gameScreen');
-	var gameAspectRatio = 4/3;
+	var gameAspectRatio = 5/3;
 	var newWidth = window.innerWidth;
 	var newHeight = window.innerHeight;
 	var windowAspectRatio = newWidth/newHeight;
@@ -37,14 +37,14 @@ function resizeScreen() {
 	
 	//adjust canvas sizes
 	var worldC = document.getElementById('world');
-	worldC.width = newWidth;
+	worldC.width = newWidth*.85;
 	worldC.height = newHeight;
 	var darkC = document.getElementById('dark');
-	darkC.width = newWidth;
+	darkC.width = newWidth*.85;
 	darkC.height = newHeight;
-	/*var uiC = document.getElementById('ui');
-	uiC.width = newWidth;
-	uiC.height = newHeight;*/
+	var uiC = document.getElementById('ui');
+	uiC.width = newWidth*.15;
+	uiC.height = newHeight;
 	
 	//set the global width and height:
 	GAME_WIDTH = newWidth;
@@ -53,7 +53,7 @@ function resizeScreen() {
 	//assuming one unit will be one tiles width
 	//6.6% is ~15 tiles
 	var oldUnit = MEASURE_UNIT;
-	MEASURE_UNIT = Math.floor(newWidth * .066);
+	MEASURE_UNIT = Math.floor(newWidth * .054);
 	
 	//adjust player position
 	if ('undefined' !== typeof mainGuy) {
@@ -116,7 +116,7 @@ function draw() {
 	//directly draw darkness, accessing player position
 	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
-	//only draw if lit
+	//only draw if not lit
 	//if (!thisLevel.currentRoom.isLit)
 	// Coordinates for the center of the circle of light, aka the tip of the arc.
 	var centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
@@ -140,7 +140,10 @@ function draw() {
 	
 	//directly draw the UI, asking for player resources with accessors
 	//no need for a subclass unless we want to animate the gauges
-	//ctxUI.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT); 
+	//this needs to be moved, and only update when the UI changes
+	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT); 
+	ctxUI.fillStyle = 'white';
+	ctxUI.fillRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
 	
 }
 
@@ -151,7 +154,7 @@ function initDrawUpdate() {
 	//set up contexts:
 	ctxWorld = document.getElementById('world').getContext('2d');
 	ctxDark = document.getElementById('dark').getContext('2d');
-	//ctxUI = document.getElementById('ui').getContext('2d');
+	ctxUI = document.getElementById('ui').getContext('2d');
 	
 	//set up gameplay elements
 	initGame();
