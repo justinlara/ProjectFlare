@@ -2,7 +2,29 @@ function Enemy() {
 	//enemy base object
 	//all enemies should collide with walls
 	//all enemies should have some AI framework
+	this.image = new Image();
 	this.image.src = "assets/Miles_Enemy1.png";
+	
+	this.posX =50;
+    this.posY =50;
+    
+  var fix = new b2FixtureDef;
+  var bod = new b2BodyDef;
+  
+  this.enemyfix = this.fixture;
+  this.enemybox = this.body;
+  
+  this.enemybox.position.x = this.posX/30+1;//MEASURE_UNIT;
+  this.enemybox.position.y = this.posY/30+1;
+  
+   this.enemyfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
+  
+  this.enemyboundBox = collisionWorld.CreateBody(this.enemybox);
+  this.enemyboundBox.CreateFixture(this.enemyfix);
+  
+	
+	
+	
 }
 
 //carry over position and image properties
@@ -16,9 +38,19 @@ Enemy.prototype.move = function() {
 	//I'm thinking we should have an enemy controller which calls each active enemy'smove function on a setInterval timer
 	this.posX += MEASURE_UNIT*.01;
 	this.posY += MEASURE_UNIT*.01;
-}
+};
 	
 //draw the enemy on ctxWorld
-Enemy.prototype.draw = function() {
+Enemy.prototype.draw = function() 
+{
 	ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-}
+//offset =new b2Vec2((centerX - this.p.pos[0]),  Math.abs(centerY  - this.p.pos[1]));
+  
+  //var sx = offset.x ;//* MEASURE_UNIT;    
+  //var sy = offset.y ;//* MEASURE_UNIT;  
+  //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
+  this.enemyboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));
+     console.log("x   y " + this.enemyboundBox.GetPosition().x + " , " + this.enemyboundBox.GetPosition().y + " -- " + this.posX+ " & " + this.posY);
+
+
+};

@@ -3,11 +3,30 @@
 
 function Entity() 
 {
-	this.posX = 0;
-	this.posY = 0;
-	this.image = new Image();
+	var posX;
+	var posY;
 
-	 this.collisionWorld;// = colWorld;
+MEASURE_UNIT;
+///*
+  this.fixture = new b2FixtureDef;
+  
+  this.fixture.density = 0;
+  this.fixture.friction = 0;
+  this.fixture.restitution = 0;
+  
+  this.body = new b2BodyDef;
+  this.body.type = b2Body.b2_dynamicBody;
+  //this.body.position.x = 120/MEASURE_UNIT;
+  //this.body.position.y = 50/MEASURE_UNIT;
+  
+  this.fixture.shape = new b2PolygonShape; //b2PolygonShape;
+  
+  //this.fixture.shape.SetAsBox((30/MEASURE_UNIT)/2,  ( 30/MEASURE_UNIT )/2);
+  
+  //this.boundBox = collisionWorld.CreateBody(this.body);
+  //this.boundBox.CreateFixture(this.fixture);
+//*/
+	 
 	//move method, should take some movement input and update position
 	
 	//some method to check if its colliding with anything
@@ -16,35 +35,3 @@ function Entity()
 }
 
 
-/*
-Entity.prototype.addContactListener = function(callbacks) 
-{
-    //console.log(callbacks);
-    var listener = new b2ContactListener;
-    
-    if (callbacks.BeginContact) listener.BeginContact = function(contact) 
-    {
-        callbacks.BeginContact(contact.GetFixtureA().GetBody().GetUserData(),
-                               contact.GetFixtureB().GetBody().GetUserData());
-                               console.log("listening --- 1 ------");
-    };
-    
-    if (callbacks.EndContact) listener.EndContact = function(contact)
-     {
-        callbacks.EndContact(contact.GetFixtureA().GetBody().GetUserData(),
-                             contact.GetFixtureB().GetBody().GetUserData());
-                             console.log("listening ----- 2 ----");
-    };
-    
-    if (callbacks.PostSolve) listener.PostSolve = function(contact, impulse)
-     {
-        callbacks.PostSolve(contact.GetFixtureA().GetBody().GetUserData(),
-                             contact.GetFixtureB().GetBody().GetUserData(),
-                             impulse.normalImpulses[0]);
-                             console.log("listening ----- 3 ----");
-    };
-    
-    collisionWorld.SetContactListener(listener);
-};
-
-*/
