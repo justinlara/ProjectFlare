@@ -1,6 +1,7 @@
 function Player() 
 {
-    
+  arcStart = Math.PI*5/8;
+  arcEnd = Math.PI*3/8;
       //Entity.call(this);  
   /*
   this.fixture = new b2FixtureDef;
@@ -101,32 +102,32 @@ offset =new b2Vec2((centerX - this.p.pos[0]),  Math.abs(centerY  - this.p.pos[1]
 //movement now also rotates lantern
 Player.prototype.moveLeft = function()
  {
-  arcStart = Math.PI*5/4;
-  arcEnd = Math.PI*3/4;
+  arcStart = Math.PI*9/8;
+  arcEnd = Math.PI*7/8;
   this.p.pos[0] -= MEASURE_UNIT*.07;
   checkBounds(this.p);
 };
 
 Player.prototype.moveRight = function() 
 {
-  arcStart = Math.PI*1/4;
-  arcEnd = Math.PI*7/4;
+  arcStart = Math.PI*1/8;
+  arcEnd = Math.PI*15/8;
   this.p.pos[0]  +=  MEASURE_UNIT*.07;
   checkBounds(this.p);
 };
 
 Player.prototype.moveUp = function() 
 {
-  arcStart = Math.PI*7/4;
-  arcEnd = Math.PI*5/4;
+  arcStart = Math.PI*13/8;
+  arcEnd = Math.PI*11/8;
   this.p.pos[1] -=  MEASURE_UNIT*.07;
   checkBounds(this.p);
 };
 
 Player.prototype.moveDown = function()
 {
-  arcStart = Math.PI*3/4;
-  arcEnd = Math.PI*1/4;
+  arcStart = Math.PI*5/8;
+  arcEnd = Math.PI*3/8;
   this.p.pos[1] +=  MEASURE_UNIT*.07;
   checkBounds(this.p);
 };
