@@ -50,7 +50,7 @@ Enemy.prototype.draw = function()
   //var sy = offset.y ;//* MEASURE_UNIT;  
   //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
   this.enemyboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));
-     console.log("x   y " + this.enemyboundBox.GetPosition().x + " , " + this.enemyboundBox.GetPosition().y + " -- " + this.posX+ " & " + this.posY);
+     //console.log("x   y " + this.enemyboundBox.GetPosition().x + " , " + this.enemyboundBox.GetPosition().y + " -- " + this.posX+ " & " + this.posY);
 
 
 };

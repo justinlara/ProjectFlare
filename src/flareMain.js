@@ -9,7 +9,7 @@ var centerX;
 var centerY;
 var spriteCharName = 'assets/char.png';
 
-var spriteCharName = 'assets/char.png';
+var thisLevel;
 
 
 //test
@@ -89,21 +89,21 @@ function resizeScreen() {
 function initGame() {
     //this is where we make sure the images and sounds have loaded, so we can safely use them!
 
-    //generate the level
-    //init the first current room (level.currentRoom)
-    //this block of room code should probably go into the level when its ready
-    //var thisLevel = new Level(1, 1); //when the level is ready
-    
-    // Use the algorithm to generate the randomly generated 2D array of the level.
-    
-    var thisRoom = ALLTILES.entrance;
-    currentRoom = new Room(thisRoom);
-    
-    //create a player instance
-    //mainGuy =  new Player();
-    
+	//generate the level
+	//init the first current room (level.currentRoom)
+	//this block of room code should probably go into the level when its ready
+	thisLevel = new Level(10, 1); //when the level is ready
+	currentRoom = thisLevel.currentRoom;
+	
+	// Use the algorithm to generate the randomly generated 2D array of the level.
+	
+	//var thisRoom = ALLTILES.entrance;
+	//currentRoom = new Room(thisRoom);
+	
+
     badGuy1 =  new Enemy();
 
+	//create a player instance
      mainGuy =  new Player();
 
 
@@ -196,7 +196,7 @@ function draw() {
     ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
     //draw room
-    /*thisLevel.*/currentRoom.draw();
+	thisLevel.currentRoom.draw();
     
          //for debugging collisions
         //collisionWorld.DrawDebugData();

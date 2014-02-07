@@ -8,6 +8,9 @@
 
 
 // Fields needed to generate the level.
+//function RandomLevelGeneratorAlgorithm() {
+    //code
+
 var numberOfRooms;
 var height;
 var width;
@@ -18,12 +21,14 @@ var roomCount;
 const inactiveRoom = "\u00A0"; // this is a space, e.g. " "
 const activeRoom = "O";
 const startingRoom = "$";
+//}
 
-
-function createRandomLevel()
+function createRandomLevel(nRooms)
+//RandomLevelGeneratorAlgorithm.prototype.createRandomLevel = function(nRooms) {
 {
+    numberOfRooms = nRooms;
     // Currently, grab the number from the form.
-    numberOfRooms = levelGeneratorForm.rooms.value;
+    //numberOfRooms = levelGeneratorForm.rooms.value;
     // numberOfRooms = 10;
     
     // Height and width of the 2D array will be dependent on the numberOfRooms.
@@ -69,9 +74,14 @@ function createRandomLevel()
         }
     }
     // Draw the level.
-    drawLevel();
+    //drawLevel();
     
-    return true;
+    return {level: level,
+            height: height,
+            width: width,
+            activeRoom: activeRoom,
+            inactiveRoom: inactiveRoom,
+            startingRoom: startingRoom};
 }
 
 
@@ -248,5 +258,24 @@ function drawLevel()
     document.write("</font>");
 }
 
-
+function drawLevelToConsole()
+{
+    console.log("HERE IS THE LEVEL:");
+    // For each row of the level...
+    for (var r = 0; r < height; r++)
+    {
+        // Print the row and then a line break.
+        
+        for (var c = 0; c < width; c++)
+        {
+            // Make sure each index is a size of four for mono-width array.
+            while (level[r][c].length < 5)
+            {
+                level[r][c] += "\u00A0"; // this is a space, e.g. " "
+            }
+        }
+        
+        console.log(level[r].join(" "));
+    }
+}
 
