@@ -20,6 +20,7 @@ function TileFloor(setName) {
 	//or if there are multiple images for the same set, make a random number generator
 	var variance = Math.floor((Math.random()*10) + 1); //a set with 10 variations
 	//this.image.src = "assets/floor_" + setName + "_" + variance ".png";
+	this.image.src = "assets/tempfloor.png";
 }
 
 //wall needs collision
@@ -40,7 +41,7 @@ function TileBlock() {
 
 function TileLamp() {
 	this.image = new Image();
-	this.image.src = "assets/tempwall.png";
+	this.image.src = "assets/Lamp1.png";
 	
 	//when collided with by player, lamp lights
 	//otherwise treat as a block; you and enemies can't pass through

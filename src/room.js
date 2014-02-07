@@ -20,34 +20,27 @@ function Room(gridObj) {
 			var type;
 			switch (gridObj[i][j]) {
 				case 1:
-					type = "wall";
-					img = "assets/tempwall.png";
+					this.grid[i][j] = new TileWall();
 					break;
 				case 2:
-					type = "floor";
-					img = "assets/tempfloor.png";
+					this.grid[i][j] = new TileFloor();
 					break;
 				case 3:
-					type = "lamp";
-					img = "assets/Lamp1.png";
+					this.grid[i][j] = new TileLamp();
 					break;
 				case 4:
-					type = "block";
-					img = "assets/errorTile.png";;
+					this.grid[i][j] = new TileBlock();
 					break;
 				case 5: //example enemy case, add a floor tile and make a new enemy
-					type = "floor";
-					img = "assets/tempfloor.png";
+					this.grid[i][j] = new TileFloor();
 					var miles = new Enemy();
 					miles.posX = (MEASURE_UNIT * j);
 					miles.posY = (MEASURE_UNIT * i);
 					this.enemies.push(miles);
 					break;
 				default:
-					type = "error";
-					img = "assets/errorTile.png";
+					this.grid[i][j] = new Tile("assets/errorTile.png", "error");
 			}
-			this.grid[i][j] = new Tile(img, type);
 		}
 	}
 }	
