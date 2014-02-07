@@ -208,8 +208,8 @@ function draw() {
 
     mainGuy.update();
 
-   badGuy1.move();
-   badGuy1.draw();
+   //badGuy1.move();
+   //badGuy1.draw();
     
     //directly draw darkness, accessing player position
     ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
