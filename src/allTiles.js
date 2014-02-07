@@ -1,7 +1,7 @@
 function AllTiles() {
 	this.entrance = new Array();
 	this.entrance[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.entrance[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.entrance[1] = new Array(1,5,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[2] = new Array(1,2,2,2,2,2,2,3,2,2,2,2,2,2,1);
 	this.entrance[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
