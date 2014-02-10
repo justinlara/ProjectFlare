@@ -108,18 +108,21 @@ function initGame() {
 
 
     //setup of the sound manager
-    soundManager.setup({
-        url: 'src/swf/',
-        onready: function () {
-            var music1 = soundManager.createSound({
-                id: 'spookyMusic',
-                url: './assets/spookyMusic.mp3',
-                autoLoad: true,
-                autoPlay: true,
-                stream: true
-            });
-        }
-    });
+     soundManager.setup({
+         url: 'src/swf/',
+         onready: function () {
+             var music1 = soundManager.createSound({
+                 id: 'spookyMusic',
+                 url: './assets/spookyMusic.mp3',
+                 autoLoad: true,
+                 autoPlay: true,
+                 stream: true,
+                 onfinish: function () {
+                     music1.play();
+                 }
+             });
+         }
+     });
 
 
 //----------- show collision boxes (for debugging) ------------
