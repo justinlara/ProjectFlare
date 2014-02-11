@@ -13,14 +13,9 @@ function Tile(i, t) {
 function TileFloor(setName) {
 	this.image = new Image();
 	
-	//pick an acceptable image from the tileset name
-	//this way is one image per tileset
-	//this.image.src = "assets/floor_" + setName + ".png";
-	
 	//or if there are multiple images for the same set, make a random number generator
-	var variance = Math.floor((Math.random()*10) + 1); //a set with 10 variations
-	//this.image.src = "assets/floor_" + setName + "_" + variance ".png";
-	this.image.src = "assets/tempfloor.png";
+	var variance = Math.floor((Math.random()*3) + 1); //a set with 3 variations
+	this.image.src = "assets/floor_castle_" + variance + ".png";
 }
 
 //wall needs collision

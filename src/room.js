@@ -16,11 +16,25 @@ function Room(gridObj) {
 	for (var i = 0; i < gridObj.length; i++) {
 		this.grid[i] = new Array();
 		for (var j = 0; j<gridObj[i].length; j++) {
-			var img;
-			var type;
 			switch (gridObj[i][j]) {
 				case 1:
-					this.grid[i][j] = new TileWall();
+				//uncomment for sweet wall flipping
+					/*if (i==0) { //if corner, generic tile with appropriate corner
+						if (j==0) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //upperleft
+						else if (j==14) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //upperright
+					}
+					else if (i==10) {
+						if (j==0) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //lowerleft
+						else if (j==14) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //lowerright
+						else this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //bottom row
+					}
+					else if (j==0) {//left side
+						
+					}
+					else if (j==14) {//right side
+					
+					}
+					else*/ this.grid[i][j] = new TileWall();
 					break;
 				case 2:
 					this.grid[i][j] = new TileFloor();
@@ -75,7 +89,7 @@ Room.prototype.draw = function() {
 Room.prototype.setDoor = function(door) {
 	//change the correct tile in the grid to a door
 	switch (door) {
-		case "n":
+		case "n"://change from generic tile to door type; assign the correctly flipped image
 			this.grid[0][7] = new Tile("assets/errorTile.png", "door"); //i'm sorry for hardcoding this...
 			break;
 		case "s":
@@ -92,7 +106,5 @@ Room.prototype.setDoor = function(door) {
 };
 	
 Room.prototype.setLit = function(lit) {
-	if (lit) { 
-		isLit = true; }
-	else isLit = false;
+	//this.isLit = lit; //disabled for debugging
 }

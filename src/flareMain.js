@@ -22,7 +22,7 @@ function loadAssets() {
     // just have to list everything like so
     // when we put this on a website, we can simplify this with PHP
     var images = new Array();
-    var imgNumber = 6;
+    var imgNumber = 9;
     for (var i = 0; i < imgNumber; i++) {
         images[i] = new Image();
     }
@@ -32,6 +32,9 @@ function loadAssets() {
     images[3].src = "assets/tempfloor.png";
     images[4].src = "assets/tempwall.png";
     images[5].src = "assets/Miles_Enemy1.png";
+	images[6].src = "assets/floor_castle_1.png";
+	images[7].src = "assets/floor_castle_2.png";
+	images[8].src = "assets/floor_castle_3.png";
 }
 
 function resizeScreen() {
