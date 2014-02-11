@@ -36,7 +36,7 @@ function TileBlock() {
 
 function TileLamp() {
 	this.image = new Image();
-	this.image.src = "assets/Lamp1.png";
+	this.image.src = "assets/lamp_castle_1.png";
 	
 	//when collided with by player, lamp lights
 	//otherwise treat as a block; you and enemies can't pass through

@@ -19,22 +19,23 @@ function Room(gridObj) {
 			switch (gridObj[i][j]) {
 				case 1:
 				//uncomment for sweet wall flipping
-					/*if (i==0) { //if corner, generic tile with appropriate corner
-						if (j==0) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //upperleft
-						else if (j==14) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //upperright
+					if (i==0) { //if corner, generic tile with appropriate corner
+						if (j==0) this.grid[i][j] = new Tile("assets/wall_castle_5.png", "wall"); //upperleft
+						else if (j==14) this.grid[i][j] = new Tile("assets/wall_castle_6.png", "wall"); //upperright
+						else this.grid[i][j] = new Tile("assets/wall_castle_1.png", "wall"); //top row
 					}
 					else if (i==10) {
-						if (j==0) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //lowerleft
-						else if (j==14) this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //lowerright
-						else this.grid[i][j] = new Tile("assets/errorTile.png", "error"); //bottom row
+						if (j==0) this.grid[i][j] = new Tile("assets/wall_castle_8.png", "wall"); //lowerleft
+						else if (j==14) this.grid[i][j] = new Tile("assets/wall_castle_7.png", "wall"); //lowerright
+						else this.grid[i][j] = new Tile("assets/wall_castle_3.png", "wall"); //bottom row
 					}
 					else if (j==0) {//left side
-						
+						this.grid[i][j] = new Tile("assets/wall_castle_4.png", "wall");
 					}
 					else if (j==14) {//right side
-					
+						this.grid[i][j] = new Tile("assets/wall_castle_2.png", "wall");
 					}
-					else*/ this.grid[i][j] = new TileWall();
+					else this.grid[i][j] = new Tile("assets/errorTile.png", "error");
 					break;
 				case 2:
 					this.grid[i][j] = new TileFloor();
@@ -90,16 +91,16 @@ Room.prototype.setDoor = function(door) {
 	//change the correct tile in the grid to a door
 	switch (door) {
 		case "n"://change from generic tile to door type; assign the correctly flipped image
-			this.grid[0][7] = new Tile("assets/errorTile.png", "door"); //i'm sorry for hardcoding this...
+			this.grid[0][7] = new Tile("assets/door_castle_1.png", "door"); //i'm sorry for hardcoding this...
 			break;
 		case "s":
-			this.grid[10][7] = new Tile("assets/errorTile.png", "door");
+			this.grid[10][7] = new Tile("assets/door_castle_3.png", "door");
 			break;
 		case "e":
-			this.grid[5][14] = new Tile("assets/errorTile.png", "door");
+			this.grid[5][14] = new Tile("assets/door_castle_2.png", "door");
 			break;
 		case "w":
-			this.grid[5][0] = new Tile("assets/errorTile.png", "door");
+			this.grid[5][0] = new Tile("assets/door_castle_4.png", "door");
 			break;
 		default:
 	}
