@@ -95,7 +95,7 @@ function resizeScreen() {
     }
 	
 	//need to adjust enemy position too
-	if ('undefined' !== typeof thislevel.currentRoom) {
+	if ('undefined' !== typeof thislevel &&'undefined' !== typeof thislevel.currentRoom) {
 		for (var i = 0; i < thislevel.currentRoom.enemies.length; i++) {
 			thislevel.currentRoom.enemies[i].posX = Math.floor((thislevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
 			thislevel.currentRoom.enemies[i].posY = Math.floor((thislevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
