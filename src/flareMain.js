@@ -1,4 +1,3 @@
-var currentRoom; //move this to level object, shouldn't be a main thing
 var ALLTILES = new AllTiles();
 //variables for drawing lantern light
 var arcStart = Math.PI*3/4;
@@ -11,12 +10,6 @@ var spriteCharName = 'assets/char.png';
 
 var thisLevel;
 
-
-//test
-var imgEnemy = new Image();
-imgEnemy.src = "assets/Miles_Enemy1.png";
-
-
 // UI health
 var heart = new Image();
 heart.src = "assets/heart_small.png";
@@ -27,19 +20,27 @@ function loadAssets() {
     // just have to list everything like so
     // when we put this on a website, we can simplify this with PHP
     var images = new Array();
-    var imgNumber = 9;
+    var imgNumber = 17;
     for (var i = 0; i < imgNumber; i++) {
         images[i] = new Image();
     }
     images[0].src = "assets/Character.png";
     images[1].src = "assets/errorTile.png";
-    images[2].src = "assets/Lamp1.png";
-    images[3].src = "assets/tempfloor.png";
+    images[2].src = "assets/lamp_castle_1.png";
+    images[3].src = "assets/lamp_castle_2.png";
     images[4].src = "assets/tempwall.png";
     images[5].src = "assets/Miles_Enemy1.png";
 	images[6].src = "assets/floor_castle_1.png";
 	images[7].src = "assets/floor_castle_2.png";
 	images[8].src = "assets/floor_castle_3.png";
+	images[9].src = "assets/wall_castle_1.png";
+	images[10].src = "assets/wall_castle_2.png";
+	images[11].src = "assets/wall_castle_3.png";
+	images[12].src = "assets/wall_castle_4.png";
+	images[13].src = "assets/wall_castle_5.png";
+	images[14].src = "assets/wall_castle_6.png";
+	images[15].src = "assets/wall_castle_7.png";
+	images[16].src = "assets/wall_castle_8.png";
 }
 
 function resizeScreen() {
@@ -92,6 +93,14 @@ function resizeScreen() {
         mainGuy.p.pos[1] = Math.floor((mainGuy.p.pos[1]/oldUnit) * MEASURE_UNIT);
        
     }
+	
+	//need to adjust enemy position too
+	if ('undefined' !== typeof thislevel.currentRoom) {
+		for (var i = 0; i < thislevel.currentRoom.enemies.length; i++) {
+			thislevel.currentRoom.enemies[i].posX = Math.floor((thislevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
+			thislevel.currentRoom.enemies[i].posY = Math.floor((thislevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
+		}
+	}
 }
 
 function initGame() {
@@ -101,15 +110,8 @@ function initGame() {
 	//init the first current room (level.currentRoom)
 	//this block of room code should probably go into the level when its ready
 	thisLevel = new Level(10, 1); //when the level is ready
-	currentRoom = thisLevel.currentRoom;
 	
 	// Use the algorithm to generate the randomly generated 2D array of the level.
-	
-	//var thisRoom = ALLTILES.entrance;
-	//currentRoom = new Room(thisRoom);
-	
-
-    badGuy1 =  new Enemy();
 
 	//create a player instance
      mainGuy =  new Player();
@@ -216,38 +218,33 @@ function draw() {
     //the player should be drawn here, on top of the world
     //player drawing and updates:
     mainGuy.draw(ctxWorld);
-
     mainGuy.update();
-
-   //badGuy1.move();
-   //badGuy1.draw();
     
     //directly draw darkness, accessing player position
-    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-    
     //only draw if not lit
-    //if (!thisLevel.currentRoom.isLit)
-    // Coordinates for the center of the circle of light, aka the tip of the arc.
-    //var 
-    centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
-    //var 
-    centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
-    // Draw the field of darkness.
-    ctxDark.fillStyle = 'black';
-    ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-    // Set transparency using the "xor" operation.
-    ctxDark.globalCompositeOperation = 'xor';
-    // Set the black background to not be completely transparent.
-    ctxDark.globalAlpha = 0.95;
-    // Draw the white arc to represent the light from the character's lantern.
-    ctxDark.fillStyle = 'white';
-    ctxDark.beginPath();
-    //ctxDark.moveTo(centerX+x, centerY+y);
-    var r = MEASURE_UNIT*1.5;   
-    ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
-    ctxDark.lineTo(centerX+x, centerY+y);
-    ctxDark.fill();
-
+    if (!thisLevel.currentRoom.isLit) {
+		ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		// Coordinates for the center of the circle of light, aka the tip of the arc.
+		//var 
+		centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
+		//var 
+		centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
+		// Draw the field of darkness.
+		ctxDark.fillStyle = 'black';
+		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		// Set transparency using the "xor" operation.
+		ctxDark.globalCompositeOperation = 'xor';
+		// Set the black background to not be completely transparent.
+		ctxDark.globalAlpha = 0.95;
+		// Draw the white arc to represent the light from the character's lantern.
+		ctxDark.fillStyle = 'white';
+		ctxDark.beginPath();
+		//ctxDark.moveTo(centerX+x, centerY+y);
+		var r = MEASURE_UNIT*1.5;   
+		ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
+		ctxDark.lineTo(centerX+x, centerY+y);
+		ctxDark.fill();
+	}
     
     //directly draw the UI, asking for player resources with accessors
     //no need for a subclass unless we want to animate the gauges

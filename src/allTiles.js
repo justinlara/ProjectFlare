@@ -40,7 +40,7 @@ function AllTiles() {
 	
 }
 
-allTiles.prototype.getRandom() = function() {
+AllTiles.prototype.getRandom = function() {
 	//code for picking a random room goes here
 	//return 2D grid array
 	var r = Math.floor((Math.random()*2) + 1);
