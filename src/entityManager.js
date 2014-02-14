@@ -13,7 +13,7 @@ function EntityManager() {
 	this.reorderEntities = function() {
 		this.entities.sort(function(a,b) {
 			if (a.y < b.y)
-				return -1; //negative numbers get sorted to a lower index (ie draw first)
+				return -1; //negative numbers get sorted to a smaller index (ie draw first)
 			else if (a.y > b.y) //those with greater y values are lower, and draw last
 				return 1;
 			else return 0;
