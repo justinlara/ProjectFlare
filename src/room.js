@@ -50,9 +50,13 @@ function Room(gridObj) {
 				case 5: //example enemy case, add a floor tile and make a new enemy
 					this.grid[i][j] = new TileFloor();
 					var miles = new Enemy();
+					 //console.log(" created ENEMY --------------------------------------------------------  ");
+
 					miles.posX = (MEASURE_UNIT * j);
 					miles.posY = (MEASURE_UNIT * i);
 					this.enemies.push(miles);
+					
+					//console.log("size of enemy's is:  "+this.enemies.size());
 					break;
 				default:
 					this.grid[i][j] = new Tile("assets/errorTile.png", "error");
@@ -78,7 +82,9 @@ function Room(gridObj) {
 			gy += gh;
 			gx = 0;
 		}
-	
+		
+		//collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
+
 		//also handle enemies if the room is not lit
 		if (!this.isLit) {
 			for (var i = 0; i < this.enemies.length; i++) {

@@ -10,9 +10,11 @@ var spriteCharName = 'assets/char.png';
 
 var thisLevel;
 
+
 // UI health
 var heart = new Image();
 heart.src = "assets/heart_small.png";
+
 
 
 function loadAssets() {
@@ -30,17 +32,17 @@ function loadAssets() {
     images[3].src = "assets/lamp_castle_2.png";
     images[4].src = "assets/tempwall.png";
     images[5].src = "assets/Miles_Enemy1.png";
-	images[6].src = "assets/floor_castle_1.png";
-	images[7].src = "assets/floor_castle_2.png";
-	images[8].src = "assets/floor_castle_3.png";
-	images[9].src = "assets/wall_castle_1.png";
-	images[10].src = "assets/wall_castle_2.png";
-	images[11].src = "assets/wall_castle_3.png";
-	images[12].src = "assets/wall_castle_4.png";
-	images[13].src = "assets/wall_castle_5.png";
-	images[14].src = "assets/wall_castle_6.png";
-	images[15].src = "assets/wall_castle_7.png";
-	images[16].src = "assets/wall_castle_8.png";
+    images[6].src = "assets/floor_castle_1.png";
+    images[7].src = "assets/floor_castle_2.png";
+    images[8].src = "assets/floor_castle_3.png";
+    images[9].src = "assets/wall_castle_1.png";
+    images[10].src = "assets/wall_castle_2.png";
+    images[11].src = "assets/wall_castle_3.png";
+    images[12].src = "assets/wall_castle_4.png";
+    images[13].src = "assets/wall_castle_5.png";
+    images[14].src = "assets/wall_castle_6.png";
+    images[15].src = "assets/wall_castle_7.png";
+    images[16].src = "assets/wall_castle_8.png";
 }
 
 function resizeScreen() {
@@ -91,31 +93,78 @@ function resizeScreen() {
         //new pos = currentPos/OLD_MEASURE_UNIT * NEW_MEASURE_UNIT
         mainGuy.p.pos[0] = Math.floor((mainGuy.p.pos[0]/oldUnit) * MEASURE_UNIT);
         mainGuy.p.pos[1] = Math.floor((mainGuy.p.pos[1]/oldUnit) * MEASURE_UNIT);
+       // add new resized player collion 
        
+       mainGuy.Resize();
+        
     }
-	
-	//need to adjust enemy position too
-	if ('undefined' !== typeof thislevel) {
-		for (var i = 0; i < thislevel.currentRoom.enemies.length; i++) {
-			thislevel.currentRoom.enemies[i].posX = Math.floor((thislevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
-			thislevel.currentRoom.enemies[i].posY = Math.floor((thislevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
-		}
-	}
+
+// ****************  MINE FOR ENIMES ************************
+/*    
+    // FOR LOOP THROUGH ALL ENEMIES IN LEVELS class AND IF...    
+  if('undefined' !== typeof currentRoom)
+  {  
+
+     for(var i =0; i < currentRoom.enemies.size(); i++)
+     {
+          
+        if('undefined' !== typeof currentRoom.enemies[i])
+        {
+            // how to get the list of all enemys 
+            
+            // enemies draw from - AllTiles: this.enterence, Level: level(3, )
+            currentRoom.enemies[i].Resize();
+            
+        }
+     }
+  }
+*/ 
+// ****************  MINE FOR ENIMES END ************************
+  ///*
+    if('undefined' !== typeof levelBox)
+    {
+        levelBox.resizeLevel();
+        
+    }
+  //*/
+
+    
+    //need to adjust enemy position too
+    if ('undefined' !== typeof thislevel) {
+        for (var i = 0; i < thislevel.currentRoom.enemies.length; i++) {
+            thislevel.currentRoom.enemies[i].posX = Math.floor((thislevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
+            thislevel.currentRoom.enemies[i].posY = Math.floor((thislevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
+            
+             if('undefined' !== typeof thislevel.currentRoom.enemies[i])
+        {
+            // how to get the list of all enemys 
+            
+            // enemies draw from - AllTiles: this.enterence, Level: level(3, )
+            thislevel.currentRoom.enemies[i].Resize();      // ????????? STILL NEEDS TO  RESIZE  ??/??????????????
+
+        }
+            
+        }
+    }
+
 }
 
 function initGame() {
     //this is where we make sure the images and sounds have loaded, so we can safely use them!
 
-	//generate the level
-	//init the first current room (level.currentRoom)
-	//this block of room code should probably go into the level when its ready
-	thisLevel = new Level(10, 1); //when the level is ready
-	
-	// Use the algorithm to generate the randomly generated 2D array of the level.
+    //generate the level
+    //init the first current room (level.currentRoom)
+    //this block of room code should probably go into the level when its ready
+    thisLevel = new Level(3, 1); //when the level is ready
+    
+    
+    // Use the algorithm to generate the randomly generated 2D array of the level.
 
-	//create a player instance
+    //create a player instance
      mainGuy =  new Player();
 
+    
+    collisionDetection = new Collisions(); 
 
     //setup of the sound manager
      soundManager.setup({
@@ -145,62 +194,12 @@ debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 collisionWorld.SetDebugDraw(debugDraw);    
 //----------- show collision boxes (for debugging) ------------    
 
-///////// TEMP ENEMY /////////////////////////
-/*
-var fixDef = new b2FixtureDef;
-fixDef.density = 1;
-fixDef.friction = 1;
-fixDef.restitution = 1; 
-
-
-var bodyDef = new b2BodyDef;
-bodyDef.type = b2Body.b2_dynamicBody;
-       
-// positions the center of the object
-bodyDef.position.x = 500 / MEASURE_UNIT;
-bodyDef.position.y = 350 / MEASURE_UNIT;
-
-fixDef.shape = new b2PolygonShape;
-       
-fixDef.shape.SetAsBox((850 / MEASURE_UNIT) / 2, (10/MEASURE_UNIT) / 2);
-
- enemyBody = collisionWorld.CreateBody(bodyDef);
-enemyBody.CreateFixture(fixDef);
-*/
-///////// TEMP ENEMY END /////////////////////////
-
-
-
 
 }
 
 //main update loop, called at regular intervals
 function draw() {
     window.requestAnimationFrame(draw);
-
- //----------- DEMO COLLISION ----------------
-    //TO USE: ***uncomment collisionWorld.DrawDebugData() and 
-    //           comment out currentRoom.draw() 
- /* 
-     //vec = enemyBody.GetPosition();
-   if(collisionWorld.GetContactList() != null)
-   {
-     list= collisionWorld.GetContactList();
-     list.GetNext();
-     
-     console.log(" we have contact " );
-     
-        //vec.y += 40/MEASURE_UNIT; 
-        ctxWorld.drawImage(badGuy1.image, badGuy1.posX, badGuy1.posY, MEASURE_UNIT, MEASURE_UNIT);
-        badGuy1.enemyboundBox.SetPosition(new b2Vec2(badGuy1.posX/30+1,badGuy1.posY/30+1));
-    }
-    else
-    {
-        
-        
-    }
-*/
-// //----------- DEMO COLLISION END ----------------
 
 
     //draw each canvas one at a time
@@ -209,52 +208,57 @@ function draw() {
     ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
     //draw room
-	thisLevel.currentRoom.draw();
+    thisLevel.currentRoom.draw();
     
          //for debugging collisions
         //collisionWorld.DrawDebugData();
-    
+
      
     //the player should be drawn here, on top of the world
     //player drawing and updates:
     mainGuy.draw(ctxWorld);
     mainGuy.update();
-    
-    //directly draw darkness, accessing player position
+
+
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
-		ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-		// Coordinates for the center of the circle of light, aka the tip of the arc.
-		//var 
-		centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
-		//var 
-		centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
-		// Draw the field of darkness.
-		ctxDark.fillStyle = 'black';
-		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-		// Set transparency using the "xor" operation.
-		ctxDark.globalCompositeOperation = 'xor';
-		// Set the black background to not be completely transparent.
-		ctxDark.globalAlpha = 0.95;
-		// Draw the white arc to represent the light from the character's lantern.
-		ctxDark.fillStyle = 'white';
-		ctxDark.beginPath();
-		//ctxDark.moveTo(centerX+x, centerY+y);
-		var r = MEASURE_UNIT*1.5;   
-		ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
-		ctxDark.lineTo(centerX+x, centerY+y);
-		ctxDark.fill();
-	}
+         // *** UNCOMMENT ***  ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        // Coordinates for the center of the circle of light, aka the tip of the arc.
+        //var 
+        centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
+        //var 
+        centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
+        // Draw the field of darkness.
+        ctxDark.fillStyle = 'black';
+        ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        // Set transparency using the "xor" operation.
+        ctxDark.globalCompositeOperation = 'xor';
+        // Set the black background to not be completely transparent.
+        ctxDark.globalAlpha = 0.95;
+        // Draw the white arc to represent the light from the character's lantern.
+        ctxDark.fillStyle = 'white';
+        ctxDark.beginPath();
+        //ctxDark.moveTo(centerX+x, centerY+y);
+        var r = MEASURE_UNIT*1.5;   
+        ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
+        ctxDark.lineTo(centerX+x, centerY+y);
+        ctxDark.fill();
+    }
     
     //directly draw the UI, asking for player resources with accessors
     //no need for a subclass unless we want to animate the gauges
     //this needs to be moved, and only update when the UI changes
     ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT); 
-	//ctxUI.drawImage(rod, 0,0, MEASURE_UNIT*4.75, MEASURE_UNIT * 2.75);
+    //ctxUI.drawImage(rod, 0,0, MEASURE_UNIT*4.75, MEASURE_UNIT * 2.75);
   //  ctxUI.drawImage(light, 0,25, MEASURE_UNIT*1.5, MEASURE_UNIT * 3);
-	ctxUI.drawImage(heart, 0,10, MEASURE_UNIT*2.75, MEASURE_UNIT * 2.75);
+    ctxUI.drawImage(heart, 0,10, MEASURE_UNIT*2.75, MEASURE_UNIT * 2.75);
 
     
+    collisionWorld.Step((0),0,0);
+    
+    collisionDetection.collisionContact();
+    
+    collisionWorld.ClearForces();
 }
 
 function initDrawUpdate() {
@@ -279,41 +283,6 @@ function initDrawUpdate() {
     //more efficient version using requestAnimationFrame:
     draw();
 }
-
-//----------------------------------------------
-/*
-//Setup collision handler
-game.prototype.setup_collision_handler = function()
-{
-    var that = this;
-    
-    //Override a few functions of class b2ContactListener
-    b2ContactListener.prototype.BeginContact = function (contact) 
-    {
-        //now come action time
-        var a = contact.GetFixtureA().GetUserData();
-        var b = contact.GetFixtureB().GetUserData();
-        
-        if(a instanceof player && b instanceof apple)
-        {
-            that.destroy_object(b);
-            that.points++;
-        }
-        
-        else if(b instanceof player && a instanceof apple)
-        {
-            that.destroy_object(a);
-            that.points++;
-        }
-        //apple hits a wall
-        else if(a instanceof apple && b instanceof wall)
-        {
-            that.destroy_object(a);
-        }
-    }
-}
-*/
-
 
 
 //-----------------------------------------------

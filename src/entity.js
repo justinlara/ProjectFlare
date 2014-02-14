@@ -15,11 +15,11 @@ MEASURE_UNIT;
   this.fixture.restitution = 0;
   
   this.body = new b2BodyDef;
-  this.body.type = b2Body.b2_dynamicBody;
+  //this.body.type = b2Body.b2_dynamicBody;
   //this.body.position.x = 120/MEASURE_UNIT;
   //this.body.position.y = 50/MEASURE_UNIT;
   
-  this.fixture.shape = new b2PolygonShape; //b2PolygonShape;
+  //this.fixture.shape = new b2PolygonShape; //b2PolygonShape;
   
   //this.fixture.shape.SetAsBox((30/MEASURE_UNIT)/2,  ( 30/MEASURE_UNIT )/2);
   

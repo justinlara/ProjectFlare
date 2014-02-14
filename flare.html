@@ -112,6 +112,7 @@
 		//"world unit", in pixels, set in the resize function
 		var MEASURE_UNIT;
 		
+		var SCALE = 30;
 		var b2Vec2 = Box2D.Common.Math.b2Vec2;
 		var b2AABB = Box2D.Collision.b2AABB;
 		var b2BodyDef = Box2D.Dynamics.b2BodyDef;
@@ -120,6 +121,7 @@
 		var b2Fixture = Box2D.Dynamics.b2Fixture;
 		var b2World = Box2D.Dynamics.b2World;
 		var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
+		var b2CircleShape =  Box2D.Collision.Shapes.b2CircleShape;
 		var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 		var b2ContactListener = Box2D.Dynamics.b2ContactListener;
 		
@@ -138,7 +140,8 @@
 	<script type ="text/javascript" src='src/sprite.js'></script>
 	<script type ="text/javascript" src='src/loader.js'></script>
 	<script type ="text/javascript" src='src/RandomLevelGeneratorAlgorithm.js'></script>
-	
+	<script type ="text/javascript" src='src/Collisions.js'></script>
+
 	
 	<!-- main script goes last -->
 	<script type ="text/javascript" src='src/flareMain.js'></script>

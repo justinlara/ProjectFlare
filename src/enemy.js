@@ -5,31 +5,65 @@ function Enemy() {
 	this.image = new Image();
 	this.image.src = "assets/Miles_Enemy1.png";
 	
-	this.posX =50;
-    this.posY =50;
+	//this.posX =50;
+    //this.posY =50;
     
-  var fix = new b2FixtureDef;
-  var bod = new b2BodyDef;
+   this.enemyfix = new b2FixtureDef;
+   this.enemybox = new b2BodyDef;
   
   this.enemyfix = this.fixture;
   this.enemybox = this.body;
   
-  this.enemybox.position.x = this.posX/30+1;//MEASURE_UNIT;
-  this.enemybox.position.y = this.posY/30+1;
+  this.enemybox.type = b2Body.b2_dynamicBody;
+  this.enemyfix.shape = new b2PolygonShape;
+  
+  min = 50;
+  max = 100;
+  
+function randomIntFromInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+  //(collision debugging) randomly disperse enemies to see how much enemies are created at a time  
+  this.enemybox.position.x = (randomIntFromInterval(min,max))/30+1;  
+  this.enemybox.position.y = (randomIntFromInterval(min,max))/30+1; 
   
    this.enemyfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
+   
+   
+  
+  this.enemybox.active = false;
   
   this.enemyboundBox = collisionWorld.CreateBody(this.enemybox);
-  this.enemyboundBox.CreateFixture(this.enemyfix);
+  this.eFix = this.enemyboundBox.CreateFixture(this.enemyfix);
   
-	
-	
+  
+  this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX:this.enemybox.position.x, pY: this.enemybox.position.y } );
+  	
 	
 }
 
 //carry over position and image properties
 //this should take care of collision, assuming collision is on entities
 Enemy.prototype = new Entity();
+
+Enemy.prototype.Resize = function()
+{
+
+   var newfix = new b2FixtureDef; 
+ 
+   var resizeC = newfix.shape = new b2PolygonShape; 
+  
+  this.enemyboundBox.DestroyFixture( this.eFix );
+  
+  //add new fixture and body     
+  newfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);  
+  
+  this.eFix = this.enemyboundBox.CreateFixture(newfix);  
+  
+};
+
+
 	
 //the basic AI which tells the enemy how to move
 //overwrite in subtypes
@@ -58,15 +92,16 @@ Enemy.prototype.move = function () {
 	
 //draw the enemy on ctxWorld
 Enemy.prototype.draw = function() 
-{
+{ 
+    this.enemyboundBox.SetActive(true);
+    this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
+    
 	ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-//offset =new b2Vec2((centerX - this.p.pos[0]),  Math.abs(centerY  - this.p.pos[1]));
   
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  
   //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
-  this.enemyboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));
-     //console.log("x   y " + this.enemyboundBox.GetPosition().x + " , " + this.enemyboundBox.GetPosition().y + " -- " + this.posX+ " & " + this.posY);
-
+  this.enemyboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));  
+  
 
 };
