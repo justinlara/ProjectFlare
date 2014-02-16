@@ -26,23 +26,23 @@ function loadAssets() {
     for (var i = 0; i < imgNumber; i++) {
         images[i] = new Image();
     }
-    images[0].src = "assets/Character.png";
-    images[1].src = "assets/errorTile.png";
-    images[2].src = "assets/lamp_castle_1.png";
-    images[3].src = "assets/lamp_castle_2.png";
+    images[0].src = "assets/player/Walk_Forward.png";
+    images[1].src = "assets/tiles/errorTile.png";
+    images[2].src = "assets/tiles/lamp_castle_1.png";
+    images[3].src = "assets/tiles/lamp_castle_2.png";
     images[4].src = "assets/tempwall.png";
     images[5].src = "assets/Miles_Enemy1.png";
-    images[6].src = "assets/floor_castle_1.png";
-    images[7].src = "assets/floor_castle_2.png";
-    images[8].src = "assets/floor_castle_3.png";
-    images[9].src = "assets/wall_castle_1.png";
-    images[10].src = "assets/wall_castle_2.png";
-    images[11].src = "assets/wall_castle_3.png";
-    images[12].src = "assets/wall_castle_4.png";
-    images[13].src = "assets/wall_castle_5.png";
-    images[14].src = "assets/wall_castle_6.png";
-    images[15].src = "assets/wall_castle_7.png";
-    images[16].src = "assets/wall_castle_8.png";
+    images[6].src = "assets/tiles/floor_castle_1.png";
+    images[7].src = "assets/tiles/floor_castle_2.png";
+    images[8].src = "assets/tiles/floor_castle_3.png";
+    images[9].src = "assets/tiles/wall_castle_1.png";
+    images[10].src = "assets/tiles/wall_castle_2.png";
+    images[11].src = "assets/tiles/wall_castle_3.png";
+    images[12].src = "assets/tiles/wall_castle_4.png";
+    images[13].src = "assets/tiles/wall_castle_5.png";
+    images[14].src = "assets/tiles/wall_castle_6.png";
+    images[15].src = "assets/tiles/wall_castle_7.png";
+    images[16].src = "assets/tiles/wall_castle_8.png";
 }
 
 function resizeScreen() {
@@ -222,7 +222,7 @@ function draw() {
 
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
-         // *** UNCOMMENT ***  ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         // Coordinates for the center of the circle of light, aka the tip of the arc.
         //var 
         centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);

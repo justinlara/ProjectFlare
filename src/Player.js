@@ -35,6 +35,27 @@ function Player()
            };
    this.playerBoundBox.SetUserData( {id: "player", health: 100, pos: this.p.pos} );
   this.p.I.src = "assets/Character.png";
+  
+  //player animation set up
+  this.pSprite = new SpriteMap('assets/player/Walk_Forward.png',//image
+			{ //anim sequences
+				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3}
+				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
+				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
+				//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
+			}, { //options
+				frameW: 64, // Width of each frame of the animation in pixels
+				frameH: 64, // Height of each frame of the animation in pixels
+				projectedW: 100, // Displayed width
+				projectedH: 100, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					this.pSprite.start('idle');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+			});
 }
 
 //Inheritance from entity class
@@ -83,10 +104,10 @@ var offset =new  b2Vec2(Math.abs(centerX - this.p.pos[0]),  Math.abs(centerY  - 
   var sy = offset.y; 
                                                         
   this.p.playerBody.SetPosition(new b2Vec2( ((this.p.pos[0]+(.5*MEASURE_UNIT))/30), ((this.p.pos[1]+sy)/30) )); 
-  w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
+  //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
   
-
-  I.src = im;
+	//use sprite draw method
+	this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1], pw, ph);
   
 };
 
@@ -125,6 +146,7 @@ Player.prototype.moveDown = function()
   arcStart = Math.PI*5/8;
   arcEnd = Math.PI*3/8;
   this.p.pos[1] +=  MEASURE_UNIT*.07;
+  this.pSprite.use('walkDown');
   checkBounds(this.p);
 };
 
@@ -169,4 +191,12 @@ Player.prototype.update = function()
   
   if (controls.isDown(controls.LEFT)) this.moveLeft();
   else if (controls.isDown(controls.RIGHT)) this.moveRight();
+  
+  if ('undefined' != typeof this.pSprite) {
+  if (!controls.isDown(controls.LEFT) &&
+		!controls.isDown(controls.RIGHT) &&
+		!controls.isDown(controls.UP) &&
+		!controls.isDown(controls.DOWN)){
+	this.pSprite.use('idle');
+  }}
 };
