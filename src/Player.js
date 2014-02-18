@@ -154,9 +154,10 @@ function checkBounds(p)
  {
 
     
-    if(p.pos[0] < ((MEASURE_UNIT* 25)/30))
+    if(p.pos[0] < ((MEASURE_UNIT* 22)/30))
     {
-        p.pos[0] = ((MEASURE_UNIT*25)/30);  
+        p.pos[0] = ((MEASURE_UNIT*22)/30); 
+         
     }
     
     else if(p.pos[0] > (Math.abs(GAME_WIDTH/30 - (14* MEASURE_UNIT))/30)*30)

@@ -135,14 +135,18 @@ function resizeScreen() {
             thislevel.currentRoom.enemies[i].posX = Math.floor((thislevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
             thislevel.currentRoom.enemies[i].posY = Math.floor((thislevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
             
-             if('undefined' !== typeof thislevel.currentRoom.enemies[i])
-        {
+          //if('undefined' !== typeof currentRoom)
+          //{  
+     
+            if('undefined' !== typeof thislevel.currentRoom.enemies[i])
+            {
             // how to get the list of all enemys 
-            
+            console.log("entered undefiend enemies %%%%%%");
             // enemies draw from - AllTiles: this.enterence, Level: level(3, )
             thislevel.currentRoom.enemies[i].Resize();      // ????????? STILL NEEDS TO  RESIZE  ??/??????????????
 
-        }
+            }
+          //}
             
         }
     }
@@ -157,6 +161,7 @@ function initGame() {
     //this block of room code should probably go into the level when its ready
     thisLevel = new Level(3, 1); //when the level is ready
     
+    levelBox = new levelBarrier();
     
     // Use the algorithm to generate the randomly generated 2D array of the level.
 
@@ -210,8 +215,8 @@ function draw() {
     //draw room
     thisLevel.currentRoom.draw();
     
-         //for debugging collisions
-        //collisionWorld.DrawDebugData();
+     //for debugging collisions
+    //collisionWorld.DrawDebugData();
 
      
     //the player should be drawn here, on top of the world
@@ -222,7 +227,7 @@ function draw() {
 
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
-        ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+         ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         // Coordinates for the center of the circle of light, aka the tip of the arc.
         //var 
         centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);

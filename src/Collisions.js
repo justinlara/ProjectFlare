@@ -49,27 +49,54 @@ Collisions.prototype.collisionContact = function()
     {
         console.log("listening --- HIT !!! ------");
 
-
-      //console.log(contact.GetFixtureA().GetBody().GetUserData());  
-      //console.log(contact.GetFixtureB().GetBody().GetUserData()); 
+      
+      console.log(contact.GetFixtureA().GetBody().GetUserData());  
+      console.log(contact.GetFixtureB().GetBody().GetUserData()); 
 
       
       contactA = contact.GetFixtureA().GetBody().GetUserData();   // other (enemies, walls,...)
       contactB = contact.GetFixtureB().GetBody().GetUserData();  // player 
- /*   
-      if(contactA.id === "wall" && contactB.id === "p")
-      {
-          stopX = contactB.pos[0];
-          stopY = contactB.pos[1];
+ ///*   
+      if(contactA.id === "wall" && contactB.type === "enemy")
+      { 
+          console.log("WALL ...");
           
-          if(contactB.pos[0] <= stopX)
+          console.log(contact.GetFixtureA().GetUserData());  
+
+          wallContact = contact.GetFixtureA().GetUserData();
+            EnemyposX = contactB.pX; 
+            EnemyposY = contactB.pY;
+          
+          switch(wallContact.fixID)
           {
-            contactB.pos[0] = stopX;
-            contactB.pos[1] = stopY;
+              case"RightWall":
+              {
+                 
+                
+                 break;    
+              }
+              case"LeftWall":
+              {
+               
+                
+                 break;
+              }
+              case"UpWall":
+              {
+                  
+                 break;
+              }
+              case"DownWall":
+              {
+                  
+                break;   
+              }
+              
           }
-       console.log(contactB);   
+          
+
       }
-*/    
+//*/    
       if(contactA.type === "enemy" && contactB.id === "player")
       {
           switch(contactA.id)
