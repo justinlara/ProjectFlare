@@ -43,6 +43,7 @@ function Room(gridObj) {
 					break;
 				case 3:
 					this.grid[i][j] = new TileLamp();
+					//var lamp = new Lamp();
 					break;
 				case 4:
 					this.grid[i][j] = new TileBlock();
@@ -114,6 +115,6 @@ function Room(gridObj) {
 	};
 	
 	this.setLit = function(lit) {
-		//this.isLit = lit; //disabled for debugging
+		this.isLit = lit; //disabled for debugging
 	};
 }

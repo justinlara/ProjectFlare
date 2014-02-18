@@ -223,7 +223,8 @@ function draw() {
     //player drawing and updates:
     mainGuy.draw(ctxWorld);
     mainGuy.update();
-
+    
+ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
@@ -263,6 +264,13 @@ function draw() {
     collisionDetection.collisionContact();
     
     collisionWorld.ClearForces();
+    
+    // Ghetto lamp collision
+    if (mainGuy.p.pos[1] <= GAME_HEIGHT/11*2 && mainGuy.p.pos[1] >= GAME_HEIGHT/11*1 && mainGuy.p.pos[0] <= GAME_WIDTH/15*6 && mainGuy.p.pos[0] >= GAME_WIDTH/15*5) {
+	thisLevel.currentRoom.setLit(true);
+	thisLevel.layout[thisLevel.currentY][thisLevel.currentX].setLit(true);
+	//code
+    }
 }
 
 function initDrawUpdate() {
