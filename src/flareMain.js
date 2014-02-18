@@ -13,7 +13,7 @@ var thisLevel;
 
 // UI health
 var heart = new Image();
-heart.src = "assets/heart_small.png";
+heart.src = "assets/ui_rod_sample.png";
 
 
 
@@ -254,10 +254,9 @@ function draw() {
     //no need for a subclass unless we want to animate the gauges
     //this needs to be moved, and only update when the UI changes
     ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT); 
-    //ctxUI.drawImage(rod, 0,0, MEASURE_UNIT*4.75, MEASURE_UNIT * 2.75);
-  //  ctxUI.drawImage(light, 0,25, MEASURE_UNIT*1.5, MEASURE_UNIT * 3);
-    ctxUI.drawImage(heart, 0,10, MEASURE_UNIT*2.75, MEASURE_UNIT * 2.75);
 
+	// resize param needs fixing.
+    ctxUI.drawImage(heart,-10,0,MEASURE_UNIT*2.75, MEASURE_UNIT * 11.25);
     
     collisionWorld.Step((0),0,0);
     
