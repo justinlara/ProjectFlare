@@ -37,7 +37,7 @@ function Player()
   this.p.I.src = "assets/Character.png";
   
   //player animation set up
-  this.pSprite = new SpriteMap('assets/player/Walk_Forward.png',//image
+	this.pSprite = new SpriteMap('assets/player/Walk_Forward.png',//image
 			{ //anim sequences
 				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
 				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3}
@@ -55,7 +55,9 @@ function Player()
 					this.pSprite.start('idle');//start the idle anim
 					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
 				}
-			});
+	});
+
+	
 }
 
 //Inheritance from entity class
@@ -79,6 +81,8 @@ Player.prototype.Resize = function()
 
 Player.prototype.draw = function(w) 
 {
+	this.update();
+
   // -------- my method for drawing sprite ---------------	
   /*
   w.save();
@@ -93,18 +97,16 @@ Player.prototype.draw = function(w)
 	var pw = MEASURE_UNIT * playerScale;
 	var ph = MEASURE_UNIT * playerScale;
 	
-	
+	//Collision:
 	var c = this.playerfix.shape = new b2CircleShape; 
     var r=c.GetRadius();
-    
-var offset =new  b2Vec2(Math.abs(centerX - this.p.pos[0]),  Math.abs(centerY  - this.p.pos[1]));  
-  
-  
-  var sx = offset.x; 
-  var sy = offset.y; 
-                                                        
-  this.p.playerBody.SetPosition(new b2Vec2( ((this.p.pos[0]+(.5*MEASURE_UNIT))/30), ((this.p.pos[1]+sy)/30) )); 
-  //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
+	var offset =new  b2Vec2(Math.abs(centerX - this.p.pos[0]),  Math.abs(centerY  - this.p.pos[1]));  
+	var sx = offset.x; 
+	var sy = offset.y; 
+	this.p.playerBody.SetPosition(new b2Vec2( ((this.p.pos[0]+(.5*MEASURE_UNIT))/30), ((this.p.pos[1]+sy)/30) )); 
+	
+	//old draw:
+	//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
   
 	//use sprite draw method
 	this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1], pw, ph);

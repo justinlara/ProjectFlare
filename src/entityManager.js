@@ -7,7 +7,7 @@ function EntityManager() {
 	//use functions to add to and clear the array
 
 	this.addEntity = function(entity) {
-		this.entities.add(entity);
+		this.entities.push(entity);
 	}
 	
 	this.reorderEntities = function() {
@@ -23,7 +23,7 @@ function EntityManager() {
 	//to be called in main draw
 	//draws each entity in the surrent draw order
 	this.drawAllEntities = function() {
-		reorderEntities();
+		this.reorderEntities();
 		for (var i = 0; i < this.entities.length; i++) {
 			this.entities[i].draw();
 		}

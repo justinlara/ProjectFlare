@@ -8,6 +8,7 @@ var centerX;
 var centerY;
 var spriteCharName = 'assets/char.png';
 
+var entityManager;
 var thisLevel;
 
 
@@ -120,7 +121,7 @@ function resizeScreen() {
   }
 */ 
 // ****************  MINE FOR ENIMES END ************************
-  ///*
+
     if('undefined' !== typeof levelBox)
     {
         levelBox.resizeLevel();
@@ -166,8 +167,10 @@ function initGame() {
     // Use the algorithm to generate the randomly generated 2D array of the level.
 
     //create a player instance
-     mainGuy =  new Player();
-
+	//and the entity manger
+    mainGuy =  new Player();
+	entityManager = new EntityManager();
+	entityManager.addEntity(mainGuy);
     
     collisionDetection = new Collisions(); 
 
@@ -221,11 +224,11 @@ function draw() {
      
     //the player should be drawn here, on top of the world
     //player drawing and updates:
-    mainGuy.draw(ctxWorld);
-    mainGuy.update();
-    
-ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    //mainGuy.draw(ctxWorld);
+    //mainGuy.update();
+    entityManager.drawAllEntities();
 
+	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
          ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);

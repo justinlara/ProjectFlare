@@ -19,10 +19,12 @@ function Entity()
   //this.body.type = b2Body.b2_dynamicBody;
   
   //this.fixture.shape = new b2PolygonShape; //b2PolygonShape;
-}
+  
+	this.setImageSrc = function(source) {
+		this.image.src = source;
+	}
 
-this.setImageSrc(source) {
-	this.image.src = source;
+	this.draw = function() {
+		ctxWorld.draw(this.image, this.position[x], this.position[y]);
+	}//Empty cuz Katie said so
 }
-
-this.draw = function(); //Empty cuz Katie said so
