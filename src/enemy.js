@@ -28,7 +28,7 @@ function randomIntFromInterval(min,max)
   this.enemybox.position.x = (randomIntFromInterval(min,max))/30+1;  
   this.enemybox.position.y = (randomIntFromInterval(min,max))/30+1; 
   
-   this.enemyfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
+   this.enemyfix.shape.SetAsBox((MEASURE_UNIT/30)/4,  ( MEASURE_UNIT/30 )/5);
    
    
   
@@ -57,7 +57,7 @@ Enemy.prototype.Resize = function()
   this.enemyboundBox.DestroyFixture( this.eFix );
   
   //add new fixture and body     
-  newfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);  
+  newfix.shape.SetAsBox((MEASURE_UNIT/30)/4,  ( MEASURE_UNIT/30 )/5);  
   
   this.eFix = this.enemyboundBox.CreateFixture(newfix);  
   
@@ -101,7 +101,10 @@ Enemy.prototype.draw = function()
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  
   //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
-  this.enemyboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));  
+  this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
+  
+  //console.log("MU " + MEASURE_UNIT + " enemy pos: " + this.posX + " , " + this.posY + " boundbox: " +
+   //                ((this.posX+ (0.5*MEASURE_UNIT))/30) +" , " + ((this.posY+ (0.5*MEASURE_UNIT))/30)); 
   
 
 };

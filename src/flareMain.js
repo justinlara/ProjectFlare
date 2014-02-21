@@ -100,27 +100,6 @@ function resizeScreen() {
         
     }
 
-// ****************  MINE FOR ENIMES ************************
-/*    
-    // FOR LOOP THROUGH ALL ENEMIES IN LEVELS class AND IF...    
-  if('undefined' !== typeof currentRoom)
-  {  
-
-     for(var i =0; i < currentRoom.enemies.size(); i++)
-     {
-          
-        if('undefined' !== typeof currentRoom.enemies[i])
-        {
-            // how to get the list of all enemys 
-            
-            // enemies draw from - AllTiles: this.enterence, Level: level(3, )
-            currentRoom.enemies[i].Resize();
-            
-        }
-     }
-  }
-*/ 
-// ****************  MINE FOR ENIMES END ************************
 
     if('undefined' !== typeof levelBox)
     {
@@ -131,20 +110,20 @@ function resizeScreen() {
 
     
     //need to adjust enemy position too
-    if ('undefined' !== typeof thislevel) {
-        for (var i = 0; i < thislevel.currentRoom.enemies.length; i++) {
-            thislevel.currentRoom.enemies[i].posX = Math.floor((thislevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
-            thislevel.currentRoom.enemies[i].posY = Math.floor((thislevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
+    if ('undefined' !== typeof thisLevel) {
+        for (var i = 0; i < thisLevel.currentRoom.enemies.length; i++) {
+            thisLevel.currentRoom.enemies[i].posX = Math.floor((thisLevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
+            thisLevel.currentRoom.enemies[i].posY = Math.floor((thisLevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
             
           //if('undefined' !== typeof currentRoom)
           //{  
      
-            if('undefined' !== typeof thislevel.currentRoom.enemies[i])
+            if('undefined' !== typeof thisLevel.currentRoom.enemies[i])
             {
             // how to get the list of all enemys 
-            console.log("entered undefiend enemies %%%%%%");
+            //console.log("entered undefiend enemies %%%%%%");
             // enemies draw from - AllTiles: this.enterence, Level: level(3, )
-            thislevel.currentRoom.enemies[i].Resize();      // ????????? STILL NEEDS TO  RESIZE  ??/??????????????
+            thisLevel.currentRoom.enemies[i].Resize();      // ????????? STILL NEEDS TO  RESIZE  ??/??????????????
 
             }
           //}
@@ -228,7 +207,7 @@ function draw() {
     //mainGuy.update();
     entityManager.drawAllEntities();
 
-	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
          ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
@@ -271,7 +250,7 @@ function draw() {
     // Ghetto lamp collision
     if (mainGuy.p.pos[1] <= GAME_HEIGHT/11*2 && mainGuy.p.pos[1] >= GAME_HEIGHT/11*1 && mainGuy.p.pos[0] <= GAME_WIDTH/15*6 && mainGuy.p.pos[0] >= GAME_WIDTH/15*5) {
 	thisLevel.currentRoom.setLit(true);
-	thisLevel.layout[thisLevel.currentY][thisLevel.currentX].setLit(true);
+	//thisLevel.layout[thisLevel.currentY][thisLevel.currentX].setLit(true);
 	//code
     }
 }

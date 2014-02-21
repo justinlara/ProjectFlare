@@ -61,7 +61,7 @@ Collisions.prototype.collisionContact = function()
       { 
           console.log("WALL ...");
           
-          console.log(contact.GetFixtureA().GetUserData());  
+          console.log(contact.GetFixtureB().GetUserData());  
 
           wallContact = contact.GetFixtureA().GetUserData();
             EnemyposX = contactB.pX; 
@@ -72,6 +72,8 @@ Collisions.prototype.collisionContact = function()
               case"RightWall":
               {
                  
+                
+                
                 
                  break;    
               }
@@ -104,9 +106,20 @@ Collisions.prototype.collisionContact = function()
             case "e1":
             {
                contactB.health -= contactA.damage;  
-               
+             
+             
+               if(contact.IsTouching())
+                 {
+                    console.log("touching contact ");
+               //console.log(contact); 
+                     
+                     
+                 }
+                 
                console.log(contactB);
                console.log(contactA);
+               
+               
               break;  
             }
             case "e2":

@@ -14,7 +14,7 @@ function Player()
   this.playerbox.position.y = 150/MEASURE_UNIT;
   
    //this.playerfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);
-  circleBox.SetRadius(((MEASURE_UNIT)/30)*(13/30));
+  circleBox.SetRadius(((MEASURE_UNIT)/30)*(.23));
    this.playerfix.shape.Set(circleBox);
   
   this.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
@@ -66,7 +66,7 @@ function Player()
 	
 		this.playerBoundBox.DestroyFixture( this.pFix ); //oldFix); 
   
-		resizeC.SetRadius(((MEASURE_UNIT)/30)*(13/30));
+		 resizeC.SetRadius(((MEASURE_UNIT)/30)*(.23));
   
 		this.pFix = this.playerBoundBox.CreateFixture(newfix);
 	};
@@ -81,12 +81,13 @@ function Player()
 		var ph = MEASURE_UNIT * playerScale;
 	
 		//Collision:
-		var c = this.playerfix.shape = new b2CircleShape; 
-		var r=c.GetRadius();
-		var offset =new  b2Vec2(Math.abs(centerX - this.p.pos[0]),  Math.abs(centerY  - this.p.pos[1]));  
-		var sx = offset.x; 
-		var sy = offset.y; 
-		this.p.playerBody.SetPosition(new b2Vec2( ((this.p.pos[0]+(.5*MEASURE_UNIT))/30), ((this.p.pos[1]+sy)/30) )); 
+		//var c = this.playerfix.shape = new b2CircleShape; 
+		//var r=c.GetRadius();
+		//var offset =new  b2Vec2(Math.abs(centerX - this.p.pos[0]),  Math.abs(centerY  - this.p.pos[1]));  
+		//var sx = offset.x; 
+		//var sy = offset.y; 
+		
+		this.p.playerBody.SetPosition(new b2Vec2( ((this.p.pos[0]+(0.5*MEASURE_UNIT))/30), ((this.p.pos[1]+(0.87*MEASURE_UNIT))/30) ));  
 	
 		//old draw:
 		//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);

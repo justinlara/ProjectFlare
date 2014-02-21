@@ -20,17 +20,17 @@ function levelBarrier()
 
 
   // wall positions
-   var LBoxX = ((MEASURE_UNIT/2)/30); //this.posX/30+1;//MEASURE_UNIT;
+   var LBoxX = ((1.05*MEASURE_UNIT/2)/30); //this.posX/30+1;//MEASURE_UNIT;
    var LBoxY =  ((GAME_HEIGHT/2)/30); //this.posY/30+1;
  
   var RBoxX = 0.97*MEASURE_UNIT/2; 
   var RBoxY = LBoxY;
   
   var UBoxX = ((GAME_WIDTH/2)/30); 
-  var UBoxY = ((MEASURE_UNIT*.25)/30);
+  var UBoxY = ((MEASURE_UNIT*.55)/30);
   
   var DBoxX = UBoxX; 
-  var DBoxY = (MEASURE_UNIT*.36);
+  var DBoxY = (MEASURE_UNIT*.355);
                    
    //build the walls                        
    this.Llevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( GAME_HEIGHT/MEASURE_UNIT ),
@@ -71,15 +71,6 @@ function levelBarrier()
   this.levelBody.SetUserData( {id: "wall"} );  
     
     
-//console.log("@@@@@@@ MU: "+ MEASURE_UNIT + " GH: " + GAME_HEIGHT + " X " + RBoxX + " ,  Y "  + RBoxY + " L " + LBoxX );
-
-
-  //var list = new b2Fixture;
-
-  //list= enemyboundBox.GetFixtureList();
-
-  //console.log( list);    
-      
 }
 
 levelBarrier.prototype.resizeLevel = function()
@@ -111,7 +102,7 @@ levelBarrier.prototype.resizeLevel = function()
   var UBoxY = ((MEASURE_UNIT*.25)/30);
   
   var DBoxX = UBoxX; 
-  var DBoxY = (MEASURE_UNIT*.36);  
+  var DBoxY = (MEASURE_UNIT*.355);  
                                        
    
    //build the walls                        
