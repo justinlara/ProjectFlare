@@ -207,7 +207,7 @@ function draw() {
     //mainGuy.update();
     entityManager.drawAllEntities();
 
-
+	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);//this is important.  you need to clear the canvas between drawings
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
          ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
