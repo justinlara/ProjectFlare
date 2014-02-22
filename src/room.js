@@ -62,7 +62,7 @@ function Room(gridObj) {
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
 			}
-		}
+		}		
 	}
 	//end grid construction
 
@@ -87,12 +87,12 @@ function Room(gridObj) {
 		//collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
 
 		//also handle enemies if the room is not lit
-		if (!this.isLit) {
+		/*if (!this.isLit) {
 			for (var i = 0; i < this.enemies.length; i++) {
 				this.enemies[i].move(); //may want to move this update to an enemy controller object
 				this.enemies[i].draw();
 			} 
-		}	
+		}	*/
 	};
 	
 	this.setDoor = function(door) {

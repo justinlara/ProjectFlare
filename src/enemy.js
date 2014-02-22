@@ -4,9 +4,6 @@ function Enemy() {
 	//all enemies should have some AI framework
 	this.image = new Image();
 	this.image.src = "assets/Miles_Enemy1.png";
-	
-	//this.posX =50;
-    //this.posY =50;
     
    this.enemyfix = new b2FixtureDef;
    this.enemybox = new b2BodyDef;
@@ -17,8 +14,8 @@ function Enemy() {
   this.enemybox.type = b2Body.b2_dynamicBody;
   this.enemyfix.shape = new b2PolygonShape;
   
-  min = 50;
-  max = 100;
+	var min = 50;
+	var max = 100;
   
 function randomIntFromInterval(min,max)
 {
@@ -47,7 +44,7 @@ function randomIntFromInterval(min,max)
 //this should take care of collision, assuming collision is on entities
 Enemy.prototype = new Entity();
 
-Enemy.prototype.Resize = function()
+Enemy.Resize = function()
 {
 
    var newfix = new b2FixtureDef; 
@@ -60,6 +57,8 @@ Enemy.prototype.Resize = function()
   newfix.shape.SetAsBox((MEASURE_UNIT/30)/4,  ( MEASURE_UNIT/30 )/5);  
   
   this.eFix = this.enemyboundBox.CreateFixture(newfix);  
+  
+  //update position!
   
 };
 
@@ -93,6 +92,8 @@ Enemy.prototype.move = function () {
 //draw the enemy on ctxWorld
 Enemy.prototype.draw = function() 
 { 
+	this.move();
+	
     this.enemyboundBox.SetActive(true);
     this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
     

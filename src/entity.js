@@ -3,9 +3,8 @@
 
 function Entity() 
 {
-	this.position = {
-		x:0, y:0
-	};
+	this.posX = 0;
+	this.posY = 0;
 	this.image = new Image();
 
   this.fixture = new b2FixtureDef;
@@ -24,7 +23,12 @@ function Entity()
 		this.image.src = source;
 	}
 
+	//please overwrite in all entities
+	this.Resize = function() {
+	
+	}
+	
 	this.draw = function() {
-		ctxWorld.draw(this.image, this.position[x], this.position[y]);
+		ctxWorld.draw(this.image, this.posX, this.posY);
 	}//Empty cuz Katie said so
 }

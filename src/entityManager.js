@@ -12,18 +12,14 @@ function EntityManager() {
 	
 	this.reorderEntities = function() {
 		this.entities.sort(function(a,b) {
-			if (a.y < b.y)
-				return -1; //negative numbers get sorted to a smaller index (ie draw first)
-			else if (a.y > b.y) //those with greater y values are lower, and draw last
-				return 1;
-			else return 0;
+			return a.posY - b.posY;
 		});
 	}
 
 	//to be called in main draw
 	//draws each entity in the surrent draw order
 	this.drawAllEntities = function() {
-		this.reorderEntities();
+		//this.reorderEntities();
 		for (var i = 0; i < this.entities.length; i++) {
 			this.entities[i].draw();
 		}
@@ -39,6 +35,16 @@ function EntityManager() {
 	
 	this.clear = function() {
 		this.entities.length = 0;
+	}
+	
+	//for erasing enemies when the lights go on or the room is switched
+	this.clearEnemies = function() {
+		for (var i = 0;i<this.entities.length;i++) {
+			if (this.entities[i] instanceof Player) {
+				this.entities[0] = this.entities[i];
+				this.entities.splice(1, this.entities.length);
+			}
+		}
 	}
 
 }

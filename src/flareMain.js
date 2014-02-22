@@ -150,6 +150,10 @@ function initGame() {
     mainGuy =  new Player();
 	entityManager = new EntityManager();
 	entityManager.addEntity(mainGuy);
+	//add current enemies to manager
+	for (var i = 0; i<thisLevel.currentRoom.enemies.length; i++) {
+		entityManager.addEntity(thisLevel.currentRoom.enemies[i]);
+	}
     
     collisionDetection = new Collisions(); 
 
@@ -250,6 +254,9 @@ function draw() {
     // Ghetto lamp collision
     if (mainGuy.p.pos[1] <= GAME_HEIGHT/11*2 && mainGuy.p.pos[1] >= GAME_HEIGHT/11*1 && mainGuy.p.pos[0] <= GAME_WIDTH/15*6 && mainGuy.p.pos[0] >= GAME_WIDTH/15*5) {
 	thisLevel.currentRoom.setLit(true);
+		//also when the lights come on, the enemies in the current room need to be removed:
+		entityManager.clearEnemies();
+	
 	//thisLevel.layout[thisLevel.currentY][thisLevel.currentX].setLit(true);
 	//code
     }

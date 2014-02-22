@@ -54,7 +54,7 @@ function Level(numberOfRooms, floorNumber) {
 			//newRoom.setLit(true);
 		}
 		// If this is the starting room, set it to the currentRoom (denoted by $ as the first char)
-             	if (structure.level[r][c].indexOf(structure.startingRoom) != -1){
+        if (structure.level[r][c].indexOf(structure.startingRoom) != -1){
 			this.currentRoom = this.layout[r][c];
 			this.currentX = c;
 			this.currentY = r;
@@ -91,4 +91,9 @@ Level.prototype.loadRoom = function() {
 	var j=0;
 	var newRoom = layout[i][j];
 	this.currentRoom = newRoom;
+	
+	//must add enemies to entity manager as well
+	for (var i = 0; i<this.currentRoom.enemies.length; i++) {
+		entityManager.addEntity(currentRoom.enemies[i]);
+	}
 };
