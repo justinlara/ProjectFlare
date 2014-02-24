@@ -38,12 +38,51 @@ function AllTiles() {
 	this.r2[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r2[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
+	
+	
+	//define arrays of easy/med/hard rooms
+	//one room can show up in multiple difficulties, but I've already accounted for that in getWeighted
+	//also listing the same room more than once skews the randomness.  dont do that
+	this.easyRooms = new Array();
+		this.easyRooms.push(this.r1, this.r2);
+	this.medRooms = new Array();
+		this.medRooms.push(this.r1, this.r2);
+	this.hardRooms = new Array();
+		this.hardRooms.push(this.r1, this.r2);
 }
 
+//methods to return room arrays
+//for use in level generation
+
+//picks a completely random room
 AllTiles.prototype.getRandom = function() {
-	//code for picking a random room goes here
-	//return 2D grid array
 	var r = Math.floor((Math.random()*2) + 1);
 	if (r == 1) return this.r1;
 	else if (r==2) return this.r2;
+};
+
+AllTiles.prototype.getEasy = function() {
+	var r = Math.floor((Math.random()*this.easyRooms.length));
+	return this.easyRooms[r];
+};
+
+AllTiles.prototype.getMedium = function() {
+	var r = Math.floor((Math.random()*this.medRooms.length));
+	return this.medRooms[r];
+};
+
+AllTiles.prototype.getHard = function() {
+	var r = Math.floor((Math.random()*this.hardRooms.length));
+	return this.hardRooms[r];
+};
+
+//pick a random room weighted in difficulty based on the given floor
+//I imagine this is what we'll use most often
+AllTiles.prototype.getWeighted = function(floor) {
+	var r = Math.floor((Math.random()*floor) + 1);
+	
+	//formula explained:
+	//floor * something is the % chance of getting a hard room, so it gradually increases
+	//no hard rooms should roll on floors <5
+	//
 };
