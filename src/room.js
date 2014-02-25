@@ -10,6 +10,8 @@ function Room(gridObj) {
 	//this remains constant once set
 	this.enemies = new Array();
 	
+	this.lamp;
+	
 	//2D grid part, 15x11
 	//take info from 2d array passed in and create tiles
 	//if this is the entrance room, set isLit to true
@@ -42,8 +44,10 @@ function Room(gridObj) {
 					this.grid[i][j] = new TileFloor();
 					break;
 				case 3:
-					this.grid[i][j] = new TileLamp();
-					//var lamp = new Lamp();
+					//this.grid[i][j] = new TileLamp();
+					this.grid[i][j] = new TileFloor();
+					this.lamp = new Lamp(i,j);
+					//console.log(" created LAMP --------------------------------------------------------  ");
 					break;
 				case 4:
 					this.grid[i][j] = new TileBlock();
@@ -87,12 +91,14 @@ function Room(gridObj) {
 		//collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
 
 		//also handle enemies if the room is not lit
-		/*if (!this.isLit) {
+		if (!this.isLit) {
 			for (var i = 0; i < this.enemies.length; i++) {
 				this.enemies[i].move(); //may want to move this update to an enemy controller object
 				this.enemies[i].draw();
 			} 
-		}	*/
+		}
+		
+		this.lamp.draw();
 	};
 	
 	this.setDoor = function(door) {
@@ -116,5 +122,6 @@ function Room(gridObj) {
 	
 	this.setLit = function(lit) {
 		this.isLit = lit; //disabled for debugging
+		this.lamp.image.src = "assets/Lamp1_Lit.png";
 	};
 }

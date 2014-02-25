@@ -211,10 +211,10 @@ function draw() {
     //mainGuy.update();
     entityManager.drawAllEntities();
 
-	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);//this is important.  you need to clear the canvas between drawings
+    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {
-         ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         // Coordinates for the center of the circle of light, aka the tip of the arc.
         //var 
         centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
@@ -251,15 +251,11 @@ function draw() {
     
     collisionWorld.ClearForces();
     
-    // Ghetto lamp collision
-    if (mainGuy.p.pos[1] <= GAME_HEIGHT/11*2 && mainGuy.p.pos[1] >= GAME_HEIGHT/11*1 && mainGuy.p.pos[0] <= GAME_WIDTH/15*6 && mainGuy.p.pos[0] >= GAME_WIDTH/15*5) {
-	thisLevel.currentRoom.setLit(true);
-		//also when the lights come on, the enemies in the current room need to be removed:
-		entityManager.clearEnemies();
+	//This part below has been moved to Collisions.js
+	//also when the lights come on, the enemies in the current room need to be removed:
+	//entityManager.clearEnemies();
 	
-	//thisLevel.layout[thisLevel.currentY][thisLevel.currentX].setLit(true);
-	//code
-    }
+    //}
 }
 
 function initDrawUpdate() {

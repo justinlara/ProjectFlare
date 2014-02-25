@@ -138,11 +138,10 @@ Collisions.prototype.collisionContact = function()
           
       }
       
-      if(contactA.id === "lamp" && contactB.id === "player" )
+      if(contactA.type === "lamp" && contactB.id === "player" )
       {
-          
-          
-          
+          thisLevel.currentRoom.setLit(true);
+          entityManager.clearEnemies();
       }
       
 //*/                              
