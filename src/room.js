@@ -63,6 +63,13 @@ function Room(gridObj) {
 					
 					//console.log("size of enemy's is:  "+this.enemies.size());
 					break;
+				case 6:
+					this.grid[i][j] = new TileFloor();
+					var trombulentMunge = new Enemy();
+					trombulentMunge.posX = (MEASURE_UNIT * j);
+					trombulentMunge.posY = (MEASURE_UNIT * i);
+					this.enemies.push(trombulentMunge);
+					break;
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
 			}

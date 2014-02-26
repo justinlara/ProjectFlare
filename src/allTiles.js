@@ -12,7 +12,7 @@ function AllTiles() {
 	this.entrance[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
-	this.r1 = new Array();//an open room with a lampe in the center, guarded by mileses
+	this.r1 = new Array();//an open room with a lamp in the center, guarded by mileses
 	this.r1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.r1[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r1[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
@@ -79,10 +79,49 @@ AllTiles.prototype.getHard = function() {
 //pick a random room weighted in difficulty based on the given floor
 //I imagine this is what we'll use most often
 AllTiles.prototype.getWeighted = function(floor) {
-	var r = Math.floor((Math.random()*floor) + 1);
-	
 	//formula explained:
 	//floor * something is the % chance of getting a hard room, so it gradually increases
-	//no hard rooms should roll on floors <5
-	//
+	//no hard rooms should roll on floors <5, no easy rooms 10+
+	
+	if (floor < 5) //easy floors 1-4
+	{
+		//get easy or medium
+		var medChance = floor*10;
+		var r = Math.floor((Math.random()*100));
+		if (r<medChance) {
+			return this.getMedium();
+		}
+		else {
+			return this.getEasy();
+		}
+	}
+	else if (floor >= 5 && floor < 10) { //medium floors 5-9
+		var hardChance = floor*3;
+		var medChance = floor*10; //this is actually the chance of medium OR hard
+		//easy chance at least 10
+		var r = Math.floor((Math.random()*100));
+		if (r<hardChance) {
+			return this.getHard();
+		}
+		else if (r < medChance) {
+			return this.getMedium();
+		}
+		else {
+			return this.getEasy();
+		}
+	}
+	else if (floor >= 10){//hard 10+
+		//floor 9 had a 27% chance of hard room
+		//start at 10 with 30%
+		var hardChance = floor*3;
+		var r = Math.floor((Math.random()*100));
+		if (r<hardChance) {
+			return this.getHard();
+		}
+		else {
+			return this.getMedium();
+		}
+	}
+	else { return this.getRandom(); }//failsafe
+	
 };
