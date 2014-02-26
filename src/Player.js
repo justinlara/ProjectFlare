@@ -33,10 +33,11 @@ function Player()
            
            I: new Image()
            };
-   this.playerBoundBox.SetUserData( {id: "player", health: 100, pos: this.p.pos} );
-  this.p.I.src = "assets/Character.png";
+	this.playerBoundBox.SetUserData( {id: "player", health: 100, pos: this.p.pos} );
+	this.p.I.src = "assets/Character.png";
+	this.light = 5;
   
-  //player animation set up
+	//player animation set up
 	this.pSprite = new SpriteMap('assets/player/Walk_Forward.png',//image
 			{ //anim sequences
 				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},

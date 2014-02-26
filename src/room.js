@@ -131,4 +131,8 @@ function Room(gridObj) {
 		this.isLit = lit; //disabled for debugging
 		this.lamp.image.src = "assets/Lamp1_Lit.png";
 	};
+	
+	this.killEenmies = function() {
+		this.enemies.length = 0;
+	}
 }

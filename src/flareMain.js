@@ -228,13 +228,15 @@ function draw() {
         // Set the black background to not be completely transparent.
         ctxDark.globalAlpha = 0.95;
         // Draw the white arc to represent the light from the character's lantern.
-        ctxDark.fillStyle = 'white';
-        ctxDark.beginPath();
-        //ctxDark.moveTo(centerX+x, centerY+y);
-        var r = MEASURE_UNIT*1.5;   
-        ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
-        ctxDark.lineTo(centerX+x, centerY+y);
-        ctxDark.fill();
+		if (mainGuy.light > 0) { //only draw the flashlight if you have lantern light
+			ctxDark.fillStyle = 'white';
+			ctxDark.beginPath();
+			//ctxDark.moveTo(centerX+x, centerY+y);
+			var r = MEASURE_UNIT*2;   
+			ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
+			ctxDark.lineTo(centerX+x, centerY+y);
+			ctxDark.fill();
+		}
     }
     
     //directly draw the UI, asking for player resources with accessors

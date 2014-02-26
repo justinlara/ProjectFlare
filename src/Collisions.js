@@ -140,8 +140,12 @@ Collisions.prototype.collisionContact = function()
       
       if(contactA.type === "lamp" && contactB.id === "player" )
       {
+	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
           thisLevel.currentRoom.setLit(true);
           entityManager.clearEnemies();
+		  thisLevel.currentRoom.killEnemies();
+		  mainGuy.light--;
+		}
       }
       
 //*/                              
