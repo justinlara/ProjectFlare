@@ -139,6 +139,13 @@ function Room(gridObj) {
 	this.setLit = function(lit) {
 		this.isLit = lit; //disabled for debugging
 		this.lamp.image.src = "assets/Lamp1_Lit.png";
+		if (lit == true)
+		{	
+			for (var i = 0; i < this.doors.length; i++)
+			{
+				this.enemies[i].enemyboundBox.SetActive(false);
+			}
+		}
 	};
 	
 	this.killEenmies = function() {
