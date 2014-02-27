@@ -3,8 +3,8 @@ function Lamp(posX, posY) {
 	this.image = new Image();
 	this.image.src = "assets/Lamp1.png";
 	
-	this.posX =posY * GAME_WIDTH/15;
-    this.posY =posX * GAME_HEIGHT/11;
+	this.posX = posX * GAME_WIDTH/15;
+    this.posY =posY * GAME_HEIGHT/11;
     
    this.lampfix = new b2FixtureDef;
    this.lampbox = new b2BodyDef;
@@ -23,7 +23,7 @@ function Lamp(posX, posY) {
   
    //
    //this.lampfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
-   this.lampfix.shape.SetAsBox((MEASURE_UNIT/30),  ( MEASURE_UNIT/30 ));
+   this.lampfix.shape.SetAsBox((MEASURE_UNIT/30/3),  ( MEASURE_UNIT/30/3 ));
    
    
   

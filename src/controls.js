@@ -9,6 +9,11 @@ var controls =
   RIGHT: 39,
   DOWN: 40,
   
+  PGU:  33,
+  PGD:  34,
+  END:  35,
+  HOME: 36,
+  
   isDown: function(keyCode) 
   {
     return this._pressed[keyCode];

@@ -139,7 +139,7 @@ function initGame() {
     //generate the level
     //init the first current room (level.currentRoom)
     //this block of room code should probably go into the level when its ready
-    thisLevel = new Level(3, 1); //when the level is ready
+    thisLevel = new Level(4, 1); //when the level is ready
     
     levelBox = new levelBarrier();
     
@@ -211,6 +211,7 @@ function draw() {
     //mainGuy.update();
     entityManager.drawAllEntities();
 
+    // Comment the line below to remove the darkness layer.
     ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
     //only draw if not lit
@@ -232,11 +233,14 @@ function draw() {
 			ctxDark.fillStyle = 'white';
 			ctxDark.beginPath();
 			//ctxDark.moveTo(centerX+x, centerY+y);
-			var r = MEASURE_UNIT*2;   
+			var r = MEASURE_UNIT*4;   
 			ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
 			ctxDark.lineTo(centerX+x, centerY+y);
 			ctxDark.fill();
 		}
+	
+	// draw a png via alpha
+	// OR (easy) draw dim arcs to make flashlight bigger
     }
     
     //directly draw the UI, asking for player resources with accessors

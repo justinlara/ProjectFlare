@@ -10,6 +10,7 @@ function Room(gridObj) {
 	//this remains constant once set
 	this.enemies = new Array();
 	
+	this.doors = new Array();
 	this.lamp;
 	
 	//2D grid part, 15x11
@@ -46,7 +47,7 @@ function Room(gridObj) {
 				case 3:
 					//this.grid[i][j] = new TileLamp();
 					this.grid[i][j] = new TileFloor();
-					this.lamp = new Lamp(i,j);
+					this.lamp = new Lamp(j,i);
 					//console.log(" created LAMP --------------------------------------------------------  ");
 					break;
 				case 4:
@@ -55,7 +56,7 @@ function Room(gridObj) {
 				case 5: //example enemy case, add a floor tile and make a new enemy
 					this.grid[i][j] = new TileFloor();
 					var miles = new Enemy();
-					 //console.log(" created ENEMY --------------------------------------------------------  ");
+					 console.log(" created ENEMY --------------------------------------------------------  ");
 
 					miles.posX = (MEASURE_UNIT * j);
 					miles.posY = (MEASURE_UNIT * i);
@@ -105,6 +106,11 @@ function Room(gridObj) {
 			} 
 		}
 		
+		for (var i = 0; i < this.doors.length; i++)
+		{
+			this.doors[i].draw();
+		}
+		
 		this.lamp.draw();
 	};
 	
@@ -125,6 +131,9 @@ function Room(gridObj) {
 				break;
 			default:
 		}
+		
+		var newDoor = new Door(door);
+		this.doors.push(newDoor);
 	};
 	
 	this.setLit = function(lit) {

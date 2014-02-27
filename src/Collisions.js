@@ -390,9 +390,29 @@ Collisions.prototype.collisionContact = function()
 		  mainGuy.light--;
 		}
       }
-      
- 
-                              
+            if(contactA.type === "door" && contactB.id === "player" )
+      {
+        console.log(contactA.side);
+        if (contactA.side == "n")
+        {
+          thisLevel.goToNorthRoom();
+        }
+        
+        else if (contactA.side == "e")
+        {
+          thisLevel.goToEastRoom();
+        }
+        
+        else if (contactA.side == "s")
+        {
+          thisLevel.goToSouthRoom();
+        }
+        
+        else if (contactA.side == "w")
+        {
+          thisLevel.goToWestRoom();
+        }
+      }
   };
   
   this.listener.PostSolve = function(contact)

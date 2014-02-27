@@ -114,6 +114,24 @@ function Player()
 	
 		if (controls.isDown(controls.LEFT)) this.moveLeft();
 		else if (controls.isDown(controls.RIGHT)) this.moveRight();
+		
+		
+		if (controls.isDown(controls.PGU))
+		{
+		  thisLevel.goToNorthRoom();
+		}
+  		if (controls.isDown(controls.PGD))
+		{
+		  thisLevel.goToSouthRoom();
+		}
+  		if (controls.isDown(controls.END))
+		{
+		  thisLevel.goToEastRoom();
+		}
+		if (controls.isDown(controls.HOME))
+		{
+		  thisLevel.goToWestRoom();
+		}
   
 		if ('undefined' != typeof this.pSprite) {
 			if (!controls.isDown(controls.LEFT) &&
