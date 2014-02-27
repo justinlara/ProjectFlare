@@ -70,6 +70,9 @@ function Player()
 		 resizeC.SetRadius(((MEASURE_UNIT)/30)*(.23));
   
 		this.pFix = this.playerBoundBox.CreateFixture(newfix);
+		
+	  this.playerBoundBox.SetUserData( {id: "player", health: 100, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+
 	};
 	
 	//draw, overwrites entity draw
@@ -88,14 +91,15 @@ function Player()
 		//var sx = offset.x; 
 		//var sy = offset.y; 
 		
-		this.p.playerBody.SetPosition(new b2Vec2( ((this.p.pos[0]+(0.5*MEASURE_UNIT))/30), ((this.p.pos[1]+(0.87*MEASURE_UNIT))/30) ));  
+		this.p.playerBody.SetPositionAndAngle(new b2Vec2( ((this.p.pos[0]+(0.5*MEASURE_UNIT))/30), ((this.p.pos[1]+(0.87*MEASURE_UNIT))/30) ), arcEnd  );  
 	
 		//old draw:
 		//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
 	
 		//use sprite draw method
 		this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1], pw, ph);
-  
+		
+		
 	};
 	
 	this.update = function() 
@@ -137,6 +141,8 @@ function Player()
 		arcEnd = Math.PI*15/8;
 		this.p.pos[0]  +=  MEASURE_UNIT*.07;
 		checkBounds(this.p);
+	//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
+  
 	};
 	this.moveUp = function() 
 	{

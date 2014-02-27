@@ -20,8 +20,8 @@ function levelBarrier()
 
 
   // wall positions
-   var LBoxX = ((1.05*MEASURE_UNIT/2)/30); //this.posX/30+1;//MEASURE_UNIT;
-   var LBoxY =  ((GAME_HEIGHT/2)/30); //this.posY/30+1;
+   var LBoxX = ((1.05*MEASURE_UNIT/2)/30); 
+   var LBoxY =  ((GAME_HEIGHT/2)/30); 
  
   var RBoxX = 0.97*MEASURE_UNIT/2; 
   var RBoxY = LBoxY;
@@ -31,6 +31,12 @@ function levelBarrier()
   
   var DBoxX = UBoxX; 
   var DBoxY = (MEASURE_UNIT*.355);
+  
+  console.log("WALLS ::::: MU = " + MEASURE_UNIT, " GH " + GAME_HEIGHT);
+   console.log("L " + LBoxX +  " , " + LBoxY);
+   console.log("R " + RBoxX +  " , " + RBoxY);
+   console.log("U " + UBoxX +  " , " + UBoxY);
+   console.log("D " + DBoxX +  " , " + DBoxY);
                    
    //build the walls                        
    this.Llevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( GAME_HEIGHT/MEASURE_UNIT ),
@@ -63,7 +69,7 @@ function levelBarrier()
   this.UFix = this.levelBody.CreateFixture(this.Ulevelfix);  
   this.DFix = this.levelBody.CreateFixture(this.Dlevelfix);  
     
-    this.LFix.SetUserData({fixID: "LeftWall"});
+    this.LFix.SetUserData({fixID: "LeftWall", wallpos: [(1.05*MEASURE_UNIT/2)/30, ((GAME_HEIGHT/2)/30)]});
     this.RFix.SetUserData({fixID: "RightWall"});
     this.UFix.SetUserData({fixID: "UpWall"});
     this.DFix.SetUserData({fixID: "DownWall"});
@@ -92,14 +98,14 @@ levelBarrier.prototype.resizeLevel = function()
   this.levelBody.DestroyFixture( this.DFix );   
   
   
-   var LBoxX = ((MEASURE_UNIT/2)/30); //this.posX/30+1;//MEASURE_UNIT;
+   var LBoxX = ((1.05*MEASURE_UNIT/2)/30); //this.posX/30+1;//MEASURE_UNIT;
    var LBoxY =  ((GAME_HEIGHT/2)/30); //this.posY/30+1;
  
   var RBoxX = 0.97*MEASURE_UNIT/2; //Math.abs(GAME_WIDTH - (32* MEASURE_UNIT))/30;  //Math.abs(GAME_WIDTH - (MEASURE_UNIT) );
   var RBoxY = LBoxY;
   
   var UBoxX = ((GAME_WIDTH/2)/30); 
-  var UBoxY = ((MEASURE_UNIT*.25)/30);
+  var UBoxY = ((MEASURE_UNIT*.55)/30);
   
   var DBoxX = UBoxX; 
   var DBoxY = (MEASURE_UNIT*.355);  

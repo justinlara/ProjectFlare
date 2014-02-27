@@ -27,15 +27,14 @@ function randomIntFromInterval(min,max)
   
    this.enemyfix.shape.SetAsBox((MEASURE_UNIT/30)/4,  ( MEASURE_UNIT/30 )/5);
    
-   
-  
+
   this.enemybox.active = false;
   
   this.enemyboundBox = collisionWorld.CreateBody(this.enemybox);
   this.eFix = this.enemyboundBox.CreateFixture(this.enemyfix);
   
   
-  this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX:this.enemybox.position.x, pY: this.enemybox.position.y } );
+  this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX: this.posX, pY: this.posY } ); //this.enemybox.position.y
   	
 	
 }
@@ -99,13 +98,11 @@ Enemy.prototype.draw = function()
     
 	ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
   
-  //var sx = offset.x ;//* MEASURE_UNIT;    
-  //var sy = offset.y ;//* MEASURE_UNIT;  
-  //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
+
   this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
   
-  //console.log("MU " + MEASURE_UNIT + " enemy pos: " + this.posX + " , " + this.posY + " boundbox: " +
-   //                ((this.posX+ (0.5*MEASURE_UNIT))/30) +" , " + ((this.posY+ (0.5*MEASURE_UNIT))/30)); 
   
-
+  this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX:this.posX, pY: this.posY } );
+  
+  //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.posX + " , " + this.posY );
 };

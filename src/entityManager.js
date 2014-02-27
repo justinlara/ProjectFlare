@@ -8,13 +8,13 @@ function EntityManager() {
 
 	this.addEntity = function(entity) {
 		this.entities.push(entity);
-	}
+	};
 	
 	this.reorderEntities = function() {
 		this.entities.sort(function(a,b) {
 			return a.posY - b.posY;
 		});
-	}
+	};
 
 	//to be called in main draw
 	//draws each entity in the surrent draw order
@@ -23,7 +23,7 @@ function EntityManager() {
 		for (var i = 0; i < this.entities.length; i++) {
 			this.entities[i].draw();
 		}
-	}
+	};
 	
 	//to be called in resize (main)
 	//should update the positions and collision boxes of all entities
@@ -31,11 +31,11 @@ function EntityManager() {
 		for (var i = 0; i < this.entities.length; i++) {
 		
 		}
-	}
+	};
 	
 	this.clear = function() {
 		this.entities.length = 0;
-	}
+	};
 	
 	//for erasing enemies when the lights go on or the room is switched
 	this.clearEnemies = function() {
