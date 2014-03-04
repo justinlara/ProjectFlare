@@ -207,7 +207,8 @@ function draw() {
     entityManager.drawAllEntities();
 
     // Comment the line below to remove the darkness layer.
-    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+   ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
     //only draw if not lit
     if (!thisLevel.currentRoom.isLit) {

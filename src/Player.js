@@ -33,7 +33,7 @@ function Player()
            
            I: new Image()
            };
-	this.playerBoundBox.SetUserData( {id: "player", health: 100, pos: this.p.pos} );
+	this.playerBoundBox.SetUserData( {id: "player", health: 100, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	this.p.I.src = "assets/Character.png";
 	this.light = 5;
   
@@ -149,7 +149,7 @@ function Player()
 		arcStart = Math.PI*9/8;
 		arcEnd = Math.PI*7/8;
 		this.p.pos[0] -= MEASURE_UNIT*.07;
-		checkBounds(this.p);
+		//checkBounds(this.p);
   
 	};
 
@@ -158,8 +158,8 @@ function Player()
 		arcStart = Math.PI*1/8;
 		arcEnd = Math.PI*15/8;
 		this.p.pos[0]  +=  MEASURE_UNIT*.07;
-		checkBounds(this.p);
-	//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
+		//checkBounds(this.p);
+//	console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
   
 	};
 	this.moveUp = function() 
@@ -167,7 +167,8 @@ function Player()
 		arcStart = Math.PI*13/8;
 		arcEnd = Math.PI*11/8;
 		this.p.pos[1] -=  MEASURE_UNIT*.07;
-		checkBounds(this.p);
+		//checkBounds(this.p);
+		
 	};
 	this.moveDown = function()
 	{
@@ -175,7 +176,7 @@ function Player()
 		arcEnd = Math.PI*3/8;
 		this.p.pos[1] +=  MEASURE_UNIT*.07;
 		this.pSprite.use('walkDown');
-		checkBounds(this.p);
+		//checkBounds(this.p);
 	};
 } //end constructor
 
@@ -185,25 +186,33 @@ Player.prototype = new Entity;
 
 checkBounds = function(p)  
 {    
+/*    
     if(p.pos[0] < ((MEASURE_UNIT* 22)/30))
     {
         p.pos[0] = ((MEASURE_UNIT*22)/30); 
          
     }
-    
-    else if(p.pos[0] > (Math.abs(GAME_WIDTH/30 - (14* MEASURE_UNIT))/30)*30)
+*/    
+/*    
+    //else 
+    if(p.pos[0] > (Math.abs(GAME_WIDTH/30 - (14* MEASURE_UNIT))/30)*30)
     {
         p.pos[0] = ((Math.abs(GAME_WIDTH/30 - (14* MEASURE_UNIT))/30)*30);
        
     }
-
-    else if(p.pos[1] < (MEASURE_UNIT* 4)/30)
+*/
+    //else
+/*     
+    if(p.pos[1] < (MEASURE_UNIT* 4)/30)
     {
         p.pos[1] =  ((MEASURE_UNIT* 4)/30);
     }
-    else if(p.pos[1] > (Math.abs(GAME_HEIGHT/30 - (9.4* MEASURE_UNIT))/30)*30)
+*/    
+    //else 
+/*    
+    if(p.pos[1] > (Math.abs(GAME_HEIGHT/30 - (9.4* MEASURE_UNIT))/30)*30)
     {
         p.pos[1] = ((Math.abs(GAME_HEIGHT/30 - (9.4* MEASURE_UNIT))/30)*30);
     }
- 
+*/ 
 };

@@ -131,5 +131,13 @@ levelBarrier.prototype.resizeLevel = function()
   this.RFix = this.levelBody.CreateFixture(newRfix); 
   this.UFix = this.levelBody.CreateFixture(newUfix); 
   this.DFix = this.levelBody.CreateFixture(newDfix);   
+  
+    this.LFix.SetUserData({fixID: "LeftWall", wallpos: [(1.05*MEASURE_UNIT/2)/30, ((GAME_HEIGHT/2)/30)]});
+    this.RFix.SetUserData({fixID: "RightWall"});
+    this.UFix.SetUserData({fixID: "UpWall"});
+    this.DFix.SetUserData({fixID: "DownWall"});
+    
+  this.levelBody.SetUserData( {id: "wall"} );  
+    
  
 };
