@@ -1,4 +1,5 @@
 var ALLTILES = new AllTiles();
+var ENEMYPATH = new EnemyPathList();
 //variables for drawing lantern light
 var arcStart = Math.PI*3/4;
 var arcEnd = Math.PI*1/4;
@@ -157,20 +158,14 @@ function initGame() {
     
     collisionDetection = new Collisions(); 
 
-    //setup of the sound manager
+    //setup of the sound manager  Move into loadAssets?
+	
      soundManager.setup({
          url: 'src/swf/',
          onready: function () {
-             var music1 = soundManager.createSound({
-                 id: 'spookyMusic',
-                 url: './assets/spookyMusic.mp3',
-                 autoLoad: true,
-                 autoPlay: true,
-                 stream: true,
-                 onfinish: function () {
-                     music1.play();
-                 }
-             });
+		 //when soundmanager is set up, create sounds
+			//all sounds accessible through SOUNDS
+			var SOUNDS = new Soundloader();
          }
      });
 
