@@ -111,7 +111,8 @@ function Room(gridObj) {
 			this.doors[i].draw();
 		}
 		
-		this.lamp.draw();
+		if ('undefined' != typeof this.lamp)
+			this.lamp.draw();
 	};
 	
 	this.setDoor = function(door) {
@@ -138,7 +139,9 @@ function Room(gridObj) {
 	
 	this.setLit = function(lit) {
 		this.isLit = lit; //disabled for debugging
+		
 		this.lamp.image.src = "assets/Lamp1_Lit.png";
+			
 		if (lit == true)
 		{	
 			for (var i = 0; i < this.doors.length; i++)

@@ -37,6 +37,8 @@ function randomIntFromInterval(min,max)
   this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX: this.posX, pY: this.posY } ); //this.enemybox.position.y
   	
 	
+	//
+	
 }
 
 //carry over position and image properties
