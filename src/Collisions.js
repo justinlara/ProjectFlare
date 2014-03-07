@@ -152,8 +152,8 @@ Collisions.prototype.collisionContact = function()
       {
 	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
                thisLevel.currentRoom.setLit(true);
-               entityManager.clearEnemies();
-               thisLevel.currentRoom.killEnemies();
+               //entityManager.clearEnemies();
+               //thisLevel.currentRoom.killEnemies();
                mainGuy.light--;
 	      }
       }

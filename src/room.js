@@ -13,6 +13,9 @@ function Room(gridObj) {
 	this.doors = new Array();
 	this.lamp;
 	
+	this.enemyFadeTimer = 0;
+	this.enemyFadeDuration = 30;
+	
 	//2D grid part, 15x11
 	//take info from 2d array passed in and create tiles
 	//if this is the entrance room, set isLit to true
@@ -99,15 +102,33 @@ function Room(gridObj) {
 		
 		//collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
 
+		
 		//also handle enemies if the room is not lit
 		if (!this.isLit)
 		{
 			for (var i = 0; i < this.enemies.length; i++) {
 				this.enemies[i].move(); //may want to move this update to an enemy controller object
 				this.enemies[i].draw();
-			} 
+			}
 		}
 		
+		// Fade animation for the 1 second after the room is lit.
+		if (this.isLit && this.enemyFadeTimer < this.enemyFadeDuration)
+		{
+			var opacity = 1 - (this.enemyFadeTimer/this.enemyFadeDuration);
+			
+			ctxWorld.globalAlpha = opacity;
+			for (var i = 0; i < this.enemies.length; i++)
+			{
+				this.enemies[i].draw();
+			}
+			ctxWorld.globalAlpha = 1.0;
+			
+			this.enemyFadeTimer++;
+		}
+		
+		
+		// Draw the doors.
 		for (var i = 0; i < this.doors.length; i++)
 		{
 			this.doors[i].draw();

@@ -12,6 +12,8 @@ function Level(numberOfRooms, floorNumber) {
 	this.currentRoom;
 	this.currentX = -1;
 	this.currentY = -1;
+	mainGuy.light = maxLight;
+	
 	////
 
 	// Randomly generated structure from RandomLevelGeneratorAlgorithm.js

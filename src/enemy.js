@@ -98,22 +98,26 @@ Enemy.prototype.move = function () {
 //draw the enemy on ctxWorld
 Enemy.prototype.draw = function() 
 { 
-	this.move();
-	
-    this.enemyboundBox.SetActive(true);
-    this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
     
 	if (!this.dying)
+	{
+		this.move();
+		
+		this.enemyboundBox.SetActive(true);
+		this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
+		
 		ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-	//else
-	//	ctxWorld.drawImage(this.imageDying, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+		this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
+		this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX:this.posX, pY: this.posY } );
+	}
+	else
+	{
+		ctxWorld.drawImage(this.imageDying, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+	}
 	
   
 
-  this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
-  
-  
-  this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX:this.posX, pY: this.posY } );
+
   
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.posX + " , " + this.posY );
 };
