@@ -67,8 +67,9 @@ function Room(gridObj) {
 				case 6:
 					this.grid[i][j] = new TileFloor();
 					var trombulentMunge = new Enemy();
+					 console.log(" created ENEMY2 --------------------------------------------------------  ");
 					trombulentMunge.posX = (MEASURE_UNIT * j);
-					trombulentMunge.posY = (MEASURE_UNIT * i);
+					trombulnntMunge.posY = (MEASURE_UNIT * i);
 					this.enemies.push(trombulentMunge);
 					break;
 				default:
@@ -88,7 +89,7 @@ function Room(gridObj) {
 		var gh = MEASURE_UNIT;
 		for (var i = 0; i<this.grid.length; i++) {
 			for (var j = 0; j<this.grid[i].length; j++) {
-		
+				
 				ctxWorld.drawImage(this.grid[i][j].image, gx, gy, gw, gh);
 				gx += gw; //update draw position
 			}
@@ -99,7 +100,8 @@ function Room(gridObj) {
 		//collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
 
 		//also handle enemies if the room is not lit
-		if (!this.isLit) {
+		if (!this.isLit)
+		{
 			for (var i = 0; i < this.enemies.length; i++) {
 				this.enemies[i].move(); //may want to move this update to an enemy controller object
 				this.enemies[i].draw();
@@ -140,18 +142,23 @@ function Room(gridObj) {
 	this.setLit = function(lit) {
 		this.isLit = lit; //disabled for debugging
 		
-		this.lamp.image.src = "assets/Lamp1_Lit.png";
-			
+		if (this.lamp != null)
+		{
+			this.lamp.image.src = "assets/Lamp1_Lit.png";
+		}
+		
 		if (lit == true)
 		{	
-			for (var i = 0; i < this.doors.length; i++)
+			for (var i = 0; i < this.enemies.length; i++)
 			{
 				this.enemies[i].enemyboundBox.SetActive(false);
+				this.enemies[i].dying = true;
+				//this.enemies[i].enemyboundBox.SetAwake(true);
 			}
 		}
 	};
 	
-	this.killEenmies = function() {
+	this.killEnemies = function() {
 		this.enemies.length = 0;
 	}
 }

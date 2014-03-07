@@ -207,7 +207,6 @@ function draw() {
     entityManager.drawAllEntities();
 
     // Comment the line below to remove the darkness layer.
-
    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
     //only draw if not lit
@@ -223,7 +222,7 @@ function draw() {
         // Set transparency using the "xor" operation.
         ctxDark.globalCompositeOperation = 'xor';
         // Set the black background to not be completely transparent.
-        ctxDark.globalAlpha = 0.95;
+        ctxDark.globalAlpha = 0.85;
         // Draw the white arc to represent the light from the character's lantern.
 		if (mainGuy.light > 0) { //only draw the flashlight if you have lantern light
 			ctxDark.fillStyle = 'white';

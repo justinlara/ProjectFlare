@@ -4,6 +4,11 @@ function Enemy() {
 	//all enemies should have some AI framework
 	this.image = new Image();
 	this.image.src = "assets/Miles_Enemy1.png";
+	
+	this.imageDying = new Image();
+	this.imageDying.src = "assets/Miles_Enemy_Dying.png";
+	
+	this.dying = false;
     
    this.enemyfix = new b2FixtureDef;
    this.enemybox = new b2BodyDef;
@@ -98,7 +103,11 @@ Enemy.prototype.draw = function()
     this.enemyboundBox.SetActive(true);
     this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
     
-	ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+	if (!this.dying)
+		ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+	//else
+	//	ctxWorld.drawImage(this.imageDying, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+	
   
 
   this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
