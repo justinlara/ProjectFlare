@@ -36,28 +36,9 @@ function Player()
 	this.playerBoundBox.SetUserData( {id: "player", health: 100, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	this.p.I.src = "assets/Character.png";
 	this.light = 5;
-	this.hp = this.playerBoundBox.GetUserData().health;
   
 	//player animation set up
-	this.pSprite = new SpriteMap('assets/player/Walk_Forward.png',//image
-			{ //anim sequences
-				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
-				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3}
-				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
-				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
-				//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
-			}, { //options
-				frameW: 64, // Width of each frame of the animation in pixels
-				frameH: 64, // Height of each frame of the animation in pixels
-				projectedW: 100, // Displayed width
-				projectedH: 100, // Displayed height 
-				interval: 150, // Switch frames every xxx ms
-				useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
-				postInitCallback: function() {
-					this.pSprite.start('idle');//start the idle anim
-					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
-				}
-	});
+	//this.pSprite = loadSpriteP;
 
 	//Resize:
 	this.Resize = function()
@@ -98,7 +79,7 @@ function Player()
 		//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
 	
 		//use sprite draw method
-		this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1], pw, ph);
+		loadSpriteP.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
 		
 		
 	};
@@ -134,12 +115,12 @@ function Player()
 		  thisLevel.goToWestRoom();
 		}
   
-		if ('undefined' != typeof this.pSprite) {
+		if ('undefined' != typeof loadSpriteP) {
 			if (!controls.isDown(controls.LEFT) &&
 				!controls.isDown(controls.RIGHT) &&
 				!controls.isDown(controls.UP) &&
 				!controls.isDown(controls.DOWN)){
-					this.pSprite.use('idle');
+					//loadSpriteP.stop();
 				}
 		}
 	};
@@ -150,6 +131,7 @@ function Player()
 		arcStart = Math.PI*9/8;
 		arcEnd = Math.PI*7/8;
 		this.p.pos[0] -= MEASURE_UNIT*.07;
+		//loadSpriteP.stop();//for now
 		//checkBounds(this.p);
   
 	};
@@ -159,6 +141,7 @@ function Player()
 		arcStart = Math.PI*1/8;
 		arcEnd = Math.PI*15/8;
 		this.p.pos[0]  +=  MEASURE_UNIT*.07;
+		//loadSpriteP.stop();//for now
 		//checkBounds(this.p);
 //	console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
   
@@ -168,6 +151,7 @@ function Player()
 		arcStart = Math.PI*13/8;
 		arcEnd = Math.PI*11/8;
 		this.p.pos[1] -=  MEASURE_UNIT*.07;
+		//loadSpriteP.stop();//for now
 		//checkBounds(this.p);
 		
 	};
@@ -176,7 +160,7 @@ function Player()
 		arcStart = Math.PI*5/8;
 		arcEnd = Math.PI*3/8;
 		this.p.pos[1] +=  MEASURE_UNIT*.07;
-		this.pSprite.use('walkDown');
+		loadSpriteP.use('walkDown');
 		//checkBounds(this.p);
 	};
 } //end constructor

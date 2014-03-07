@@ -9,13 +9,19 @@ var centerX;
 var centerY;
 var spriteCharName = 'assets/char.png';
 
+var mainGuy;
 var entityManager;
 var thisLevel;
 
+var loadSpriteP;
 
 //UI Pole
 var pole = new Image();
 pole.src = "assets/ui/pole.png";
+
+// UI health
+var heart = new Image();
+heart.src = "assets/ui_rod_sample.png";
 
 
 
@@ -45,6 +51,26 @@ function loadAssets() {
     images[14].src = "assets/tiles/wall_castle_6.png";
     images[15].src = "assets/tiles/wall_castle_7.png";
     images[16].src = "assets/tiles/wall_castle_8.png";
+	
+	loadSpriteP =  new SpriteMap('assets/player/Walk_Forward.png',//image
+			{ //anim sequences
+				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3}
+				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
+				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
+				//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
+			}, { //options
+				frameW: 64, // Width of each frame of the animation in pixels
+				frameH: 64, // Height of each frame of the animation in pixels
+				projectedW: MEASURE_UNIT, // Displayed width
+				projectedH: MEASURE_UNIT, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					loadSpriteP.start('idle');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+	});
 }
 
 function resizeScreen() {
@@ -207,6 +233,7 @@ function draw() {
     entityManager.drawAllEntities();
 
     // Comment the line below to remove the darkness layer.
+
    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
     //only draw if not lit
@@ -339,7 +366,7 @@ function draw_ui() {
 	}
 				
 	this.light.use(lmeter);
-	this.light.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	this.light.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1, MEASURE_UNIT * 2);
 	
 // HEALTH
 	var pHealth = mainGuy.hp;
@@ -359,7 +386,7 @@ function draw_ui() {
 		hmeter = 'empty';
 	
 	this.health.use(hmeter);
-	this.health.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	this.health.draw(ctxUI, (0.600 * UIWidth), (0.133 * UIHeight), MEASURE_UNIT * 1, MEASURE_UNIT * 2);
 }
 
 // end UI
@@ -395,6 +422,7 @@ window.addEventListener("load", initDrawUpdate, false);
 
 //account for user resizing the window
 //window.addEventListener('resize', resizeScreen, false);
+//no
 
 // for the movement control
 window.addEventListener('keyup', function(event) { controls.onKeyup(event); }, false);
