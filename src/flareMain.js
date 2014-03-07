@@ -23,6 +23,8 @@ pole.src = "assets/ui/pole.png";
 var heart = new Image();
 heart.src = "assets/ui_rod_sample.png";
 
+const maxHealth = 100;
+const maxLight = 5;
 
 
 function loadAssets() {
@@ -163,29 +165,28 @@ function resizeScreen() {
 function initGame() {
     //this is where we make sure the images and sounds have loaded, so we can safely use them!
 
-    //generate the level
-    //init the first current room (level.currentRoom)
-    //this block of room code should probably go into the level when its ready
-    thisLevel = new Level(4, 1); //when the level is ready
     
+    //create the entity manger
+    entityManager = new EntityManager();
+    
+    //create a player instance
+    mainGuy =  new Player();
+    entityManager.addEntity(mainGuy);
+    
+    //generate the level
+    thisLevel = new Level(4, 1);
     levelBox = new levelBarrier();
     
-    // Use the algorithm to generate the randomly generated 2D array of the level.
-
-    //create a player instance
-	//and the entity manger
-    mainGuy =  new Player();
-	entityManager = new EntityManager();
-	entityManager.addEntity(mainGuy);
-	//add current enemies to manager
-	for (var i = 0; i<thisLevel.currentRoom.enemies.length; i++) {
-		entityManager.addEntity(thisLevel.currentRoom.enemies[i]);
-	}
+    //add current enemies to manager
+    for (var i = 0; i<thisLevel.currentRoom.enemies.length; i++)
+    {
+	entityManager.addEntity(thisLevel.currentRoom.enemies[i]);
+    }
     
+    //initialize collision detections
     collisionDetection = new Collisions(); 
 
     //setup of the sound manager  Move into loadAssets?
-	
      soundManager.setup({
          url: 'src/swf/',
          onready: function () {
