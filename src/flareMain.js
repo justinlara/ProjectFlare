@@ -8,6 +8,7 @@ var y = 0;
 var centerX;
 var centerY;
 var spriteCharName = 'assets/char.png';
+var SOUNDS;
 
 var mainGuy;
 var entityManager;
@@ -73,6 +74,19 @@ function loadAssets() {
 					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
 				}
 	});
+
+	soundManager.setup({
+        url: 'src/swf/',
+        onready: function () {
+		//when soundmanager is set up, create sounds
+			//all sounds accessible through SOUNDS
+			SOUNDS = new Soundloader();
+        }
+    });
+	
+	//behavior globals
+		MOVEB = new MoveBehavior();
+		CHASEB = new ChaseBehavior();
 }
 
 function resizeScreen() {
@@ -180,22 +194,11 @@ function initGame() {
     //add current enemies to manager
     for (var i = 0; i<thisLevel.currentRoom.enemies.length; i++)
     {
-	entityManager.addEntity(thisLevel.currentRoom.enemies[i]);
+		entityManager.addEntity(thisLevel.currentRoom.enemies[i]);
     }
     
     //initialize collision detections
     collisionDetection = new Collisions(); 
-
-    //setup of the sound manager  Move into loadAssets?
-     soundManager.setup({
-         url: 'src/swf/',
-         onready: function () {
-		 //when soundmanager is set up, create sounds
-			//all sounds accessible through SOUNDS
-			var SOUNDS = new Soundloader();
-         }
-     });
-
 
 //----------- show collision boxes (for debugging) ------------
 debugDraw = new b2DebugDraw();

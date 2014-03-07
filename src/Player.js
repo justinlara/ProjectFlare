@@ -131,8 +131,7 @@ function Player()
 		arcStart = Math.PI*9/8;
 		arcEnd = Math.PI*7/8;
 		this.p.pos[0] -= MEASURE_UNIT*.07;
-		//loadSpriteP.stop();//for now
-		//checkBounds(this.p);
+		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		//loadSpriteP.stop();//for now		//checkBounds(this.p);
   
 	};
 
@@ -141,6 +140,7 @@ function Player()
 		arcStart = Math.PI*1/8;
 		arcEnd = Math.PI*15/8;
 		this.p.pos[0]  +=  MEASURE_UNIT*.07;
+		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
 		//loadSpriteP.stop();//for now
 		//checkBounds(this.p);
 //	console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
@@ -151,8 +151,7 @@ function Player()
 		arcStart = Math.PI*13/8;
 		arcEnd = Math.PI*11/8;
 		this.p.pos[1] -=  MEASURE_UNIT*.07;
-		//loadSpriteP.stop();//for now
-		//checkBounds(this.p);
+		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		//loadSpriteP.stop();//for now		//checkBounds(this.p);
 		
 	};
 	this.moveDown = function()
@@ -161,6 +160,7 @@ function Player()
 		arcEnd = Math.PI*3/8;
 		this.p.pos[1] +=  MEASURE_UNIT*.07;
 		loadSpriteP.use('walkDown');
+		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
 		//checkBounds(this.p);
 	};
 } //end constructor

@@ -1,15 +1,14 @@
 function Enemy() {
 	//enemy base object
+	Entity.call(this);
 	//all enemies should collide with walls
 	//all enemies should have some AI framework
-	this.image = new Image();
-	this.image.src = "assets/Miles_Enemy1.png";
-	
-	this.imageDying = new Image();
-	this.imageDying.src = "assets/Miles_Enemy_Dying.png";
-	
+
+	//this.behavior = new Behavior(this);
+    //this.image = new Image();
+	//this.imageDying = new Image();
 	this.dying = false;
-    
+	
    this.enemyfix = new b2FixtureDef;
    this.enemybox = new b2BodyDef;
   
@@ -22,10 +21,10 @@ function Enemy() {
 	var min = 50;
 	var max = 100;
   
-function randomIntFromInterval(min,max)
-{
-    return Math.floor(Math.random()*(max-min+1)+min);
-}
+	function randomIntFromInterval(min,max)
+	{
+		return Math.floor(Math.random()*(max-min+1)+min);
+	}
   //(collision debugging) randomly disperse enemies to see how much enemies are created at a time  
   this.enemybox.position.x = (randomIntFromInterval(min,max))/30+1;  
   this.enemybox.position.y = (randomIntFromInterval(min,max))/30+1; 
@@ -40,17 +39,14 @@ function randomIntFromInterval(min,max)
   
   
   this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX: this.posX, pY: this.posY } ); //this.enemybox.position.y
-  	
-	
-	//
-	
+  
 }
-
 //carry over position and image properties
 //this should take care of collision, assuming collision is on entities
-Enemy.prototype = new Entity();
+Enemy.prototype = Object.create(Entity.prototype);
+Enemy.prototype.constructor = Enemy;
 
-Enemy.Resize = function()
+Enemy.prototype.Resize = function()
 {
 
    var newfix = new b2FixtureDef; 
@@ -65,47 +61,23 @@ Enemy.Resize = function()
   this.eFix = this.enemyboundBox.CreateFixture(newfix);  
   
   //update position!
-  
 };
 
-
-	
 //the basic AI which tells the enemy how to move
 //overwrite in subtypes
 Enemy.prototype.move = function () {
     //per frame movement if we call .move in main draw
     //I'm thinking we should have an enemy controller which calls each active enemy'smove function on a setInterval timer
-
-    var targetX = mainGuy.p.pos[0];
-    var targetY = mainGuy.p.pos[1];
-
-    if (targetX > this.posX) {
-        this.posX += MEASURE_UNIT * .01;
-    } else {
-        this.posX -= MEASURE_UNIT * .01;
-    }
-    if (targetY > this.posY) {
-        this.posY += MEASURE_UNIT * .01;
-    } else {
-        this.posY -= MEASURE_UNIT * .01;
-    }
-    /* default
-    this.posX += MEASURE_UNIT*.01;
-    this.posY += MEASURE_UNIT*.01;
-    */
+	this.enemyBehavior.move();
 };
 	
 //draw the enemy on ctxWorld
-Enemy.prototype.draw = function() 
-{ 
-    
+Enemy.prototype.draw = function() { 
 	if (!this.dying)
 	{
-		this.move();
-		
 		this.enemyboundBox.SetActive(true);
 		this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
-		
+	
 		ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 		this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
 		this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX:this.posX, pY: this.posY } );
@@ -114,10 +86,5 @@ Enemy.prototype.draw = function()
 	{
 		ctxWorld.drawImage(this.imageDying, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 	}
-	
-  
-
-
-  
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.posX + " , " + this.posY );
 };

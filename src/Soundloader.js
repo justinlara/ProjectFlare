@@ -1,4 +1,6 @@
 //this can later be changes to create a music list and sound list later if desired.
+/** !!!! Sounds can be called by SOUNDS.[id].[functionName](); !!!! **/
+		//Eg.  SOUNDS.footstep.play();
 
 /**	LIST OF ALL SOUNDS
 **		MUSICS:
@@ -7,7 +9,7 @@
 **
 **
 **		SFX:
-**			SFX1: "footStep"
+**			SFX1: "footstep"
 **/
 
 function Soundloader() {
@@ -31,7 +33,8 @@ function Soundloader() {
 				id: 'footstep',
 				url: sfxpath + 'footstepsOnWood.wav',
 				autoLoad: true,
+				multishot: true,
 				stream: true,
-				multishot: false
+				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
 	});
 }

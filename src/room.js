@@ -58,7 +58,7 @@ function Room(gridObj) {
 					break;
 				case 5: //example enemy case, add a floor tile and make a new enemy
 					this.grid[i][j] = new TileFloor();
-					var miles = new Enemy();
+					var miles = new Miles();
 					 console.log(" created ENEMY --------------------------------------------------------  ");
 
 					miles.posX = (MEASURE_UNIT * j);
