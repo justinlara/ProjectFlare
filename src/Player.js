@@ -36,6 +36,7 @@ function Player()
 	this.playerBoundBox.SetUserData( {id: "player", health: 100, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	this.p.I.src = "assets/Character.png";
 	this.light = 5;
+	this.hp = this.playerBoundBox.GetUserData().health;
   
 	//player animation set up
 	this.pSprite = new SpriteMap('assets/player/Walk_Forward.png',//image

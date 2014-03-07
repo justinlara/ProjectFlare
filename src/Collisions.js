@@ -125,7 +125,7 @@ Collisions.prototype.collisionContact = function()
                contactB.pos[0] = xmove;
                contactB.pos[1] = ymove;
                
-               
+               mainGuy.hp = contactB.health;
 
                console.log(contactB);
                console.log(contactA);

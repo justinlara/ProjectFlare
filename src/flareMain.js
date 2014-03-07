@@ -13,9 +13,9 @@ var entityManager;
 var thisLevel;
 
 
-// UI health
-var heart = new Image();
-heart.src = "assets/ui_rod_sample.png";
+//UI Pole
+var pole = new Image();
+pole.src = "assets/ui/pole.png";
 
 
 
@@ -238,13 +238,12 @@ function draw() {
 	// OR (easy) draw dim arcs to make flashlight bigger
     }
     
+	// ui
     //directly draw the UI, asking for player resources with accessors
     //no need for a subclass unless we want to animate the gauges
     //this needs to be moved, and only update when the UI changes
     ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT); 
-
-	// resize param needs fixing.
-    ctxUI.drawImage(heart,-10,0,MEASURE_UNIT*2.75, MEASURE_UNIT * 11.25);
+ 	draw_ui();
     
     collisionWorld.Step((0),0,0);
     
@@ -258,6 +257,112 @@ function draw() {
 	
     //}
 }
+
+// UI stuff - not sure where to put it!
+
+this.light = new SpriteMap('assets/ui/light_sheet.png',//image
+			{ //anim sequences
+				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				first_use: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
+				second_use: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
+				third_use: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
+				fourth_use: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
+				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
+				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
+				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
+				//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
+			}, { //options
+				frameW: 128, // Width of each frame of the animation in pixels
+				frameH: 256, // Height of each frame of the animation in pixels
+				projectedW: 1024, // Displayed width
+				projectedH: 256, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					this.light.start('full');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+	});
+	
+	this.health = new SpriteMap('assets/ui/heart_sheet.png',//image
+			{ //anim sequences
+				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				one: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
+				two: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
+				three: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
+				four: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
+				five: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
+				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
+				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
+				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
+				//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
+			}, { //options
+				frameW: 128, // Width of each frame of the animation in pixels
+				frameH: 256, // Height of each frame of the animation in pixels
+				projectedW: 1024, // Displayed width
+				projectedH: 256, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					this.health.start('full');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+	});
+
+function draw_ui() {
+	
+	var lmeter, hmeter = '';
+	var UIHeight = GAME_HEIGHT;
+	var UIWidth = GAME_WIDTH * 0.15;
+	ctxUI.drawImage(pole, 0, 0, UIWidth, UIHeight);// MEASURE_UNIT * 2.25, MEASURE_UNIT * 11);	
+	
+	var pLight = mainGuy.light;
+	switch(pLight)
+	{	
+	case 4:
+	  lmeter = 'first_use';
+	  break;
+	case 3:
+	  lmeter = 'second_use';
+	  break;
+	case 2:
+	  lmeter = 'third_use';
+	  break;
+	case 1:
+	  lmeter = 'fourth_use';
+	  break;
+	case 0:
+	  lmeter = 'empty';
+	  break;
+	default:
+	  lmeter = 'full';
+	}
+				
+	this.light.use(lmeter);
+	this.light.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 1.75);
+	
+// HEALTH
+	var pHealth = mainGuy.hp;
+	if (pHealth == 100 || pHealth > 95)
+		hmeter = 'full';
+	else if (pHealth <= 95 && pHealth > 75)
+		hmeter = 'one';
+	else if (pHealth <= 75 && pHealth > 55)
+		hmeter = 'two';
+	else if (pHealth <= 55 && pHealth > 35)
+		hmeter = 'three';
+	else if (pHealth <= 35 && pHealth > 15)
+		hmeter = 'four';
+	else if (pHealth <= 15 && pHealth > 10)
+		hmeter = 'five';
+	else if (pHealth == 0 || pHealth < 0)
+		hmeter = 'empty';
+	
+	this.health.use(hmeter);
+	this.health.draw(ctxUI, (0.600 * UIWidth), (0.133 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 1.75);
+}
+
+// end UI
 
 function initDrawUpdate() {
     //size the window:
