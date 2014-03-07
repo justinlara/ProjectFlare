@@ -339,7 +339,7 @@ function draw_ui() {
 	}
 				
 	this.light.use(lmeter);
-	this.light.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	this.light.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1, MEASURE_UNIT * 2);
 	
 // HEALTH
 	var pHealth = mainGuy.hp;
@@ -359,7 +359,7 @@ function draw_ui() {
 		hmeter = 'empty';
 	
 	this.health.use(hmeter);
-	this.health.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	this.health.draw(ctxUI, (0.600 * UIWidth), (0.133 * UIHeight), MEASURE_UNIT * 1, MEASURE_UNIT * 2);
 }
 
 // end UI
@@ -394,7 +394,7 @@ function initDrawUpdate() {
 window.addEventListener("load", initDrawUpdate, false);
 
 //account for user resizing the window
-window.addEventListener('resize', resizeScreen, false);
+//window.addEventListener('resize', resizeScreen, false);
 
 // for the movement control
 window.addEventListener('keyup', function(event) { controls.onKeyup(event); }, false);
