@@ -23,7 +23,7 @@ function Door(doorSide) {
 	}
 	else if (this.side == "w")
 	{	
-		this.posX = 0.5 * GAME_WIDTH/15;
+		this.posX = 0;//GAME_WIDTH/15;//0.5 * GAME_WIDTH/15;
 		this.posY = 5 * GAME_HEIGHT/11;
 	}
 	

@@ -118,10 +118,7 @@ Level.prototype.goToNorthRoom = function() {
 		if(this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.startingRoom) != -1)
 		{
-			for (var i = 0; i < this.layout[this.currentY][this.currentX].doors.length; i++)
-			{
-				this.layout[this.currentY][this.currentX].doors[i].doorboundBox.SetActive(false);
-			}
+			this.turnOffHitboxesForCurrentRoom();
 			
 			mainGuy.p.pos[1] = 8 * GAME_HEIGHT/11;
 			
@@ -137,10 +134,7 @@ Level.prototype.goToEastRoom = function() {
 		if(this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.startingRoom) != -1)
 		{
-			for (var i = 0; i < this.layout[this.currentY][this.currentX].doors.length; i++)
-			{
-				this.layout[this.currentY][this.currentX].doors[i].doorboundBox.SetActive(false);
-			}
+			this.turnOffHitboxesForCurrentRoom();
 			
 			mainGuy.p.pos[0] = 1 * GAME_WIDTH/15;
 			
@@ -156,10 +150,7 @@ Level.prototype.goToSouthRoom = function() {
 		if(this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.startingRoom) != -1)
 		{
-			for (var i = 0; i < this.layout[this.currentY][this.currentX].doors.length; i++)
-			{
-				this.layout[this.currentY][this.currentX].doors[i].doorboundBox.SetActive(false);
-			}
+			this.turnOffHitboxesForCurrentRoom();
 			
 			mainGuy.p.pos[1] = 1 * GAME_HEIGHT/11;
 			
@@ -174,10 +165,7 @@ Level.prototype.goToWestRoom = function() {
 		if(this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.startingRoom) != -1)
 		{
-			for (var i = 0; i < this.layout[this.currentY][this.currentX].doors.length; i++)
-			{
-				this.layout[this.currentY][this.currentX].doors[i].doorboundBox.SetActive(false);
-			}
+			this.turnOffHitboxesForCurrentRoom();
 			
 			mainGuy.p.pos[0] = 10 * GAME_WIDTH/15;
 			
@@ -185,4 +173,23 @@ Level.prototype.goToWestRoom = function() {
 			this.currentRoom = this.layout[this.currentY][this.currentX];
 		}
 	}
+}
+
+Level.prototype.turnOffHitboxesForCurrentRoom = function()
+{
+	// Turn off the door hitboxes for the current room.
+	for (var i = 0; i < this.layout[this.currentY][this.currentX].doors.length; i++)
+	{
+		this.layout[this.currentY][this.currentX].doors[i].doorboundBox.SetActive(false);
+	}
+	
+	// Turn off the enemies hitboxes for the current room.
+	for (var i = 0; i < this.layout[this.currentY][this.currentX].enemies.length; i++)
+	{
+		this.layout[this.currentY][this.currentX].enemies[i].enemyboundBox.SetActive(false);
+	}
+	
+	// Turn off the lamp hitboxes for the current room.
+	if (this.layout[this.currentY][this.currentX].lamp != null)
+		this.layout[this.currentY][this.currentX].lamp.lampboundBox.SetActive(false);
 }
