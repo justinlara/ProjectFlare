@@ -38,7 +38,7 @@ function Player()
 	this.light = 5;
   
 	//player animation set up
-	//this.pSprite = loadSpriteP;
+	this.pSprite = loadSpriteP;
 
 	//Resize:
 	this.Resize = function()
@@ -79,7 +79,7 @@ function Player()
 		//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
 	
 		//use sprite draw method
-		loadSpriteP.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
+		this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
 		
 		
 	};

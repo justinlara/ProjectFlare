@@ -1,6 +1,8 @@
 function Miles() {
 	Enemy.call(this);
 	
+	this.sprite = loadSpriteMiles;
+	
 	this.image = new Image();
 	this.image.src = "assets/Miles_Enemy1.png";
 	this.imageDying = new Image();
