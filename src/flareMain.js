@@ -15,6 +15,7 @@ var entityManager;
 var thisLevel;
 
 var loadSpriteP;
+var loadSpriteMiles;
 
 //UI Pole
 var pole = new Image();
@@ -41,7 +42,7 @@ function loadAssets() {
     images[1].src = "assets/tiles/errorTile.png";
     images[2].src = "assets/tiles/lamp_castle_1.png";
     images[3].src = "assets/tiles/lamp_castle_2.png";
-    images[4].src = "assets/tempwall.png";
+    images[4].src = "assets/enemies/miles_test_sheet.png";
     images[5].src = "assets/Miles_Enemy1.png";
     images[6].src = "assets/tiles/floor_castle_1.png";
     images[7].src = "assets/tiles/floor_castle_2.png";
@@ -74,6 +75,23 @@ function loadAssets() {
 					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
 				}
 	});
+	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
+		{
+			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+			death: {startRow: 0, startCol: 2, endRow: 0, endCol: 3}
+		},
+		{
+			frameW: 128, // Width of each frame of the animation in pixels
+			frameH: 128, // Height of each frame of the animation in pixels
+			projectedW: MEASURE_UNIT, // Displayed width
+			projectedH: MEASURE_UNIT, // Displayed height 
+			interval: 150, // Switch frames every xxx ms
+			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+			postInitCallback: function() {
+				loadSpriteP.start('idle');
+			}
+		}
+	);
 
 	soundManager.setup({
         url: 'src/swf/',
@@ -133,7 +151,7 @@ function resizeScreen() {
     MEASURE_UNIT = Math.floor(newWidth * .054);
     
     //adjust player position
-    if ('undefined' !== typeof mainGuy) {
+    /*if ('undefined' !== typeof mainGuy) {
         //new pos = currentPos/OLD_MEASURE_UNIT * NEW_MEASURE_UNIT
         mainGuy.p.pos[0] = Math.floor((mainGuy.p.pos[0]/oldUnit) * MEASURE_UNIT);
         mainGuy.p.pos[1] = Math.floor((mainGuy.p.pos[1]/oldUnit) * MEASURE_UNIT);
@@ -153,7 +171,7 @@ function resizeScreen() {
 
     
     //need to adjust enemy position too
-    if ('undefined' !== typeof thisLevel) {
+    /*if ('undefined' !== typeof thisLevel) {
         for (var i = 0; i < thisLevel.currentRoom.enemies.length; i++) {
             thisLevel.currentRoom.enemies[i].posX = Math.floor((thisLevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
             thisLevel.currentRoom.enemies[i].posY = Math.floor((thisLevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
@@ -172,7 +190,7 @@ function resizeScreen() {
           //}
             
         }
-    }
+    }*/
 
 }
 

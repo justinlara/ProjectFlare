@@ -46,5 +46,21 @@ function EntityManager() {
 			}
 		}
 	}
+	
+	this.enemyDeath = function() {
+		for (var i = 0;i<this.entities.length;i++) {
+			if (!this.entities[i] instanceof Player) {
+				entities[i].sprite.use('death');
+				entities[i].deathState = true;
+			}
+		}
+		
+		//this should lock enemies in a death state
+		//when finished, clears them out
+		setTimeout(function(){
+			this.clearEnemies();
+			thisLevel.currentRoom.killEnemies();
+		},1000);
+	}
 
 }

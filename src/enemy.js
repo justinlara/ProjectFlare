@@ -39,7 +39,25 @@ function Enemy() {
   
   
   this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 5, pX: this.posX, pY: this.posY } ); //this.enemybox.position.y
-  
+  	
+	
+	//sprite defaults:
+	this.sprite = new SpriteMap('assets/enemies/miles_test_sheet.png',//image
+		{ //anim sequences
+			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+			death: {startRow: 0, startCol: 2, endRow: 0, endCol: 3}
+			//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
+			//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
+			//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
+		}, { //options
+			frameW: 128, // Width of each frame of the animation in pixels
+			frameH: 128, // Height of each frame of the animation in pixels
+			projectedW: 100, // Displayed width
+			projectedH: 100, // Displayed height 
+			interval: 150, // Switch frames every xxx ms
+			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+	});
+	
 }
 //carry over position and image properties
 //this should take care of collision, assuming collision is on entities
