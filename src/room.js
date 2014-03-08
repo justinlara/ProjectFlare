@@ -69,10 +69,10 @@ function Room(gridObj) {
 					break;
 				case 6:
 					this.grid[i][j] = new TileFloor();
-					var trombulentMunge = new Enemy();
+					var trombulentMunge = new TMunge();
 					 console.log(" created ENEMY2 --------------------------------------------------------  ");
 					trombulentMunge.posX = (MEASURE_UNIT * j);
-					trombulnntMunge.posY = (MEASURE_UNIT * i);
+					trombulentMunge.posY = (MEASURE_UNIT * i);
 					this.enemies.push(trombulentMunge);
 					break;
 				default:
