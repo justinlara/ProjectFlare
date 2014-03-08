@@ -8,10 +8,12 @@ function EntityManager() {
 
 	this.addEntity = function(entity) {
 		this.entities.push(entity);
+		//console.log("entity pushed");
 	};
 	
 	this.reorderEntities = function() {
 		this.entities.sort(function(a,b) {
+			console.log("sorting");
 			return a.posY - b.posY;
 		});
 	};
@@ -19,17 +21,10 @@ function EntityManager() {
 	//to be called in main draw
 	//draws each entity in the surrent draw order
 	this.drawAllEntities = function() {
-		//this.reorderEntities();
+		this.reorderEntities();//not getting pushed?
+		//console.log("entities "+this.entities.length);
 		for (var i = 0; i < this.entities.length; i++) {
 			this.entities[i].draw();
-		}
-	};
-	
-	//to be called in resize (main)
-	//should update the positions and collision boxes of all entities
-	this.resizeAll = function() {
-		for (var i = 0; i < this.entities.length; i++) {
-		
 		}
 	};
 	
@@ -45,22 +40,6 @@ function EntityManager() {
 				this.entities.splice(1, this.entities.length);
 			}
 		}
-	}
-	
-	this.enemyDeath = function() {
-		for (var i = 0;i<this.entities.length;i++) {
-			if (!this.entities[i] instanceof Player) {
-				entities[i].sprite.use('death');
-				entities[i].deathState = true;
-			}
-		}
-		
-		//this should lock enemies in a death state
-		//when finished, clears them out
-		setTimeout(function(){
-			this.clearEnemies();
-			thisLevel.currentRoom.killEnemies();
-		},1000);
 	}
 
 }

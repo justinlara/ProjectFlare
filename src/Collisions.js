@@ -32,11 +32,11 @@ Collisions.prototype.collisionContact = function()
     this.listener.BeginContact = function(contact) 
     { 
   
-        console.log(" ---  BeginContact ------");
+       // console.log(" ---  BeginContact ------");
 
       
-      console.log(contact.GetFixtureA().GetBody().GetUserData());  
-      console.log(contact.GetFixtureB().GetBody().GetUserData()); 
+     // console.log(contact.GetFixtureA().GetBody().GetUserData());  
+      //console.log(contact.GetFixtureB().GetBody().GetUserData()); 
 
       
       if(contact.GetFixtureA().GetBody().GetUserData() !== null || contact.GetFixtureB().GetBody().GetUserData() !== null)
@@ -48,7 +48,7 @@ Collisions.prototype.collisionContact = function()
       if(contactA.id === "wall" && contactB.type === "enemy" ||
           contactB.id === "wall" && contactA.type === "enemy")
       { 
-          console.log("WALL ...");
+         // console.log("WALL ...");
           
           if(contactA.id === "wall" && contactB.type === "enemy")
           {
@@ -63,7 +63,7 @@ Collisions.prototype.collisionContact = function()
               enemy = contactA;
           }
           
-          console.log(contact.GetFixtureB().GetUserData());  
+         // console.log(contact.GetFixtureB().GetUserData());  
 
           
           switch(wallContact.fixID)
@@ -127,8 +127,8 @@ Collisions.prototype.collisionContact = function()
                
                mainGuy.hp = contactB.health;
 
-               console.log(contactB);
-               console.log(contactA);
+              // console.log(contactB);
+               //console.log(contactA);
 
               break;  
             }
@@ -152,14 +152,14 @@ Collisions.prototype.collisionContact = function()
       {
 	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
                thisLevel.currentRoom.setLit(true);
-               //entityManager.clearEnemies();
+               entityManager.clearEnemies();
                //thisLevel.currentRoom.killEnemies();
                mainGuy.light--;
 	      }
       }
             if(contactA.type === "door" && contactB.id === "player" )
       {
-        console.log(contactA.side);
+      //  console.log(contactA.side);
         if (contactA.side == "n")
         {
           thisLevel.goToNorthRoom();

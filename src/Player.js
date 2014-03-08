@@ -23,6 +23,7 @@ function Player()
   
   this.playerBoundBox.SetSleepingAllowed(false);
     
+  
   this.p = {  playerBody: this.playerBoundBox,  
               pos: [(GAME_WIDTH/2), (GAME_HEIGHT/2)], 
               
@@ -36,6 +37,9 @@ function Player()
 	this.playerBoundBox.SetUserData( {id: "player", health: 100, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	this.p.I.src = "assets/Character.png";
 	this.light = 5;
+	
+	//for sorting:
+	this.posY = this.p.pos[1];
   
 	//player animation set up
 	this.pSprite = loadSpriteP;

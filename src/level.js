@@ -100,19 +100,6 @@ function Level(numberOfRooms, floorNumber) {
 	//newRoom.setDoor(door);
 }
 
-//function for loading the next currentRoom
-//determine the next room based on the door the player hit
-Level.prototype.loadRoom = function() {
-	var i=0;
-	var j=0;
-	var newRoom = layout[i][j];
-	this.currentRoom = newRoom;
-	
-	//must add enemies to entity manager as well
-	for (var i = 0; i<this.currentRoom.enemies.length; i++) {
-		entityManager.addEntity(currentRoom.enemies[i]);
-	}
-};
 
 Level.prototype.goToNorthRoom = function() {
 	if (this.currentY > 0)
@@ -126,6 +113,12 @@ Level.prototype.goToNorthRoom = function() {
 			
 			this.currentY--;
 			this.currentRoom = this.layout[this.currentY][this.currentX];
+			//need to add enemies to the manager!
+			entityManager.clearEnemies();
+			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
+				console.log("going to push enemy");
+				entityManager.addEntity(this.currentRoom.enemies[i]);
+			}
 		}
 	}
 }
@@ -142,6 +135,12 @@ Level.prototype.goToEastRoom = function() {
 			
 			this.currentX++;
 			this.currentRoom = this.layout[this.currentY][this.currentX];
+			//need to add enemies to the manager!
+			entityManager.clearEnemies();
+			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
+				console.log("going to push enemy");
+				entityManager.addEntity(this.currentRoom.enemies[i]);
+			}
 		}
 	}
 }
@@ -158,6 +157,12 @@ Level.prototype.goToSouthRoom = function() {
 			
 			this.currentY++;
 			this.currentRoom = this.layout[this.currentY][this.currentX];
+			//need to add enemies to the manager!
+			entityManager.clearEnemies();
+			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
+				console.log("going to push enemy");
+				entityManager.addEntity(this.currentRoom.enemies[i]);
+			}
 		}
 	}
 }
@@ -173,6 +178,12 @@ Level.prototype.goToWestRoom = function() {
 			
 			this.currentX--;
 			this.currentRoom = this.layout[this.currentY][this.currentX];
+			//need to add enemies to the manager!
+			entityManager.clearEnemies();
+			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
+				console.log("going to push enemy");
+				entityManager.addEntity(this.currentRoom.enemies[i]);
+			}
 		}
 	}
 }

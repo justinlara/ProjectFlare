@@ -305,6 +305,9 @@ function draw() {
 	//entityManager.clearEnemies();
 	
     //}
+	
+	//hacks
+	mainGuy.posY = mainGuy.p.pos[1];
 }
 
 // UI stuff - not sure where to put it!
