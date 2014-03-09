@@ -184,7 +184,7 @@ function resizeScreen() {
             // how to get the list of all enemys 
             //console.log("entered undefiend enemies %%%%%%");
             // enemies draw from - AllTiles: this.enterence, Level: level(3, )
-            thisLevel.currentRoom.enemies[i].Resize();      // ????????? STILL NEEDS TO  RESIZE  ??/??????????????
+              thisLevel.currentRoom.enemies[i].Resize();      // ????????? STILL NEEDS TO  RESIZE  ??/??????????????
 
             }
           //}

@@ -295,9 +295,49 @@ Collisions.prototype.collisionContact = function()
                break;
            }
                 
-          }
-         }
+          } // switch End
+         } // if wallContact null End
      }
+     if(contactA.type === "lamp" && contactB.id === "player")
+     {
+         man = contact.GetManifold();
+         
+         if(contactA.active === false && man.m_pointCount !==0)
+         {
+           wX = contactA.wPx;
+           wY = contactA.wPy;
+           sX = contactA.size[0];
+           sY = contactA.size[1];
+         
+           normals = man.m_localPlaneNormal;
+
+                
+               if(contactB.pos[0] > (wX-contactB.BoundSize*.8) && normals.x <= -1) 
+               {
+                   contactB.pos[0] = (wX-contactB.BoundSize*.8);
+               }    
+               else if(contactB.pos[0] < ((wX+sX) + (contactB.BoundSize/10)*.3)&& normals.x >= 1)
+               {
+                   
+                   contactB.pos[0] = ((wX+sX) + (contactB.BoundSize/10)*.3); 
+               }
+               else if(contactB.pos[1] > ((wY-sY) - contactB.BoundSize*.2) && normals.y <= -1)
+               {
+                   
+                   contactB.pos[1] = (((wY-sY) - contactB.BoundSize*.2)); 
+               }
+               else if(contactB.pos[1] < ((wY+(sY/2)) + contactB.BoundSize*.2) && normals.y >= 1)
+               {
+                 
+                   contactB.pos[1] = ((wY+(sY/2)) + contactB.BoundSize*.2); 
+               }
+                     
+           
+        }
+        
+        
+     }
+     
       
   }; 
   
