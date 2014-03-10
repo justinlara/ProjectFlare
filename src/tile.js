@@ -22,14 +22,14 @@ function TileFloor(setName) {
 function TileWall() {
 	this.image = new Image();
 	this.image.src = "assets/tempwall.png";
-	
-	//do nothing
 }
 
 //block are also collidable, but have different acceptable art
 function TileBlock() {
 	this.image = new Image();
-	this.image.src = "assets/tempwall.png";
+	
+	var variance = Math.floor((Math.random()*2) + 1);
+	this.image.src = "assets/tiles/block_castle_" + variance + ".png";
 	
 	//collision stuff
 }
