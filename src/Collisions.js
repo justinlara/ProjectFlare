@@ -316,20 +316,20 @@ Collisions.prototype.collisionContact = function()
                {
                    contactB.pos[0] = (wX-contactB.BoundSize*.8);
                }    
-               else if(contactB.pos[0] < ((wX+sX) + (contactB.BoundSize/10)*.3)&& normals.x >= 1)
+               else if(contactB.pos[0] < ((wX+sX) - (contactB.BoundSize/2))&& normals.x >= 1)
                {
                    
-                   contactB.pos[0] = ((wX+sX) + (contactB.BoundSize/10)*.3); 
+                   contactB.pos[0] = ((wX+sX) - (contactB.BoundSize/2)); 
                }
                else if(contactB.pos[1] > ((wY-sY) - contactB.BoundSize*.2) && normals.y <= -1)
                {
                    
                    contactB.pos[1] = (((wY-sY) - contactB.BoundSize*.2)); 
                }
-               else if(contactB.pos[1] < ((wY+(sY/2)) + contactB.BoundSize*.2) && normals.y >= 1)
+               else if(contactB.pos[1] < ((wY) + (contactB.BoundSize/2)) && normals.y >= 1)
                {
                  
-                   contactB.pos[1] = ((wY+(sY/2)) + contactB.BoundSize*.2); 
+                   contactB.pos[1] = ((wY) + (contactB.BoundSize/2)); 
                }
                      
            
