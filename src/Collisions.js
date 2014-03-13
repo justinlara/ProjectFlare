@@ -126,6 +126,7 @@ Collisions.prototype.collisionContact = function()
                contactB.pos[1] = ymove;
                
                mainGuy.hp = contactB.health;
+			   SOUNDS.playRandomGrunt();
 
               // console.log(contactB);
                //console.log(contactA);

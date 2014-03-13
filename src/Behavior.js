@@ -6,12 +6,12 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 	
 	this.inRange = false;
 	
-	this.mStr = MoveType + '(actor)';
-	this.cStr = ChaseType + '(actor)';
-	this.aStr = AttackType + '(actor)';
-	this.rStr = ReactType + '(actor)';
-	this.runStr = RunType + '(actor)';
-	this.sStr = SpecialType + '(actor)';
+	this.mStr = MoveType + '(this.actor)';
+	this.cStr = ChaseType + '(this.actor)';
+	this.aStr = AttackType + '(this.actor)';
+	this.rStr = ReactType + '(this.actor)';
+	this.runStr = RunType + '(this.actor)';
+	this.sStr = SpecialType + '(this.actor)';
 	
 	this.react = function(){};
 }
