@@ -29,8 +29,9 @@ heart.src = "assets/ui_rod_sample.png";
 var gameOver = new Image();
 gameOver.src = "assets/gameOverScreen.png";
 
-const maxHealth = 100;
-const maxLight = 5;
+// maxHealth = 100;
+const maxHealth = 6;
+const maxLight = 6;
 
 
 function loadAssets() {
@@ -280,7 +281,7 @@ function draw() {
 			// Set transparency using the "xor" operation.
 			ctxDark.globalCompositeOperation = 'xor';
 			// Set the black background to not be completely transparent.
-			ctxDark.globalAlpha = 0.85;
+			ctxDark.globalAlpha = 0.96;
 			// Draw the white arc to represent the light from the character's lantern.
 			if (mainGuy.light > 0) { //only draw the flashlight if you have lantern light
 				ctxDark.fillStyle = 'white';
@@ -329,6 +330,7 @@ this.light = new SpriteMap('assets/ui/light_sheet.png',//image
 				second_use: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
 				third_use: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
 				fourth_use: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
+				fifth_use: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
 				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
 				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
 				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
@@ -381,17 +383,20 @@ function draw_ui() {
 	var pLight = mainGuy.light;
 	switch(pLight)
 	{	
-	case 4:
+	case 5:
 	  lmeter = 'first_use';
 	  break;
-	case 3:
+	case 4:
 	  lmeter = 'second_use';
 	  break;
-	case 2:
+	case 3:
 	  lmeter = 'third_use';
 	  break;
-	case 1:
+	case 2:
 	  lmeter = 'fourth_use';
+	  break;
+	case 1:
+	  lmeter = 'fifth_use';
 	  break;
 	case 0:
 	  lmeter = 'empty';
@@ -405,17 +410,17 @@ function draw_ui() {
 	
 // HEALTH
 	var pHealth = mainGuy.hp;
-	if (pHealth == 100 || pHealth > 95)
+	if (pHealth == 6) //100 || pHealth > 95)
 		hmeter = 'full';
-	else if (pHealth <= 95 && pHealth > 75)
+	else if (pHealth == 5) //95 && pHealth > 75)
 		hmeter = 'one';
-	else if (pHealth <= 75 && pHealth > 55)
+	else if (pHealth == 4) //75 && pHealth > 55)
 		hmeter = 'two';
-	else if (pHealth <= 55 && pHealth > 35)
+	else if (pHealth == 3) //55 && pHealth > 35)
 		hmeter = 'three';
-	else if (pHealth <= 35 && pHealth > 15)
+	else if (pHealth == 2) //35 && pHealth > 15)
 		hmeter = 'four';
-	else if (pHealth <= 15 && pHealth > 10)
+	else if (pHealth == 1) //15 && pHealth > 10)
 		hmeter = 'five';
 	else if (pHealth == 0 || pHealth < 0)
 		hmeter = 'empty';

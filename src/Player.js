@@ -34,7 +34,7 @@ function Player()
            
            I: new Image()
            };
-	this.playerBoundBox.SetUserData( {id: "player", health: 100, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+	this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	this.p.I.src = "assets/Character.png";
 	this.light = 5;
 	
@@ -57,7 +57,8 @@ function Player()
   
 		this.pFix = this.playerBoundBox.CreateFixture(newfix);
 		
-	  this.playerBoundBox.SetUserData( {id: "player", health: 100, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+		// health: 100
+	  this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 
 	};
 	
