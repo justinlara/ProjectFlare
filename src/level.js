@@ -2,6 +2,8 @@
 //stores all rooms
 //has current room for drawing
 
+//var levelWidth;
+//var levelHeight;
 
 //constructed with the number of rooms to put in it
 //also stores which floor it is
@@ -22,6 +24,8 @@ function Level(numberOfRooms, floorNumber) {
 	
 	this.structure = createRandomLevel(this.nRooms);
 	drawLevelToConsole();
+	
+	//levelWidth = structure.
 
 
     // Height and width of the 2D array will be dependent on the numberOfRooms.
@@ -123,8 +127,8 @@ Level.prototype.goToNorthRoom = function() {
 	}
 }
 Level.prototype.goToEastRoom = function() {
-	if (this.currentX < 3)
-	//if (this.currentX < this.structure.level.width-1)
+	//if (this.currentX < 3)
+	if (this.currentX < this.structure.width-1)
 	{
 		if(this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.startingRoom) != -1)
@@ -145,8 +149,8 @@ Level.prototype.goToEastRoom = function() {
 	}
 }
 Level.prototype.goToSouthRoom = function() {
-	if (this.currentY < 3)
-	//if (this.currentY < this.structure.level.height-1)
+	//if (this.currentY < 3)
+	if (this.currentY < this.structure.height-1)
 	{
 		if(this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.startingRoom) != -1)

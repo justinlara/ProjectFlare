@@ -210,7 +210,7 @@ function initGame() {
     entityManager.addEntity(mainGuy);
     
     //generate the level
-    thisLevel = new Level(4, 1);
+    thisLevel = new Level(10, 1);
     levelBox = new levelBarrier();
     
     //add current enemies to manager
