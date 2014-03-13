@@ -249,7 +249,6 @@ function draw() {
 	if (mainGuy.hp <= 0) { // Player is dead, show game over screen
 		ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		ctxDark.drawImage(gameOver, 0, 0, GAME_WIDTH * 0.85, GAME_HEIGHT);
-		draw_ui();
 	}
 	else { // Draw as normal
 		//draw room
