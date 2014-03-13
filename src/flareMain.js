@@ -25,6 +25,10 @@ pole.src = "assets/ui/pole.png";
 var heart = new Image();
 heart.src = "assets/ui_rod_sample.png";
 
+// Game Over
+var gameOver = new Image();
+gameOver.src = "assets/gameOverScreen.png";
+
 const maxHealth = 100;
 const maxLight = 5;
 
@@ -241,73 +245,79 @@ function draw() {
     
     ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
-    //draw room
-    thisLevel.currentRoom.draw();
-    
-     //for debugging collisions
-    //collisionWorld.DrawDebugData();
+	if (mainGuy.hp <= 0) { // Player is dead, show game over screen
+		ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		ctxDark.drawImage(gameOver, 0, 0, GAME_WIDTH * 0.85, GAME_HEIGHT);
+	}
+	else { // Draw as normal
+		//draw room
+		thisLevel.currentRoom.draw();
+		
+		 //for debugging collisions
+		//collisionWorld.DrawDebugData();
 
-     
-    //the player should be drawn here, on top of the world
-    //player drawing and updates:
-    //mainGuy.draw(ctxWorld);
-    //mainGuy.update();
-    entityManager.drawAllEntities();
+		 
+		//the player should be drawn here, on top of the world
+		//player drawing and updates:
+		//mainGuy.draw(ctxWorld);
+		//mainGuy.update();
+		entityManager.drawAllEntities();
 
-    // Comment the line below to remove the darkness layer.
+		// Comment the line below to remove the darkness layer.
 
-   ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-    
-    //only draw if not lit
-    if (!thisLevel.currentRoom.isLit) {
-        // Coordinates for the center of the circle of light, aka the tip of the arc.
-        //var 
-        centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
-        //var 
-        centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
-        // Draw the field of darkness.
-        ctxDark.fillStyle = 'black';
-        ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-        // Set transparency using the "xor" operation.
-        ctxDark.globalCompositeOperation = 'xor';
-        // Set the black background to not be completely transparent.
-        ctxDark.globalAlpha = 0.85;
-        // Draw the white arc to represent the light from the character's lantern.
-		if (mainGuy.light > 0) { //only draw the flashlight if you have lantern light
-			ctxDark.fillStyle = 'white';
-			ctxDark.beginPath();
-			//ctxDark.moveTo(centerX+x, centerY+y);
-			var r = MEASURE_UNIT*4;   
-			ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
-			ctxDark.lineTo(centerX+x, centerY+y);
-			ctxDark.fill();
+	   ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		
+		//only draw if not lit
+		if (!thisLevel.currentRoom.isLit) {
+			// Coordinates for the center of the circle of light, aka the tip of the arc.
+			//var 
+			centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
+			//var 
+			centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
+			// Draw the field of darkness.
+			ctxDark.fillStyle = 'black';
+			ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+			// Set transparency using the "xor" operation.
+			ctxDark.globalCompositeOperation = 'xor';
+			// Set the black background to not be completely transparent.
+			ctxDark.globalAlpha = 0.85;
+			// Draw the white arc to represent the light from the character's lantern.
+			if (mainGuy.light > 0) { //only draw the flashlight if you have lantern light
+				ctxDark.fillStyle = 'white';
+				ctxDark.beginPath();
+				//ctxDark.moveTo(centerX+x, centerY+y);
+				var r = MEASURE_UNIT*4;   
+				ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
+				ctxDark.lineTo(centerX+x, centerY+y);
+				ctxDark.fill();
+			}
+		
+		// draw a png via alpha
+		// OR (easy) draw dim arcs to make flashlight bigger
 		}
-	
-	// draw a png via alpha
-	// OR (easy) draw dim arcs to make flashlight bigger
-    }
-    
-	// ui
-    //directly draw the UI, asking for player resources with accessors
-    //no need for a subclass unless we want to animate the gauges
-    //this needs to be moved, and only update when the UI changes
-    ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT); 
- 	draw_ui();
-    
-    collisionWorld.Step((0),0,0);
-    
-    collisionDetection.collisionContact();
-    
-    collisionWorld.ClearForces();
-    
-	//This part below has been moved to Collisions.js
-	//also when the lights come on, the enemies in the current room need to be removed:
-	//entityManager.clearEnemies();
-	
-    //}
-	
-	//hacks
-	mainGuy.posY = mainGuy.p.pos[1];
+		
+		// ui
+		//directly draw the UI, asking for player resources with accessors
+		//no need for a subclass unless we want to animate the gauges
+		//this needs to be moved, and only update when the UI changes
+		ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT); 
+		draw_ui();
+		
+		collisionWorld.Step((0),0,0);
+		
+		collisionDetection.collisionContact();
+		
+		collisionWorld.ClearForces();
+		
+		//This part below has been moved to Collisions.js
+		//also when the lights come on, the enemies in the current room need to be removed:
+		//entityManager.clearEnemies();
+		
+		//}
+		
+		//hacks
+		mainGuy.posY = mainGuy.p.pos[1];
+	}
 }
 
 // UI stuff - not sure where to put it!
