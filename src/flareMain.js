@@ -27,7 +27,7 @@ heart.src = "assets/ui_rod_sample.png";
 
 // Game Over
 var gameOver = new Image();
-gameOver.src = "assets/gameOverScreen.png";
+gameOver.src = "assets/ui/endscreen_mock.jpg";
 
 // maxHealth = 100;
 const maxHealth = 6;
@@ -249,6 +249,7 @@ function draw() {
 	if (mainGuy.hp <= 0) { // Player is dead, show game over screen
 		ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		ctxDark.drawImage(gameOver, 0, 0, GAME_WIDTH * 0.85, GAME_HEIGHT);
+		draw_ui();
 	}
 	else { // Draw as normal
 		//draw room
@@ -332,9 +333,6 @@ this.light = new SpriteMap('assets/ui/light_sheet.png',//image
 				fourth_use: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
 				fifth_use: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
 				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
-				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
-				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
-				//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
 			}, { //options
 				frameW: 128, // Width of each frame of the animation in pixels
 				frameH: 256, // Height of each frame of the animation in pixels
@@ -357,9 +355,6 @@ this.light = new SpriteMap('assets/ui/light_sheet.png',//image
 				four: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
 				five: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
 				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
-				//walkLeft: {startRow: 1, startCol: 6, endRow: 1, endCol: 8},
-				//walkRight: {startRow: 2, startCol: 6, endRow: 2, endCol: 8},
-				//walkUp: {startRow: 3, startCol: 6, endRow: 3, endCol: 8}
 			}, { //options
 				frameW: 128, // Width of each frame of the animation in pixels
 				frameH: 256, // Height of each frame of the animation in pixels
