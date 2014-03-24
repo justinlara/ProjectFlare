@@ -13,7 +13,7 @@ function EntityManager() {
 	
 	this.reorderEntities = function() {
 		this.entities.sort(function(a,b) {
-			console.log("sorting");
+			//console.log("sorting");
 			return a.posY - b.posY;
 		});
 	};
