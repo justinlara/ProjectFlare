@@ -33,84 +33,9 @@ gameOver.src = "assets/ui/endscreen_mock.jpg";
 const maxHealth = 6;
 const maxLight = 6;
 
-
-function loadAssets() {
-
-    // just have to list everything like so
-    // when we put this on a website, we can simplify this with PHP
-    var images = new Array();
-    var imgNumber = 17;
-    for (var i = 0; i < imgNumber; i++) {
-        images[i] = new Image();
-    }
-    images[0].src = "assets/player/Walk_Forward.png";
-    images[1].src = "assets/tiles/errorTile.png";
-    images[2].src = "assets/tiles/lamp_castle_1.png";
-    images[3].src = "assets/tiles/lamp_castle_2.png";
-    images[4].src = "assets/enemies/miles_test_sheet.png";
-    images[5].src = "assets/Miles_Enemy1.png";
-    images[6].src = "assets/tiles/floor_castle_1.png";
-    images[7].src = "assets/tiles/floor_castle_2.png";
-    images[8].src = "assets/tiles/floor_castle_3.png";
-    images[9].src = "assets/tiles/wall_castle_1.png";
-    images[10].src = "assets/tiles/wall_castle_2.png";
-    images[11].src = "assets/tiles/wall_castle_3.png";
-    images[12].src = "assets/tiles/wall_castle_4.png";
-    images[13].src = "assets/tiles/wall_castle_5.png";
-    images[14].src = "assets/tiles/wall_castle_6.png";
-    images[15].src = "assets/tiles/wall_castle_7.png";
-    images[16].src = "assets/tiles/wall_castle_8.png";
-	
-	loadSpriteP =  new SpriteMap('assets/player/Walking.png',//image
-			{ //anim sequences
-				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
-				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3},
-				walkLeft: {startRow: 3, startCol: 0, endRow: 3, endCol: 3},
-				walkRight: {startRow: 1, startCol: 0, endRow: 1, endCol: 3},
-				walkUp: {startRow: 2, startCol: 0, endRow: 2, endCol: 3}
-			}, { //options
-				frameW: 64, // Width of each frame of the animation in pixels
-				frameH: 64, // Height of each frame of the animation in pixels
-				projectedW: MEASURE_UNIT, // Displayed width
-				projectedH: MEASURE_UNIT, // Displayed height 
-				interval: 150, // Switch frames every xxx ms
-				useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
-				postInitCallback: function() {
-					//loadSpriteP.use('idle');//start the idle anim
-					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
-				}
-	});
-	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
-		{
-			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
-			death: {startRow: 0, startCol: 2, endRow: 0, endCol: 3}
-		},
-		{
-			frameW: 128, // Width of each frame of the animation in pixels
-			frameH: 128, // Height of each frame of the animation in pixels
-			projectedW: MEASURE_UNIT, // Displayed width
-			projectedH: MEASURE_UNIT, // Displayed height 
-			interval: 150, // Switch frames every xxx ms
-			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
-			postInitCallback: function() {
-				loadSpriteP.start('idle');
-			}
-		}
-	);
-
-	soundManager.setup({
-        url: 'src/swf/',
-        onready: function () {
-		//when soundmanager is set up, create sounds
-			//all sounds accessible through SOUNDS
-			SOUNDS = new Soundloader();
-        }
-    });
-	
-	//behavior globals
-		MOVEB = new MoveBehavior();
-		CHASEB = new ChaseBehavior();
-}
+//behavior globals
+MOVEB = new MoveBehavior();
+CHASEB = new ChaseBehavior();
 
 function resizeScreen() {
     //thanks to Gopherwood studios on html5rocks.com on how to do this
@@ -154,55 +79,92 @@ function resizeScreen() {
     //6.6% is ~15 tiles
     var oldUnit = MEASURE_UNIT;
     MEASURE_UNIT = Math.floor(newWidth * .054);
-    
-    //adjust player position
-    /*if ('undefined' !== typeof mainGuy) {
-        //new pos = currentPos/OLD_MEASURE_UNIT * NEW_MEASURE_UNIT
-        mainGuy.p.pos[0] = Math.floor((mainGuy.p.pos[0]/oldUnit) * MEASURE_UNIT);
-        mainGuy.p.pos[1] = Math.floor((mainGuy.p.pos[1]/oldUnit) * MEASURE_UNIT);
-       // add new resized player collion 
-       
-       mainGuy.Resize();
-        
+}
+
+function loadAssets() {
+	// just have to list everything like so
+    // when we put this on a website, we can simplify this with PHP
+    var images = new Array();
+    var imgNumber = 26;
+    for (var i = 0; i < imgNumber; i++) {
+        images[i] = new Image();
     }
-
-
-    if('undefined' !== typeof levelBox)
-    {
-        levelBox.resizeLevel();
-        
-    }
-  //*/
-
-    
-    //need to adjust enemy position too
-    /*if ('undefined' !== typeof thisLevel) {
-        for (var i = 0; i < thisLevel.currentRoom.enemies.length; i++) {
-            thisLevel.currentRoom.enemies[i].posX = Math.floor((thisLevel.currentRoom.enemies[i].posX/oldUnit) * MEASURE_UNIT);
-            thisLevel.currentRoom.enemies[i].posY = Math.floor((thisLevel.currentRoom.enemies[i].posY/oldUnit) * MEASURE_UNIT);
-            
-          //if('undefined' !== typeof currentRoom)
-          //{  
-     
-            if('undefined' !== typeof thisLevel.currentRoom.enemies[i])
-            {
-            // how to get the list of all enemys 
-            //console.log("entered undefiend enemies %%%%%%");
-            // enemies draw from - AllTiles: this.enterence, Level: level(3, )
-              thisLevel.currentRoom.enemies[i].Resize();      // ????????? STILL NEEDS TO  RESIZE  ??/??????????????
-
-            }
-          //}
-            
-        }
-    }*/
-
+    images[0].src = "assets/player/Walking.png";
+    images[1].src = "assets/enemies/miles_test_sheet.png";
+    images[2].src = "assets/tiles/errorTile.png";
+    images[3].src = "assets/tiles/lamp_castle_1.png";
+    images[4].src = "assets/tiles/lamp_castle_2.png";
+    images[5].src = "assets/tiles/block_castle_1/png";
+    images[6].src = "assets/tiles/floor_castle_1.png";
+    images[7].src = "assets/tiles/floor_castle_2.png";
+    images[8].src = "assets/tiles/floor_castle_3.png";
+    images[9].src = "assets/tiles/wall_castle_1.png";
+    images[10].src = "assets/tiles/wall_castle_2.png";
+    images[11].src = "assets/tiles/wall_castle_3.png";
+    images[12].src = "assets/tiles/wall_castle_4.png";
+    images[13].src = "assets/tiles/wall_castle_5.png";
+    images[14].src = "assets/tiles/wall_castle_6.png";
+    images[15].src = "assets/tiles/wall_castle_7.png";
+    images[16].src = "assets/tiles/wall_castle_8.png";
+	images[17].src = "assets/tiles/block_castle_2.png";
+	images[18].src = "assets/tiles/block_castle_3.png";
+	images[19].src = "assets/tiles/block_castle_4.png";
+	images[20].src = "assets/tiles/block_castle_5.png";
+	images[21].src = "assets/tiles/block_castle_6.png";
+	images[22].src = "assets/tiles/block_castle_7.png";
+	images[23].src = "assets/tiles/block_castle_8.png";
+	images[24].src = "assets/tiles/block_castle_9.png";
+	images[25].src = "assets/loading.png";
+	
+	loadSpriteP =  new SpriteMap('assets/player/Walking.png',//image
+			{ //anim sequences
+				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3},
+				walkLeft: {startRow: 3, startCol: 0, endRow: 3, endCol: 3},
+				walkRight: {startRow: 1, startCol: 0, endRow: 1, endCol: 3},
+				walkUp: {startRow: 2, startCol: 0, endRow: 2, endCol: 3}
+			}, { //options
+				frameW: 64, // Width of each frame of the animation in pixels
+				frameH: 64, // Height of each frame of the animation in pixels
+				projectedW: MEASURE_UNIT, // Displayed width
+				projectedH: MEASURE_UNIT, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					//loadSpriteP.use('idle');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+	});
+	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
+		{
+			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+			death: {startRow: 0, startCol: 2, endRow: 0, endCol: 3}
+		},
+		{
+			frameW: 128, // Width of each frame of the animation in pixels
+			frameH: 128, // Height of each frame of the animation in pixels
+			projectedW: MEASURE_UNIT, // Displayed width
+			projectedH: MEASURE_UNIT, // Displayed height 
+			interval: 150, // Switch frames every xxx ms
+			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+			postInitCallback: function() {
+				loadSpriteP.start('idle');
+			}
+		}
+	);
 }
 
 function initGame() {
-    //this is where we make sure the images and sounds have loaded, so we can safely use them!
+	//set up sound manager
+	soundManager.setup({
+        url: 'src/swf/',
+        onready: function () {
+		//when soundmanager is set up, create sounds
+			//all sounds accessible through SOUNDS
+			SOUNDS = new Soundloader();
+        }
+    });
 
-    
     //create the entity manger
     entityManager = new EntityManager();
     
@@ -223,17 +185,15 @@ function initGame() {
     //initialize collision detections
     collisionDetection = new Collisions(); 
 
-//----------- show collision boxes (for debugging) ------------
-debugDraw = new b2DebugDraw();
-debugDraw.SetSprite(document.getElementById("world").getContext("2d"));
-debugDraw.SetDrawScale(30.0);
-debugDraw.SetFillAlpha(0.5);
-debugDraw.SetLineThickness(1.0);
-debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-collisionWorld.SetDebugDraw(debugDraw);    
-//----------- show collision boxes (for debugging) ------------    
-
-
+	//----------- show collision boxes (for debugging) ------------
+	debugDraw = new b2DebugDraw();
+	debugDraw.SetSprite(document.getElementById("world").getContext("2d"));
+	debugDraw.SetDrawScale(30.0);
+	debugDraw.SetFillAlpha(0.5);
+	debugDraw.SetLineThickness(1.0);
+	debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+	collisionWorld.SetDebugDraw(debugDraw);    
+	//----------- show collision boxes (for debugging) ------------    
 }
 
 //main update loop, called at regular intervals
@@ -428,14 +388,14 @@ function draw_ui() {
 function initDrawUpdate() {
     //size the window:
     resizeScreen();
-    
+	
     //set up contexts:
     ctxWorld = document.getElementById('world').getContext('2d');
     ctxDark = document.getElementById('dark').getContext('2d');
     ctxUI = document.getElementById('ui').getContext('2d');
-    
+	
+	//physics:
     collisionWorld = new b2World( new b2Vec2(0,0), true);
-    
     
     //load images
     loadAssets();
@@ -445,7 +405,13 @@ function initDrawUpdate() {
     
     //return setInterval(function(){draw()}, 30);//ms between updates
     //more efficient version using requestAnimationFrame:
-    draw();
+	var loadImg = new Image();
+	loadImg.src = "assets/loading.png";
+	loadImg.onLoad = function() {
+		ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+		ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+	}
+    setTimeout(draw, 2000);
 }
 
 
@@ -453,10 +419,6 @@ function initDrawUpdate() {
 
 
 window.addEventListener("load", initDrawUpdate, false);
-
-//account for user resizing the window
-//window.addEventListener('resize', resizeScreen, false);
-//no
 
 // for the movement control
 window.addEventListener('keyup', function(event) { controls.onKeyup(event); }, false);
