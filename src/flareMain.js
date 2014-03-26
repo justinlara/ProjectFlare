@@ -1,3 +1,5 @@
+var gameState = 1;
+
 var ALLTILES = new AllTiles();
 var ENEMYPATH = new EnemyPathList();
 //variables for drawing lantern light
@@ -16,6 +18,8 @@ var thisLevel;
 
 var loadSpriteP;
 var loadSpriteMiles;
+
+var loadImg;
 
 //UI Pole
 var pole = new Image();
@@ -84,6 +88,9 @@ function resizeScreen() {
 function loadAssets() {
 	// just have to list everything like so
     // when we put this on a website, we can simplify this with PHP
+	loadImg = new Image();
+	loadImg.src = "assets/loading.png";
+	
     var images = new Array();
     var imgNumber = 26;
     for (var i = 0; i < imgNumber; i++) {
@@ -196,11 +203,32 @@ function initGame() {
 	//----------- show collision boxes (for debugging) ------------    
 }
 
-//main update loop, called at regular intervals
 function draw() {
     window.requestAnimationFrame(draw);
+	if (gameState == 1) //splash
+	{
+		setTimeout(function() {
+			gameState = 4;
+		}, 1500); //after 1.5 seconds, advances to the game
+		ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+		ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+	} else if (gameState ==2) //menu
+	{
+	
+	} else if (gameState == 3) //cutscene
+	{
+	
+	} else if (gameState == 4) //game
+	{
+		gameDraw();
+	} else if (gameState == 5) //death
+	{
+		//currently handled in gamedraw, but I'm leaving this space if needed
+	}
+}
 
-
+//main update loop, called at regular intervals
+function gameDraw() {
     //draw each canvas one at a time
     //don't forget to clear the canvas before drawing the next frame
     
@@ -405,13 +433,14 @@ function initDrawUpdate() {
     
     //return setInterval(function(){draw()}, 30);//ms between updates
     //more efficient version using requestAnimationFrame:
-	var loadImg = new Image();
+	/*var loadImg = new Image();
 	loadImg.src = "assets/loading.png";
 	loadImg.onLoad = function() {
 		ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
 		ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-	}
-    setTimeout(draw, 2000);
+	}*/
+    
+	draw();
 }
 
 
