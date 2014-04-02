@@ -15,6 +15,8 @@ function TileFloor(setName) {
 	
 	//or if there are multiple images for the same set, make a random number generator
 	var variance = Math.floor((Math.random()*3) + 1); //a set with 3 variations
+	
+	//COMMENT OR COMMENT OUT FOR COLLISON BOX DEBUGGING 
 	this.image.src = "assets/tiles/floor_castle_" + variance + ".png";
 }
 
@@ -32,6 +34,7 @@ function TileBlock() {
 	this.image.src = "assets/tiles/block_castle_" + variance + ".png";
 	
 	//collision stuff
+	
 }
 
 function TileLamp() {

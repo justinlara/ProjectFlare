@@ -11,9 +11,11 @@ function Room(gridObj) {
 	this.enemies = new Array();
 	this.enemyFadeTimer = 0;
 	this.enemyFadeDuration = 30;
-	
+	//var count = 0;
 	this.doors = new Array();
 	this.lamp;
+	this.obstacles = new Array();
+	//this.ob;
 	
 	//2D grid part, 15x11
 	//take info from 2d array passed in and create tiles
@@ -54,14 +56,25 @@ function Room(gridObj) {
 					break;
 				case 4:
 					this.grid[i][j] = new TileBlock();
+					//count = count+1;
+					 this.obstacles.push( new Obstacles(j,i));
+					 
+					 //this.ob = new Obstacles(j,i);
+					 
+				//	console.log("OBST -SIZE::::::::::::::::::::::::::::::=> "+this.obstacles.length+ " i " + i + " j " + j);
 					break;
 				case 5: //example enemy case, add a floor tile and make a new enemy
 					this.grid[i][j] = new TileFloor();
 					var miles = new Miles();
 					// console.log(" created ENEMY --------------------------------------------------------  ");
-
+                
+                /* CHANGE BACK
 					miles.posX = (MEASURE_UNIT * j);
 					miles.posY = (MEASURE_UNIT * i);
+			    */
+					miles.positions.pos[0] = (MEASURE_UNIT * j);
+                    miles.positions.pos[1] = (MEASURE_UNIT * i);
+					
 					this.enemies.push(miles);
 					
 					//console.log("size of enemy's is:  "+this.enemies.size());
@@ -83,7 +96,10 @@ function Room(gridObj) {
 
 	//draw function
 	//parameters: tile width and height
-	this.draw = function() {	
+	this.draw = function() {
+	    
+	           //collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
+	
 		//for each tile, draw it onto world
 		var gx = 0;
 		var gy = 0;
@@ -99,13 +115,17 @@ function Room(gridObj) {
 			gx = 0;
 		}
 		
-		//collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
 
 		// Draw the doors.
 		for (var i = 0; i < this.doors.length; i++)
 		{
 			this.doors[i].draw();
 		}
+		
+		for (var i = 0; i < this.obstacles.length; ++i)
+        {
+            this.obstacles[i].setBox();
+        }
 		
 		//draw lamp
 		if ('undefined' != typeof this.lamp)

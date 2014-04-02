@@ -21,7 +21,7 @@ function Soundloader() {
                  id: 'spookyMusic',
                  url: musicpath + 'spookyMusic.mp3',
                  autoLoad: true,
-                 autoPlay: true,
+                 autoPlay: true, //  turn on/off music for debugging 
                  stream: true,
                  onfinish: function () {
                      music1.play();

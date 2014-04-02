@@ -1,4 +1,4 @@
-var gameState = 1;
+var gameState = 1; //should be 1, to go to game play : 4
 
 var ALLTILES = new AllTiles();
 var ENEMYPATH = new EnemyPathList();

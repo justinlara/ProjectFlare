@@ -34,7 +34,8 @@ function Lamp(posX, posY) {
   
   
   this.lampboundBox.SetUserData( {type: 'lamp', id: "l", 
-                                  bodyPos: this.lampboundBox.GetPosition, 
+                                  bodyPos: this.lampboundBox.GetPosition(), 
+                                  
                                   active: this.lampbox.active, wPx:this.posX, wPy:this.posY,  
                                   size: [((((MEASURE_UNIT/30)/3)*30)*2), ((((MEASURE_UNIT/30)/3)*30)*2)]} );
   	

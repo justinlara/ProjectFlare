@@ -209,4 +209,13 @@ Level.prototype.turnOffHitboxesForCurrentRoom = function()
 	// Turn off the lamp hitboxes for the current room.
 	if (this.layout[this.currentY][this.currentX].lamp != null)
 		this.layout[this.currentY][this.currentX].lamp.lampboundBox.SetActive(false);
-}
+		
+	
+	
+	for (var i = 0; i < this.layout[this.currentY][this.currentX].obstacles.length; ++i)
+    {
+        this.layout[this.currentY][this.currentX].obstacles[i].obstacleboundBox.SetActive(false);
+    }
+        
+		
+};

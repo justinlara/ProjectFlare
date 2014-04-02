@@ -19,12 +19,21 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 Behavior.prototype.distanceToPlayer = function() {
 	var targetX = mainGuy.p.pos[0];
 	var targetY = mainGuy.p.pos[1];
-	
+ 
+ /* CHANGE BACK
 	return Math.sqrt(
 		Math.pow((this.actor.posX - targetX), 2)
 			+
 		Math.pow((this.actor.posY - targetY), 2)
 	);
+ */
+
+ return Math.sqrt(
+        Math.pow((this.actor.positions.pos[0] - targetX), 2)
+            +
+        Math.pow((this.actor.positions.pos[1] - targetY), 2)
+    );
+
 }
 
 Behavior.prototype.move = function() {
