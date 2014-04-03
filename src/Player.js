@@ -150,7 +150,7 @@ function Player()
 		loadSpriteP.use('walkRight');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
 		//checkBounds(this.p);
-	//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
+	console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
   
 	};
 	this.moveUp = function() 

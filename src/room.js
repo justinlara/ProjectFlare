@@ -30,17 +30,29 @@ function Room(gridObj) {
 					if (i==0) { //if corner, generic tile with appropriate corner
 						if (j==0) this.grid[i][j] = new Tile("assets/tiles/wall_castle_5.png", "wall"); //upperleft
 						else if (j==14) this.grid[i][j] = new Tile("assets/tiles/wall_castle_6.png", "wall"); //upperright
+						
+						                          //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) *****
+						                          //
 						else this.grid[i][j] = new Tile("assets/tiles/wall_castle_1.png", "wall"); //top row
 					}
 					else if (i==10) {
 						if (j==0) this.grid[i][j] = new Tile("assets/tiles/wall_castle_8.png", "wall"); //lowerleft
 						else if (j==14) this.grid[i][j] = new Tile("assets/tiles/wall_castle_7.png", "wall"); //lowerright
+						
+						                      //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) *****
+						                      //
 						else this.grid[i][j] = new Tile("assets/tiles/wall_castle_3.png", "wall"); //bottom row
 					}
 					else if (j==0) {//left side
+					                          
+					                          //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) ***** 
+					                          //
 						this.grid[i][j] = new Tile("assets/tiles/wall_castle_4.png", "wall");
 					}
 					else if (j==14) {//right side
+					                           
+					                           //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) *****
+					                           //
 						this.grid[i][j] = new Tile("assets/tiles/wall_castle_2.png", "wall");
 					}
 					else this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
