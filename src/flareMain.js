@@ -259,6 +259,8 @@ function gameDraw() {
 		
 		//only draw if not lit
 		if (!thisLevel.currentRoom.isLit) {
+			ctxDark.globalAlpha = 0.90;
+			ctxDark.globalCompositeOperation = 'source-over';
 			// Coordinates for the center of the circle of light, aka the tip of the arc.
 			//var 
 			centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
@@ -268,9 +270,11 @@ function gameDraw() {
 			ctxDark.fillStyle = 'black';
 			ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 			// Set transparency using the "xor" operation.
-			ctxDark.globalCompositeOperation = 'xor';
-			// Set the black background to not be completely transparent.
-			ctxDark.globalAlpha = 0.96;
+			
+			
+			ctxDark.globalAlpha = 0.99;
+			ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
+			ctxDark.globalCompositeOperation = 'xor';//change back for lantern. may have to change the operation
 			// Draw the white arc to represent the light from the character's lantern.
 			//LIGHT MOVED TO Player.js!
 		
