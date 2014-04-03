@@ -101,7 +101,7 @@ function loadAssets() {
     images[2].src = "assets/tiles/errorTile.png";
     images[3].src = "assets/tiles/lamp_castle_1.png";
     images[4].src = "assets/tiles/lamp_castle_2.png";
-    images[5].src = "assets/tiles/block_castle_1/png";
+    images[5].src = "assets/tiles/block_castle_1.png";
     images[6].src = "assets/tiles/floor_castle_1.png";
     images[7].src = "assets/tiles/floor_castle_2.png";
     images[8].src = "assets/tiles/floor_castle_3.png";
@@ -142,6 +142,7 @@ function loadAssets() {
 					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
 				}
 	});
+	//loadSpriteLantern = new SpriteMap();
 	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
@@ -250,7 +251,7 @@ function gameDraw() {
 		//player drawing and updates:
 		//mainGuy.draw(ctxWorld);
 		//mainGuy.update();
-		entityManager.drawAllEntities();
+		//entityManager.drawAllEntities();
 
 		// Comment the line below to remove the darkness layer.
 
@@ -271,19 +272,13 @@ function gameDraw() {
 			// Set the black background to not be completely transparent.
 			ctxDark.globalAlpha = 0.96;
 			// Draw the white arc to represent the light from the character's lantern.
-			if (mainGuy.light > 0) { //only draw the flashlight if you have lantern light
-				ctxDark.fillStyle = 'white';
-				ctxDark.beginPath();
-				//ctxDark.moveTo(centerX+x, centerY+y);
-				var r = MEASURE_UNIT*4;   
-				ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
-				ctxDark.lineTo(centerX+x, centerY+y);
-				ctxDark.fill();
-			}
+			//LIGHT MOVED TO Player.js!
 		
 		// draw a png via alpha
 		// OR (easy) draw dim arcs to make flashlight bigger
 		}
+		
+		entityManager.drawAllEntities();
 		
 		// ui
 		//directly draw the UI, asking for player resources with accessors

@@ -43,6 +43,11 @@ function Player()
   
 	//player animation set up
 	this.pSprite = loadSpriteP;
+	//this.lSprite = loadSpriteLantern;
+	
+	//for iframes:
+	this.invul = false;
+	this.frameCount = 0;
 
 	//Resize:
 	this.Resize = function()
@@ -82,9 +87,46 @@ function Player()
 	
 		//old draw:
 		//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
-	
-		//use sprite draw method
-		this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
+		
+		//updated to consider invulnerability time
+		if (!this.invul) {
+			//use sprite draw method
+			this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
+			
+			if (this.light > 0 && !thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
+				ctxDark.fillStyle = 'white';
+				ctxDark.beginPath();
+				var r = MEASURE_UNIT*4;   
+				ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
+				ctxDark.lineTo(centerX+x, centerY+y);
+				ctxDark.fill();
+				
+				//replace block above with:
+				//var shiftY = MEASURE_UNIT*1; //adjustment needed
+				//this.lSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]+shiftY);
+			}
+			
+			this.frameCount = 0;
+		}
+		else { //flicker player sprite and lantern
+			this.frameCount++;
+			var frame = this.frameCount % 8;
+			if (frame == 0 || frame == 1 || frame == 2 || frame == 3) {//play with this to change flicker speed
+				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
+				//---
+				if (this.light > 0 && !thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
+				ctxDark.fillStyle = 'white';
+				ctxDark.beginPath();
+				var r = MEASURE_UNIT*4;   
+				ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
+				ctxDark.lineTo(centerX+x, centerY+y);
+				ctxDark.fill();
+				//replace block above with:
+				//var shiftY = MEASURE_UNIT*1; //adjustment needed
+				//this.lSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]+shiftY);
+				}
+			}
+		}
 		
 		
 	};
@@ -152,7 +194,7 @@ function Player()
 		loadSpriteP.use('walkRight');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
 		//checkBounds(this.p);
-	console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
+	//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
   
 	};
 	this.moveUp = function() 

@@ -51,6 +51,7 @@ Collisions.prototype.collisionContact = function()
           {
             case "e1":
             {
+			  if (!mainGuy.invul) { //added check for iframes
                contactB.health -= contactA.damage;  
              
                //two point method to move player when enemy hits:
@@ -67,7 +68,7 @@ Collisions.prototype.collisionContact = function()
                               
                  d = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2 - y1),2)); 
                 
-                 r = ((1*MEASURE_UNIT)) / d; // r: amount knocked back                        
+                 r = ((2*MEASURE_UNIT)) / d; // r: amount knocked back                        
 
                 xmove = r * x2 + (1 - r) * x1;  
                 ymove = r * y2 + (1 - r) * y1;  
@@ -80,7 +81,13 @@ Collisions.prototype.collisionContact = function()
 
               // console.log(contactB);
                //console.log(contactA);
-
+			   
+			   //set timer for iframes
+			   mainGuy.invul = true;
+			   setTimeout(function() {
+				mainGuy.invul = false;
+			   }, 1000);
+			  }
               break;  
             }
             case "e2":
