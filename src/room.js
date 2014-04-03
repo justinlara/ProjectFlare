@@ -80,10 +80,9 @@ function Room(gridObj) {
 					var miles = new Miles();
 					// console.log(" created ENEMY --------------------------------------------------------  ");
                 
-                /* CHANGE BACK
-					miles.posX = (MEASURE_UNIT * j);
+                	miles.posX = (MEASURE_UNIT * j);
 					miles.posY = (MEASURE_UNIT * i);
-			    */
+			    
 					miles.positions.pos[0] = (MEASURE_UNIT * j);
                     miles.positions.pos[1] = (MEASURE_UNIT * i);
 					

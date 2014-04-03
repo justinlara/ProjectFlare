@@ -128,6 +128,8 @@ function Player()
 					loadSpriteP.use('idle');
 				}
 		}
+		
+		mainGuy.posY = mainGuy.p.pos[1];
 	};
 
 	//movement now also rotates lantern

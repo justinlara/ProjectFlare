@@ -303,9 +303,6 @@ function gameDraw() {
 		//entityManager.clearEnemies();
 		
 		//}
-		
-		//hacks
-		mainGuy.posY = mainGuy.p.pos[1];
 	}
 }
 

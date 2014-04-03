@@ -107,6 +107,9 @@ Enemy.prototype.draw = function() {
 		
 	}
 	
+	this.posX = this.positions.pos[0];
+	this.posY = this.positions.pos[1];
+	
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.posX + " , " + this.posY );
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.positions.pos[0] + " , " + this.positions.pos[1] );
 };
