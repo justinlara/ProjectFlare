@@ -67,7 +67,7 @@ function Soundloader() {
 	
 	this.SFXGRUNTHARD1 = soundManager.createSound({
 				id: 'grunt4',
-				url: sfxpath + 'hardGrunt`.wav',
+				url: sfxpath + 'hardGrunt1.wav',
 				autoLoad: true,
 				multishot: true,
 				stream: true,
