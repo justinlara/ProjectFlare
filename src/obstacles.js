@@ -30,7 +30,7 @@ function Obstacles(posX, posY) {
   this.obstaclebox.active = false;
   
   this.obstacleboundBox = collisionWorld.CreateBody(this.obstaclebox);
-  this.lFix = this.obstacleboundBox.CreateFixture(this.obstaclefix);
+  this.oFix = this.obstacleboundBox.CreateFixture(this.obstaclefix);
   
   
   this.obstacleboundBox.SetUserData( {type: 'obstacle', id: "Ob1", 

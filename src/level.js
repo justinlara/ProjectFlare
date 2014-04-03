@@ -213,9 +213,14 @@ Level.prototype.turnOffHitboxesForCurrentRoom = function()
 	
 	
 	for (var i = 0; i < this.layout[this.currentY][this.currentX].obstacles.length; ++i)
-    {
-        this.layout[this.currentY][this.currentX].obstacles[i].obstacleboundBox.SetActive(false);
-    }
+	{
+	    this.layout[this.currentY][this.currentX].obstacles[i].obstacleboundBox.SetActive(false);
+	}
         
 		
+}
+
+Level.prototype.fade = function()
+{
+	
 };

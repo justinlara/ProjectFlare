@@ -29,7 +29,10 @@ function Lamp(posX, posY) {
   
   this.lampbox.active = false;
   
+  //console.log(lampboundBox);
   this.lampboundBox = collisionWorld.CreateBody(this.lampbox);
+  console.log("### " + this.lampboundBox);
+  console.log("### " + this.lampfix);
   this.lFix = this.lampboundBox.CreateFixture(this.lampfix);
   
   

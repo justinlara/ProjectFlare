@@ -108,7 +108,14 @@ Collisions.prototype.collisionContact = function()
                mainGuy.light--;
 	      }
       }
-            if(contactA.type === "door" && contactB.id === "player" )
+      
+      if (contactA.type == "exit" && contactB.id == "player")
+      {
+        collisionWorld = new b2World( new b2Vec2(0,0), true); 
+        thisLevel = new Level(1,2);
+      }
+      
+      if(contactA.type === "door" && contactB.id === "player" )
       {
       //  console.log(contactA.side);
         if (contactA.side == "n")

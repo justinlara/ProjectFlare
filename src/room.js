@@ -14,6 +14,8 @@ function Room(gridObj) {
 	//var count = 0;
 	this.doors = new Array();
 	this.lamp;
+
+	this.exit;
 	this.obstacles = new Array();
 	//this.ob;
 	
@@ -98,6 +100,11 @@ function Room(gridObj) {
 					trombulentMunge.posY = (MEASURE_UNIT * i);
 					this.enemies.push(trombulentMunge);
 					break;
+				case 7:
+					this.grid[i][j] = new TileFloor();
+					this.exit = new Exit(j,i);
+					break;
+					
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
 			}
@@ -141,6 +148,10 @@ function Room(gridObj) {
 		//draw lamp
 		if ('undefined' != typeof this.lamp)
 			this.lamp.draw();
+			
+		//draw lamp
+		if ('undefined' != typeof this.exit)
+			this.exit.draw();
 			
 		//room object draws dead enemies, entity manager draws them normally, for sorting
 		// Fade animation for the 1 second after the room is lit.
