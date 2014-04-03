@@ -111,8 +111,22 @@ Collisions.prototype.collisionContact = function()
       
       if (contactA.type == "exit" && contactB.id == "player")
       {
+        var currentHealth = mainGuy.hp;
+        entityManager.clear()
+        //entityManager.clearEnemies();
         collisionWorld = new b2World( new b2Vec2(0,0), true); 
-        thisLevel = new Level(1,2);
+        levelBox = new levelBarrier();
+    collisionDetection = new Collisions(); 
+	collisionWorld.SetDebugDraw(debugDraw);   
+        //thisLevel = new Level(thisLevel.nRooms+1, thisLevel.floorNumber+1);
+        thisLevel = new Level(3, thisLevel.floorNumber+1);
+        
+        mainGuy = new Player();
+        mainGuy.hp = currentHealth;
+        entityManager.addEntity(mainGuy);
+  //mainGuy.playerbox.position.x = 1120/MEASURE_UNIT;
+  //mainGuy.playerbox.position.y = 150/MEASURE_UNIT;
+  //mainGuy.pos = [(GAME_WIDTH/2), (GAME_HEIGHT/2)];
       }
       
       if(contactA.type === "door" && contactB.id === "player" )

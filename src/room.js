@@ -6,6 +6,8 @@ function Room(gridObj) {
 	//booleans, for lit
 	this.isLit = false;
 	
+	this.isEntrance = false;
+	
 	//array of enemy objects present in the room
 	//this remains constant once set
 	this.enemies = new Array();

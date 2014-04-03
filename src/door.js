@@ -9,21 +9,21 @@ function Door(doorSide) {
 	if (this.side == "n")
 	{
 		this.posX = 5.5 * GAME_WIDTH/15;
-		this.posY = 0 * GAME_HEIGHT/11;
+		this.posY = -1 * GAME_HEIGHT/11;
 	}
 	else if (this.side == "e")
 	{
-		this.posX = 11 * GAME_WIDTH/15;
+		this.posX = 11.5 * GAME_WIDTH/15;
 		this.posY = 5 * GAME_HEIGHT/11;
 	}
 	else if (this.side == "s")
 	{	
 		this.posX = 5.5 * GAME_WIDTH/15;
-		this.posY = 9.5 * GAME_HEIGHT/11;
+		this.posY = 10 * GAME_HEIGHT/11;
 	}
 	else if (this.side == "w")
 	{	
-		this.posX = 0.2 * GAME_WIDTH/15;
+		this.posX = -0.5 * GAME_WIDTH/15;
 		this.posY = 5 * GAME_HEIGHT/11;
 	}
 	

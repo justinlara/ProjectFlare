@@ -64,6 +64,8 @@ function Level(numberOfRooms, floorNumber) {
 			
 			var newRoom = new Room(tileGrid);
 			
+			newRoom.isEntrance = true;
+			
 			// Set this room to have that room layout.
 			this.layout[r][c] = newRoom;
 			
@@ -123,6 +125,8 @@ Level.prototype.goToNorthRoom = function() {
 				console.log("going to push enemy");
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
+			
+			this.giveLightMeter();
 		}
 	}
 }
@@ -145,6 +149,8 @@ Level.prototype.goToEastRoom = function() {
 				console.log("going to push enemy");
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
+			
+			this.giveLightMeter();
 		}
 	}
 }
@@ -167,6 +173,8 @@ Level.prototype.goToSouthRoom = function() {
 				console.log("going to push enemy");
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
+			
+			this.giveLightMeter();
 		}
 	}
 }
@@ -188,6 +196,8 @@ Level.prototype.goToWestRoom = function() {
 				console.log("going to push enemy");
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
+			
+			this.giveLightMeter();
 		}
 	}
 }
@@ -210,6 +220,10 @@ Level.prototype.turnOffHitboxesForCurrentRoom = function()
 	if (this.layout[this.currentY][this.currentX].lamp != null)
 		this.layout[this.currentY][this.currentX].lamp.lampboundBox.SetActive(false);
 		
+	// Turn off the exit hitbox for the current room.
+	if (this.layout[this.currentY][this.currentX].exit != null)
+		this.layout[this.currentY][this.currentX].exit.exitboundBox.SetActive(false);
+		
 	
 	
 	for (var i = 0; i < this.layout[this.currentY][this.currentX].obstacles.length; ++i)
@@ -218,6 +232,14 @@ Level.prototype.turnOffHitboxesForCurrentRoom = function()
 	}
         
 		
+}
+
+Level.prototype.giveLightMeter = function()
+{
+	//if (this.structure[this.currentY][this.currentX].indexOf(this.structure.startingRoom) != -1) {
+	if (this.currentRoom.isEntrance) {
+		mainGuy.light = maxLight;
+	}
 }
 
 Level.prototype.fade = function()
