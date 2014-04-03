@@ -480,10 +480,10 @@ Collisions.prototype.collisionContact = function()
                }
                // TOP SIDE
                //else if(contactB.pos[1] > ((wY-sY) - contactB.BoundSize/2) && normals.y <= -1)
-               else if(contactB.pos[1] > ((wY- (sY/1.5))- contactB.BoundSize/2) && normals.y <= -1)
+               else if(contactB.pos[1] >= ((wY- (sY+2.5))) && normals.y <= -1)
                {
                    console.log(" Ob-U ");
-                   contactB.pos[1] = ((wY- (sY/1.5))- contactB.BoundSize/2); 
+                   contactB.pos[1] = ((wY- (sY+2.5))); 
                }
                // BOTTOM SIDE
                else if(contactB.pos[1] < ((wY) + (contactB.BoundSize/2)) && normals.y >= 1)
