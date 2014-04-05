@@ -37,6 +37,7 @@ function Player()
 	this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	this.p.I.src = "assets/Character.png";
 	this.light = 5;
+	this.movespeed = 0.04;
 	
 	//for sorting:
 	this.posY = this.p.pos[1];
@@ -179,7 +180,7 @@ function Player()
 	{
 		arcStart = Math.PI*9/8;
 		arcEnd = Math.PI*7/8;
-		this.p.pos[0] -= MEASURE_UNIT*.07;
+		this.p.pos[0] -= MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkLeft');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		//loadSpriteP.stop();//for now		//checkBounds(this.p);
 		//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
@@ -190,7 +191,7 @@ function Player()
 	{
 		arcStart = Math.PI*1/8;
 		arcEnd = Math.PI*15/8;
-		this.p.pos[0]  +=  MEASURE_UNIT*.07;
+		this.p.pos[0]  +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkRight');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
 		//checkBounds(this.p);
@@ -201,7 +202,7 @@ function Player()
 	{
 		arcStart = Math.PI*13/8;
 		arcEnd = Math.PI*11/8;
-		this.p.pos[1] -=  MEASURE_UNIT*.07;
+		this.p.pos[1] -=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkUp');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		//loadSpriteP.stop();//for now		//checkBounds(this.p);
 		//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
@@ -211,7 +212,7 @@ function Player()
 	{
 		arcStart = Math.PI*5/8;
 		arcEnd = Math.PI*3/8;
-		this.p.pos[1] +=  MEASURE_UNIT*.07;
+		this.p.pos[1] +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkDown');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
 		//checkBounds(this.p);
