@@ -153,15 +153,160 @@ function AllTiles() {
 	this.r11[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r11[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
+	this.r12 = new Array();
+	this.r12[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r12[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r12[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r12[3] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r12[4] = new Array(1,2,2,2,4,2,5,2,5,2,4,2,2,2,1);
+	this.r12[5] = new Array(1,2,2,2,4,2,2,6,2,2,4,2,2,2,1);
+	this.r12[6] = new Array(1,2,2,2,4,5,2,2,2,5,4,2,2,2,1);
+	this.r12[7] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r12[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r12[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r12[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r13 = new Array();
+	this.r13[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r13[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r13[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,6,2,1);
+	this.r13[3] = new Array(1,2,2,4,4,2,2,2,4,4,4,4,2,2,1);
+	this.r13[4] = new Array(1,2,2,4,4,2,2,2,4,4,4,4,2,2,1);
+	this.r13[5] = new Array(1,2,2,4,3,2,2,5,2,2,2,2,2,2,1);
+	this.r13[6] = new Array(1,2,2,4,4,2,2,2,2,2,2,2,2,2,1);
+	this.r13[7] = new Array(1,2,2,6,2,2,2,4,4,4,4,4,2,2,1);
+	this.r13[8] = new Array(1,2,2,2,2,2,2,4,4,4,4,4,2,2,1);
+	this.r13[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r13[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r14 = new Array();
+	this.r14[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r14[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r14[2] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r14[3] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r14[4] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r14[5] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r14[6] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r14[7] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r14[8] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r14[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r14[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+
+	this.r15 = new Array();
+	this.r15[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r15[1] = new Array(1,2,2,2,2,2,4,2,4,2,2,2,2,2,1);
+	this.r15[2] = new Array(1,2,2,4,4,4,4,2,4,4,4,4,2,2,1);
+	this.r15[3] = new Array(1,2,2,4,2,2,2,2,5,2,2,4,2,2,1);
+	this.r15[4] = new Array(1,4,4,4,2,2,5,2,2,2,2,4,4,4,1);
+	this.r15[5] = new Array(1,2,2,2,2,2,2,5,2,2,2,2,2,2,1);
+	this.r15[6] = new Array(1,4,4,4,2,2,2,2,2,2,5,4,4,4,1);
+	this.r15[7] = new Array(1,2,2,4,5,2,2,2,2,2,2,4,2,2,1);
+	this.r15[8] = new Array(1,2,2,4,4,4,4,2,4,4,4,4,2,2,1);
+	this.r15[9] = new Array(1,2,2,2,2,2,4,2,4,2,2,2,2,2,1);
+	this.r15[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r16 = new Array();
+	this.r16[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r16[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r16[2] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r16[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r16[4] = new Array(1,2,2,2,2,2,4,6,4,2,2,2,2,2,1);
+	this.r16[5] = new Array(1,2,2,2,2,2,4,2,4,2,2,2,2,2,1);
+	this.r16[6] = new Array(1,2,2,2,2,2,4,3,4,2,2,2,2,2,1);
+	this.r16[7] = new Array(1,2,2,2,2,2,4,4,4,2,2,2,2,2,1);
+	this.r16[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r16[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r16[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+
+	this.r17 = new Array();
+	this.r17[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r17[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r17[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r17[3] = new Array(1,2,4,4,2,2,2,2,2,2,2,2,2,2,1);
+	this.r17[4] = new Array(1,2,4,4,2,4,4,4,4,2,2,2,2,2,1);
+	this.r17[5] = new Array(1,2,4,4,2,6,2,3,4,2,2,2,2,2,1);
+	this.r17[6] = new Array(1,2,4,4,2,4,4,4,4,2,2,2,2,2,1);
+	this.r17[7] = new Array(1,2,4,4,2,2,2,2,2,2,2,2,2,2,1);
+	this.r17[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r17[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r17[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r18 = new Array();
+	this.r18[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r18[1] = new Array(1,6,4,2,2,2,2,2,2,2,2,2,4,6,1);
+	this.r18[2] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,4,2,1);
+	this.r18[3] = new Array(1,2,4,2,2,2,2,4,4,4,4,4,4,2,1);
+	this.r18[4] = new Array(1,2,4,2,2,2,2,2,2,2,4,3,4,2,1);
+	this.r18[5] = new Array(1,2,4,2,2,2,2,5,2,2,4,2,4,2,1);
+	this.r18[6] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
+	this.r18[7] = new Array(1,2,4,2,2,2,2,2,2,2,4,4,4,2,1);
+	this.r18[8] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r18[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r18[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+
+	this.r19 = new Array();
+	this.r19[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r19[1] = new Array(1,6,4,2,2,2,2,2,2,2,2,2,4,6,1);
+	this.r19[2] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,4,2,1);
+	this.r19[3] = new Array(1,2,4,2,2,4,2,5,2,2,4,4,4,2,1);
+	this.r19[4] = new Array(1,2,4,2,2,4,4,4,4,4,4,3,4,2,1);
+	this.r19[5] = new Array(1,2,4,2,2,2,2,2,2,2,4,2,4,2,1);
+	this.r19[6] = new Array(1,2,4,2,2,2,2,2,2,2,2,6,4,2,1);
+	this.r19[7] = new Array(1,2,4,2,2,2,2,2,2,2,4,4,4,2,1);
+	this.r19[8] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r19[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r19[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r20 = new Array();
+	this.r20[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r20[1] = new Array(1,6,4,2,2,2,2,2,2,2,2,2,4,6,1);
+	this.r20[2] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,4,2,1);
+	this.r20[3] = new Array(1,2,4,2,2,4,2,6,2,2,4,4,4,2,1);
+	this.r20[4] = new Array(1,2,4,2,2,4,4,4,4,2,4,3,4,2,1);
+	this.r20[5] = new Array(1,2,4,2,2,2,2,2,2,2,4,2,4,2,1);
+	this.r20[6] = new Array(1,2,4,2,2,2,2,2,2,2,2,6,4,2,1);
+	this.r20[7] = new Array(1,2,4,2,2,2,2,2,2,2,4,4,4,2,1);
+	this.r20[8] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r20[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r20[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r21 = new Array();
+	this.r21[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r21[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r21[2] = new Array(1,2,2,2,2,4,4,2,2,2,2,2,2,2,1);
+	this.r21[3] = new Array(1,2,4,4,2,2,2,2,2,2,2,4,4,2,1);
+	this.r21[4] = new Array(1,2,4,4,2,2,4,4,4,2,2,4,4,2,1);
+	this.r21[5] = new Array(1,2,4,4,2,2,4,3,4,2,2,4,2,2,1);
+	this.r21[6] = new Array(1,2,4,4,2,2,4,6,4,2,2,4,4,2,1);
+	this.r21[7] = new Array(1,2,4,4,2,2,2,2,2,2,2,4,4,2,1);
+	this.r21[8] = new Array(1,2,2,4,4,4,4,4,4,4,4,4,2,2,1);
+	this.r21[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r21[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r22 = new Array();
+	this.r22[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r22[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r22[2] = new Array(1,2,2,2,2,2,2,4,4,4,2,2,2,2,1);
+	this.r22[3] = new Array(1,2,2,2,4,4,2,2,2,2,2,4,4,2,1);
+	this.r22[4] = new Array(1,2,2,2,4,2,4,4,4,4,2,4,4,2,1);
+	this.r22[5] = new Array(1,2,2,2,2,2,4,3,2,6,2,4,4,2,1);
+	this.r22[6] = new Array(1,2,2,2,2,2,4,4,4,4,2,4,4,2,1);
+	this.r22[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,4,4,2,1);
+	this.r22[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r22[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r22[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+
 	//define arrays of easy/med/hard rooms
 	//one room can show up in multiple difficulties, but I've already accounted for that in getWeighted
 	//also listing the same room more than once skews the randomness.  dont do that
 	this.easyRooms = new Array();
-		this.easyRooms.push(this.r1, this.r2, this.r3, this.r8, this.r9, this.r10, this.r11);
+		this.easyRooms.push(this.r1, this.r2, this.r3, this.r8, this.r9, this.r10, this.r11, this.r14,
+		this.r15);
 	this.medRooms = new Array();
-		this.medRooms.push(this.r4, this.r5, this.r6, this.r7);
+		this.medRooms.push(this.r4, this.r5, this.r6, this.r7, this.r12, this.r13, this.r16, this.r17, 
+		this.r18, this.r21, this.r22);
 	this.hardRooms = new Array();
-		this.hardRooms.push(this.r1, this.r2);
+		this.hardRooms.push(this.r19, this.r20);
 }
 
 //methods to return room arrays
@@ -169,7 +314,7 @@ function AllTiles() {
 
 //picks a completely random room
 AllTiles.prototype.getRandom = function() {
-	console.log("RANDOM ROOM");
+	//console.log("RANDOM ROOM");
 	var r = Math.floor((Math.random()*4) + 1);
 	if (r == 1) return this.r1;
 	else if (r==2) return this.r2;
@@ -178,19 +323,19 @@ AllTiles.prototype.getRandom = function() {
 };
 
 AllTiles.prototype.getEasy = function() {
-	console.log("EASY ROOM");
+	//console.log("EASY ROOM");
 	var r = Math.floor((Math.random()*this.easyRooms.length));
 	return this.easyRooms[r];
 };
 
 AllTiles.prototype.getMedium = function() {
-	console.log("MEDIUM ROOM");
+	//console.log("MEDIUM ROOM");
 	var r = Math.floor((Math.random()*this.medRooms.length));
 	return this.medRooms[r];
 };
 
 AllTiles.prototype.getHard = function() {
-	console.log("HARD ROOM");
+	//console.log("HARD ROOM");
 	var r = Math.floor((Math.random()*this.hardRooms.length));
 	return this.hardRooms[r];
 };

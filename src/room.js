@@ -71,7 +71,8 @@ function Room(gridObj) {
 					//console.log(" created LAMP --------------------------------------------------------  ");
 					break;
 				case 4:
-					this.grid[i][j] = new TileBlock();
+					//this.grid[i][j] = new TileBlock();
+					this.grid[i][j] = new TileFloor();
 					//count = count+1;
 					 this.obstacles.push( new Obstacles(j,i));
 					 
@@ -100,6 +101,8 @@ function Room(gridObj) {
 					// console.log(" created ENEMY2 --------------------------------------------------------  ");
 					trombulentMunge.posX = (MEASURE_UNIT * j);
 					trombulentMunge.posY = (MEASURE_UNIT * i);
+					trombulentMunge.positions.pos[0] = (MEASURE_UNIT * j);
+                    trombulentMunge.positions.pos[1] = (MEASURE_UNIT * i);
 					this.enemies.push(trombulentMunge);
 					break;
 				case 7:
@@ -145,13 +148,14 @@ function Room(gridObj) {
 		for (var i = 0; i < this.obstacles.length; ++i)
         {
             this.obstacles[i].setBox();
+			this.obstacles[i].draw();
         }
 		
 		//draw lamp
 		if ('undefined' != typeof this.lamp)
 			this.lamp.draw();
-			
-		//draw lamp
+		
+		//draw exit
 		if ('undefined' != typeof this.exit)
 			this.exit.draw();
 			

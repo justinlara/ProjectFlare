@@ -1,7 +1,8 @@
 function Obstacles(posX, posY) {
     //obstacle base object
-    //this.image = new Image();
-    //this.image.src = "assets/Lamp1.png";
+    this.image = new Image();
+    var variance = Math.floor((Math.random()*9) + 1);
+	this.image.src = "assets/tiles/block_castle_" + variance + ".png";
     
     this.posX = posX * MEASURE_UNIT;
     this.posY =posY * MEASURE_UNIT;
@@ -81,5 +82,9 @@ this.obstacleboundBox.SetUserData( {type: 'obstacle', id: "Ob1",
                                   size: [((((MEASURE_UNIT/30)/2)*30)*2), ((((MEASURE_UNIT/30)/2)*30)*2)]} );
 
 };
+
+Obstacles.prototype.draw = function() {
+	ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+}
 
 //*/
