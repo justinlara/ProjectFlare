@@ -121,7 +121,8 @@ function Room(gridObj) {
 	//parameters: tile width and height
 	this.draw = function() {
 	    
-	           //collisionWorld.DrawDebugData();  //**** -- TEMP DEBUGGING --
+	           //**** -- DEBUGGING --
+	           //collisionWorld.DrawDebugData();  
 	
 		//for each tile, draw it onto world
 		var gx = 0;

@@ -530,12 +530,130 @@ Collisions.prototype.collisionContact = function()
         
      }
      
+     
+     if(contactA.type === "enemy" && contactB.type === "lamp")
+     {
+        
+         
+       ///*  
+         man = contact.GetManifold();
+         
+         if( man.m_pointCount !==0)
+         {
+             //lamp
+           wX = contactB.wPx;
+           wY = contactB.wPy;
+           sX = contactB.size[0];
+           sY = contactB.size[1];
+         
+           normals = man.m_localPlaneNormal;
+                
+                //--------------------------
+                
+                // FOUND PROBLEM: THE +1 IN LAMP draw()  setPosition doesn't scale correctly
+                // take size and divide by some number to place it correctly 
+                
+                wallPoints = man.m_localPoint;
+    
+                wp = wallPoints.x*30;
+
+                console.log("getFixture: ");
+                
+                console.log(contact.GetFixtureA().GetBody().GetPosition()); 
+                console.log("END FIXTURE");
+
+                console.log("\n IN LAMP/ENEMY: Wp= " + wp +" wX " + wX+ " sX " + sX+ " boundSize(player) " + contactA.BoundSize );
+                console.log( " NORMALS "); 
+                console.log( normals);
+                //console.log(" BODY POS  " );
+                //console.log(contactA.bodyPos);
+                 //console.log(contactB);
+                 //console.log(contactA);
+                 
+                  
+             
+                //---------------------------------------------------------------------------
+                
+                console.log("\n BEFORE MOVE play posX: " + contactA.xy.pos[0] + " > value " + (wX-(contactA.BoundSize[0]/(5/4))) + " or * " + (wX-(contactA.BoundSize[0]*(.8))));
+               
+              
+              
+              
+               //LEFT SIDE                              // *.8 or / 5/4 reciprical of fraction form  NOTE: smaller screen boxes wX front side, larger wX middle
+                                        //
+               if(contactA.xy.pos[0] > (wX-(sX)) && normals.x >= .99) // works with: (wX-((contactA.BoundSize[0]/(5/4)))) && normals.x >= -.99)
+               
+               //if(contactB.pos[0] > (contactA.L) && normals.x <= -1)
+               {
+                             //        
+                   contactA.xy.pos[0] = (wX)-(sX) ;
+                  // contactB.pos[0] = (contact.L);
+                   
+                   //console.log("\n AFTER MOVE play posX: " + contactA.pos[0] + " > value " + (wX-(contactA.BoundSize/(4/5))));
+                  // console.log(" E-L ");
+               }    
+               // RIGHT SIDE
+               else if(contactA.xy.pos[0] < ((wX+sX))&& normals.x <= -.99)  // ((wX+sX) - (contactA.BoundSize[0]/2))&& normals.x <= -.99)
+               {
+                  // console.log(" E-R ");
+                   contactA.xy.pos[0] = ((wX+sX)); 
+               }
+               // TOP SIDE                       //      // - contactA.BoundSize[1] //*.2
+               else if(contactA.xy.pos[1] > ((wY-sY)) && normals.y >= .99)
+               {
+                   console.log(" E-U ");
+                                              //  //- contactA.BoundSize[1] //*.2
+                   contactA.xy.pos[1] = (((wY-sY) )); 
+               }
+               // BOTTOM SIDE
+               else if(contactA.xy.pos[1] < ((wY+sY)) && normals.y <= -.99) // ((wY) + (contactA.BoundSize[1]/2)) && normals.y <= -.99)
+               {
+                 // console.log(" E-D ");
+                   contactA.xy.pos[1] = ((wY+sY)); 
+               }
+                     
+           
+        }
+        
+       //*/ 
+     }
+     
+     
+     
      if(contactA.type === "enemy" &&  contactB.type === "enemy" )
      {
         
              
          //console.log("<<<<<<<<<<<<< E & E >>>>>>>>>>>>>");
-         
+                
+               //two point method to move player when enemy hits:
+               // use x,y of enemy and x,y of player to determine a line
+               // move across that line to a little further away and move
+               // player there.
+                 
+               x1= contactA.xy.pos[0]; //pX;
+               y1 = contactA.xy.pos[1]; //pY;
+
+               x2 = contactB.xy.pos[0]; 
+               y2 = contactB.xy.pos[1];
+
+                              
+                 d = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2 - y1),2)); 
+                
+                 r = ((MEASURE_UNIT)) / d; // r: amount knocked back                        
+
+                xmove = r * x2 + (1 - r) * x1;  
+                ymove = r * y2 + (1 - r) * y1;  
+                 
+               contactB.xy.pos[0] = xmove;
+               contactB.xy.pos[1] = ymove;
+               
+              
+              // console.log(contactB);
+               //console.log(contactA);
+               
+              
+           
      }
     
     if((contactA.type === "enemy" &&  contactB.type === "obstacle" )) // ||(contactA.type === "enemy" && contactB.type === "obstacle"))

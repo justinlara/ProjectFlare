@@ -260,6 +260,8 @@ function gameDraw() {
 		//only draw if not lit
 		if (!thisLevel.currentRoom.isLit) {
 			ctxDark.globalAlpha = 0.90;
+			
+			  // // * COMMENT FOR DEBUGGIN
 			ctxDark.globalCompositeOperation = 'source-over';
 			// Coordinates for the center of the circle of light, aka the tip of the arc.
 			//var 
