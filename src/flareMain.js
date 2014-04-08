@@ -166,6 +166,7 @@ function initGame() {
 	//set up sound manager
 	soundManager.setup({
         url: 'src/swf/',
+		debugMode: false,
         onready: function () {
 		//when soundmanager is set up, create sounds
 			//all sounds accessible through SOUNDS
