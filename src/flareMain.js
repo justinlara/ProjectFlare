@@ -222,7 +222,8 @@ function draw() {
 	
 	} else if (gameState == 4) //game
 	{
-		gameDraw();
+		gameDraw(); 
+		UIDraw();
 	} else if (gameState == 5) //death
 	{
 		//currently handled in gamedraw, but I'm leaving this space if needed
@@ -287,13 +288,6 @@ function gameDraw() {
 		
 		entityManager.drawAllEntities();
 		
-		// ui
-		//directly draw the UI, asking for player resources with accessors
-		//no need for a subclass unless we want to animate the gauges
-		//this needs to be moved, and only update when the UI changes
-		ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT); 
-		draw_ui();
-		
 		collisionWorld.Step((0),0,0);
 		
 		collisionDetection.collisionContact();
@@ -354,7 +348,8 @@ this.light = new SpriteMap('assets/ui/light_sheet.png',//image
 				}
 	});
 
-function draw_ui() {
+function UIDraw() {
+	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
 	
 	var lmeter, hmeter = '';
 	var UIHeight = GAME_HEIGHT;
