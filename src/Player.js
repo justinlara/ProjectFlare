@@ -255,4 +255,45 @@ checkBounds = function(p)
         p.pos[1] = ((Math.abs(GAME_HEIGHT/30 - (9.4* MEASURE_UNIT))/30)*30);
     }
 */ 
-};
+}
+
+Player.prototype.giveCollisionBox = function(currentHealth)
+{
+  this.playerfix = this.fixture;
+  this.playerbox = this.body;
+  
+  var circleBox = this.playerfix.shape = new b2CircleShape; 
+  this.playerbox.type = b2Body.b2_dynamicBody;   //b2_kinematicBody;
+  this.playerbox.awake = false;
+  
+  this.playerbox.position.x = 1120/MEASURE_UNIT;
+  this.playerbox.position.y = 150/MEASURE_UNIT;
+  
+   //this.playerfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);
+  circleBox.SetRadius(((MEASURE_UNIT)/30)*(.23));
+   this.playerfix.shape.Set(circleBox);
+  
+  this.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
+  this.pFix = this.playerBoundBox.CreateFixture(this.playerfix);
+  
+  
+  this.playerBoundBox.SetSleepingAllowed(false);
+  
+  
+    this.p = {  playerBody: this.playerBoundBox,  
+              pos: [(GAME_WIDTH/2), (GAME_HEIGHT/2)], 
+              
+                         //  url    pos(x,y)     size of     speed       frames  
+                        //          in           keyframe    frame/      index of
+                       //           sprite       sprite       sec        animation
+  //sprite: new Sprite(images[0],    [0,0],    [30, 30],     0.25,       [0,1,2]  )
+           
+           I: new Image()
+           };
+	this.playerBoundBox.SetUserData( {id: "player", health: currentHealth, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+	//this.p.I.src = "assets/Character.png";
+	//this.light = 5;
+}
+
+
+;

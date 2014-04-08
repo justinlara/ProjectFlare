@@ -184,6 +184,8 @@ Level.prototype.goToWestRoom = function() {
 		if(this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.startingRoom) != -1)
 		{
+			//this.fade();
+			
 			this.turnOffHitboxesForCurrentRoom();
 			
 			mainGuy.p.pos[0] = 10 * GAME_WIDTH/15;
@@ -245,4 +247,43 @@ Level.prototype.giveLightMeter = function()
 Level.prototype.fade = function()
 {
 	
-};
+	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	ctxDark.fillStyle = 'black';
+	ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	
+	
+		//ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+		//ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+		
+	console.log("STOP!");
+	//
+	var t = new Date().getTime();
+	while (new Date().getTime() < t + 1000){};
+	console.log("START!");
+	
+	//var timeoutID = window.setTimeout(fadeStop2, 2000);
+}
+
+function fadeStop2(){
+	console.log("START!");
+}
+
+Level.prototype.fadeStop = function()
+{
+	console.log("fadestop");
+	this.turnOffHitboxesForCurrentRoom();
+			
+			mainGuy.p.pos[0] = 10 * GAME_WIDTH/15;
+			
+			this.currentX--;
+			this.currentRoom = this.layout[this.currentY][this.currentX];
+			//need to add enemies to the manager!
+			entityManager.clearEnemies();
+			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
+				console.log("going to push enemy");
+				entityManager.addEntity(this.currentRoom.enemies[i]);
+			}
+			
+			this.giveLightMeter();
+}
+;
