@@ -113,15 +113,22 @@ Collisions.prototype.collisionContact = function()
                entityManager.clearEnemies();
                //thisLevel.currentRoom.killEnemies();
                mainGuy.light--;
+               thisLevel.lightsLit++;
 	      }
       }
       
       if (contactA.type == "exit" && contactB.id == "player")
       {
+        // Player gains health points relative to how many lamps lit this level.
         var currentHealth = contactB.health;
+        var lightsLit = thisLevel.lightsLit;
+        
+        var newHealth = currentHealth + lightsLit;
+        if (newHealth > 6) newHealth = 6;
+        
         //entityManager.clear()
         entityManager.clearEnemies();
-        collisionWorld = 
+
         collisionWorld = new b2World( new b2Vec2(0,0), true); 
         levelBox = new levelBarrier();
         collisionDetection = new Collisions(); 
@@ -135,10 +142,11 @@ Collisions.prototype.collisionContact = function()
         //mainGuy.hp = currentHealth;
         //entityManager.addEntity(mainGuy);
   //mainGuy.playerbox.position.x = 1120/MEASURE_UNIT;
-  //mainGuy.playerbox.position.y = 150/MEASURE_UNIT;
+  //mainGuy.playerbox.position.y = 150/MEASURE_UNIT; GetFixtureB().GetBody().GetUserData();
   mainGuy.p.pos = [(GAME_WIDTH/2), (GAME_HEIGHT/2)];
-  mainGuy.giveCollisionBox(currentHealth);
+  mainGuy.giveCollisionBox(newHealth);
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
+  GetFixtureB().GetBody().GetUserData();
       }
       
       if(contactA.type === "door" && contactB.id === "player" )

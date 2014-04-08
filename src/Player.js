@@ -36,6 +36,8 @@ function Player()
            };
 	this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	this.p.I.src = "assets/Character.png";
+	
+	this.hp = 6;
 	this.light = 5;
 	this.movespeed = 0.04;
 	
@@ -257,7 +259,7 @@ checkBounds = function(p)
 */ 
 }
 
-Player.prototype.giveCollisionBox = function(currentHealth)
+Player.prototype.giveCollisionBox = function(newHealth)
 {
   this.playerfix = this.fixture;
   this.playerbox = this.body;
@@ -290,9 +292,9 @@ Player.prototype.giveCollisionBox = function(currentHealth)
            
            I: new Image()
            };
-	this.playerBoundBox.SetUserData( {id: "player", health: currentHealth, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
-	//this.p.I.src = "assets/Character.png";
-	//this.light = 5;
+	this.playerBoundBox.SetUserData( {id: "player", health: newHealth, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+	
+	this.hp = newHealth;
 }
 
 
