@@ -9,14 +9,37 @@
 **
 **
 **		SFX:
-**			SFX1: "footstep"
+**			SFXFOOTSTEP : "footstep"
+**			SFXGRUNT# (EG. SFXGRUNT1) : "grunt" + #(1-7)
+**			SFXSNARL# (EG. SFXSNARL1) : "snarl" + #(1-3)
 **/
 
 function Soundloader() {
 	var musicpath = './assets/sound/Music/';
 	var sfxpath = './assets/sound/SFX/';
 	
+	/* Ease of play methods*/
+	
+	this.randint = function(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	
+	this.playRandomGrunt = function() {
+		soundManager.play("grunt" + this.randint(1,7));
+	}
+	
+	this.playRandomSnarl = function() {
+		soundManager.play("grunt" + this.randint(1,3));
+	}
+	
+	this.playAtRandomChance = function(chanceInt, functionToPlay){
+		if(this.randint(0,100) <= chanceInt){
+			functionToPlay();
+		}
+	}
+	
 	/* Music Start */
+	
 	this.music1 = soundManager.createSound({
                  id: 'spookyMusic',
                  url: musicpath + 'spookyMusic.mp3',
@@ -24,12 +47,14 @@ function Soundloader() {
                  autoPlay: true, //  turn on/off music for debugging 
                  stream: true,
                  onfinish: function () {
-                     music1.play();
+                     this.play();
                  }
     });
 	
-	/* Sound start */
-	this.SFX1 = soundManager.createSound({
+	/* Sound Start */
+	
+		//footsteps
+	this.SFXFOOTSTEP = soundManager.createSound({
 				id: 'footstep',
 				url: sfxpath + 'footstepsOnWood.wav',
 				autoLoad: true,
@@ -38,6 +63,7 @@ function Soundloader() {
 				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
 	});
 	
+		//grunts
 	this.SFXGRUNT1 = soundManager.createSound({
 				id: 'grunt1',
 				url: sfxpath + 'grunt1.wav',
@@ -65,7 +91,7 @@ function Soundloader() {
 				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
 	});
 	
-	this.SFXGRUNTHARD1 = soundManager.createSound({
+	this.SFXGRUNT4 = soundManager.createSound({
 				id: 'grunt4',
 				url: sfxpath + 'hardGrunt1.wav',
 				autoLoad: true,
@@ -74,7 +100,7 @@ function Soundloader() {
 				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
 	});
 	
-	this.SFXGRUNTHARD2 = soundManager.createSound({
+	this.SFXGRUNT5 = soundManager.createSound({
 				id: 'grunt5',
 				url: sfxpath + 'hardGrunt2.wav',
 				autoLoad: true,
@@ -83,7 +109,7 @@ function Soundloader() {
 				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
 	});
 	
-	this.SFXGRUNTHARD3 = soundManager.createSound({
+	this.SFXGRUNT6 = soundManager.createSound({
 				id: 'grunt6',
 				url: sfxpath + 'hardGrunt3.wav',
 				autoLoad: true,
@@ -92,7 +118,7 @@ function Soundloader() {
 				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
 	});
 	
-	this.SFXGRUNTHARD4 = soundManager.createSound({
+	this.SFXGRUNT7 = soundManager.createSound({
 				id: 'grunt7',
 				url: sfxpath + 'hardGrunt4.wav',
 				autoLoad: true,
@@ -101,7 +127,31 @@ function Soundloader() {
 				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
 	});
 	
-	this.playRandomGrunt = function() {
-		soundManager.play("grunt" + Math.floor((Math.random()*7)+1));
-	}
+		//snarls
+	this.SFXSNARL1 = soundManager.createSound({
+				id: 'snarl1',
+				url: sfxpath + 'snarl1.wav',
+				autoLoad: true,
+				multishot: true,
+				stream: true,
+				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+	});
+	
+	this.SFXSNARL2 = soundManager.createSound({
+				id: 'snarl2',
+				url: sfxpath + 'snarl2.wav',
+				autoLoad: true,
+				multishot: true,
+				stream: true,
+				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+	});
+	
+	this.SFXSNARL3 = soundManager.createSound({
+				id: 'snarl3',
+				url: sfxpath + 'snarl3.wav',
+				autoLoad: true,
+				multishot: true,
+				stream: true,
+				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+	});
 }
