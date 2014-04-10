@@ -205,6 +205,17 @@ function initGame() {
 	//----------- show collision boxes (for debugging) ------------    
 }
 
+// Accepts an image and draws it over the whole screen, including UI and game
+function drawFullScreenImage(im) {
+	// Clear the whole screen
+	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
+	ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+
+	// Draw image on the UI canvas, then again off the left side of the Dark canvas
+	ctxUI.drawImage(im, 0, 0, GAME_WIDTH, GAME_HEIGHT);
+	ctxDark.drawImage(im, -(GAME_WIDTH * 0.15), 0, GAME_WIDTH, GAME_HEIGHT);
+}
+
 function draw() {
     window.requestAnimationFrame(draw);
 	if (gameState == 1) //splash
@@ -212,9 +223,9 @@ function draw() {
 		setTimeout(function() {
 			gameState = 4;
 		}, 1500); //after 1.5 seconds, advances to the game
-		ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-		ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-	} else if (gameState ==2) //menu
+		drawFullScreenImage(loadImg);
+
+	} else if (gameState == 2) //menu
 	{
 	
 	} else if (gameState == 3) //cutscene
