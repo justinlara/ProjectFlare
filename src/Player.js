@@ -2,7 +2,15 @@ function Player()
 {
   arcStart = Math.PI*5/8;
   arcEnd = Math.PI*3/8;
-
+  
+  this.lantern = {
+	currentLightSprite: SpriteNoOil,
+	shiftX: 0,
+	shiftY: 0,
+	width: MEASURE_UNIT-7,
+	height: MEASURE_UNIT-7
+  };
+  
   this.playerfix = this.fixture;
   this.playerbox = this.body;
   
@@ -46,7 +54,6 @@ function Player()
   
 	//player animation set up
 	this.pSprite = loadSpriteP;
-	//this.lSprite = loadSpriteLantern;
 	
 	//for iframes:
 	this.invul = false;
@@ -96,37 +103,48 @@ function Player()
 			//use sprite draw method
 			this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
 			
-			if (this.light > 0 && !thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
-				ctxDark.fillStyle = 'white';
-				ctxDark.beginPath();
-				var r = MEASURE_UNIT*4;   
-				ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
-				ctxDark.lineTo(centerX+x, centerY+y);
-				ctxDark.fill();
-				
-				//replace block above with:
-				//var shiftY = MEASURE_UNIT*1; //adjustment needed
-				//this.lSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]+shiftY);
+			if (!thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
+				if (this.light > 0) {
+					ctxDark.globalCompositeOperation = 'xor';
+					ctxDark.fillRect(this.p.pos[0]+this.lantern.shiftX+5, this.p.pos[1]+this.lantern.shiftY+5, 
+						this.lantern.width-7, this.lantern.height-7);
+					ctxDark.globalCompositeOperation = 'source-over';
+					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
+				}
+				//no light, draw base circle
+				else if (this.light <= 0) {
+					ctxDark.globalCompositeOperation = 'xor';
+					ctxDark.fillRect(this.p.pos[0]+5, this.p.pos[1]+5, MEASURE_UNIT-7, MEASURE_UNIT-7);
+					ctxDark.globalCompositeOperation = 'source-over';
+					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0], this.p.pos[1]);
+				}
 			}
 			
 			this.frameCount = 0;
 		}
 		else { //flicker player sprite and lantern
 			this.frameCount++;
-			var frame = this.frameCount % 8;
-			if (frame == 0 || frame == 1 || frame == 2 || frame == 3) {//play with this to change flicker speed
+			var frame = this.frameCount % 10;
+			if (frame <= 5) {//play with this to change flicker speed
 				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
 				//---
-				if (this.light > 0 && !thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
-				ctxDark.fillStyle = 'white';
-				ctxDark.beginPath();
-				var r = MEASURE_UNIT*4;   
-				ctxDark.arc(centerX+x, centerY+y, r, arcStart, arcEnd, true);
-				ctxDark.lineTo(centerX+x, centerY+y);
-				ctxDark.fill();
-				//replace block above with:
-				//var shiftY = MEASURE_UNIT*1; //adjustment needed
-				//this.lSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]+shiftY);
+				if (!thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
+				if (this.light > 0) {
+					ctxDark.globalCompositeOperation = 'xor';
+					ctxDark.fillRect(this.p.pos[0]+this.lantern.shiftX+5, this.p.pos[1]+this.lantern.shiftY+5, 
+						this.lantern.width-7, this.lantern.height-7);
+					ctxDark.globalCompositeOperation = 'source-over';
+					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
+				}
+				//no light, draw base circle
+				else if (this.light <= 0) {
+					var shiftX = 0; 
+					var shiftY = 0; //adjustment needed
+					ctxDark.globalCompositeOperation = 'xor';
+					ctxDark.fillRect(this.p.pos[0]+shiftX+5, this.p.pos[1]+shiftY+5, MEASURE_UNIT-7, MEASURE_UNIT-7);
+					ctxDark.globalCompositeOperation = 'source-over';
+					this.currentLightSprite.draw(ctxDark, this.p.pos[0]+shiftX, this.p.pos[1]+shiftY);
+				}
 				}
 			}
 		}
@@ -180,19 +198,27 @@ function Player()
 	//movement now also rotates lantern
 	this.moveLeft = function()
 	{
-		arcStart = Math.PI*9/8;
-		arcEnd = Math.PI*7/8;
+		this.lantern.currentLightSprite = SpriteLanternLEFT;
+		this.lantern.shiftX = -MEASURE_UNIT*4.5;
+		this.lantern.shiftY = -MEASURE_UNIT*2;
+		this.lantern.width = MEASURE_UNIT*6*scaleLight;
+		this.lantern.height = MEASURE_UNIT*5*scaleLight;
+		
 		this.p.pos[0] -= MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkLeft');
-		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		//loadSpriteP.stop();//for now		//checkBounds(this.p);
+		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		
+		//checkBounds(this.p);
 		//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
   
 	};
-
 	this.moveRight = function() 
 	{
-		arcStart = Math.PI*1/8;
-		arcEnd = Math.PI*15/8;
+		this.lantern.currentLightSprite = SpriteLanternRIGHT;
+		this.lantern.shiftX = -MEASURE_UNIT*.5;
+		this.lantern.shiftY = -MEASURE_UNIT*2;
+		this.lantern.width = MEASURE_UNIT*6*scaleLight;
+		this.lantern.height = MEASURE_UNIT*5*scaleLight;
+		
 		this.p.pos[0]  +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkRight');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
@@ -202,8 +228,12 @@ function Player()
 	};
 	this.moveUp = function() 
 	{
-		arcStart = Math.PI*13/8;
-		arcEnd = Math.PI*11/8;
+		this.lantern.currentLightSprite = SpriteLanternUP;
+		this.lantern.shiftX = -MEASURE_UNIT*2;
+		this.lantern.shiftY = -MEASURE_UNIT*4.5;
+		this.lantern.width = MEASURE_UNIT*5*scaleLight;
+		this.lantern.height = MEASURE_UNIT*6*scaleLight;
+		
 		this.p.pos[1] -=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkUp');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		//loadSpriteP.stop();//for now		//checkBounds(this.p);
@@ -212,8 +242,12 @@ function Player()
 	};
 	this.moveDown = function()
 	{
-		arcStart = Math.PI*5/8;
-		arcEnd = Math.PI*3/8;
+		this.lantern.currentLightSprite = SpriteLanternDOWN;
+		this.lantern.shiftX = -MEASURE_UNIT*2;
+		this.lantern.shiftY = -MEASURE_UNIT*.5;
+		this.lantern.width = MEASURE_UNIT*5*scaleLight;
+		this.lantern.height = MEASURE_UNIT*6*scaleLight;
+		
 		this.p.pos[1] +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkDown');
 		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}

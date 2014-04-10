@@ -142,7 +142,67 @@ function loadAssets() {
 					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
 				}
 	});
-	//loadSpriteLantern = new SpriteMap();
+	scaleLight = 1;
+	SpriteNoOil = new Sprite("assets/LightOverlay_NoOil.png",
+		{
+			frameW: 128,
+			frameH: 128,
+			projectedW: MEASURE_UNIT*2,
+			projectedH: MEASURE_UNIT*2, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteNoOil.startLoop();
+			}
+		}
+	);
+	SpriteLanternUP = new Sprite("assets/LightOverlay_3.png",
+		{
+			frameW: 320,
+			frameH: 384,
+			projectedW: MEASURE_UNIT*5*scaleLight,
+			projectedH: MEASURE_UNIT*6*scaleLight, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteLanternUP.startLoop();
+			}
+		}
+	);
+	SpriteLanternRIGHT = new Sprite("assets/LightOverlay_2.png",
+		{
+			frameW: 384,
+			frameH: 320,
+			projectedW: MEASURE_UNIT*6*scaleLight,
+			projectedH: MEASURE_UNIT*5*scaleLight, 
+			interval: 250,
+			postInitCallback: function() {
+				SpriteLanternRIGHT.startLoop();
+			}
+		}
+	);
+	SpriteLanternDOWN = new Sprite("assets/LightOverlay_1.png",
+		{
+			frameW: 320,
+			frameH: 384,
+			projectedW: MEASURE_UNIT*5*scaleLight,
+			projectedH: MEASURE_UNIT*6*scaleLight, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteLanternDOWN.startLoop();
+			}
+		}
+	);
+	SpriteLanternLEFT = new Sprite("assets/LightOverlay_4.png",
+		{
+			frameW: 384,
+			frameH: 320,
+			projectedW: MEASURE_UNIT*6*scaleLight,
+			projectedH: MEASURE_UNIT*5*scaleLight, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteLanternLEFT.startLoop();
+			}
+		}
+	);
 	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
@@ -273,18 +333,36 @@ function gameDraw() {
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;
 		
-		  // // * COMMENT FOR DEBUGGIN
-		ctxDark.globalCompositeOperation = 'source-over';
-		// Coordinates for the center of the circle of light, aka the tip of the arc.
-		//var 
-		centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
-		//var 
-		centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
-		// Draw the field of darkness.
-		ctxDark.fillStyle = 'black';
-		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-		// Set transparency using the "xor" operation.
-		
+		//only draw if not lit
+		if (!thisLevel.currentRoom.isLit) {
+			ctxDark.globalAlpha = 0.90;
+			
+			  // // * COMMENT FOR DEBUGGIN
+			ctxDark.globalCompositeOperation = 'source-over';
+			// Coordinates for the center of the circle of light, aka the tip of the arc.
+			//var 
+			centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
+			//var 
+			centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
+			// Draw the field of darkness.
+			ctxDark.fillStyle = 'black';
+			ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+			ctxDark.globalAlpha = 1;
+			ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
+			
+			
+			//draw 4 rectangles to make the inner darkness, leaving out a square for light
+			/*ctxDark.globalCompositeOperation = 'source-over';
+			//+-5 are for erasing any seams
+			var distanceToLightX = mainGuy.p.pos[0]-MEASURE_UNIT+5;
+			var distanceToLightY = mainGuy.p.pos[1]-MEASURE_UNIT+5;
+			ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, distanceToLightY);
+			ctxDark.fillRect(MEASURE_UNIT, mainGuy.p.pos[1]-5, MEASURE_UNIT*13, 10/*(
+				MEASURE_UNIT*9-(distanceToLightY-MEASURE_UNIT)));*/
+			
+			
+			//LIGHT MOVED TO Player.js!
+		}
 		
 		ctxDark.globalAlpha = 0.99;
 		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
