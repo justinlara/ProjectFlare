@@ -237,7 +237,7 @@ function draw() {
 		UIDraw();
 	} else if (gameState == 5) //death
 	{
-		//currently handled in gamedraw, but I'm leaving this space if needed
+		drawFullScreenImage(gameOver);
 	}
 }
 
@@ -245,72 +245,71 @@ function draw() {
 function gameDraw() {
     //draw each canvas one at a time
     //don't forget to clear the canvas before drawing the next frame
-    
     ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	
+	// During each gameDraw, check if the player has died
+	if (mainGuy.hp <= 0) { // Player is dead, change gameState
+		gameState = 5;
+	}
     
-	if (mainGuy.hp <= 0) { // Player is dead, show game over screen
-		ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-		ctxDark.drawImage(gameOver, 0, 0, GAME_WIDTH * 0.85, GAME_HEIGHT);
+	//draw room
+	thisLevel.currentRoom.draw();
+	
+	 //for debugging collisions
+	//collisionWorld.DrawDebugData();
+
+	 
+	//the player should be drawn here, on top of the world
+	//player drawing and updates:
+	//mainGuy.draw(ctxWorld);
+	//mainGuy.update();
+	//entityManager.drawAllEntities();
+
+	// Comment the line below to remove the darkness layer.
+
+   ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	
+	//only draw if not lit
+	if (!thisLevel.currentRoom.isLit) {
+		ctxDark.globalAlpha = 0.90;
+		
+		  // // * COMMENT FOR DEBUGGIN
+		ctxDark.globalCompositeOperation = 'source-over';
+		// Coordinates for the center of the circle of light, aka the tip of the arc.
+		//var 
+		centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
+		//var 
+		centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
+		// Draw the field of darkness.
+		ctxDark.fillStyle = 'black';
+		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		// Set transparency using the "xor" operation.
+		
+		
+		ctxDark.globalAlpha = 0.99;
+		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
+		ctxDark.globalCompositeOperation = 'xor';//change back for lantern. may have to change the operation
+		// Draw the white arc to represent the light from the character's lantern.
+		//LIGHT MOVED TO Player.js!
+	
+	// draw a png via alpha
+	// OR (easy) draw dim arcs to make flashlight bigger
+	
 	}
-	else { // Draw as normal
-		//draw room
-		thisLevel.currentRoom.draw();
-		
-		 //for debugging collisions
-		//collisionWorld.DrawDebugData();
-
-		 
-		//the player should be drawn here, on top of the world
-		//player drawing and updates:
-		//mainGuy.draw(ctxWorld);
-		//mainGuy.update();
-		//entityManager.drawAllEntities();
-
-		// Comment the line below to remove the darkness layer.
-
-	   ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-		
-		//only draw if not lit
-		if (!thisLevel.currentRoom.isLit) {
-			ctxDark.globalAlpha = 0.90;
-			
-			  // // * COMMENT FOR DEBUGGIN
-			ctxDark.globalCompositeOperation = 'source-over';
-			// Coordinates for the center of the circle of light, aka the tip of the arc.
-			//var 
-			centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
-			//var 
-			centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
-			// Draw the field of darkness.
-			ctxDark.fillStyle = 'black';
-			ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-			// Set transparency using the "xor" operation.
-			
-			
-			ctxDark.globalAlpha = 0.99;
-			ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
-			ctxDark.globalCompositeOperation = 'xor';//change back for lantern. may have to change the operation
-			// Draw the white arc to represent the light from the character's lantern.
-			//LIGHT MOVED TO Player.js!
-		
-		// draw a png via alpha
-		// OR (easy) draw dim arcs to make flashlight bigger
-		}
-		
-		entityManager.drawAllEntities();
-		
-		collisionWorld.Step((0),0,0);
-		
-		collisionDetection.collisionContact();
-		
-		collisionWorld.ClearForces();
-		
-		//This part below has been moved to Collisions.js
-		//also when the lights come on, the enemies in the current room need to be removed:
-		//entityManager.clearEnemies();
-		
-		//}
-	}
+	
+	entityManager.drawAllEntities();
+	
+	collisionWorld.Step((0),0,0);
+	
+	collisionDetection.collisionContact();
+	
+	collisionWorld.ClearForces();
+	
+	//This part below has been moved to Collisions.js
+	//also when the lights come on, the enemies in the current room need to be removed:
+	//entityManager.clearEnemies();
+	
+	//}
 }
 
 // UI stuff - not sure where to put it!
