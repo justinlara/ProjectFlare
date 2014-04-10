@@ -2,24 +2,18 @@ var gameState = 1; //should be 1, to go to game play : 4
 
 var ALLTILES = new AllTiles();
 var ENEMYPATH = new EnemyPathList();
-//variables for drawing lantern light
-var arcStart = Math.PI*3/4;
-var arcEnd = Math.PI*1/4;
-var x = 0;
-var y = 0;
-var centerX;
-var centerY;
-var spriteCharName = 'assets/char.png';
+
 var SOUNDS;
 
 var mainGuy;
 var entityManager;
 var thisLevel;
 
+//globals for sprites
 var loadSpriteP;
 var loadSpriteMiles;
 
-var loadImg;
+var loadImg; //load screen image (splash/team logo)
 
 //UI Pole
 var pole = new Image();
@@ -220,6 +214,50 @@ function loadAssets() {
 			}
 		}
 	);
+	
+	//ui sprites:
+	UIlight = new SpriteMap('assets/ui/light_sheet.png',//image
+			{ //anim sequences
+				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				first_use: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
+				second_use: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
+				third_use: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
+				fourth_use: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
+				fifth_use: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
+				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
+			}, { //options
+				frameW: 128, // Width of each frame of the animation in pixels
+				frameH: 256, // Height of each frame of the animation in pixels
+				projectedW: 1024, // Displayed width
+				projectedH: 256, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					UIlight.start('full');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+	});
+	UIhealth = new SpriteMap('assets/ui/heart_sheet.png',//image
+			{ //anim sequences
+				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				one: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
+				two: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
+				three: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
+				four: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
+				five: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
+				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
+			}, { //options
+				frameW: 128, // Width of each frame of the animation in pixels
+				frameH: 256, // Height of each frame of the animation in pixels
+				projectedW: 1024, // Displayed width
+				projectedH: 256, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					UIhealth.start('full');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+	});
 }
 
 function initGame() {
@@ -318,63 +356,30 @@ function gameDraw() {
 	 //for debugging collisions
 	//collisionWorld.DrawDebugData();
 
-	 
-	//the player should be drawn here, on top of the world
-	//player drawing and updates:
-	//mainGuy.draw(ctxWorld);
-	//mainGuy.update();
-	//entityManager.drawAllEntities();
-
-	// Comment the line below to remove the darkness layer.
-
    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
 	//only draw if not lit
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;
-		
-		//only draw if not lit
-		if (!thisLevel.currentRoom.isLit) {
-			ctxDark.globalAlpha = 0.90;
 			
-			  // // * COMMENT FOR DEBUGGIN
-			ctxDark.globalCompositeOperation = 'source-over';
-			// Coordinates for the center of the circle of light, aka the tip of the arc.
-			//var 
-			centerX = mainGuy.p.pos[0] + (.3*MEASURE_UNIT);
-			//var 
-			centerY = mainGuy.p.pos[1] + (.8*MEASURE_UNIT);
-			// Draw the field of darkness.
-			ctxDark.fillStyle = 'black';
-			ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-			ctxDark.globalAlpha = 1;
-			ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
+		  // // * COMMENT FOR DEBUGGIN
+		ctxDark.globalCompositeOperation = 'source-over';
+		// Draw the field of darkness.
+		ctxDark.fillStyle = 'black';
+		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		ctxDark.globalAlpha = 1;
+		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
 			
-			
-			//draw 4 rectangles to make the inner darkness, leaving out a square for light
-			/*ctxDark.globalCompositeOperation = 'source-over';
-			//+-5 are for erasing any seams
-			var distanceToLightX = mainGuy.p.pos[0]-MEASURE_UNIT+5;
-			var distanceToLightY = mainGuy.p.pos[1]-MEASURE_UNIT+5;
-			ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, distanceToLightY);
-			ctxDark.fillRect(MEASURE_UNIT, mainGuy.p.pos[1]-5, MEASURE_UNIT*13, 10/*(
-				MEASURE_UNIT*9-(distanceToLightY-MEASURE_UNIT)));*/
-			
-			
-			//LIGHT MOVED TO Player.js!
-		}
-		
 		ctxDark.globalAlpha = 0.99;
 		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
 		ctxDark.globalCompositeOperation = 'xor';//change back for lantern. may have to change the operation
+		
+		
 		// Draw the white arc to represent the light from the character's lantern.
 		//LIGHT MOVED TO Player.js!
-	
-	// draw a png via alpha
-	// OR (easy) draw dim arcs to make flashlight bigger
-	
 	}
-	
+
+	//draw entities, including the player
 	entityManager.drawAllEntities();
 	
 	collisionWorld.Step((0),0,0);
@@ -389,52 +394,6 @@ function gameDraw() {
 	
 	//}
 }
-
-// UI stuff - not sure where to put it!
-
-this.light = new SpriteMap('assets/ui/light_sheet.png',//image
-			{ //anim sequences
-				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
-				first_use: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
-				second_use: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
-				third_use: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
-				fourth_use: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
-				fifth_use: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
-				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
-			}, { //options
-				frameW: 128, // Width of each frame of the animation in pixels
-				frameH: 256, // Height of each frame of the animation in pixels
-				projectedW: 1024, // Displayed width
-				projectedH: 256, // Displayed height 
-				interval: 150, // Switch frames every xxx ms
-				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
-				postInitCallback: function() {
-					this.light.start('full');//start the idle anim
-					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
-				}
-	});
-	
-	this.health = new SpriteMap('assets/ui/heart_sheet.png',//image
-			{ //anim sequences
-				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
-				one: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
-				two: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
-				three: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
-				four: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
-				five: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
-				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
-			}, { //options
-				frameW: 128, // Width of each frame of the animation in pixels
-				frameH: 256, // Height of each frame of the animation in pixels
-				projectedW: 1024, // Displayed width
-				projectedH: 256, // Displayed height 
-				interval: 150, // Switch frames every xxx ms
-				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
-				postInitCallback: function() {
-					this.health.start('full');//start the idle anim
-					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
-				}
-	});
 
 function UIDraw() {
 	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
@@ -469,8 +428,8 @@ function UIDraw() {
 	  lmeter = 'full';
 	}
 				
-	this.light.use(lmeter);
-	this.light.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	UIlight.use(lmeter);
+	UIlight.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
 	
 // HEALTH
 	var pHealth = mainGuy.hp;
@@ -489,8 +448,8 @@ function UIDraw() {
 	else if (pHealth == 0 || pHealth < 0)
 		hmeter = 'empty';
 	
-	this.health.use(hmeter);
-	this.health.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	UIhealth.use(hmeter);
+	UIhealth.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
 }
 
 // end UI
@@ -515,13 +474,7 @@ function initDrawUpdate() {
     
     //return setInterval(function(){draw()}, 30);//ms between updates
     //more efficient version using requestAnimationFrame:
-	/*var loadImg = new Image();
-	loadImg.src = "assets/loading.png";
-	loadImg.onLoad = function() {
-		ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-		ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-	}*/
-    
+
 	draw();
 }
 

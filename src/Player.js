@@ -110,6 +110,15 @@ function Player()
 						this.lantern.width-7, this.lantern.height-7);
 					ctxDark.globalCompositeOperation = 'source-over';
 					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
+
+					//erase edges and redraw them
+					ctxDark.clearRect(0,0,MEASURE_UNIT,GAME_HEIGHT);
+					ctxDark.globalAlpha = 0.90;
+					ctxDark.fillRect(0,0,MEASURE_UNIT,GAME_HEIGHT);
+					
+					//test- yes
+					//ctxDark.globalCompositeOperation = 'xor';
+					//ctxDark.drawImage(imgtest, 300, 0);
 				}
 				//no light, draw base circle
 				else if (this.light <= 0) {
