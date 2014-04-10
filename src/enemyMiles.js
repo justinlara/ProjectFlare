@@ -9,7 +9,7 @@ function Miles() {
 	this.imageDying.src = "assets/Miles_Enemy_Dying.png";
 	
 	this.speed = MEASURE_UNIT * .01;
-	this.aquisitionRange = MEASURE_UNIT * 5;
+	this.aquisitionRange = MEASURE_UNIT * 2;
 	this.escapeSpeed = MEASURE_UNIT * .02;
 	this.attackRange = MEASURE_UNIT * 0;
 	

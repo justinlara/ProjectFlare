@@ -6,12 +6,12 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 	
 	this.inRange = false;
 	
-	this.mStr = MoveType + '(this.actor)';
-	this.cStr = ChaseType + '(this.actor)';
-	this.aStr = AttackType + '(this.actor)';
-	this.rStr = ReactType + '(this.actor)';
-	this.runStr = RunType + '(this.actor)';
-	this.sStr = SpecialType + '(this.actor)';
+	this.mStr = MoveType;
+	this.cStr = ChaseType;
+	this.aStr = AttackType;
+	this.rStr = ReactType;
+	this.runStr = RunType;
+	this.sStr = SpecialType;
 	
 	this.react = function(){};
 }
@@ -53,6 +53,6 @@ Behavior.prototype.move = function() {
 			CHASEB.follow(this.actor);
 		}
 	} else {
-		MOVEB.wander(this.actor);
+		MOVEB.move(this.mStr, this.actor);
 	}
 };

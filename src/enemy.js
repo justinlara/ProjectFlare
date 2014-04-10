@@ -21,13 +21,13 @@ function Enemy() {
 	var min = 50;
 	var max = 100;
   
-	function randomIntFromInterval(min,max)
+	this.randomIntFromInterval = function(min,max)
 	{
 		return Math.floor(Math.random()*(max-min+1)+min);
 	}
   //(collision debugging) randomly disperse enemies to see how much enemies are created at a time  
-  this.enemybox.position.x = (randomIntFromInterval(min,max))/30+1;  
-  this.enemybox.position.y = (randomIntFromInterval(min,max))/30+1; 
+  this.enemybox.position.x = (this.randomIntFromInterval(min,max))/30+1;  
+  this.enemybox.position.y = (this.randomIntFromInterval(min,max))/30+1; 
   
    this.enemyfix.shape.SetAsBox((MEASURE_UNIT/30)/4,  ( MEASURE_UNIT/30 )/5);
    
@@ -39,6 +39,9 @@ function Enemy() {
   
   this.positions = { pos: [this.posX, this.posY]};
   
+  this.targetPosX = this.randomIntFromInterval(2, 14) * MEASURE_UNIT;
+  this.targetPosY = this.randomIntFromInterval(2, 10) * MEASURE_UNIT;
+	
   // damage: 5
   this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)] } ); 
   //this.enemybox.position.y  	
@@ -73,9 +76,14 @@ Enemy.prototype.Resize = function()
 //overwrite in subtypes
 Enemy.prototype.move = function () {
     //per frame movement if we call .move in main draw
-    //I'm thinking we should have an enemy controller which calls each active enemy'smove function on a setInterval timer
+    //I'm thinking we should have an enemy controller which calls each active enemy's move function on a setInterval timer
 	this.enemyBehavior.move();
 };
+
+Enemy.prototype.newTarget = function() { 
+	this.targetPosX = this.randomIntFromInterval(1, 14) * MEASURE_UNIT;
+	this.targetPosY = this.randomIntFromInterval(1, 10) * MEASURE_UNIT;
+  };
 	
 //draw the enemy on ctxWorld
 Enemy.prototype.draw = function() { 
