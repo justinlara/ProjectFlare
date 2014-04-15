@@ -81,8 +81,8 @@ Enemy.prototype.move = function () {
 };
 
 Enemy.prototype.newTarget = function() { 
-	this.targetPosX = this.randomIntFromInterval(1, 14) * MEASURE_UNIT;
-	this.targetPosY = this.randomIntFromInterval(1, 10) * MEASURE_UNIT;
+	this.targetPosX = this.randomIntFromInterval(2, 14) * MEASURE_UNIT;
+	this.targetPosY = this.randomIntFromInterval(2, 10) * MEASURE_UNIT;
   };
 	
 //draw the enemy on ctxWorld
