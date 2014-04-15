@@ -109,7 +109,9 @@ Collisions.prototype.collisionContact = function()
       if(contactA.type === "lamp" && contactB.id === "player" )
       {
 	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
-               thisLevel.currentRoom.setLit(true);
+               //setTimeout(function(){thisLevel.currentRoom.setLit(true)}, 1000);
+			   thisLevel.currentRoom.setLit(true);
+			   lightlampEffect(thisLevel.currentRoom.lamp.posX, thisLevel.currentRoom.lamp.posY);
                entityManager.clearEnemies();
                //thisLevel.currentRoom.killEnemies();
                mainGuy.light--;
