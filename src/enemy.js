@@ -78,6 +78,7 @@ Enemy.prototype.move = function () {
     //per frame movement if we call .move in main draw
     //I'm thinking we should have an enemy controller which calls each active enemy's move function on a setInterval timer
 	this.enemyBehavior.move();
+	SOUNDS.playAtRandomChance(SOUNDS.playRandomSnarl);
 };
 
 Enemy.prototype.newTarget = function() { 

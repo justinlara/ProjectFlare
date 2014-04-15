@@ -25,11 +25,11 @@ function Soundloader() {
 	}
 	
 	this.playRandomGrunt = function() {
-		soundManager.play("grunt" + this.randint(1,7));
+		soundManager.play("grunt" + SOUNDS.randint(1,7));
 	}
 	
 	this.playRandomSnarl = function() {
-		soundManager.play("grunt" + this.randint(1,3));
+		soundManager.play("snarl" + SOUNDS.randint(1,3));
 	}
 	
 	this.playRandomFootstep = function() {
@@ -37,12 +37,12 @@ function Soundloader() {
 			soundManager.getSoundById('footstep2').playState == 0 &&
 			soundManager.getSoundById('footstep3').playState == 0 )
 		{
-			soundManager.play("footstep" + this.randint(1,3));
+			soundManager.play("footstep" + SOUNDS.randint(1,3));
 		}
 	}
 	
-	this.playAtRandomChance = function(chanceInt, functionToPlay){
-		if(this.randint(0,100) <= chanceInt){
+	this.playAtRandomChance = function(functionToPlay){
+		if(this.randint(0,10000) >= (9998)){
 			functionToPlay();
 		}
 	}
@@ -170,7 +170,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
+				onplay: function () {this.setVolume(SOUNDS.randint(5, 70));}
 	});
 	
 	this.SFXSNARL2 = soundManager.createSound({
@@ -179,7 +179,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
+				onplay: function () {this.setVolume(SOUNDS.randint(5, 70));}
 	});
 	
 	this.SFXSNARL3 = soundManager.createSound({
@@ -188,6 +188,6 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
+				onplay: function () {this.setVolume(SOUNDS.randint(5, 70));}
 	});
 }
