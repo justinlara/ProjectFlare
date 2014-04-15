@@ -332,10 +332,10 @@ function draw() {
     window.requestAnimationFrame(draw);
 	if (gameState == 1) //splash
 	{
-		//setTimeout(function() {
+		setTimeout(function() {
 			gameState = 4;
-		//}, 1500); //after 1.5 seconds, advances to the game
-		//drawFullScreenImage(loadImg);
+		}, 1500); //after 1.5 seconds, advances to the game
+		drawFullScreenImage(loadImg);
 
 	} else if (gameState == 2) //menu
 	{
