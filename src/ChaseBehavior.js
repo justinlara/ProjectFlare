@@ -33,7 +33,6 @@ var ChaseBehavior = function() {
 		if(movetype == "follow") {
 			this.follow(actor);
 		}
-		
-		else { } //if any invalid type is given, don't act
+		else { MOVEB.move(actor.enemyBehavior.mStr, actor); } //if any invalid type is given, don't act
 	};
 }

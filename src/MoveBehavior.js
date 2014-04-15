@@ -1,12 +1,7 @@
 var MoveBehavior = function(){
 
 	this.wander = function(actor) {
-		//console.log("move behavior: wander");
-	
-	/* CHANGE BACK	
-		actor.posX += actor.speed;
-		actor.posY += actor.speed;
-	*/	
+		
 		if(Math.floor(actor.positions.pos[0]) < Math.floor(actor.targetPosX)){
 			actor.positions.pos[0] += actor.speed;
 		} else {
