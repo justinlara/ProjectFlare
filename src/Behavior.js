@@ -50,7 +50,7 @@ Behavior.prototype.move = function() {
 		if( dist < this.actor.attackRange) {
 		
 		} else {
-			CHASEB.follow(this.actor);
+			CHASEB.move(this.cStr, this.actor);
 		}
 	} else {
 		MOVEB.move(this.mStr, this.actor);
