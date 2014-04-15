@@ -114,9 +114,12 @@ Collisions.prototype.collisionContact = function()
                //thisLevel.currentRoom.killEnemies();
                mainGuy.light--;
                thisLevel.lightsLit++;
-			   
+
 			   // Lamp counter increases
 			   lampsLit++;
+			   
+				//play sound
+				soundManager.play('lamplight');
 	      }
       }
       

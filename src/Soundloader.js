@@ -66,7 +66,7 @@ function Soundloader() {
 		//lamp lighting
 	this.SFXLAMPLIGHT = soundManager.createSound({
 				id: 'lamplight',
-				url: sfxpath + 'lightinglamp.wav',
+				url: sfxpath + 'lightinglampv2.wav',
 				autoLoad: true,
 				stream: true
 	});
