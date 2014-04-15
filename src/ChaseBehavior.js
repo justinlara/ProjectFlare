@@ -29,5 +29,11 @@ var ChaseBehavior = function() {
    		
 	};
 	
-	this.none = function(actor) {};
+	this.move = function(movetype, actor) {
+		if(movetype == "follow") {
+			this.follow(actor);
+		}
+		
+		else { } //if any invalid type is given, don't act
+	};
 }

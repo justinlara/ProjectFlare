@@ -215,7 +215,7 @@ function Player()
 		
 		this.p.pos[0] -= MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkLeft');
-		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		
+		SOUNDS.playRandomFootstep();		
 		//checkBounds(this.p);
 		//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
   
@@ -230,7 +230,7 @@ function Player()
 		
 		this.p.pos[0]  +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkRight');
-		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
+		SOUNDS.playRandomFootstep();
 		//checkBounds(this.p);
 	//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
   
@@ -245,7 +245,7 @@ function Player()
 		
 		this.p.pos[1] -=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkUp');
-		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}		//loadSpriteP.stop();//for now		//checkBounds(this.p);
+		SOUNDS.playRandomFootstep();		//loadSpriteP.stop();//for now		//checkBounds(this.p);
 		//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
 		
 	};
@@ -259,7 +259,7 @@ function Player()
 		
 		this.p.pos[1] +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkDown');
-		if(soundManager.getSoundById('footstep').playState == 0) {soundManager.play('footstep');}
+		SOUNDS.playRandomFootstep();
 		//checkBounds(this.p);
 		//console.log("^^^^^^ PLAYER POS ^^^^^^^" + this.p.pos[0] + " , " + this.p.pos[1]);
 	};

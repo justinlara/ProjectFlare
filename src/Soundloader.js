@@ -1,6 +1,6 @@
 //this can later be changes to create a music list and sound list later if desired.
 /** !!!! Sounds can be called by SOUNDS.[id].[functionName](); !!!! **/
-		//Eg.  SOUNDS.footstep.play();
+		//Eg.  SOUNDS.footstep1.play();
 
 /**	LIST OF ALL SOUNDS
 **		MUSICS:
@@ -32,6 +32,15 @@ function Soundloader() {
 		soundManager.play("grunt" + this.randint(1,3));
 	}
 	
+	this.playRandomFootstep = function() {
+		if(	soundManager.getSoundById('footstep1').playState == 0 &&
+			soundManager.getSoundById('footstep2').playState == 0 &&
+			soundManager.getSoundById('footstep3').playState == 0 )
+		{
+			soundManager.play("footstep" + this.randint(1,3));
+		}
+	}
+	
 	this.playAtRandomChance = function(chanceInt, functionToPlay){
 		if(this.randint(0,100) <= chanceInt){
 			functionToPlay();
@@ -46,6 +55,7 @@ function Soundloader() {
                  autoLoad: true,
                  autoPlay: true, //  turn on/off music for debugging 
                  stream: true,
+				 volume: 50,
                  onfinish: function () {
                      this.play();
                  }
@@ -53,14 +63,40 @@ function Soundloader() {
 	
 	/* Sound Start */
 	
+		//lamp lighting
+	this.SFXLAMPLIGHT = soundManager.createSound({
+				id: 'lamplight',
+				url: sfxpath + 'lightinglamp.wav',
+				autoLoad: true,
+				stream: true
+	});
+	
 		//footsteps
-	this.SFXFOOTSTEP = soundManager.createSound({
-				id: 'footstep',
+	this.SFXFOOTSTEP1 = soundManager.createSound({
+				id: 'footstep1',
 				url: sfxpath + 'footstepsOnWood.wav',
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(20, 70));}
+	});
+	
+	this.SFXFOOTSTEP2 = soundManager.createSound({
+				id: 'footstep2',
+				url: sfxpath + 'footstepsOnWood(softer).wav',
+				autoLoad: true,
+				multishot: true,
+				stream: true,
+				onplay: function () {this.setVolume(SOUNDS.randint(15, 60));}
+	});
+	
+	this.SFXFOOTSTEP3 = soundManager.createSound({
+				id: 'footstep3',
+				url: sfxpath + 'footstepsOnWood(hollow).wav',
+				autoLoad: true,
+				multishot: true,
+				stream: true,
+				onplay: function () {this.setVolume(SOUNDS.randint(10, 75));}
 	});
 	
 		//grunts
@@ -70,7 +106,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXGRUNT2 = soundManager.createSound({
@@ -79,7 +115,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXGRUNT3 = soundManager.createSound({
@@ -88,7 +124,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXGRUNT4 = soundManager.createSound({
@@ -97,7 +133,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXGRUNT5 = soundManager.createSound({
@@ -106,7 +142,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXGRUNT6 = soundManager.createSound({
@@ -115,7 +151,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXGRUNT7 = soundManager.createSound({
@@ -124,7 +160,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 		//snarls
@@ -134,7 +170,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXSNARL2 = soundManager.createSound({
@@ -143,7 +179,7 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 	
 	this.SFXSNARL3 = soundManager.createSound({
@@ -152,6 +188,6 @@ function Soundloader() {
 				autoLoad: true,
 				multishot: true,
 				stream: true,
-				onplay: function () {this.setVolume(Math.random()*(70-30+1)+30);}
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 70));}
 	});
 }
