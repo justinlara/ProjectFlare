@@ -114,6 +114,9 @@ Collisions.prototype.collisionContact = function()
                //thisLevel.currentRoom.killEnemies();
                mainGuy.light--;
                thisLevel.lightsLit++;
+			   
+			   // Lamp counter increases
+			   lampsLit++;
 	      }
       }
       
@@ -125,6 +128,9 @@ Collisions.prototype.collisionContact = function()
         
         var newHealth = currentHealth + lightsLit;
         if (newHealth > 6) newHealth = 6;
+		
+		// Level counter increases
+		levelsTraversed++;
         
         //entityManager.clear()
         entityManager.clearEnemies();

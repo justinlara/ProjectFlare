@@ -9,6 +9,9 @@ var mainGuy;
 var entityManager;
 var thisLevel;
 
+var lampsLit;
+var levelsTraversed;
+
 //globals for sprites
 var loadSpriteP;
 var loadSpriteMiles;
@@ -22,6 +25,13 @@ pole.src = "assets/ui/pole.png";
 // UI health
 var heart = new Image();
 heart.src = "assets/ui_rod_sample.png";
+
+// UI Numbers
+var UINums = new Array();
+for (var i = 0; i < 10; i++) {
+	UINums[i] = new Image();
+	UINums[i].src = "assets/ui/" + i + ".png";
+}
 
 // Game Over
 var gameOver = new Image();
@@ -301,6 +311,10 @@ function initGame() {
 	debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 	collisionWorld.SetDebugDraw(debugDraw);    
 	//----------- show collision boxes (for debugging) ------------    
+	
+	// initialize UI counters
+	lampsLit = 0;
+	levelsTraversed = 0;
 }
 
 // Accepts an image and draws it over the whole screen, including UI and game
@@ -318,10 +332,10 @@ function draw() {
     window.requestAnimationFrame(draw);
 	if (gameState == 1) //splash
 	{
-		setTimeout(function() {
+		//setTimeout(function() {
 			gameState = 4;
-		}, 1500); //after 1.5 seconds, advances to the game
-		drawFullScreenImage(loadImg);
+		//}, 1500); //after 1.5 seconds, advances to the game
+		//drawFullScreenImage(loadImg);
 
 	} else if (gameState == 2) //menu
 	{
@@ -395,6 +409,14 @@ function gameDraw() {
 	//}
 }
 
+function drawUISingleDigit(cNum, top) {
+	
+}
+
+function drawUIDoubleDigit(cNum1, cNum2, top) {
+
+}
+
 function UIDraw() {
 	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
 	
@@ -403,6 +425,7 @@ function UIDraw() {
 	var UIWidth = GAME_WIDTH * 0.15;
 	ctxUI.drawImage(pole, 0, 0, UIWidth, UIHeight);// MEASURE_UNIT * 2.25, MEASURE_UNIT * 11);	
 	
+	// LIGHT METER
 	var pLight = mainGuy.light;
 	switch(pLight)
 	{	
@@ -450,6 +473,40 @@ function UIDraw() {
 	
 	UIhealth.use(hmeter);
 	UIhealth.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	
+	// COUNTERS
+		
+	var Y1 = GAME_HEIGHT * 0.38;
+	var Y2 = GAME_HEIGHT * 0.482;
+	var numSide = MEASURE_UNIT / 3;
+	
+	var singleX = GAME_WIDTH * 0.0615;
+	var doubleX1 = GAME_WIDTH * 0.055;
+	var doubleX2 = GAME_WIDTH * 0.068;
+	var tripleX1 = GAME_WIDTH * 0.0485;
+	var tripleX3 = GAME_WIDTH * 0.0745;
+
+	if (lampsLit < 10) { // Single digit on top
+		ctxUI.drawImage(UINums[lampsLit], singleX, Y1, numSide, numSide);
+	} else if (lampsLit < 100) { // Double digits on top
+		ctxUI.drawImage(UINums[Math.floor(lampsLit / 10)], doubleX1, Y1, numSide, numSide);
+		ctxUI.drawImage(UINums[lampsLit % 10], doubleX2, Y1, numSide, numSide);
+	} else { // Triple digits on top
+		ctxUI.drawImage(UINums[Math.floor(lampsLit / 100)], tripleX1, Y1, numSide, numSide);
+		ctxUI.drawImage(UINums[Math.floor((lampsLit % 100) / 10)], singleX, Y1, numSide, numSide);
+		ctxUI.drawImage(UINums[lampsLit % 10], tripleX3, Y1, numSide, numSide);
+	}
+	
+	if (levelsTraversed < 10) { // Single digit on the bottom
+		ctxUI.drawImage(UINums[levelsTraversed], singleX, Y2, numSide, numSide);
+	} else if (levelsTraversed < 100) { // Double digits on the bottom
+		ctxUI.drawImage(UINums[Math.floor(levelsTraversed / 10)], doubleX1, Y2, numSide, numSide);
+		ctxUI.drawImage(UINums[levelsTraversed % 10], doubleX2, Y2, numSide, numSide);
+	} else { // Triple digits on the bottom
+		ctxUI.drawImage(UINums[Math.floor(levelsTraversed / 100)], tripleX1, Y2, numSide, numSide);
+		ctxUI.drawImage(UINums[Math.floor((levelsTraversed % 100) / 10)], singleX, Y2, numSide, numSide);
+		ctxUI.drawImage(UINums[levelsTraversed % 10], tripleX3, Y2, numSide, numSide);
+	}
 }
 
 // end UI
