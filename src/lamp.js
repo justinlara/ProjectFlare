@@ -23,8 +23,8 @@ function Lamp(posX, posY) {
   
    //
    //this.lampfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
-   this.lampfix.shape.SetAsBox((MEASURE_UNIT/30/3),  ( MEASURE_UNIT/30/3 ));
-   
+   this.lampfix.shape.SetAsBox((MEASURE_UNIT/30/3),  ( MEASURE_UNIT/30/2 ));
+                                                                 //was --> /3
    
   
   this.lampbox.active = false;
@@ -37,8 +37,8 @@ function Lamp(posX, posY) {
                                   bodyPos: this.lampboundBox.GetPosition(), 
                                   
                                   active: this.lampbox.active, wPx:this.posX, wPy:this.posY,  
-                                  size: [((((MEASURE_UNIT/30)/3)*30)*2), ((((MEASURE_UNIT/30)/3)*30)*2)]} );
-  	
+                                  size: [((((MEASURE_UNIT/30)/3)*30)*2), ((((MEASURE_UNIT/30)/2)*30)*2)]} );
+  	                                                                                   // was --> /3
 	
 }
 
@@ -55,8 +55,8 @@ Lamp.prototype.Resize = function()
   
   this.lampboundBox.DestroyFixture( this.lFix );
   
-  //add new fixture and body     
-  newfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);  
+  //add new fixture and body                                     
+  newfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/2);  
   
   this.lFix = this.lampboundBox.CreateFixture(newfix);  
   

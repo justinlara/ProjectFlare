@@ -14,25 +14,54 @@ function Player()
   this.playerfix = this.fixture;
   this.playerbox = this.body;
   
+  this.lightfix = new b2FixtureDef;
+  this.lightbox = new b2BodyDef;
+  
   var circleBox = this.playerfix.shape = new b2CircleShape; 
   this.playerbox.type = b2Body.b2_dynamicBody;   //b2_kinematicBody;
+  
+  this.lightfix.shape =  new b2PolygonShape;  // new b2CircleShape;
+  this.lightbox.type = b2Body.b2_dynamicBody;
+  
   this.playerbox.awake = false;
+  //this.lightbox.awake = false;
   
   this.playerbox.position.x = 1120/MEASURE_UNIT;
   this.playerbox.position.y = 150/MEASURE_UNIT;
   
-   //this.playerfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);
-  circleBox.SetRadius(((MEASURE_UNIT)/30)*(.23));
+  this.lightbox.position.x = 50/MEASURE_UNIT;
+  this.lightbox.position.y = 70/MEASURE_UNIT;
+  
+  this.lightShiftX = 0;
+  this.lightShiftY = 0;
+  
+  // REPLACED W/ HORZ AND VERT MOVE BOOLS
+  this.rotateLightBox = false;
+  
+ 
+   circleBox.SetRadius(((MEASURE_UNIT)/30)*(.23));
    this.playerfix.shape.Set(circleBox);
+  
+         // RECTALGE BOUND BOX
+       this.lightfix.shape.SetAsBox(((MEASURE_UNIT/30)*.7),  ( (MEASURE_UNIT/30)*1.2 )); 
+       //this.lightfix.shape.Set();
+     
+   
+ 
+       
+        
+       
+       this.lightBoundBox = collisionWorld.CreateBody(this.lightbox);
+       this.lFix = this.lightBoundBox.CreateFixture(this.lightfix);
+       
   
   this.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   this.pFix = this.playerBoundBox.CreateFixture(this.playerfix);
   
-  
   this.playerBoundBox.SetSleepingAllowed(false);
     
   
-  this.p = {  playerBody: this.playerBoundBox,  
+  this.p = {  playerBody: this.playerBoundBox, playerLight: this.lightBoundBox, 
               pos: [(GAME_WIDTH/2), (GAME_HEIGHT/2)], 
               
                          //  url    pos(x,y)     size of     speed       frames  
@@ -42,7 +71,16 @@ function Player()
            
            I: new Image()
            };
+
+           
 	this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+	
+	this.lightBoundBox.SetUserData({id: "light", lightPos:  [(((this.p.pos[0]+((this.lightShiftX )+  (this.lantern.width)/2 )))),
+                                                             (((this.p.pos[1]+((this.lightShiftY )+  (this.lantern.height)/2)))) ] , 
+	                                             BoundSize:  [(((MEASURE_UNIT/30)*.7)*30)*2,  (((MEASURE_UNIT/30)*1.2 )*30)*2], // circle bound -((((MEASURE_UNIT)/30)*(.8))*30 )*2
+	                                             angle:     this.p.playerLight.GetAngle() 
+	                                             });
+	
 	this.p.I.src = "assets/Character.png";
 	
 	this.hp = 6;
@@ -74,7 +112,8 @@ function Player()
 		
 		// health: 100
 	  this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
-
+       
+       
 	};
 	
 	//draw, overwrites entity draw
@@ -93,8 +132,21 @@ function Player()
 		//var sx = offset.x; 
 		//var sy = offset.y; 
 		
-		this.p.playerBody.SetPositionAndAngle(new b2Vec2( ((this.p.pos[0]+(0.5*MEASURE_UNIT))/30), ((this.p.pos[1]+(0.87*MEASURE_UNIT))/30) ), arcEnd  );  
-	
+		this.p.playerBody.SetPosition(new b2Vec2( 
+		    ((this.p.pos[0]+(0.5*MEASURE_UNIT))/30), ((this.p.pos[1]+(0.87*MEASURE_UNIT))/30) ));  
+		
+		this.p.playerLight.SetPosition(new b2Vec2(
+		                      // this.lantern.shiftX- 20  
+             ((this.p.pos[0]+((this.lightShiftX )+  (this.lantern.width)/2 )))/30, 
+             ((this.p.pos[1]+((this.lightShiftY )+  (this.lantern.height)/2)))/30 ) ); //flip it 90 degrees: 4.7
+		
+		this.lightBoundBox.SetUserData({id: "light", lightPos:  [(((this.p.pos[0]+((this.lightShiftX )+  (this.lantern.width)/2 )))),
+                                                             (((this.p.pos[1]+((this.lightShiftY )+  (this.lantern.height)/2)))) ] , 
+                                                 BoundSize:  [(((MEASURE_UNIT/30)*.7)*30)*2,  (((MEASURE_UNIT/30)*1.2 )*30)*2],  // circle bound -- ((((MEASURE_UNIT)/30)*(.8))*30 )*2,
+                                                 //angle:     this.p.playerLight.GetAngle() 
+                                                 });
+		
+		
 		//old draw:
 		//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
 		
@@ -108,6 +160,8 @@ function Player()
 					ctxDark.globalCompositeOperation = 'xor';
 					ctxDark.fillRect(this.p.pos[0]+this.lantern.shiftX+5, this.p.pos[1]+this.lantern.shiftY+5, 
 						this.lantern.width-7, this.lantern.height-7);
+					  
+					  // ****COMMENTED FOR DEBUGGING
 					ctxDark.globalCompositeOperation = 'source-over';
 					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
 
@@ -124,6 +178,8 @@ function Player()
 				else if (this.light <= 0) {
 					ctxDark.globalCompositeOperation = 'xor';
 					ctxDark.fillRect(this.p.pos[0]+5, this.p.pos[1]+5, MEASURE_UNIT-7, MEASURE_UNIT-7);
+					
+					 // ****COMMENTED FOR DEBUGGING
 					ctxDark.globalCompositeOperation = 'source-over';
 					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0], this.p.pos[1]);
 				}
@@ -207,11 +263,28 @@ function Player()
 	//movement now also rotates lantern
 	this.moveLeft = function()
 	{
+	    
+        if(!this.rotateLightBox)
+        { 
+          this.p.playerLight.SetAngle(4.7);
+            this.rotateLightBox  = true;
+        }
+	    
+	   
+	   /*
+	  
+	     //console.log(" rotateLightBox--- L --- " + this.horizSetBox);
+	   */
+	  
 		this.lantern.currentLightSprite = SpriteLanternLEFT;
 		this.lantern.shiftX = -MEASURE_UNIT*4.5;
 		this.lantern.shiftY = -MEASURE_UNIT*2;
 		this.lantern.width = MEASURE_UNIT*6*scaleLight;
 		this.lantern.height = MEASURE_UNIT*5*scaleLight;
+		
+		//this.lightShiftX = this.lantern.shiftX+10;
+        this.lightShiftX = this.lantern.shiftX*.99;
+        this.lightShiftY = this.lantern.shiftY;
 		
 		this.p.pos[0] -= MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkLeft');
@@ -222,11 +295,26 @@ function Player()
 	};
 	this.moveRight = function() 
 	{
+	    if(!this.rotateLightBox)
+        { 
+           this.p.playerLight.SetAngle(4.7);
+            this.rotateLightBox  = true;
+        }
+	    
+	   
+	   /*
+	   
+        //console.log(" rotateLightBox--- R --- " + this.horizSetBox);
+	  */
+		
 		this.lantern.currentLightSprite = SpriteLanternRIGHT;
 		this.lantern.shiftX = -MEASURE_UNIT*.5;
 		this.lantern.shiftY = -MEASURE_UNIT*2;
 		this.lantern.width = MEASURE_UNIT*6*scaleLight;
 		this.lantern.height = MEASURE_UNIT*5*scaleLight;
+		                                    // -10
+		this.lightShiftX = this.lantern.shiftX*1.3;
+        this.lightShiftY = this.lantern.shiftY;
 		
 		this.p.pos[0]  +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkRight');
@@ -237,11 +325,23 @@ function Player()
 	};
 	this.moveUp = function() 
 	{
+	    if(this.rotateLightBox)
+        { 
+          this.p.playerLight.SetAngle(0);
+            this.rotateLightBox  = false;
+        }
+	    
+	    
+	    //console.log(" rotateLightBox--- U --- " + this.vertSetBox);
+	    
 		this.lantern.currentLightSprite = SpriteLanternUP;
 		this.lantern.shiftX = -MEASURE_UNIT*2;
 		this.lantern.shiftY = -MEASURE_UNIT*4.5;
 		this.lantern.width = MEASURE_UNIT*5*scaleLight;
 		this.lantern.height = MEASURE_UNIT*6*scaleLight;
+		
+		this.lightShiftX = this.lantern.shiftX;
+        this.lightShiftY = this.lantern.shiftY*.87;
 		
 		this.p.pos[1] -=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkUp');
@@ -251,11 +351,28 @@ function Player()
 	};
 	this.moveDown = function()
 	{
+	    if(this.rotateLightBox)
+        { 
+            this.p.playerLight.SetAngle(0);
+            this.rotateLightBox  = false;
+        }
+	    
+	   
+	   /*
+	    
+        
+       // console.log(" rotateLightBox--- D --- " + this.vertSetBox);
+	  */
+	 
+	    
 		this.lantern.currentLightSprite = SpriteLanternDOWN;
 		this.lantern.shiftX = -MEASURE_UNIT*2;
 		this.lantern.shiftY = -MEASURE_UNIT*.5;
 		this.lantern.width = MEASURE_UNIT*5*scaleLight;
 		this.lantern.height = MEASURE_UNIT*6*scaleLight;
+		
+		this.lightShiftX = this.lantern.shiftX;
+        this.lightShiftY = this.lantern.shiftY*.65;
 		
 		this.p.pos[1] +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkDown');

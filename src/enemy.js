@@ -24,7 +24,8 @@ function Enemy() {
 	this.randomIntFromInterval = function(min,max)
 	{
 		return Math.floor(Math.random()*(max-min+1)+min);
-	}
+	};
+	
   //(collision debugging) randomly disperse enemies to see how much enemies are created at a time  
   this.enemybox.position.x = (this.randomIntFromInterval(min,max))/30+1;  
   this.enemybox.position.y = (this.randomIntFromInterval(min,max))/30+1; 
@@ -42,8 +43,13 @@ function Enemy() {
   this.targetPosX = this.randomIntFromInterval(2, 14) * MEASURE_UNIT;
   this.targetPosY = this.randomIntFromInterval(2, 10) * MEASURE_UNIT;
 	
+	this.hit = 0;
+	this.hitLight = {hit: [this.hit] };
+	
   // damage: 5
-  this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)] } ); 
+  this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
+                                    BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
+                                    hitLight: this.hitLight  } ); 
   //this.enemybox.position.y  	
 	
 	//sprite defaults:
@@ -103,8 +109,9 @@ Enemy.prototype.draw = function() {
 		this.enemyboundBox.SetPosition(new b2Vec2( ((this.positions.pos[0]+ (0.5*MEASURE_UNIT))/30), ((this.positions.pos[1]+ (0.85*MEASURE_UNIT))/30)));
 		                                  
 		
-		this.enemyboundBox.SetUserData( {type: 'enemy', id: "e1", damage: 1, xy: this.positions ,  pX: this.posX , pY: this.posY,  boxPos: this.enemyboundBox.GetPosition(), BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)] } );
-	
+		this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
+                                    BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
+                                    hitLight: this.hitLight  } ); 
 	   
 	}
 	else if (this.dying)
