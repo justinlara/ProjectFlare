@@ -468,7 +468,66 @@ Collisions.prototype.collisionContact = function()
         
         
      }
-  ///*   
+  ///*
+  
+  
+  ///
+  if(contactA.type === "doorWall" && contactB.id === "player")
+     {
+         //console.log("YES " + contactA.active);
+        
+         
+         man = contact.GetManifold();
+         
+         if( man.m_pointCount !==0)
+         {
+       
+           wX = contactA.wPx;
+           wY = contactA.wPy;
+           sX = contactA.size[0];
+           sY = contactA.size[1];
+         
+           normals = man.m_localPlaneNormal;
+            
+              
+   //console.log("\n IN OBST/PLAYER pos x,y: " + contactB.pos[0] + " , " + contactB.pos[1] + " wX " + wX+ " sX " + sX+ " wY " + wY + " sY " + sY +   " boundSize(player) " + contactB.BoundSize + " BSz/ " + contactB.BoundSize/(5/4));
+
+               //LEFT SIDE                            
+               
+               if(contactB.pos[0] > ((wX- (sX/2))- contactB.BoundSize/2) && normals.x <= -1)
+               {
+                   contactB.pos[0] = ((wX- (sX/2))- contactB.BoundSize/2);
+                   
+                   //console.log("\n AFTER MOVE play posX: " + contactB.pos[0] + " > value " + (wX-(contactB.BoundSize/(5/4))));
+                   console.log(" Ob-L ");
+               }    
+               // RIGHT SIDE
+               else if(contactB.pos[0] < ((wX +(sX/2)) + (contactB.BoundSize/2))&& normals.x >= 1)
+               {
+                   console.log(" Ob-R ");
+                   contactB.pos[0] = ((wX + (sX/2)) + (contactB.BoundSize/2)); 
+               }
+               // TOP SIDE
+               //else if(contactB.pos[1] > ((wY-sY) - contactB.BoundSize/2) && normals.y <= -1)
+               else if(contactB.pos[1] >= ((wY- (sY+2.5))) && normals.y <= -1)
+               {
+                   console.log(" Ob-U ");
+                   contactB.pos[1] = ((wY- (sY+2.5))); 
+               }
+               // BOTTOM SIDE
+               else if(contactB.pos[1] < ((wY) + (contactB.BoundSize/2)) && normals.y >= 1)
+               {
+                   console.log(" Ob-D ");
+                   contactB.pos[1] = ((wY) + (contactB.BoundSize/2)); 
+               }
+                     
+         
+        }
+        
+        
+     }
+  
+  
      if(contactA.type === "obstacle" && contactB.id === "player")
      {
          

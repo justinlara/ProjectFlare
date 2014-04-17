@@ -18,6 +18,15 @@ function Level(numberOfRooms, floorNumber) {
 	
 	this.lightsLit = 0;
 	
+	
+	this.doorWalls = new Array();
+	this.doorWalls.push(new DoorWall("n"));
+	this.doorWalls.push(new DoorWall("e"));
+	this.doorWalls.push(new DoorWall("s"));
+	this.doorWalls.push(new DoorWall("w"));
+	
+	console.log("created:"  + this.doorWalls);
+	
 	////
 
 	// Randomly generated structure from RandomLevelGeneratorAlgorithm.js
@@ -93,6 +102,8 @@ function Level(numberOfRooms, floorNumber) {
             }
         }
     }
+    
+    this.checkDoorWalls(this);
 
 ////
 	//generate code goes here.  Store the layout in this.layout
@@ -108,6 +119,103 @@ function Level(numberOfRooms, floorNumber) {
 	//newRoom.setDoor(door);
 }
 
+//Level.proto
+
+
+//function roomNorthExists(){
+//	return this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
+//		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.startingRoom) != -1;
+//}
+
+
+
+//Level.prototype.roomNorthExists = function() {
+function roomNorthExists(level){
+	if (level.currentY > 0)
+	{
+		var currentRoom = level.layout[level.currentY][level.currentX];
+		
+		for (i = 0; i < currentRoom.doors.length; i++)
+		{
+			if (currentRoom.doors[i].side == "n")
+			{
+				return true;
+			}
+		}
+		
+		//if (level.structure.level[level.currentY-1][level.currentX].indexOf(level.structure.activeRoom) != -1 ||
+		//	   level.structure.level[level.currentY-1][level.currentX].indexOf(level.structure.startingRoom) != -1)
+		//		return true;
+	}
+	
+	return false;
+}
+
+//Level.prototype.roomEastExists = function() {
+function roomEastExists(level){
+	if (level.currentX < level.structure.width-1)
+	{
+		var currentRoom = level.layout[level.currentY][level.currentX];
+		
+		for (i = 0; i < currentRoom.doors.length; i++)
+		{
+			if (currentRoom.doors[i].side == "e")
+			{
+				return true;
+			}
+		}
+		
+		//if(level.structure.level[level.currentY][level.currentX+1].indexOf(level.structure.activeRoom) != -1 ||
+		//   level.structure.level[level.currentY][level.currentX+1].indexOf(level.structure.startingRoom) != -1)
+		//		return true;
+	}
+	
+	return false;
+}
+
+//Level.prototype.roomSouthExists = function() {
+function roomSouthExists(level){
+	if (level.currentY < level.structure.height-1)
+	{
+		var currentRoom = level.layout[level.currentY][level.currentX];
+		
+		for (i = 0; i < currentRoom.doors.length; i++)
+		{
+			if (currentRoom.doors[i].side == "s")
+			{
+				return true;
+			}
+		}
+		
+		//if(level.structure.level[level.currentY+1][level.currentX].indexOf(level.structure.activeRoom) != -1 ||
+		//   level.structure.level[level.currentY+1][level.currentX].indexOf(level.structure.startingRoom) != -1)
+		//		return true;
+	}
+	
+	return false;
+}
+
+//Level.prototype.roomWestExists = function() {
+function roomWestExists(level){
+	if (level.currentX > 0)
+	{
+		var currentRoom = level.layout[level.currentY][level.currentX];
+		
+		for (i = 0; i < currentRoom.doors.length; i++)
+		{
+			if (currentRoom.doors[i].side == "w")
+			{
+				return true;
+			}
+		}
+		
+		//if(level.structure.level[level.currentY][level.currentX-1].indexOf(level.structure.activeRoom) != -1 ||
+		//   level.structure.level[level.currentY][level.currentX-1].indexOf(level.structure.startingRoom) != -1)
+		//		return true;
+	}
+	
+	return false;
+}
 
 Level.prototype.goToNorthRoom = function() {
 	if (this.currentY > 0)
@@ -129,6 +237,8 @@ Level.prototype.goToNorthRoom = function() {
 			}
 			
 			this.giveLightMeter();
+			
+			this.checkDoorWalls(this);
 		}
 	}
 }
@@ -153,6 +263,8 @@ Level.prototype.goToEastRoom = function() {
 			}
 			
 			this.giveLightMeter();
+			
+			this.checkDoorWalls(this);
 		}
 	}
 }
@@ -177,6 +289,8 @@ Level.prototype.goToSouthRoom = function() {
 			}
 			
 			this.giveLightMeter();
+			
+			this.checkDoorWalls(this);
 		}
 	}
 }
@@ -202,6 +316,8 @@ Level.prototype.goToWestRoom = function() {
 			}
 			
 			this.giveLightMeter();
+			
+			this.checkDoorWalls(this);
 		}
 	}
 }
@@ -234,8 +350,51 @@ Level.prototype.turnOffHitboxesForCurrentRoom = function()
 	{
 	    this.layout[this.currentY][this.currentX].obstacles[i].obstacleboundBox.SetActive(false);
 	}
-        
-		
+}
+
+Level.prototype.checkDoorWalls = function(level)
+//function checkDoorWalls()
+{
+console.log("hey" + this.doorWalls);	
+	
+	console.log(roomNorthExists(level) + " " +roomEastExists(level) + " " +roomSouthExists(level) + " " +roomWestExists(level));
+	
+	if (roomNorthExists(level))
+	{
+		this.doorWalls[0].doorWallboundBox.SetActive(false);
+	}
+	else
+	{
+		this.doorWalls[0].doorWallboundBox.SetActive(true);
+	}
+	
+	if (roomEastExists(level))
+	{
+		this.doorWalls[1].doorWallboundBox.SetActive(false);
+	}
+	else
+	{
+		this.doorWalls[1].doorWallboundBox.SetActive(true);
+	}
+	
+	if (roomSouthExists(level))
+	{
+		this.doorWalls[2].doorWallboundBox.SetActive(false);
+	}
+	else
+	{
+		this.doorWalls[2].doorWallboundBox.SetActive(true);
+	}
+	
+	if (roomWestExists(level))
+	{
+		this.doorWalls[3].doorWallboundBox.SetActive(false);
+	}
+	else
+	{
+		this.doorWalls[3].doorWallboundBox.SetActive(true);
+	}
+	
 }
 
 Level.prototype.giveLightMeter = function()

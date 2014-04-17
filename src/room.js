@@ -146,6 +146,12 @@ function Room(gridObj) {
 			this.doors[i].draw();
 		}
 		
+		var doorWalls = thisLevel.doorWalls;
+		for (var i = 0; i < doorWalls.length; i++)
+		{
+			doorWalls[i].draw();
+		}
+		
 		for (var i = 0; i < this.obstacles.length; ++i)
         {
             this.obstacles[i].setBox();

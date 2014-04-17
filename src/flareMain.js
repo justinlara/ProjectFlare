@@ -367,7 +367,7 @@ function gameDraw() {
 	//draw room
 	thisLevel.currentRoom.draw();
 	
-	 //for debugging collisions
+	//for debugging collisions
 	//collisionWorld.DrawDebugData();
 
    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
