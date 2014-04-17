@@ -9,11 +9,11 @@ function Miles() {
 	this.imageDying.src = "assets/Miles_Enemy_Dying.png";
 	
 	this.speed = MEASURE_UNIT * .01;
-	this.aquisitionRange = MEASURE_UNIT * 2;
+	this.aquisitionRange = MEASURE_UNIT * 1.5;
 	this.escapeSpeed = MEASURE_UNIT * .02;
 	this.attackRange = MEASURE_UNIT * 0;
 	
-	this.enemyBehavior = new Behavior(this, 'wander', 'none', 'none', 'none', 'none', 'none');
+	this.enemyBehavior = new Behavior(this, 'wander', 'follow', 'none', 'none', 'none', 'none');
 }
 
 Miles.prototype = Object.create(Enemy.prototype);

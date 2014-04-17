@@ -56,7 +56,7 @@ function Player()
     
   
   this.p = {  playerBody: this.playerBoundBox, playerLight: this.lightBoundBox, 
-              pos: [(GAME_WIDTH/2), (GAME_HEIGHT/2)], 
+              pos: [(MEASURE_UNIT*7), (MEASURE_UNIT*5)], 
               
                          //  url    pos(x,y)     size of     speed       frames  
                         //          in           keyframe    frame/      index of

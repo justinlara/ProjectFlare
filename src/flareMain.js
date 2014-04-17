@@ -177,7 +177,7 @@ function loadAssets() {
 			frameH: 320,
 			projectedW: MEASURE_UNIT*6*scaleLight,
 			projectedH: MEASURE_UNIT*5*scaleLight, 
-			interval: 250,
+			interval: 150,
 			postInitCallback: function() {
 				SpriteLanternRIGHT.startLoop();
 			}

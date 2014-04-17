@@ -12,15 +12,15 @@ var lightlampEffect = function(lampX, lampY) {
 		ctxDark.fillStyle = 'black';
 		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 		//ctxDark.globalCompositeOperation = 'xor';
-		//ctxDark.beginPath();
-		//ctxDark.arc(200,200,50, 0, Math.PI*2);
-		//ctxDark.fill();
-		//r+=10;
-		console.log("lighttest");
+		ctxDark.beginPath();
+		ctxDark.arc(200,200,50, 0, Math.PI*2);
+		ctxDark.fill();
+		r+=10;
+		//console.log("lighttest");
 	}, 300);
-	/*setTimeout(function() {
+	setTimeout(function() {
 		clearInterval(e);
-	}, 1000);*/
+	}, 1000);
 };
 
 var lightning = function() {

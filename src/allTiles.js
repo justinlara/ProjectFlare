@@ -261,9 +261,9 @@ function AllTiles() {
 	this.r19[1] = new Array(1,6,4,2,2,2,2,2,2,2,2,2,4,6,1);
 	this.r19[2] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,4,2,1);
 	this.r19[3] = new Array(1,2,4,2,2,4,2,5,2,2,4,4,4,2,1);
-	this.r19[4] = new Array(1,2,4,2,2,4,4,4,4,4,4,3,4,2,1);
+	this.r19[4] = new Array(1,2,4,2,2,4,4,4,4,2,4,3,4,2,1);
 	this.r19[5] = new Array(1,2,4,2,2,2,2,2,2,2,4,2,4,2,1);
-	this.r19[6] = new Array(1,2,4,2,2,2,2,2,2,2,2,6,4,2,1);
+	this.r19[6] = new Array(1,2,4,2,2,2,6,2,2,2,2,6,4,2,1);
 	this.r19[7] = new Array(1,2,4,2,2,2,2,2,2,2,4,4,4,2,1);
 	this.r19[8] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,2,2,1);
 	this.r19[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
@@ -308,8 +308,6 @@ function AllTiles() {
 	this.r22[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r22[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
-	//NOT DCUMENTED
-	//variant of r17
 	this.r23 = new Array();
 	this.r23[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.r23[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,4,2,2,1);
@@ -413,7 +411,6 @@ function AllTiles() {
 	this.r30[8] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
 	this.r30[9] = new Array(1,2,2,4,2,2,2,2,2,2,2,4,2,2,1);
 	this.r30[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	//----end not documented
 
 	//define arrays of easy/med/hard rooms
 	//one room can show up in multiple difficulties, but I've already accounted for that in getWeighted
