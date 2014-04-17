@@ -72,9 +72,10 @@ Collisions.prototype.collisionContact = function()
 
                 xmove = r * x2 + (1 - r) * x1;  
                 ymove = r * y2 + (1 - r) * y1;  
-                 
-               contactB.pos[0] = xmove;
-               contactB.pos[1] = ymove;
+                
+				//uncomment for knockback
+              // contactB.pos[0] = xmove;
+              // contactB.pos[1] = ymove;
                
                mainGuy.hp = contactB.health;
 			   SOUNDS.playRandomGrunt();
@@ -86,7 +87,7 @@ Collisions.prototype.collisionContact = function()
 			   mainGuy.invul = true;
 			   setTimeout(function() {
 				mainGuy.invul = false;
-			   }, 1000);
+			   }, 600);
 			  }
               break;  
             }

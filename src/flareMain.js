@@ -371,7 +371,7 @@ function gameDraw() {
 	//collisionWorld.DrawDebugData();
 
    ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-	
+   
 	//only draw if not lit
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;

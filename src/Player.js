@@ -1,8 +1,5 @@
 function Player() 
 {
-  arcStart = Math.PI*5/8;
-  arcEnd = Math.PI*3/8;
-  
   this.lantern = {
 	currentLightSprite: SpriteNoOil,
 	shiftX: 0,
