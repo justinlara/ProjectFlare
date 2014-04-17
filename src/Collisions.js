@@ -158,7 +158,7 @@ Collisions.prototype.collisionContact = function()
   mainGuy.p.pos = [(GAME_WIDTH/2), (GAME_HEIGHT/2)];
   mainGuy.giveCollisionBox(newHealth);
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
-  GetFixtureB().GetBody().GetUserData();
+  //GetFixtureB().GetBody().GetUserData();
       }
       
       if(contactA.type === "door" && contactB.id === "player" )
@@ -791,18 +791,17 @@ Collisions.prototype.collisionContact = function()
              //console.log(man);
              //if( man.m_pointCount !==0)
              //{
-                 console.log(" \nbefore HIT WISE ");
-                 console.log(enemy.hitLight.hit[0]);
+                 //console.log(" \nbefore HIT WISE ");
+                 //console.log(enemy.hitLight.hit);
                    
-                   //(enemy.hitLight.hit[0] == 0)
-                if((enemy.hitLight.hit[0] === 0)) 
-                {
-                    //enemy.hitLight.hit[0] = 1;
-                    enemy.hitLight.hit[0] = 1;
+                  
+                if((enemy.hitLight.hit === false)) 
+                { 
+                    enemy.hitLight.hit = true;
                 }
                 
-                console.log(" \nafter HIT WISE ");
-                 console.log(enemy.hitLight.hit[0]);
+                //console.log(" \nafter HIT WISE ");
+                // console.log(enemy.hitLight.hit);
                 
                 /*      
                    x1= contactB.lightPos[0];//+ contactB.BoundSize; //pX;

@@ -43,8 +43,8 @@ function Enemy() {
   this.targetPosX = this.randomIntFromInterval(2, 14) * MEASURE_UNIT;
   this.targetPosY = this.randomIntFromInterval(2, 10) * MEASURE_UNIT;
 	
-	this.hit = 0;
-	this.hitLight = {hit: [this.hit] };
+	this.hit = false;
+	this.hitLight = {hit: this.hit };
 	
   // damage: 5
   this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 

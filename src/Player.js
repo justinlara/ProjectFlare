@@ -45,9 +45,6 @@ function Player()
      
    
  
-       
-        
-       
        this.lightBoundBox = collisionWorld.CreateBody(this.lightbox);
        this.lFix = this.lightBoundBox.CreateFixture(this.lightfix);
        
@@ -421,25 +418,46 @@ Player.prototype.giveCollisionBox = function(newHealth)
   this.playerfix = this.fixture;
   this.playerbox = this.body;
   
+  //this.lightfix = new b2FixtureDef;
+  //this.lightbox = new b2BodyDef;
+  
   var circleBox = this.playerfix.shape = new b2CircleShape; 
   this.playerbox.type = b2Body.b2_dynamicBody;   //b2_kinematicBody;
+  
+  this.lightfix.shape =  new b2PolygonShape; 
+  this.lightbox.type = b2Body.b2_dynamicBody;
+  
   this.playerbox.awake = false;
+  
+  this.rotateLightBox = false;
   
   this.playerbox.position.x = 1120/MEASURE_UNIT;
   this.playerbox.position.y = 150/MEASURE_UNIT;
+  
+  this.lightbox.position.x = 50/MEASURE_UNIT;
+  this.lightbox.position.y = 70/MEASURE_UNIT;
   
    //this.playerfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);
   circleBox.SetRadius(((MEASURE_UNIT)/30)*(.23));
    this.playerfix.shape.Set(circleBox);
   
-  this.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
-  this.pFix = this.playerBoundBox.CreateFixture(this.playerfix);
-  
+  this.lightfix.shape.SetAsBox(((MEASURE_UNIT/30)*.7),  ( (MEASURE_UNIT/30)*1.2 )); 
   
   this.playerBoundBox.SetSleepingAllowed(false);
   
+  this.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
+  this.pFix = this.playerBoundBox.CreateFixture(this.playerfix);
   
-    this.p = {  playerBody: this.playerBoundBox,  
+  this.lightBoundBox = collisionWorld.CreateBody(this.lightbox);
+  this.lFix = this.lightBoundBox.CreateFixture(this.lightfix);
+  
+  
+   
+  
+  
+  
+  
+    this.p = {  playerBody: this.playerBoundBox,  playerLight: this.lightBoundBox,
               pos: [(GAME_WIDTH/2), (GAME_HEIGHT/2)], 
               
                          //  url    pos(x,y)     size of     speed       frames  
@@ -450,6 +468,13 @@ Player.prototype.giveCollisionBox = function(newHealth)
            I: new Image()
            };
 	this.playerBoundBox.SetUserData( {id: "player", health: newHealth, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+	
+	this.lightBoundBox.SetUserData({id: "light", lightPos:  [(((this.p.pos[0]+((this.lightShiftX )+  (this.lantern.width)/2 )))),
+                                                             (((this.p.pos[1]+((this.lightShiftY )+  (this.lantern.height)/2)))) ] , 
+                                                 BoundSize:  [(((MEASURE_UNIT/30)*.7)*30)*2,  (((MEASURE_UNIT/30)*1.2 )*30)*2], // circle bound -((((MEASURE_UNIT)/30)*(.8))*30 )*2
+                                                 angle:     this.p.playerLight.GetAngle() 
+                                                 });
+	
 	
 	this.hp = newHealth;
 }
