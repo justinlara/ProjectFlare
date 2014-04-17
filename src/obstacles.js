@@ -1,7 +1,10 @@
 function Obstacles(posX, posY) {
     //obstacle base object
     this.image = new Image();
-    var variance = Math.floor((Math.random()*9) + 1);
+    var variance = Math.floor((Math.random()*6) + 1);
+	if (variance == 6) {//statue
+		variance += Math.floor((Math.random()*4));
+	}
 	this.image.src = "assets/tiles/block_castle_" + variance + ".png";
     
     this.posX = posX * MEASURE_UNIT;
