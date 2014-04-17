@@ -400,6 +400,19 @@ function AllTiles() {
 	this.r29[8] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
 	this.r29[9] = new Array(1,2,2,4,2,2,2,2,2,2,2,4,2,2,1);
 	this.r29[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r30 = new Array();
+	this.r30[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r30[1] = new Array(1,2,2,4,2,2,2,2,2,2,2,4,2,2,1);
+	this.r30[2] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.r30[3] = new Array(1,4,5,2,2,2,2,6,2,2,2,2,5,4,1);
+	this.r30[4] = new Array(1,2,2,2,2,2,6,5,6,2,2,2,2,2,1);
+	this.r30[5] = new Array(1,2,2,2,2,2,2,3,2,2,2,2,2,2,1);
+	this.r30[6] = new Array(1,2,2,2,2,2,6,5,6,2,2,2,2,2,1);
+	this.r30[7] = new Array(1,4,5,2,2,2,2,6,2,2,2,2,5,4,1);
+	this.r30[8] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.r30[9] = new Array(1,2,2,4,2,2,2,2,2,2,2,4,2,2,1);
+	this.r30[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	//----end not documented
 
 	//define arrays of easy/med/hard rooms
@@ -410,9 +423,9 @@ function AllTiles() {
 		this.r15);
 	this.medRooms = new Array();
 		this.medRooms.push(this.r4, this.r5, this.r6, this.r7, this.r12, this.r13, this.r16, this.r17, 
-		this.r18, this.r21, this.r22, this.r28, this.r29);
+		this.r18, this.r21, this.r22, this.r28);
 	this.hardRooms = new Array();
-		this.hardRooms.push(this.r19, this.r20, this.r23, this.r24, this.r25, this.r26, this.r27);
+		this.hardRooms.push(this.r19, this.r20, this.r23, this.r24, this.r25, this.r26, this.r27, this.r29, this.r30);
 }
 
 //methods to return room arrays
