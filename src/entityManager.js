@@ -28,6 +28,15 @@ function EntityManager() {
 		}
 	};
 	
+	// Renders entities without updating
+	this.renderAllEntities = function() {
+		this.reorderEntities();
+		
+		for (var i = 0; i < this.entities.length; i++) {
+			this.entities[i].render();
+		}
+	}
+	
 	this.clear = function() {
 		this.entities.length = 0;
 	};

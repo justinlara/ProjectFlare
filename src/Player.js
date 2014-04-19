@@ -114,7 +114,10 @@ function Player()
 	this.draw = function(w) 
 	{
 		this.update();
+		this.render();
+	};
 	
+	this.render = function() {
 		var playerScale = 1;
 		var pw = MEASURE_UNIT * playerScale;
 		var ph = MEASURE_UNIT * playerScale;
@@ -207,8 +210,6 @@ function Player()
 				}
 			}
 		}
-		
-		
 	};
 	
 	this.update = function() 

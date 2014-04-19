@@ -41,6 +41,10 @@ gameOver.src = "assets/ui/endscreen_mock.jpg";
 const maxHealth = 6;
 const maxLight = 6;
 
+// Pause menu
+var pauseMenu = new Image();
+pauseMenu.src = "assets/ui/pauseMenu/pauseMenu.png";
+
 //behavior globals
 MOVEB = new MoveBehavior();
 CHASEB = new ChaseBehavior();
@@ -350,6 +354,9 @@ function draw() {
 	} else if (gameState == 5) //death
 	{
 		drawFullScreenImage(gameOver);
+	} else if (gameState == 6) // paused
+	{
+		pauseDraw();
 	}
 }
 
@@ -407,14 +414,48 @@ function gameDraw() {
 	//entityManager.clearEnemies();
 	
 	//}
-}
-
-function drawUISingleDigit(cNum, top) {
 	
+	if (controls.isDown(controls.ESC)) {
+		gameState = 6;
+	}
 }
 
-function drawUIDoubleDigit(cNum1, cNum2, top) {
-
+function pauseDraw() {
+	//draw each canvas one at a time
+    //don't forget to clear the canvas before drawing the next frame
+    ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	
+	//draw room
+	thisLevel.currentRoom.draw();
+	
+	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+   
+	//only draw if not lit
+	if (!thisLevel.currentRoom.isLit) {
+		ctxDark.globalAlpha = 0.90;
+			
+		  // // * COMMENT FOR DEBUGGIN
+		ctxDark.globalCompositeOperation = 'source-over';
+		// Draw the field of darkness.
+		ctxDark.fillStyle = 'black';
+		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		ctxDark.globalAlpha = 1;
+		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
+			
+		ctxDark.globalAlpha = 0.99;
+		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
+		ctxDark.globalCompositeOperation = 'xor';//change back for lantern. may have to change the operation
+		
+		
+		// Draw the white arc to represent the light from the character's lantern.
+		//LIGHT MOVED TO Player.js!
+	}
+	
+	entityManager.renderAllEntities();
+	
+	if (controls.isDown(controls.TILDE)) {
+		gameState = 4;
+	}
 }
 
 function UIDraw() {

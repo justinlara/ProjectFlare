@@ -94,33 +94,40 @@ Enemy.prototype.newTarget = function() {
 	
 //draw the enemy on ctxWorld
 Enemy.prototype.draw = function() { 
+	this.update();
+	this.render();
+};
+
+Enemy.prototype.render = function() {
 	if (!this.dying)
 	{
-		this.move();
-		
-		this.enemyboundBox.SetActive(true);
-		//this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
-	
 		this.sprite.use("idle");
 		this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
 		//ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-		//this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
-		
-		this.enemyboundBox.SetPosition(new b2Vec2( ((this.positions.pos[0]+ (0.5*MEASURE_UNIT))/30), ((this.positions.pos[1]+ (0.85*MEASURE_UNIT))/30)));
-		                                  
-		
-		this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
-                                    BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
-                                    hitLight: this.hitLight  } ); 
-	   
+  
 	}
 	else if (this.dying)
 	{
 		this.sprite.use("death");
 		//this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 		
-		this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
+		this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);	
+	}
+}
+
+Enemy.prototype.update = function() {
+	if (!this.dying) {
+		this.move();
 		
+		this.enemyboundBox.SetActive(true);
+		//this.enemyboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
+		
+		//this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
+		this.enemyboundBox.SetPosition(new b2Vec2( ((this.positions.pos[0]+ (0.5*MEASURE_UNIT))/30), ((this.positions.pos[1]+ (0.85*MEASURE_UNIT))/30)));                                  
+		
+		this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
+                                    BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
+                                    hitLight: this.hitLight  } ); 
 	}
 	
 	this.posX = this.positions.pos[0];
@@ -128,4 +135,19 @@ Enemy.prototype.draw = function() {
 	
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.posX + " , " + this.posY );
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.positions.pos[0] + " , " + this.positions.pos[1] );
-};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,6 +4,9 @@ var controls =
 {
   _pressed: {},
 
+  TILDE: 192,
+  ESC: 27,
+  
   LEFT: 37,
   UP: 38,
   RIGHT: 39,
