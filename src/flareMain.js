@@ -314,7 +314,7 @@ function initGame() {
 	
 	// initialize UI counters
 	lampsLit = 0;
-	levelsTraversed = 0;
+	levelsTraversed = 1;
 }
 
 // Accepts an image and draws it over the whole screen, including UI and game
