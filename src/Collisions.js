@@ -124,8 +124,6 @@ Collisions.prototype.collisionContact = function()
 				//play sound
 				soundManager.play('lamplight');
 				
-				mainGuy.light=0;
-				
 				//switch to no lantern light sprite if out of light
 				if (mainGuy.light <= 0)
 				{
