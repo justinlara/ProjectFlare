@@ -51,7 +51,6 @@ Behavior.prototype.move = function() {
 		REACTB.move(this.rStr, this.actor);
 	}
 	else if(this.reacting == false) {
-		console.log("moving");
 		if(this.inRange) {
 			if( dist < this.actor.attackRange) {
 		
@@ -62,5 +61,6 @@ Behavior.prototype.move = function() {
 			MOVEB.move(this.mStr, this.actor);
 		}
 	}
+	this.actor.hitLight.hit = false;
 	this.reacting = false;
 };

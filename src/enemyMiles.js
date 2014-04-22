@@ -13,7 +13,7 @@ function Miles() {
 	this.escapeSpeed = MEASURE_UNIT * .02;
 	this.attackRange = MEASURE_UNIT * 0;
 	
-	this.enemyBehavior = new Behavior(this, 'wander', 'follow', 'none', 'freeze', 'none', 'none');
+	this.enemyBehavior = new Behavior(this, 'wander', 'follow', 'none', 'chase', 'none', 'none');
 }
 
 Miles.prototype = Object.create(Enemy.prototype);
