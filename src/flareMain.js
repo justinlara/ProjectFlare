@@ -354,7 +354,8 @@ function drawFade() {
 	
 	
 	// Smooth fade to black
-	opacity = fadeTimer/fadeDuration;
+	var opacity = fadeTimer/fadeDuration;
+	
 	ctxDark.globalAlpha = opacity;
 	ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
@@ -365,7 +366,7 @@ function drawFade() {
 	    fadeTimer = 0;
 	}
 	
-	console.log(opacity);
+	//console.log(opacity);
 	
 }
 
