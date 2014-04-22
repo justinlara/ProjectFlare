@@ -189,15 +189,19 @@ function Room(gridObj) {
 	//change the correct tile in the grid to a door
 		switch (door) {
 			case "n"://change from generic tile to door type; assign the correctly flipped image
+				                        //
 				this.grid[0][7] = new Tile("assets/tiles/door_castle_1.png", "door"); //i'm sorry for hardcoding this...
 				break;
 			case "s":
+			                            // 
 				this.grid[10][7] = new Tile("assets/tiles/door_castle_3.png", "door");
 				break;
 			case "e":
+			                             //
 				this.grid[5][14] = new Tile("assets/tiles/door_castle_2.png", "door");
 				break;
 			case "w":
+			                          // 
 				this.grid[5][0] = new Tile("assets/tiles/door_castle_4.png", "door");
 				break;
 			default:

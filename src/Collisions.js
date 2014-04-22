@@ -8,7 +8,9 @@ function Collisions()
 
 Collisions.prototype.collisionContact = function()
 {
-
+     
+     
+     
 // -- list method ----------------------------------------------------------
 /* 
   console.log(" LIST ");
@@ -159,13 +161,12 @@ Collisions.prototype.collisionContact = function()
   mainGuy.giveCollisionBox(newHealth);
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   //GetFixtureB().GetBody().GetUserData();
-  
-        // Fade to black before entering the new level.
-        gameState = 7;
       }
       
       if(contactA.type === "door" && contactB.id === "player" )
       {
+          //console.log("PLAYER HIT DO");
+          
       //  console.log(contactA.side);
         if (contactA.side == "n")
         {
@@ -199,13 +200,15 @@ Collisions.prototype.collisionContact = function()
   this.listener.PreSolve = function(contact)
   {
 //      console.log(" ---  PreSolve ------");
-
+       
       
       if(contact.GetFixtureA().GetBody().GetUserData() !== null || contact.GetFixtureB().GetBody().GetUserData() !== null)
       {
+          man = contact.GetManifold();
+         
        contactA = contact.GetFixtureA().GetBody().GetUserData();   
        contactB = contact.GetFixtureB().GetBody().GetUserData();  
-      
+        
       }
       
       
@@ -497,31 +500,33 @@ Collisions.prototype.collisionContact = function()
 
                //LEFT SIDE                            
                
-               if(contactB.pos[0] > ((wX- (sX/2))- contactB.BoundSize/2) && normals.x <= -1)
+               if(contactB.pos[0] > ((wX- (sX/2))- contactB.BoundSize*1.5) && normals.x <= -1)
                {
-                   contactB.pos[0] = ((wX- (sX/2))- contactB.BoundSize/2);
+                   contactB.pos[0] = ((wX- (sX/2))- contactB.BoundSize*1.5);
                    
                    //console.log("\n AFTER MOVE play posX: " + contactB.pos[0] + " > value " + (wX-(contactB.BoundSize/(5/4))));
-                   console.log(" Ob-L ");
+                   //console.log(" DOORWALL-L ");
                }    
                // RIGHT SIDE
-               else if(contactB.pos[0] < ((wX +(sX/2)) + (contactB.BoundSize/2))&& normals.x >= 1)
+               else if(contactB.pos[0] < ((wX +(sX/2)) - (contactB.BoundSize/2))&& normals.x >= 1)
                {
-                   console.log(" Ob-R ");
-                   contactB.pos[0] = ((wX + (sX/2)) + (contactB.BoundSize/2)); 
+                   //console.log(" DOORWALL-R ");
+                   contactB.pos[0] = ((wX + (sX/2)) - (contactB.BoundSize/2)); 
                }
                // TOP SIDE
                //else if(contactB.pos[1] > ((wY-sY) - contactB.BoundSize/2) && normals.y <= -1)
-               else if(contactB.pos[1] >= ((wY- (sY+2.5))) && normals.y <= -1)
+               else if(contactB.pos[1] >= ((wY- (sY))) - (contactB.BoundSize*1.5) && normals.y <= -1)
                {
-                   console.log(" Ob-U ");
-                   contactB.pos[1] = ((wY- (sY+2.5))); 
+                   //console.log(" DOORWALL-U ");
+                   contactB.pos[1] = ((wY- (sY)))- (contactB.BoundSize*1.5); 
                }
                // BOTTOM SIDE
-               else if(contactB.pos[1] < ((wY) + (contactB.BoundSize/2)) && normals.y >= 1)
+               else if(contactB.pos[1] < ((wY) - (contactB.BoundSize/2)) && normals.y >= 1)
                {
-                   console.log(" Ob-D ");
-                   contactB.pos[1] = ((wY) + (contactB.BoundSize/2)); 
+                   //console.log("WY :" +wY + " , bsize : " + contactB.BoundSize + "total:: "+ ((wY) + (contactB.BoundSize)));
+                   
+                   //console.log(" DOORWALL-D ");
+                   contactB.pos[1] = ((wY) - (contactB.BoundSize/2)); 
                }
                      
          

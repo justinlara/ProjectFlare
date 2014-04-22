@@ -8,23 +8,23 @@ function Door(doorSide) {
 	
 	if (this.side == "n")
 	{
-		this.posX = 5.5 * GAME_WIDTH/15;
-		this.posY = -1 * GAME_HEIGHT/11;
+		this.posX = (((((MEASURE_UNIT))*15.0)/2)); //5.5 * GAME_WIDTH/15;
+		this.posY = ((MEASURE_UNIT*.9)/2) - ((MEASURE_UNIT*1.4)/2); //-1 * GAME_HEIGHT/11;
 	}
 	else if (this.side == "e")
 	{
-		this.posX = 11.5 * GAME_WIDTH/15;
-		this.posY = 5 * GAME_HEIGHT/11;
+		this.posX = (1.01*MEASURE_UNIT/2)*30;  //11.5 * GAME_WIDTH/15;
+		this.posY = ((((11*MEASURE_UNIT))/2)); //5 * GAME_HEIGHT/11;
 	}
 	else if (this.side == "s")
 	{	
-		this.posX = 5.5 * GAME_WIDTH/15;
-		this.posY = 10 * GAME_HEIGHT/11;
+		this.posX = (((((MEASURE_UNIT))*15.0)/2)); //5.5 * GAME_WIDTH/15;
+		this.posY = (MEASURE_UNIT*.372)*30; //10 * GAME_HEIGHT/11;
 	}
 	else if (this.side == "w")
 	{	
-		this.posX = -0.5 * GAME_WIDTH/15;
-		this.posY = 5 * GAME_HEIGHT/11;
+		this.posX = (((MEASURE_UNIT*.1))) - (MEASURE_UNIT*.25); //-0.5 * GAME_WIDTH/15;
+		this.posY = ((((11*MEASURE_UNIT))/2)); //5 * GAME_HEIGHT/11;
 	}
 	
 	
@@ -48,7 +48,7 @@ function Door(doorSide) {
   
    //
    //this.doorfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
-   this.doorfix.shape.SetAsBox((MEASURE_UNIT/30/2),  ( MEASURE_UNIT/30/2 ));
+   this.doorfix.shape.SetAsBox((1.2*MEASURE_UNIT/30/2),  ( 1.2*MEASURE_UNIT/30/2 ));
    
    
   
@@ -97,7 +97,7 @@ Door.prototype.draw = function()
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  
   //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
-  this.doorboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));  
+  this.doorboundBox.SetPosition(new b2Vec2( (this.posX/30), (this.posY/30)));  
   
 
 };

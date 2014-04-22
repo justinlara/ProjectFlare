@@ -21,7 +21,7 @@ function Player()
   this.lightbox.type = b2Body.b2_dynamicBody;
   
   this.playerbox.awake = false;
-  //this.lightbox.awake = false;
+  this.lightbox.awake = false;
   
   this.playerbox.position.x = 1120/MEASURE_UNIT;
   this.playerbox.position.y = 150/MEASURE_UNIT;
@@ -428,6 +428,7 @@ Player.prototype.giveCollisionBox = function(newHealth)
   this.lightfix.shape =  new b2PolygonShape; 
   this.lightbox.type = b2Body.b2_dynamicBody;
   
+  
   this.playerbox.awake = true;
   
   this.rotateLightBox = false;
@@ -435,8 +436,8 @@ Player.prototype.giveCollisionBox = function(newHealth)
   this.playerbox.position.x = 1120/MEASURE_UNIT;
   this.playerbox.position.y = 150/MEASURE_UNIT;
   
-  this.lightbox.position.x = 50/MEASURE_UNIT;
-  this.lightbox.position.y = 70/MEASURE_UNIT;
+  this.lightbox.position.x = 0;//50/MEASURE_UNIT;
+  this.lightbox.position.y = 0;//70/MEASURE_UNIT;
   
    //this.playerfix.shape.SetAsBox((MEASURE_UNIT/30)/3,  ( MEASURE_UNIT/30 )/3);
   circleBox.SetRadius(((MEASURE_UNIT)/30)*(.23));
@@ -444,7 +445,7 @@ Player.prototype.giveCollisionBox = function(newHealth)
   
   this.lightfix.shape.SetAsBox(((MEASURE_UNIT/30)*.7),  ( (MEASURE_UNIT/30)*1.2 )); 
   
-  this.playerBoundBox.SetSleepingAllowed(false);
+  //this.playerBoundBox.SetSleepingAllowed(false);
   
   this.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   this.pFix = this.playerBoundBox.CreateFixture(this.playerfix);

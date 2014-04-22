@@ -53,7 +53,7 @@ function Soundloader() {
                  id: 'spookyMusic',
                  url: musicpath + 'spookyMusic.mp3',
                  autoLoad: true,
-                 autoPlay: true, //  turn on/off music for debugging 
+                 autoPlay: false, //  turn on/off music for debugging 
                  stream: true,
 				 volume: 50,
                  onfinish: function () {

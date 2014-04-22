@@ -66,30 +66,30 @@ function levelBarrier()
    //ORIGINAL:   this.Llevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( GAME_HEIGHT/MEASURE_UNIT ),
    //                                    new b2Vec2(LBoxX, LBoxY), 0);
   
-   this.Llevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((MEASURE_UNIT/30))) ),
+   this.Llevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((1.1*MEASURE_UNIT/30))) ),
                                        new b2Vec2(LBoxX, ((((MEASURE_UNIT))/2)/30)), 0);
   
-  this.L2levelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((MEASURE_UNIT/30))) ),
+  this.L2levelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((1.1*MEASURE_UNIT/30))) ),
                                        new b2Vec2(LBoxX, ((((MEASURE_UNIT))*10.5)/30)), 0);
   
   
   // ORIGINAL:  this.Rlevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( GAME_HEIGHT/MEASURE_UNIT ),
   //                                     new b2Vec2(RBoxX, RBoxY), 0);
   
-  this.Rlevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((MEASURE_UNIT/30))) ),
+  this.Rlevelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((1.1*MEASURE_UNIT/30))) ),
                                        new b2Vec2(RBoxX, ((((MEASURE_UNIT))/2)/30)), 0);
    
-   this.R2levelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((MEASURE_UNIT/30))) ),
+   this.R2levelfix.shape.SetAsOrientedBox(((MEASURE_UNIT/30)/2),  ( (((MEASURE_UNIT)*.183) -((1.1*MEASURE_UNIT/30))) ),
                                        new b2Vec2(RBoxX, ((((MEASURE_UNIT))*10.5)/30)), 0);
    
    
   //ORIGINAL:  this.Ulevelfix.shape.SetAsOrientedBox(( GAME_WIDTH/MEASURE_UNIT ), ((MEASURE_UNIT/30)/4),
   //                                     new b2Vec2(UBoxX, UBoxY), 0);
   
-  this.Ulevelfix.shape.SetAsOrientedBox((((MEASURE_UNIT)/4) -((MEASURE_UNIT/30))), ((MEASURE_UNIT/30)/4),
+  this.Ulevelfix.shape.SetAsOrientedBox((((MEASURE_UNIT)/4) -((1.1*MEASURE_UNIT/30))), ((MEASURE_UNIT/30)/4),
                                        new b2Vec2(DBoxX, UBoxY), 0);
   
-  this.U2levelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4)-((MEASURE_UNIT/30))), ((MEASURE_UNIT/30)/4),
+  this.U2levelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4)-((1.1*MEASURE_UNIT/30))), ((MEASURE_UNIT/30)/4),
                                        new b2Vec2((((((MEASURE_UNIT))*14.5)/30)) , UBoxY), 0);
   
   
@@ -97,10 +97,10 @@ function levelBarrier()
 //                                       new b2Vec2(DBoxX, DBoxY), 0);
                                                             
                                                             //
- this.Dlevelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4) -((MEASURE_UNIT/30))),  ((MEASURE_UNIT/30)*.55),  
+ this.Dlevelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4) -((1.1*MEASURE_UNIT/30))),  ((MEASURE_UNIT/30)*.55),  
                                        new b2Vec2(DBoxX, DBoxY), 0);   
                                        
- this.D2levelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4)-((MEASURE_UNIT/30)) ),  ((MEASURE_UNIT/30)*.55),  
+ this.D2levelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4)-((1.1*MEASURE_UNIT/30)) ),  ((MEASURE_UNIT/30)*.55),  
                                        new b2Vec2((((((MEASURE_UNIT))*14.5)/30)) , DBoxY), 0);
   
   console.log("d y lenght: " + (((MEASURE_UNIT)/4) -((MEASURE_UNIT/30))) + " y center :" + ((((MEASURE_UNIT))/2)/30) );
