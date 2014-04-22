@@ -428,7 +428,7 @@ Player.prototype.giveCollisionBox = function(newHealth)
   this.lightfix.shape =  new b2PolygonShape; 
   this.lightbox.type = b2Body.b2_dynamicBody;
   
-  this.playerbox.awake = false;
+  this.playerbox.awake = true;
   
   this.rotateLightBox = false;
   
