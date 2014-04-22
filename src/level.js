@@ -236,9 +236,14 @@ Level.prototype.goToNorthRoom = function() {
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
 			
+			// Gives full light meter if the entered room is the starting room.
 			this.giveLightMeter();
 			
+			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
+			
+			// Fade animation to transition between rooms.
+			this.fade();
 		}
 	}
 }
@@ -262,9 +267,14 @@ Level.prototype.goToEastRoom = function() {
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
 			
+			// Gives full light meter if the entered room is the starting room.
 			this.giveLightMeter();
 			
+			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
+			
+			// Fade animation to transition between rooms.
+			this.fade();
 		}
 	}
 }
@@ -288,9 +298,14 @@ Level.prototype.goToSouthRoom = function() {
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
 			
+			// Gives full light meter if the entered room is the starting room.
 			this.giveLightMeter();
 			
+			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
+			
+			// Fade animation to transition between rooms.
+			this.fade();
 		}
 	}
 }
@@ -300,8 +315,6 @@ Level.prototype.goToWestRoom = function() {
 		if(this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.startingRoom) != -1)
 		{
-			//this.fade();
-			
 			this.turnOffHitboxesForCurrentRoom();
 			
 			mainGuy.p.pos[0] = 10 * GAME_WIDTH/15;
@@ -315,9 +328,14 @@ Level.prototype.goToWestRoom = function() {
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
 			
+			// Gives full light meter if the entered room is the starting room.
 			this.giveLightMeter();
 			
+			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
+			
+			// Fade animation to transition between rooms.
+			this.fade();
 		}
 	}
 }
@@ -355,45 +373,25 @@ Level.prototype.turnOffHitboxesForCurrentRoom = function()
 Level.prototype.checkDoorWalls = function(level)
 //function checkDoorWalls()
 {
-console.log("hey" + this.doorWalls);	
-	
-	console.log(roomNorthExists(level) + " " +roomEastExists(level) + " " +roomSouthExists(level) + " " +roomWestExists(level));
-	
 	if (roomNorthExists(level))
-	{
 		this.doorWalls[0].doorWallboundBox.SetActive(false);
-	}
 	else
-	{
 		this.doorWalls[0].doorWallboundBox.SetActive(true);
-	}
 	
 	if (roomEastExists(level))
-	{
-		this.doorWalls[1].doorWallboundBox.SetActive(false);
-	}
+		this.doorWalls[1].doorWallboundBox.SetActive(false)
 	else
-	{
 		this.doorWalls[1].doorWallboundBox.SetActive(true);
-	}
 	
 	if (roomSouthExists(level))
-	{
 		this.doorWalls[2].doorWallboundBox.SetActive(false);
-	}
 	else
-	{
 		this.doorWalls[2].doorWallboundBox.SetActive(true);
-	}
 	
 	if (roomWestExists(level))
-	{
 		this.doorWalls[3].doorWallboundBox.SetActive(false);
-	}
 	else
-	{
 		this.doorWalls[3].doorWallboundBox.SetActive(true);
-	}
 	
 }
 
@@ -407,20 +405,21 @@ Level.prototype.giveLightMeter = function()
 
 Level.prototype.fade = function()
 {
+	gameState = 7;
 	
-	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-	ctxDark.fillStyle = 'black';
-	ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-	
-	
-		//ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-		//ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-		
-	console.log("STOP!");
+	//ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	//ctxDark.fillStyle = 'black';
+	//ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	//
-	var t = new Date().getTime();
-	while (new Date().getTime() < t + 1000){};
-	console.log("START!");
+	//
+	//	//ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+	//	//ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+	//	
+	//console.log("STOP!");
+	////
+	//var t = new Date().getTime();
+	//while (new Date().getTime() < t + 1000){};
+	//console.log("START!");
 	
 	//var timeoutID = window.setTimeout(fadeStop2, 2000);
 }

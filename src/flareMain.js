@@ -12,6 +12,9 @@ var thisLevel;
 var lampsLit;
 var levelsTraversed;
 
+var fadeTimer = 0;
+var fadeDuration = 30;
+
 //globals for sprites
 var loadSpriteP;
 var loadSpriteMiles;
@@ -333,6 +336,29 @@ function drawFullScreenImage(im) {
 	ctxDark.drawImage(im, -(GAME_WIDTH * 0.15), 0, GAME_WIDTH, GAME_HEIGHT);
 }
 
+function drawFade() {
+	// Fade to black immediately.
+	//ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
+	//opacity = 1.0;
+	//ctxDark.globalAlpha = opacity;
+	//ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	
+	
+	// Smooth fade to black
+	opacity = fadeTimer/fadeDuration;
+	ctxDark.globalAlpha = opacity;
+	ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	
+	fadeTimer++;
+	//console.log(fadeTimer);
+	
+	if (fadeTimer == 30)
+	{
+	    fadeTimer = 0;
+	}
+	
+}
+
 function draw() {
     window.requestAnimationFrame(draw);
 	if (gameState == 1) //splash
@@ -358,6 +384,15 @@ function draw() {
 	} else if (gameState == 6) // paused
 	{
 		pauseDraw();
+	}
+	else if (gameState == 7) //fade
+	{
+		var fadeDurationInMillis = 500;
+		
+		setTimeout(function(){
+			gameState = 4;
+		}, fadeDurationInMillis); //after 0.5 seconds, fade stops and game resumes
+		drawFade();
 	}
 }
 

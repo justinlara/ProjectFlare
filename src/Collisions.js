@@ -159,6 +159,9 @@ Collisions.prototype.collisionContact = function()
   mainGuy.giveCollisionBox(newHealth);
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   //GetFixtureB().GetBody().GetUserData();
+  
+        // Fade to black before entering the new level.
+        gameState = 7;
       }
       
       if(contactA.type === "door" && contactB.id === "player" )
