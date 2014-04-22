@@ -359,12 +359,13 @@ function drawFade() {
 	ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
 	fadeTimer++;
-	//console.log(fadeTimer);
 	
 	if (fadeTimer == 30)
 	{
 	    fadeTimer = 0;
 	}
+	
+	console.log(opacity);
 	
 }
 

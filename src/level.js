@@ -18,6 +18,9 @@ function Level(numberOfRooms, floorNumber) {
 	
 	this.lightsLit = 0;
 	
+	this.turnOffPreviousDoors = false;
+	this.previousX = -1;
+	this.previousY = -1;
 	
 	this.doorWalls = new Array();
 	this.doorWalls.push(new DoorWall("n"));
@@ -343,10 +346,14 @@ Level.prototype.goToWestRoom = function() {
 Level.prototype.turnOffHitboxesForCurrentRoom = function()
 {
 	// Turn off the door hitboxes for the current room.
-	for (var i = 0; i < this.layout[this.currentY][this.currentX].doors.length; i++)
-	{
-		this.layout[this.currentY][this.currentX].doors[i].doorboundBox.SetActive(false);
-	}
+	//for (var i = 0; i < this.layout[this.currentY][this.currentX].doors.length; i++)
+	//{
+	//	this.layout[this.currentY][this.currentX].doors[i].doorboundBox.SetActive(false);
+	//}
+	this.turnOffPreviousDoors = true;
+	this.previousX = this.currentX;
+	this.previousY = this.currentY;
+	
 	
 	// Turn off the enemies hitboxes for the current room.
 	for (var i = 0; i < this.layout[this.currentY][this.currentX].enemies.length; i++)
@@ -406,44 +413,5 @@ Level.prototype.giveLightMeter = function()
 Level.prototype.fade = function()
 {
 	gameState = 7;
-	
-	//ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-	//ctxDark.fillStyle = 'black';
-	//ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-	//
-	//
-	//	//ctxDark.clearRect(0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-	//	//ctxDark.drawImage(loadImg, 0, 0, GAME_WIDTH*.85, GAME_HEIGHT);
-	//	
-	//console.log("STOP!");
-	////
-	//var t = new Date().getTime();
-	//while (new Date().getTime() < t + 1000){};
-	//console.log("START!");
-	
-	//var timeoutID = window.setTimeout(fadeStop2, 2000);
-}
-
-function fadeStop2(){
-	console.log("START!");
-}
-
-Level.prototype.fadeStop = function()
-{
-	console.log("fadestop");
-	this.turnOffHitboxesForCurrentRoom();
-			
-			mainGuy.p.pos[0] = 10 * GAME_WIDTH/15;
-			
-			this.currentX--;
-			this.currentRoom = this.layout[this.currentY][this.currentX];
-			//need to add enemies to the manager!
-			entityManager.clearEnemies();
-			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
-				console.log("going to push enemy");
-				entityManager.addEntity(this.currentRoom.enemies[i]);
-			}
-			
-			this.giveLightMeter();
 }
 ;

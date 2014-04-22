@@ -183,6 +183,18 @@ function Room(gridObj) {
 		} else if (this.enemyFadeTimer >= this.enemyFadeDuration) {
 			this.killEnemies();
 		}
+		
+		// Turn off door hitboxes for previous room. Must be done due to 2D box's collision system (aka should not
+		// set the thing that collided to inactive on the same frame as the collision).
+		if (thisLevel.turnOffPreviousDoors)
+		{
+			for (var i = 0; i < thisLevel.layout[thisLevel.previousY][thisLevel.previousX].doors.length; i++)
+			{
+				thisLevel.layout[thisLevel.previousY][thisLevel.previousX].doors[i].doorboundBox.SetActive(false);
+			}
+			
+			thisLevel.turnOffPreviousDoors = false;
+		}
 	};
 	
 	this.setDoor = function(door) {
