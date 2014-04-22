@@ -48,6 +48,7 @@ pauseMenu.src = "assets/ui/pauseMenu/pauseMenu.png";
 //behavior globals
 MOVEB = new MoveBehavior();
 CHASEB = new ChaseBehavior();
+REACTB = new ReactBehavior();
 
 function resizeScreen() {
     //thanks to Gopherwood studios on html5rocks.com on how to do this

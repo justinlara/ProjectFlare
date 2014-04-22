@@ -13,7 +13,7 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 	this.runStr = RunType;
 	this.sStr = SpecialType;
 	
-	this.react = function(){};
+	this.reacting = false;
 }
 
 Behavior.prototype.distanceToPlayer = function() {
@@ -46,13 +46,21 @@ Behavior.prototype.move = function() {
 		this.inRange = false;
 	}
 
-	if(this.inRange) {
-		if( dist < this.actor.attackRange) {
-		
-		} else {
-			CHASEB.move(this.cStr, this.actor);
-		}
-	} else {
-		MOVEB.move(this.mStr, this.actor);
+	if(this.actor.hitLight.hit == true) {
+		this.reacting = true;
+		REACTB.move(this.rStr, this.actor);
 	}
+	else if(this.reacting == false) {
+		console.log("moving");
+		if(this.inRange) {
+			if( dist < this.actor.attackRange) {
+		
+			} else {
+				CHASEB.move(this.cStr, this.actor);
+			}
+		} else {
+			MOVEB.move(this.mStr, this.actor);
+		}
+	}
+	this.reacting = false;
 };
