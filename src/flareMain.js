@@ -48,6 +48,15 @@ const maxLight = 6;
 var pauseMenu = new Image();
 pauseMenu.src = "assets/ui/pauseMenu/pauseMenu.png";
 
+var resumeButton = new Image();
+resumeButton.src = "assets/ui/pauseMenu/resume.png";
+
+var restartButton = new Image();
+restartButton.src = "assets/ui/pauseMenu/restart.png";
+
+var quitButton = new Image();
+quitButton.src = "assets/ui/pauseMenu/quit.png";
+
 //behavior globals
 MOVEB = new MoveBehavior();
 CHASEB = new ChaseBehavior();
@@ -488,6 +497,13 @@ function pauseDraw() {
 	}
 	
 	entityManager.renderAllEntities();
+	
+	// Draw pause menu and buttons
+	ctxDark.drawImage(pauseMenu, -MEASURE_UNIT, GAME_HEIGHT * .16, GAME_WIDTH * .9, GAME_HEIGHT * .60);
+	
+	ctxDark.drawImage(resumeButton, GAME_WIDTH * .18, GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
+	ctxDark.drawImage(restartButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 2.9), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
+	ctxDark.drawImage(quitButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 5.8), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
 	
 	if (controls.isDown(controls.TILDE)) {
 		gameState = 4;
