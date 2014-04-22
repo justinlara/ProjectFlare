@@ -143,10 +143,6 @@ function Player()
                                                  //angle:     this.p.playerLight.GetAngle() 
                                                  });
 		
-		
-		//old draw:
-		//w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
-		
 		//updated to consider invulnerability time
 		if (!this.invul) {
 			//use sprite draw method
@@ -155,30 +151,14 @@ function Player()
 			if (!thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
 				if (this.light > 0) {
 					ctxDark.globalCompositeOperation = 'xor';
-					ctxDark.fillRect(this.p.pos[0]+this.lantern.shiftX+5, this.p.pos[1]+this.lantern.shiftY+5, 
-						this.lantern.width-7, this.lantern.height-7);
-					  
-					  // ****COMMENTED FOR DEBUGGING
-					ctxDark.globalCompositeOperation = 'source-over';
 					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
-
-					//erase edges and redraw them
-					ctxDark.clearRect(0,0,MEASURE_UNIT,GAME_HEIGHT);
-					ctxDark.globalAlpha = 0.90;
-					ctxDark.fillRect(0,0,MEASURE_UNIT,GAME_HEIGHT);
-					
-					//test- yes
-					//ctxDark.globalCompositeOperation = 'xor';
-					//ctxDark.drawImage(imgtest, 300, 0);
+					ctxDark.globalCompositeOperation = 'source-over';
 				}
 				//no light, draw base circle
 				else if (this.light <= 0) {
 					ctxDark.globalCompositeOperation = 'xor';
-					ctxDark.fillRect(this.p.pos[0]+5, this.p.pos[1]+5, MEASURE_UNIT-7, MEASURE_UNIT-7);
-					
-					 // ****COMMENTED FOR DEBUGGING
+					SpriteNoOil.draw(ctxDark, this.p.pos[0]-(MEASURE_UNIT/2), this.p.pos[1]-(MEASURE_UNIT/2));
 					ctxDark.globalCompositeOperation = 'source-over';
-					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0], this.p.pos[1]);
 				}
 			}
 			
@@ -187,30 +167,20 @@ function Player()
 		else { //flicker player sprite and lantern
 			this.frameCount++;
 			var frame = this.frameCount % 10;
-			if (frame <= 5) {//play with this to change flicker speed
+			if (frame <= 5 && this.light > 0) {//play with this to change flicker speed
 				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
-				//---
-				if (!thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
-				if (this.light > 0) {
-					ctxDark.globalCompositeOperation = 'xor';
-					ctxDark.fillRect(this.p.pos[0]+this.lantern.shiftX+5, this.p.pos[1]+this.lantern.shiftY+5, 
-						this.lantern.width-7, this.lantern.height-7);
-					ctxDark.globalCompositeOperation = 'source-over';
-					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
-				}
-				//no light, draw base circle
-				else if (this.light <= 0) {
-					var shiftX = 0; 
-					var shiftY = 0; //adjustment needed
-					ctxDark.globalCompositeOperation = 'xor';
-					ctxDark.fillRect(this.p.pos[0]+shiftX+5, this.p.pos[1]+shiftY+5, MEASURE_UNIT-7, MEASURE_UNIT-7);
-					ctxDark.globalCompositeOperation = 'source-over';
-					this.currentLightSprite.draw(ctxDark, this.p.pos[0]+shiftX, this.p.pos[1]+shiftY);
-				}
-				}
+				ctxDark.globalCompositeOperation = 'xor';
+				this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
+				ctxDark.globalCompositeOperation = 'source-over';
+			}
+			//no light, draw base circle
+			else if (frame <= 5 && this.light <= 0) {
+				ctxDark.globalCompositeOperation = 'xor';
+				SpriteNoOil.draw(ctxDark, this.p.pos[0]-(MEASURE_UNIT/2), this.p.pos[1]-(MEASURE_UNIT/2));
+				ctxDark.globalCompositeOperation = 'source-over';
 			}
 		}
-	};
+	}
 	
 	this.update = function() 
 	{
@@ -270,16 +240,15 @@ function Player()
 	  
 	     //console.log(" rotateLightBox--- L --- " + this.horizSetBox);
 	   */
-	  
 		this.lantern.currentLightSprite = SpriteLanternLEFT;
 		this.lantern.shiftX = -MEASURE_UNIT*4.5;
 		this.lantern.shiftY = -MEASURE_UNIT*2;
 		this.lantern.width = MEASURE_UNIT*6*scaleLight;
 		this.lantern.height = MEASURE_UNIT*5*scaleLight;
+				//this.lightShiftX = this.lantern.shiftX+10;
+		this.lightShiftX = this.lantern.shiftX*.99;
+		this.lightShiftY = this.lantern.shiftY;
 		
-		//this.lightShiftX = this.lantern.shiftX+10;
-        this.lightShiftX = this.lantern.shiftX*.99;
-        this.lightShiftY = this.lantern.shiftY;
 		
 		this.p.pos[0] -= MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkLeft');
@@ -301,7 +270,6 @@ function Player()
 	   
         //console.log(" rotateLightBox--- R --- " + this.horizSetBox);
 	  */
-		
 		this.lantern.currentLightSprite = SpriteLanternRIGHT;
 		this.lantern.shiftX = -MEASURE_UNIT*.5;
 		this.lantern.shiftY = -MEASURE_UNIT*2;
@@ -309,7 +277,8 @@ function Player()
 		this.lantern.height = MEASURE_UNIT*5*scaleLight;
 		                                    // -10
 		this.lightShiftX = this.lantern.shiftX*1.3;
-        this.lightShiftY = this.lantern.shiftY;
+		this.lightShiftY = this.lantern.shiftY;
+		
 		
 		this.p.pos[0]  +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkRight');
@@ -336,7 +305,7 @@ function Player()
 		this.lantern.height = MEASURE_UNIT*6*scaleLight;
 		
 		this.lightShiftX = this.lantern.shiftX;
-        this.lightShiftY = this.lantern.shiftY*.87;
+		this.lightShiftY = this.lantern.shiftY*.87;
 		
 		this.p.pos[1] -=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkUp');
@@ -359,7 +328,6 @@ function Player()
        // console.log(" rotateLightBox--- D --- " + this.vertSetBox);
 	  */
 	 
-	    
 		this.lantern.currentLightSprite = SpriteLanternDOWN;
 		this.lantern.shiftX = -MEASURE_UNIT*2;
 		this.lantern.shiftY = -MEASURE_UNIT*.5;
@@ -367,7 +335,8 @@ function Player()
 		this.lantern.height = MEASURE_UNIT*6*scaleLight;
 		
 		this.lightShiftX = this.lantern.shiftX;
-        this.lightShiftY = this.lantern.shiftY*.65;
+		this.lightShiftY = this.lantern.shiftY*.65;
+		
 		
 		this.p.pos[1] +=  MEASURE_UNIT*this.movespeed;
 		loadSpriteP.use('walkDown');

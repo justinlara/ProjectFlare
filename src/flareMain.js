@@ -164,7 +164,7 @@ function loadAssets() {
 				}
 	});
 	scaleLight = 1;
-	SpriteNoOil = new Sprite("assets/LightOverlay_NoOil.png",
+	SpriteNoOil = new Sprite("assets/New light filters/LightOverlay_NoOil.png",
 		{
 			frameW: 128,
 			frameH: 128,
@@ -176,7 +176,7 @@ function loadAssets() {
 			}
 		}
 	);
-	SpriteLanternUP = new Sprite("assets/LightOverlay_3.png",
+	SpriteLanternUP = new Sprite("assets/New light filters/LightOverlay_3.png",
 		{
 			frameW: 320,
 			frameH: 384,
@@ -188,7 +188,7 @@ function loadAssets() {
 			}
 		}
 	);
-	SpriteLanternRIGHT = new Sprite("assets/LightOverlay_2.png",
+	SpriteLanternRIGHT = new Sprite("assets/New light filters/LightOverlay_2.png",
 		{
 			frameW: 384,
 			frameH: 320,
@@ -200,7 +200,7 @@ function loadAssets() {
 			}
 		}
 	);
-	SpriteLanternDOWN = new Sprite("assets/LightOverlay_1.png",
+	SpriteLanternDOWN = new Sprite("assets/New light filters/LightOverlay_1.png",
 		{
 			frameW: 320,
 			frameH: 384,
@@ -212,7 +212,7 @@ function loadAssets() {
 			}
 		}
 	);
-	SpriteLanternLEFT = new Sprite("assets/LightOverlay_4.png",
+	SpriteLanternLEFT = new Sprite("assets/New light filters/LightOverlay_4.png",
 		{
 			frameW: 384,
 			frameH: 320,

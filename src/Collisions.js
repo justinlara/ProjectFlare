@@ -112,11 +112,9 @@ Collisions.prototype.collisionContact = function()
       if(contactA.type === "lamp" && contactB.id === "player" )
       {
 	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
-               //setTimeout(function(){thisLevel.currentRoom.setLit(true)}, 1000);
 			   thisLevel.currentRoom.setLit(true);
 			   lightlampEffect(thisLevel.currentRoom.lamp.posX, thisLevel.currentRoom.lamp.posY);
                entityManager.clearEnemies();
-               //thisLevel.currentRoom.killEnemies();
                mainGuy.light--;
                thisLevel.lightsLit++;
 
@@ -125,6 +123,18 @@ Collisions.prototype.collisionContact = function()
 			   
 				//play sound
 				soundManager.play('lamplight');
+				
+				mainGuy.light=0;
+				
+				//switch to no lantern light sprite if out of light
+				if (mainGuy.light <= 0)
+				{
+					mainGuy.lantern.currentLightSprite = SpriteLanternRIGHT;
+					mainGuy.lantern.shiftX = -MEASURE_UNIT/2;
+					mainGuy.lantern.shiftY = -MEASURE_UNIT/2;
+					mainGuy.lantern.width = MEASURE_UNIT;
+					mainGuy.lantern.height = MEASURE_UNIT;
+				}
 	      }
       }
       
