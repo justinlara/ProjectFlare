@@ -46,10 +46,15 @@ function Enemy() {
 	this.hit = false;
 	this.hitLight = {hit: this.hit };
 	
+	this.hitLR = false;
+	this.hitUD = false;
+	this.hitSomething = {hitLR: this.hitLR, hitUD: this.hitUD};
+	
   // damage: 5
   this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
-                                    hitLight: this.hitLight  } ); 
+                                    hitLight: this.hitLight, 
+                                    hitSomething: this.hitSomething } ); 
   //this.enemybox.position.y  	
 	
 	//sprite defaults:
@@ -127,7 +132,8 @@ Enemy.prototype.update = function() {
 		
 		this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
-                                    hitLight: this.hitLight  } ); 
+                                    hitLight: this.hitLight,
+                                    hitSomething: this.hitSomething  } ); 
 	}
 	
 	this.posX = this.positions.pos[0];

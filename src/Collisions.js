@@ -355,6 +355,9 @@ Collisions.prototype.collisionContact = function()
                  contactA.xy.pos[0] = (newMove); 
              }
                      
+             if(contactA.hitSomething.hitLR === false)
+                   contactA.hitSomething.hitLR = true;        
+                     
             break;  
            }
           
@@ -371,6 +374,8 @@ Collisions.prototype.collisionContact = function()
                  contactA.xy.pos[0] = newMove;  
              }
              
+             if(contactA.hitSomething.hitLR === false)
+                   contactA.hitSomething.hitLR = true;  
                
                break; 
            }
@@ -387,6 +392,9 @@ Collisions.prototype.collisionContact = function()
                  
                  contactA.xy.pos[1] = newMove;  
              }
+                
+             if(contactA.hitSomething.hitUD === false)
+                   contactA.hitSomething.hitUD = true;   
                 
               break; 
            }
@@ -408,13 +416,17 @@ Collisions.prototype.collisionContact = function()
              
            //console.log("player pos AFTER (DOWN) === " + contactA.pY + " newMove -- " + newMove + "\n"); 
        
+             if(contactA.hitSomething.hitUD === false)
+                 contactA.hitSomething.hitUD = true;  
                
                break;
            }
                 
           } // switch End
          } // if wallContact null End
-          
+         //console.log("\nINSIDE WALL/ENEMY ");
+       //console.log(contactA.hitSomething.hitLR);
+       //console.log(contactA.hitSomething.hitUD);   
       }
      
      if(contactA.type === "lamp" && contactB.id === "player")
@@ -508,9 +520,9 @@ Collisions.prototype.collisionContact = function()
 
                //LEFT SIDE                            
                
-               if(contactB.pos[0] > ((wX- (sX/2))- contactB.BoundSize*1.5) && normals.x <= -1)
+               if(contactB.pos[0] > ((wX- (sX/2))- contactB.BoundSize*1.6) && normals.x <= -1)
                {
-                   contactB.pos[0] = ((wX- (sX/2))- contactB.BoundSize*1.5);
+                   contactB.pos[0] = ((wX- (sX/2))- contactB.BoundSize*1.6);
                    
                    //console.log("\n AFTER MOVE play posX: " + contactB.pos[0] + " > value " + (wX-(contactB.BoundSize/(5/4))));
                    //console.log(" DOORWALL-L ");
@@ -713,7 +725,9 @@ Collisions.prototype.collisionContact = function()
          if( man.m_pointCount !==0)
          {
               //console.log("  enemy HIT OBST" );
-       
+           
+           
+               
            wX = contactB.wPx;
            wY = contactB.wPy;
            sX = contactB.size[0];
@@ -733,6 +747,9 @@ Collisions.prototype.collisionContact = function()
                    contactA.xy.pos[0] = wX-(sX);
                    
                    //console.log(" E-- Ob-L ");
+                   
+                   if(contactA.hitSomething.hitLR === false)
+                   contactA.hitSomething.hitLR = true;
                }    
                // RIGHT SIDE
                                           //+(sX/2)) + (contactA.BoundSize[0]/2)
@@ -741,6 +758,9 @@ Collisions.prototype.collisionContact = function()
                    //console.log(" E-- Ob-R ");
                                         //+ (sX/2)) + (contactA.BoundSize[0]/2)
                    contactA.xy.pos[0] = (wX+sX); 
+                   
+                   if(contactA.hitSomething.hitLR === false)
+                   contactA.hitSomething.hitLR = true;
                }
                // TOP SIDE
                                     //- (sY/1.5))- contactA.BoundSize[1]/2
@@ -749,6 +769,9 @@ Collisions.prototype.collisionContact = function()
                    //console.log(" E-- Ob-U ");
                                       //- (sY/1.5))- contactA.BoundSize[1]/2
                    contactA.xy.pos[1] = (wY-(sY+5)); 
+                   
+                   if(contactA.hitSomething.hitUD === false)
+                   contactA.hitSomething.hitUD = true;
                }
                // BOTTOM SIDE
                                           //+ (contactA.BoundSize[1]/2)
@@ -756,12 +779,17 @@ Collisions.prototype.collisionContact = function()
                {
                    //console.log(" E-- Ob-D ");
                                         // + (contactA.BoundSize[1]/2)
-                   contactA.xy.pos[1] = ((wY+sY)); 
+                   contactA.xy.pos[1] = ((wY+sY));
+                   
+                   if(contactA.hitSomething.hitUD === false)
+                   contactA.hitSomething.hitUD = true; 
                }
                      
          
         }
-               
+         //console.log("\nINSIDE OBSTICLE/ENEMY ");
+       //console.log(contactA.hitSomething.hitLR);
+       //console.log(contactA.hitSomething.hitUD);      
      }
      
      //if(contactA.id === "light" &&  contactB.type === "enemy" ) // for square rect. shapes
