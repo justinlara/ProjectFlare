@@ -60,7 +60,8 @@ function Level(numberOfRooms, floorNumber) {
         for (var c = 0; c < this.structure.width; c++)
         {
             // If this room is an active room...
-            if (this.structure.level[r][c].indexOf(this.structure.activeRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.startingRoom) != -1)
+            if (this.structure.level[r][c].indexOf(this.structure.activeRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.startingRoom) != -1
+		|| this.structure.level[r][c].indexOf(this.structure.exitRoom) != -1)
             {
 		// Give this room its room layout.
 		//var tileGrid = ALLTILES.entrance; //ALLTILES.getRandom(); //or ALLTILES.entrance when you want that specifically
@@ -91,6 +92,22 @@ function Level(numberOfRooms, floorNumber) {
 			this.currentY = r;
 		}
 		
+		// If this is the exit room, set it as an exit room(denoted by X as the first char)
+		if (this.structure.level[r][c].indexOf(this.structure.exitRoom) != -1)
+		{
+			console.log("YESSSSSSSSSS");
+			var tileGrid = ALLTILES.exit1;
+			
+			var newRoom = new Room(tileGrid);
+			
+			// Set this room to have that room layout.
+			this.layout[r][c] = newRoom;
+			
+			// Set the setLit to be true for this room.
+			newRoom.setLit(true);
+			
+			console.log("YESSSSSSSSSS");
+		}
 		// Give this room its doors.
 		for (i = 1; i < this.structure.level[r][c].length; i++)
 		{	
@@ -224,7 +241,8 @@ Level.prototype.goToNorthRoom = function() {
 	if (this.currentY > 0)
 	{
 		if(this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
-		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.startingRoom) != -1)
+		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.startingRoom) != -1 ||
+		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.exitRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
@@ -255,7 +273,8 @@ Level.prototype.goToEastRoom = function() {
 	if (this.currentX < this.structure.width-1)
 	{
 		if(this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.activeRoom) != -1 ||
-		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.startingRoom) != -1)
+		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.startingRoom) != -1 ||
+		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.exitRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
@@ -286,7 +305,8 @@ Level.prototype.goToSouthRoom = function() {
 	if (this.currentY < this.structure.height-1)
 	{
 		if(this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
-		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.startingRoom) != -1)
+		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.startingRoom) != -1 ||
+		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.exitRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
@@ -316,7 +336,8 @@ Level.prototype.goToWestRoom = function() {
 	if (this.currentX > 0)
 	{
 		if(this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.activeRoom) != -1 ||
-		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.startingRoom) != -1)
+		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.startingRoom) != -1 ||
+		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.exitRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			

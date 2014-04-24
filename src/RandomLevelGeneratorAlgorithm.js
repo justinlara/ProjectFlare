@@ -21,6 +21,7 @@ var roomCount;
 const inactiveRoom = "\u00A0"; // this is a space, e.g. " "
 const activeRoom = "O";
 const startingRoom = "$";
+const exitRoom = "X";
 //}
 
 function createRandomLevel(nRooms)
@@ -73,6 +74,10 @@ function createRandomLevel(nRooms)
             roomCount++;
         }
     }
+    
+    // Make an exit room for this level.
+    makeExitRoom();
+    
     // Draw the level.
     //drawLevel();
     
@@ -81,7 +86,8 @@ function createRandomLevel(nRooms)
             width: width,
             activeRoom: activeRoom,
             inactiveRoom: inactiveRoom,
-            startingRoom: startingRoom};
+            startingRoom: startingRoom,
+            exitRoom: exitRoom};
 }
 
 
@@ -219,6 +225,47 @@ function pickNextRoom(picked)
         return false;
     }
 }
+
+// Randomly pick a random active room of the level.
+// Returns an array of two values (pickedRow, pickedCol).
+function makeExitRoom()
+{
+    // "choose" = random integer between 1 and roomCount-1.  Minus 1 to not count starting room.
+    var choose = Math.floor((Math.random()*(roomCount-1)) + 1);
+    
+    // "count" = counter for when the choose'th active room is selected.
+    var count = 0;
+    
+    // Iterate to find the chosen active room.
+    for (var r = 0; r < height; r++)
+    {
+        for (var c = 0; c < width; c++)
+        {
+            // If this room is an active room... EXCLUDING the starting room.
+            if (level[r][c].indexOf(activeRoom) != -1)
+            {
+                // Increment the counter.
+                count++;
+                
+                // When the choose'th room is selected...
+                if (count == choose)
+                {
+                    // Make this active room an ending room instead.
+                    level[r][c] = level[r][c].replace(activeRoom, exitRoom);
+                    return -1;
+                
+                    //// Return the coordinates for this random active room.
+                    //return {pickedRow: r,
+                    //        pickedCol: c};
+                }
+            }
+        }
+    }
+    
+    // This value should never return.
+    return -1;
+}
+//
 
 // Ghetto text representation of the level.
 function drawLevel()
