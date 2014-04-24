@@ -95,7 +95,6 @@ function Level(numberOfRooms, floorNumber) {
 		// If this is the exit room, set it as an exit room(denoted by X as the first char)
 		if (this.structure.level[r][c].indexOf(this.structure.exitRoom) != -1)
 		{
-			console.log("YESSSSSSSSSS");
 			var tileGrid = ALLTILES.exit1;
 			
 			var newRoom = new Room(tileGrid);
@@ -105,8 +104,6 @@ function Level(numberOfRooms, floorNumber) {
 			
 			// Set the setLit to be true for this room.
 			newRoom.setLit(true);
-			
-			console.log("YESSSSSSSSSS");
 		}
 		// Give this room its doors.
 		for (i = 1; i < this.structure.level[r][c].length; i++)
