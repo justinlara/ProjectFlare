@@ -61,6 +61,4 @@ Behavior.prototype.move = function() {
 			MOVEB.move(this.mStr, this.actor);
 		}
 	}
-	this.actor.hitLight.hit = false;
-	this.reacting = false;
 };

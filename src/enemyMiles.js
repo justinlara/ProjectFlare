@@ -9,8 +9,10 @@ function Miles() {
 	this.imageDying.src = "assets/Miles_Enemy_Dying.png";
 	
 	this.speed = MEASURE_UNIT * .01;
+	this.normalSpeed = MEASURE_UNIT * .01;
 	this.aquisitionRange = MEASURE_UNIT * 1.5;
-	this.escapeSpeed = MEASURE_UNIT * .02;
+	this.escapeSpeed = MEASURE_UNIT * .015;
+	this.escapeRange = MEASURE_UNIT * 3;
 	this.attackRange = MEASURE_UNIT * 0;
 	
 	this.enemyBehavior = new Behavior(this, 'wander', 'follow', 'none', 'chase', 'none', 'none');
