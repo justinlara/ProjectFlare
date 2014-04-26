@@ -74,7 +74,7 @@ Lamp.prototype.draw = function()
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  
   //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
-  this.lampboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));  
+  this.lampboundBox.SetPosition(new b2Vec2( (this.posX/30)+ (MEASURE_UNIT/30/2), (this.posY/30)+ (MEASURE_UNIT/30/2)));  
   
 
 };
