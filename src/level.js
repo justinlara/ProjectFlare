@@ -345,7 +345,7 @@ Level.prototype.goToWestRoom = function() {
 			//need to add enemies to the manager!
 			entityManager.clearEnemies();
 			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
-				console.log("going to push enemy");
+				//console.log("going to push enemy");
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
 			

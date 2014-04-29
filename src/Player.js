@@ -167,14 +167,14 @@ function Player()
 		else { //flicker player sprite and lantern
 			this.frameCount++;
 			var frame = this.frameCount % 10;
-			if (frame <= 5 && this.light > 0) {//play with this to change flicker speed
+			if (!thisLevel.currentRoom.isLit && frame <= 5 && this.light > 0) {//play with this to change flicker speed
 				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
 				ctxDark.globalCompositeOperation = 'xor';
 				this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
 				ctxDark.globalCompositeOperation = 'source-over';
 			}
 			//no light, draw base circle
-			else if (frame <= 5 && this.light <= 0) {
+			else if (!thisLevel.currentRoom.isLit && frame <= 5 && this.light <= 0) {
 				ctxDark.globalCompositeOperation = 'xor';
 				SpriteNoOil.draw(ctxDark, this.p.pos[0]-(MEASURE_UNIT/2), this.p.pos[1]-(MEASURE_UNIT/2));
 				ctxDark.globalCompositeOperation = 'source-over';

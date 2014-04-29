@@ -89,6 +89,7 @@ Collisions.prototype.collisionContact = function()
 			   mainGuy.invul = true;
 			   setTimeout(function() {
 				mainGuy.invul = false;
+				//console.log("no longer invul");
 			   }, 600);
 			  }
               break;  
