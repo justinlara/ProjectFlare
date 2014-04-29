@@ -41,10 +41,10 @@ function AllTiles() {
 	this.r2[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.r2[1] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
 	this.r2[2] = new Array(1,4,5,2,2,2,2,2,2,2,2,2,5,4,1);
-	this.r2[3] = new Array(1,2,2,2,4,4,2,2,2,4,4,2,2,2,1);
+	this.r2[3] = new Array(1,2,2,2,4,4,2,5,2,4,4,2,2,2,1);
 	this.r2[4] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
 	this.r2[5] = new Array(1,2,2,2,2,2,2,3,2,2,2,2,2,2,1);
-	this.r2[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r2[6] = new Array(1,2,2,2,2,5,2,2,2,5,2,2,2,2,1);
 	this.r2[7] = new Array(1,2,2,2,4,4,2,2,2,4,4,2,2,2,1);
 	this.r2[8] = new Array(1,4,5,2,2,2,2,2,2,2,2,2,5,4,1);
 	this.r2[9] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
@@ -84,7 +84,7 @@ function AllTiles() {
 	this.r5[4] = new Array(1,2,4,2,4,2,2,2,2,2,4,2,4,2,1);
 	this.r5[5] = new Array(1,2,4,2,4,2,2,6,2,2,4,2,4,2,1);
 	this.r5[6] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
-	this.r5[7] = new Array(1,2,4,4,4,4,4,4,4,2,2,2,4,2,1);
+	this.r5[7] = new Array(1,2,4,3,4,4,4,4,4,2,2,2,4,2,1);
 	this.r5[8] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
 	this.r5[9] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
 	this.r5[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
@@ -102,11 +102,11 @@ function AllTiles() {
 	this.r6[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r6[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
-	this.r7 = new Array(); //miles hallway, no lamp
+	this.r7 = new Array(); //miles hallway, updated
 	this.r7[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.r7[1] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
-	this.r7[2] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
-	this.r7[3] = new Array(1,4,4,4,4,4,2,2,2,4,4,4,4,4,1);
+	this.r7[1] = new Array(1,2,2,2,2,4,2,2,2,4,3,2,2,4,1);
+	this.r7[2] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,4,2,1);
+	this.r7[3] = new Array(1,4,4,4,4,4,2,2,2,4,2,4,4,4,1);
 	this.r7[4] = new Array(1,2,2,2,2,2,5,2,5,2,2,2,2,2,1);
 	this.r7[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r7[6] = new Array(1,2,2,2,2,2,5,2,5,2,2,2,2,2,1);
@@ -169,7 +169,7 @@ function AllTiles() {
 	this.r12[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.r12[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r12[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.r12[3] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r12[3] = new Array(1,2,2,2,4,4,4,4,4,4,4,3,2,2,1);
 	this.r12[4] = new Array(1,2,2,2,4,2,5,2,5,2,4,2,2,2,1);
 	this.r12[5] = new Array(1,2,2,2,4,2,2,6,2,2,4,2,2,2,1);
 	this.r12[6] = new Array(1,2,2,2,4,5,2,2,2,5,4,2,2,2,1);
@@ -201,7 +201,7 @@ function AllTiles() {
 	this.r14[6] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
 	this.r14[7] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
 	this.r14[8] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
-	this.r14[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r14[9] = new Array(1,3,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r14[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 
 	this.r15 = new Array();
@@ -222,7 +222,7 @@ function AllTiles() {
 	this.r16[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r16[2] = new Array(1,2,6,2,4,4,4,4,4,4,4,2,6,2,1);
 	this.r16[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.r16[4] = new Array(1,2,2,2,2,2,4,6,4,2,2,2,2,2,1);
+	this.r16[4] = new Array(1,2,2,2,2,2,4,5,4,2,2,2,2,2,1);
 	this.r16[5] = new Array(1,2,2,4,2,2,4,2,4,2,2,4,2,2,1);
 	this.r16[6] = new Array(1,2,2,4,2,2,4,3,4,2,2,4,2,2,1);
 	this.r16[7] = new Array(1,2,2,4,2,2,4,4,4,2,2,4,2,2,1);
@@ -236,7 +236,7 @@ function AllTiles() {
 	this.r17[2] = new Array(1,2,2,2,5,2,2,2,2,2,2,4,6,2,1);
 	this.r17[3] = new Array(1,2,4,4,2,2,2,2,2,2,4,2,2,2,1);
 	this.r17[4] = new Array(1,2,4,4,2,4,4,4,4,2,4,2,2,2,1);
-	this.r17[5] = new Array(1,2,4,4,2,6,2,3,4,2,2,2,2,2,1);
+	this.r17[5] = new Array(1,2,4,4,2,5,2,3,4,2,2,2,2,2,1);
 	this.r17[6] = new Array(1,2,4,4,2,4,4,4,4,2,5,2,2,2,1);
 	this.r17[7] = new Array(1,2,4,4,2,2,2,2,2,2,4,2,2,2,1);
 	this.r17[8] = new Array(1,2,2,2,2,2,2,2,2,2,5,4,2,2,1);
@@ -289,7 +289,7 @@ function AllTiles() {
 	this.r21[3] = new Array(1,2,4,4,2,2,2,2,2,2,2,4,4,2,1);
 	this.r21[4] = new Array(1,2,4,4,2,2,4,4,4,2,2,4,4,2,1);
 	this.r21[5] = new Array(1,2,4,4,5,2,4,3,4,2,5,4,2,2,1);
-	this.r21[6] = new Array(1,2,4,4,2,2,4,6,4,2,2,4,4,2,1);
+	this.r21[6] = new Array(1,2,4,4,2,2,4,5,4,2,2,4,4,2,1);
 	this.r21[7] = new Array(1,2,4,4,2,2,2,2,2,2,2,4,4,2,1);
 	this.r21[8] = new Array(1,2,2,4,4,4,4,4,4,4,4,4,2,2,1);
 	this.r21[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
@@ -301,7 +301,7 @@ function AllTiles() {
 	this.r22[2] = new Array(1,2,2,2,2,2,2,4,4,4,2,2,2,2,1);
 	this.r22[3] = new Array(1,2,2,2,4,4,2,2,2,2,2,4,4,2,1);
 	this.r22[4] = new Array(1,2,2,2,4,6,4,4,4,4,2,4,4,2,1);
-	this.r22[5] = new Array(1,2,2,2,5,2,4,3,2,6,2,4,4,2,1);
+	this.r22[5] = new Array(1,2,2,2,5,2,4,3,2,5,2,4,4,2,1);
 	this.r22[6] = new Array(1,2,2,2,2,5,4,4,4,4,2,4,4,2,1);
 	this.r22[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,4,4,2,1);
 	this.r22[8] = new Array(1,2,5,2,2,2,2,2,5,2,2,2,2,2,1);
@@ -543,16 +543,55 @@ function AllTiles() {
 	this.r40[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
 	this.r40[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r40[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r41 = new Array(); //variation of r14
+	this.r41[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r41[1] = new Array(1,3,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r41[2] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r41[3] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r41[4] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r41[5] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r41[6] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r41[7] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r41[8] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r41[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r41[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r42 = new Array(); //variation of r14
+	this.r42[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r42[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,3,1);
+	this.r42[2] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r42[3] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r42[4] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r42[5] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r42[6] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r42[7] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r42[8] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r42[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r42[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.r43 = new Array(); //variation of r14
+	this.r43[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.r43[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.r43[2] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r43[3] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r43[4] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r43[5] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r43[6] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.r43[7] = new Array(1,2,2,2,4,4,4,4,4,4,4,2,2,2,1);
+	this.r43[8] = new Array(1,2,2,5,2,2,2,2,2,2,2,5,2,2,1);
+	this.r43[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,3,1);
+	this.r43[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	//end not documented
 
 	//define arrays of easy/med/hard rooms
 	//one room can show up in multiple difficulties, but I've already accounted for that in getWeighted
 	//also listing the same room more than once skews the randomness.  dont do that
 	this.easyRooms = new Array();
-		this.easyRooms.push(this.r1, this.r2, this.r3, this.r8, this.r9, this.r10, this.r11, this.r14,
-		this.r15);
+		this.easyRooms.push(this.r1, this.r2, this.r3, this.r8, this.r9, this.r10, this.r11, this.r12, 
+		this.r14, this.r15, this.r41, this.r42, this.r43);
 	this.medRooms = new Array();
-		this.medRooms.push(this.r4, this.r5, this.r6, this.r7, this.r12, this.r13, this.r16, this.r17, 
+		this.medRooms.push(this.r4, this.r5, this.r6, this.r7, this.r13, this.r16, this.r17, 
 		this.r18, this.r21, this.r22, this.r28, this.r38);
 	this.hardRooms = new Array();
 		this.hardRooms.push(this.r19, this.r20, this.r23, this.r24, this.r25, this.r26, this.r27, this.r29, 
