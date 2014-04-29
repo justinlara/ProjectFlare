@@ -595,7 +595,7 @@ function AllTiles() {
 		this.r18, this.r21, this.r22, this.r28, this.r38);
 	this.hardRooms = new Array();
 		this.hardRooms.push(this.r19, this.r20, this.r23, this.r24, this.r25, this.r26, this.r27, this.r29, 
-		this.r30, this.r31, this.r32, this.r33, this.r34, this.r35, this.r36, this.r37);
+		this.r30, this.r31, this.r32, this.r33, this.r34, this.r35, this.r36, this.r37, this.r39, this.r40);
 }
 
 //methods to return room arrays
@@ -636,7 +636,7 @@ AllTiles.prototype.getWeighted = function(floor) {
 	//floor * something is the % chance of getting a hard room, so it gradually increases
 	//no hard rooms should roll on floors <5, no easy rooms 10+
 	
-	if (floor < 2) //easy floors 1-2
+	if (floor == 1) //easy floors
 	{
 		//get easy or medium
 		var medChance = floor*15;
@@ -648,10 +648,9 @@ AllTiles.prototype.getWeighted = function(floor) {
 			return this.getEasy();
 		}
 	}
-	else if (floor >= 2 && floor < 5) { //medium floors 2-5
+	else if (floor >= 2 && floor <= 5) { //medium floors 2-5
 		var hardChance = floor*10;
-		var medChance = floor*40; //this is actually the chance of medium OR hard
-		//easy chance at least 10
+		var medChance = floor*20; //this is actually the chance of medium OR hard
 		var r = Math.floor((Math.random()*100));
 		if (r<hardChance) {
 			return this.getHard();
