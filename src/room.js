@@ -223,6 +223,25 @@ function Room(gridObj) {
 		this.doors.push(newDoor);
 	};
 	
+	this.setDoorAsLit = function(door) {
+		//change the correct tile in the grid to a door
+		switch (door) {
+			case "n"://change from generic tile to door type; assign the correctly flipped image
+				this.grid[0][7].image.src = "assets/tiles/door_castle_5.png";
+				break;
+			case "s":
+				this.grid[10][7].image.src = "assets/tiles/door_castle_7.png";
+				break;
+			case "e":
+				this.grid[5][14].image.src = "assets/tiles/door_castle_6.png";
+				break;
+			case "w":
+				this.grid[5][0].image.src = "assets/tiles/door_castle_8.png";
+				break;
+			default:
+		}
+	};
+	
 	this.setLit = function(lit) {
 		this.isLit = lit; //disabled for debugging
 		

@@ -121,7 +121,8 @@ function Level(numberOfRooms, floorNumber) {
     }
     
     this.checkDoorWalls(this);
-
+    this.checkLitDoors(this);
+    
 ////
 	//generate code goes here.  Store the layout in this.layout
 	//code to create a new room:
@@ -234,6 +235,27 @@ function roomWestExists(level){
 	return false;
 }
 
+
+//Level.prototype.isRoomNorthLit = function() {
+function isRoomNorthLit(level){
+	return level.layout[level.currentY-1][level.currentX].isLit;
+}
+
+//Level.prototype.isRoomEastLit = function() {
+function isRoomEastLit(level){
+	return level.layout[level.currentY][level.currentX+1].isLit;
+}
+
+//Level.prototype.isRoomSouthLit = function() {
+function isRoomSouthLit(level){
+	return level.layout[level.currentY+1][level.currentX].isLit;
+}
+
+//Level.prototype.isRoomWestLit = function() {
+function isRoomWestLit(level){
+	return level.layout[level.currentY][level.currentX-1].isLit;
+}
+
 Level.prototype.goToNorthRoom = function() {
 	if (this.currentY > 0)
 	{
@@ -259,6 +281,9 @@ Level.prototype.goToNorthRoom = function() {
 			
 			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
+			
+			// Check if adjacent doors are lit.
+			this.checkLitDoors(this);
 			
 			// Fade animation to transition between rooms.
 			this.fade();
@@ -292,6 +317,9 @@ Level.prototype.goToEastRoom = function() {
 			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
 			
+			// Check if adjacent doors are lit.
+			this.checkLitDoors(this);
+			
 			// Fade animation to transition between rooms.
 			this.fade();
 		}
@@ -324,6 +352,9 @@ Level.prototype.goToSouthRoom = function() {
 			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
 			
+			// Check if adjacent doors are lit.
+			this.checkLitDoors(this);
+			
 			// Fade animation to transition between rooms.
 			this.fade();
 		}
@@ -354,6 +385,9 @@ Level.prototype.goToWestRoom = function() {
 			
 			// Check the entered room's walls to create doorWall hitboxes or not.
 			this.checkDoorWalls(this);
+			
+			// Check if adjacent doors are lit.
+			this.checkLitDoors(this);
 			
 			// Fade animation to transition between rooms.
 			this.fade();
@@ -418,6 +452,59 @@ Level.prototype.checkDoorWalls = function(level)
 	else
 		this.doorWalls[3].doorWallboundBox.SetActive(true);
 	
+}
+
+Level.prototype.checkLitDoors = function(level)
+//function checkLitDoors()
+{
+	//if (roomNorthExists(level))
+	//{
+	//	if (isRoomNorthLit(level))
+	//	{
+	//		this.layout[this.currentY][this.currentX].setDoorAsLit("n");
+	//		console.log("north room is lit");
+	//	}
+	//	else
+	//	{
+	//		console.log("north room is not lit");
+	//	}
+	//}
+	//else
+	//{
+	//	console.log("north room does not exist");
+	//}
+	
+	if (roomNorthExists(level))
+	{
+		if (isRoomNorthLit(level))
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsLit("n");
+		}
+	}
+	
+	if (roomEastExists(level))
+	{
+		if (isRoomEastLit(level))
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsLit("e");
+		}
+	}
+	
+	if (roomSouthExists(level))
+	{
+		if (isRoomSouthLit(level))
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsLit("s");
+		}
+	}
+	
+	if (roomWestExists(level))
+	{
+		if (isRoomWestLit(level))
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsLit("w");
+		}
+	}
 }
 
 Level.prototype.giveLightMeter = function()
