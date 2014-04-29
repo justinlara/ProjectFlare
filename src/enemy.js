@@ -40,8 +40,8 @@ function Enemy() {
   
   this.positions = { pos: [this.posX, this.posY]};
   
-  this.targetPosX = this.randomIntFromInterval(2, 14) * MEASURE_UNIT;
-  this.targetPosY = this.randomIntFromInterval(2, 10) * MEASURE_UNIT;
+  this.targetPosX = this.randomIntFromInterval(1, 13) * MEASURE_UNIT;
+  this.targetPosY = this.randomIntFromInterval(1, 9) * MEASURE_UNIT;
 	
 	this.hit = false;
 	this.hitLight = {hit: this.hit };
