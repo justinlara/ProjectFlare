@@ -93,7 +93,7 @@ Door.prototype.draw = function()
     this.doorboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
     
 	ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-  
+
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  
   //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);

@@ -6,6 +6,11 @@ function Room(gridObj) {
 	//booleans, for lit
 	this.isLit = false;
 	
+	this.northLit = false;
+	this.southLit = false;
+	this.eastLit = false;
+	this.westLit = false;
+	
 	this.isEntrance = false;
 	
 	//array of enemy objects present in the room
@@ -197,6 +202,26 @@ function Room(gridObj) {
 		}
 	};
 	
+	this.drawOverlays = function() {
+		//lit overlays:
+		if (!this.isLit) {
+			ctxDark.globalCompositeOperation = 'destination-out';
+			if (this.northLit) {
+				SpriteDoorOverN.draw(ctxDark, MEASURE_UNIT*6.5, 0);
+			}
+			if (this.southLit) {
+				SpriteDoorOverS.draw(ctxDark, MEASURE_UNIT*6.5, MEASURE_UNIT*9);
+			}
+			if (this.eastLit) {
+				SpriteDoorOverE.draw(ctxDark, MEASURE_UNIT*13, MEASURE_UNIT*4.5);
+			}
+			if (this.westLit) {
+				SpriteDoorOverW.draw(ctxDark, 0, MEASURE_UNIT*4.5);
+			}
+			ctxDark.globalCompositeOperation = 'source-over';
+		}
+	}
+	
 	this.setDoor = function(door) {
 	//change the correct tile in the grid to a door
 		switch (door) {
@@ -228,15 +253,19 @@ function Room(gridObj) {
 		switch (door) {
 			case "n"://change from generic tile to door type; assign the correctly flipped image
 				this.grid[0][7].image.src = "assets/tiles/door_castle_5.png";
+				this.northLit = true;
 				break;
 			case "s":
 				this.grid[10][7].image.src = "assets/tiles/door_castle_7.png";
+				this.southLit = true;
 				break;
 			case "e":
 				this.grid[5][14].image.src = "assets/tiles/door_castle_6.png";
+				this.eastLit = true;
 				break;
 			case "w":
 				this.grid[5][0].image.src = "assets/tiles/door_castle_8.png";
+				this.westLit = true;
 				break;
 			default:
 		}

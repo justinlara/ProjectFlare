@@ -150,7 +150,8 @@ function Player()
 			
 			if (!thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
 				if (this.light > 0) {
-					ctxDark.globalCompositeOperation = 'xor';
+					ctxDark.globalCompositeOperation = 'destination-out';
+				//	ctxDark.globalCompositeOperation = 'xor';
 					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
 					ctxDark.globalCompositeOperation = 'source-over';
 				}
