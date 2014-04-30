@@ -1,7 +1,7 @@
 function TMunge() {
 	Enemy.call(this);
 	
-	this.sprite = loadSpriteMiles;
+	this.sprite = loadSpriteTMunge;
 	
 	this.image = new Image();
 	this.image.src = "assets/Miles_Enemy1.png";
@@ -14,6 +14,9 @@ function TMunge() {
 	this.attackRange = MEASURE_UNIT * 0;
 	
 	this.enemyBehavior = new Behavior(this, 'wander', 'follow', 'none', 'none', 'none', 'none');
+	/*this.setSprite = function() {
+		
+	}*/
 }
 
 TMunge.prototype = Object.create(Enemy.prototype);

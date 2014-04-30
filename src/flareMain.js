@@ -224,6 +224,54 @@ function loadAssets() {
 			}
 		}
 	);
+	SpriteDoorOverN = new Sprite("assets/New light filters/LightOverlay_LitDoor_1.png", 
+		{
+			frameW: 192,
+			frameH: 192,
+			projectedW: MEASURE_UNIT*2,
+			projectedH: MEASURE_UNIT*2, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteDoorOverN.startLoop();
+			}
+		}
+	);
+	SpriteDoorOverE = new Sprite("assets/New light filters/LightOverlay_LitDoor_2.png", 
+		{
+			frameW: 192,
+			frameH: 192,
+			projectedW: MEASURE_UNIT*2,
+			projectedH: MEASURE_UNIT*2, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteDoorOverE.startLoop();
+			}
+		}
+	);
+	SpriteDoorOverS = new Sprite("assets/New light filters/LightOverlay_LitDoor_3.png", 
+		{
+			frameW: 192,
+			frameH: 192,
+			projectedW: MEASURE_UNIT*2,
+			projectedH: MEASURE_UNIT*2, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteDoorOverS.startLoop();
+			}
+		}
+	);
+	SpriteDoorOverW = new Sprite("assets/New light filters/LightOverlay_LitDoor_4.png", 
+		{
+			frameW: 192,
+			frameH: 192,
+			projectedW: MEASURE_UNIT*2,
+			projectedH: MEASURE_UNIT*2, 
+			interval: 150,
+			postInitCallback: function() {
+				SpriteDoorOverW.startLoop();
+			}
+		}
+	);
 	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
@@ -237,7 +285,24 @@ function loadAssets() {
 			interval: 150, // Switch frames every xxx ms
 			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
 			postInitCallback: function() {
-				loadSpriteP.start('idle');
+				loadSpriteMiles.start('idle');
+			}
+		}
+	);
+	loadSpriteTMunge = new SpriteMap("assets/enemies/munge_idle_sheet.png",
+		{
+			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 17},
+			death: {startRow: 1, startCol: 0, endRow: 1, endCol: 17}
+		},
+		{
+			frameW: 64, // Width of each frame of the animation in pixels
+			frameH: 64, // Height of each frame of the animation in pixels
+			projectedW: MEASURE_UNIT, // Displayed width
+			projectedH: MEASURE_UNIT, // Displayed height 
+			interval: 150, // Switch frames every xxx ms
+			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+			postInitCallback: function() {
+				loadSpriteTMunge.start('idle');
 			}
 		}
 	);
@@ -412,6 +477,7 @@ function gameDraw() {
     //draw each canvas one at a time
     //don't forget to clear the canvas before drawing the next frame
     ctxWorld.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+	ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	
 	// During each gameDraw, check if the player has died
 	if (mainGuy.hp <= 0) { // Player is dead, change gameState
@@ -424,8 +490,6 @@ function gameDraw() {
 	//for debugging collisions
 	//collisionWorld.DrawDebugData();
 
-   ctxDark.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-   
 	//only draw if not lit
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;
@@ -449,6 +513,7 @@ function gameDraw() {
 
 	//draw entities, including the player
 	entityManager.drawAllEntities();
+	thisLevel.currentRoom.drawOverlays();
 	
 	collisionWorld.Step((0),0,0);
 	
