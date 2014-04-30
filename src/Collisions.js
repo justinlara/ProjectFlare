@@ -158,8 +158,8 @@ Collisions.prototype.collisionContact = function()
 	collisionWorld.SetDebugDraw(debugDraw);
         
         //thisLevel = new Level(thisLevel.nRooms+1, thisLevel.floorNumber+1);
-		//room number = 10 + floornumber (linear)
-        thisLevel = new Level(thisLevel.nRooms+thisLevel.floorNumber, thisLevel.floorNumber+1);
+		//var number = 10 + thisLevel.floorNumber;
+        thisLevel = new Level(thisLevel.nRooms+2, thisLevel.floorNumber+1);
         
         //mainGuy = new Player();
         //mainGuy.hp = currentHealth;
