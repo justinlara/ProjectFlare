@@ -115,7 +115,7 @@ function loadAssets() {
 	loadImg.src = "assets/loading.png";
 	
     var images = new Array();
-    var imgNumber = 26;
+    var imgNumber = 36;
     for (var i = 0; i < imgNumber; i++) {
         images[i] = new Image();
     }
@@ -145,6 +145,16 @@ function loadAssets() {
 	images[23].src = "assets/tiles/block_castle_8.png";
 	images[24].src = "assets/tiles/block_castle_9.png";
 	images[25].src = "assets/loading.png";
+	images[26].src = "assets/ui/heart_sheet.png";
+	images[27].src = "assets/ui/light_sheet.png";
+	images[28].src = "assets/tiles/door_castle_1.png";
+	images[29].src = "assets/tiles/door_castle_2.png";
+	images[30].src = "assets/tiles/door_castle_3.png";
+	images[31].src = "assets/tiles/door_castle_4.png";
+	images[32].src = "assets/tiles/door_castle_5.png";
+	images[33].src = "assets/tiles/door_castle_6.png";
+	images[34].src = "assets/tiles/door_castle_7.png";
+	images[35].src = "assets/tiles/door_castle_8.png";
 	
 	loadSpriteP =  new SpriteMap('assets/player/Walking.png',//image
 			{ //anim sequences
@@ -448,7 +458,7 @@ function draw() {
 	{
 		setTimeout(function() {
 			gameState = 4;
-		}, 1500); //after 1.5 seconds, advances to the game
+		}, 2000); //after xxx seconds, advances to the game
 		drawFullScreenImage(loadImg);
 
 	} else if (gameState == 2) //menu
