@@ -351,6 +351,8 @@ function loadAssets() {
 					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
 				}
 	});
+	
+	createButtons();
 }
 
 function initGame() {
@@ -566,13 +568,16 @@ function pauseDraw() {
 	
 	// Draw pause menu and buttons
 	ctxDark.drawImage(pauseMenu, -MEASURE_UNIT, GAME_HEIGHT * .16, GAME_WIDTH * .9, GAME_HEIGHT * .60);
-	
-	ctxDark.drawImage(resumeButton, GAME_WIDTH * .18, GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
-	ctxDark.drawImage(restartButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 2.9), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
-	ctxDark.drawImage(quitButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 5.8), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
+	document.getElementById('resume').style.display =  "block";
+	document.getElementById('restart').style.display =  "block";
+	document.getElementById('quit').style.display =  "block";
 	
 	if (controls.isDown(controls.TILDE)) {
 		gameState = 4;
+		
+		document.getElementById('resume').style.display =  "none";
+		document.getElementById('restart').style.display =  "none";
+		document.getElementById('quit').style.display =  "none";
 	}
 }
 
@@ -668,6 +673,45 @@ function UIDraw() {
 	}
 }
 
+function createButtons() {
+	// Create variable for the gameScreen div
+	var topCanvas = document.getElementById('gameScreen');
+
+	// Pause buttons
+	var pauseResume = document.createElement('div');
+	pauseResume.id = 'resume';
+	pauseResume.innerHTML = "<img src='assets/ui/pauseMenu/resume.png' width='100%' height='100%' />";
+	pauseResume.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 2.8)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5;");
+	topCanvas.appendChild(pauseResume);
+	pauseResume.style.display = 'none';
+	
+	var pauseRestart = document.createElement('div');
+	pauseRestart.id = 'restart';
+	pauseRestart.innerHTML = "<img src='assets/ui/pauseMenu/restart.png' width='100%' height='100%' />";
+	pauseRestart.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 5.7)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5;");
+	topCanvas.appendChild(pauseRestart);
+	pauseRestart.style.display = 'none';
+	
+	var pauseQuit = document.createElement('div');
+	pauseQuit.id = 'quit';
+	pauseQuit.innerHTML = "<img src='assets/ui/pauseMenu/quit.png' width='100%' height='100%' />";
+	pauseQuit.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5;");
+	topCanvas.appendChild(pauseQuit);
+	pauseQuit.style.display = 'none';
+	pauseQuit.addEventListener("click", quitHandler, false);
+	
+	
+	//ctxDark.drawImage(resumeButton, GAME_WIDTH * .18, GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
+	//ctxDark.drawImage(restartButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 2.9), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
+	//ctxDark.drawImage(quitButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 5.8), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
+	
+	//resume.drawImage(resumeButton, 0, 0, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5); //GAME_WIDTH * .18, GAME_HEIGHT * .46
+	//$('#resume').on('click', clickedd());
+}
+
+function quitHandler() {
+	gameState = 1;
+}
 // end UI
 
 function initDrawUpdate() {
