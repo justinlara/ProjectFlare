@@ -14,6 +14,7 @@ var levelsTraversed;
 
 var fadeTimer = 0;
 var fadeDuration = 30;
+var flagLampEffect = false;
 
 //globals for sprites
 var loadSpriteP;
@@ -499,18 +500,16 @@ function gameDraw() {
 		// Draw the field of darkness.
 		ctxDark.fillStyle = 'black';
 		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-		ctxDark.globalAlpha = 1;
-		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
 			
-		ctxDark.globalAlpha = 0.99;
+		ctxDark.globalAlpha = 0.98;
 		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
-		ctxDark.globalCompositeOperation = 'xor';//change back for lantern. may have to change the operation
-		
 		
 		// Draw the white arc to represent the light from the character's lantern.
 		//LIGHT MOVED TO Player.js!
 	}
-
+	if (flagLampEffect) {
+		lightlampEffect(thisLevel.currentRoom.lamp.posX,thisLevel.currentRoom.lamp.posY,MEASURE_UNIT);
+	}
 	//draw entities, including the player
 	entityManager.drawAllEntities();
 	thisLevel.currentRoom.drawOverlays();
