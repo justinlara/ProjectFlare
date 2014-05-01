@@ -39,6 +39,8 @@ function Enemy() {
   this.eFix = this.enemyboundBox.CreateFixture(this.enemyfix);
   
   this.positions = { pos: [this.posX, this.posY]};
+  this.xdelta = 0;
+  this.ydelta = 0;
   
   this.targetPosX = this.randomIntFromInterval(1, 13) * MEASURE_UNIT;
   this.targetPosY = this.randomIntFromInterval(1, 9) * MEASURE_UNIT;
@@ -93,8 +95,8 @@ Enemy.prototype.move = function () {
 };
 
 Enemy.prototype.newTarget = function() { 
-	this.targetPosX = this.randomIntFromInterval(2, 14) * MEASURE_UNIT;
-	this.targetPosY = this.randomIntFromInterval(2, 10) * MEASURE_UNIT;
+	this.targetPosX = this.randomIntFromInterval(1, 13) * MEASURE_UNIT;
+	this.targetPosY = this.randomIntFromInterval(1, 9) * MEASURE_UNIT;
   };
 	
 //draw the enemy on ctxWorld

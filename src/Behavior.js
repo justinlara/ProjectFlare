@@ -17,41 +17,33 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 }
 
 Behavior.prototype.distanceToPlayer = function() {
-	var targetX = mainGuy.p.pos[0];
-	var targetY = mainGuy.p.pos[1];
- 
- /* CHANGE BACK
-	return Math.sqrt(
-		Math.pow((this.actor.posX - targetX), 2)
-			+
-		Math.pow((this.actor.posY - targetY), 2)
-	);
- */
-
  return Math.sqrt(
-        Math.pow((this.actor.positions.pos[0] - targetX), 2)
+        Math.pow((this.actor.positions.pos[0] - mainGuy.p.pos[0]), 2)
             +
-        Math.pow((this.actor.positions.pos[1] - targetY), 2)
+        Math.pow((this.actor.positions.pos[1] - mainGuy.p.pos[1]), 2)
     );
+}
 
+Behavior.prototype.distanceToTarget = function() {
+ return Math.sqrt(
+        Math.pow((this.actor.positions.pos[0] - this.actor.targetPosX), 2)
+            +
+        Math.pow((this.actor.positions.pos[1] - this.actor.targetPosY), 2)
+    );
 }
 
 Behavior.prototype.move = function() {
 
 	var dist = this.distanceToPlayer();
+	this.actor.xdelta = 0;
+	this.actor.ydelta = 0;
 	
-	if(dist < this.actor.aquisitionRange) {
-		this.inRange = true;
-	} else {
-		this.inRange = false;
-	}
-
 	if(this.actor.hitLight.hit == true) {
 		this.reacting = true;
 		REACTB.move(this.rStr, this.actor);
 	}
 	else if(this.reacting == false) {
-		if(this.inRange) {
+		if( dist < this.actor.aquisitionRange) {
 			if( dist < this.actor.attackRange) {
 		
 			} else {
@@ -61,4 +53,23 @@ Behavior.prototype.move = function() {
 			MOVEB.move(this.mStr, this.actor);
 		}
 	}
+	
+	if(this.actor.hitSomething.hitLR == true || this.actor.hitSomething.hitUD == true) {
+		if(this.actor.hitSomething.hitLR == true) {
+			this.actor.targetPosX = this.actor.positions.pos[0];
+			this.actor.positions.pos[1] += this.actor.ydelta;
+		}
+		
+		if(this.actor.hitSomething.hitUD == true) {
+			this.actor.targetPosY = this.actor.positions.pos[1];
+			this.actor.positions.pos[0] += this.actor.xdelta;
+		}
+	} 
+	else {
+		this.actor.positions.pos[0] += this.actor.xdelta;
+		this.actor.positions.pos[1] += this.actor.ydelta;
+	}
+	
+	this.actor.hitSomething.hitLR = false;
+	this.actor.hitSomething.hitUD = false;
 };
