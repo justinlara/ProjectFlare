@@ -15,6 +15,7 @@ var levelsTraversed;
 var fadeTimer = 0;
 var fadeDuration = 30;
 var flagLampEffect = false;
+var effectR = 0;
 
 //globals for sprites
 var loadSpriteP;
@@ -400,6 +401,9 @@ function initGame() {
 	// initialize UI counters
 	lampsLit = 0;
 	levelsTraversed = 1;
+	
+	//init measure unit dependant variables
+	effectR = MEASURE_UNIT *.5;
 }
 
 // Accepts an image and draws it over the whole screen, including UI and game
@@ -503,14 +507,16 @@ function gameDraw() {
 		ctxDark.fillStyle = 'black';
 		ctxDark.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 			
-		ctxDark.globalAlpha = 0.98;
+		ctxDark.globalAlpha = 1;
 		ctxDark.fillRect(MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*13, MEASURE_UNIT*9);
 		
 		// Draw the white arc to represent the light from the character's lantern.
 		//LIGHT MOVED TO Player.js!
 	}
 	if (flagLampEffect) {
-		lightlampEffect(thisLevel.currentRoom.lamp.posX,thisLevel.currentRoom.lamp.posY,MEASURE_UNIT);
+		lightlampEffect(thisLevel.currentRoom.lamp.posX,thisLevel.currentRoom.lamp.posY, effectR);
+		console.log(effectR);
+		effectR += MEASURE_UNIT *.5;
 	}
 	//draw entities, including the player
 	entityManager.drawAllEntities();

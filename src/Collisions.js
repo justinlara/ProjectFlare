@@ -127,7 +127,9 @@ Collisions.prototype.collisionContact = function()
 				
 				//play effect:
 				flagLampEffect = true;
-				setTimeout(function(){flagLampEffect = false}, 1000);
+				setTimeout(function(){flagLampEffect = false;
+					effectR = MEASURE_UNIT*.05;
+				}, 400);
 				
 				//switch to no lantern light sprite if out of light
 				if (mainGuy.light <= 0)

@@ -13,8 +13,10 @@ var lightlampEffect = function(lampX, lampY, r) {
 	ctxDark.globalCompositeOperation = 'xor';
 	ctxDark.fillStyle = 'white';
 	ctxDark.beginPath();
-	ctxDark.arc(lx,ly,r, 0, Math.PI*2);
+	ctxDark.arc(lx,ly, r, 0, Math.PI*2);
 	ctxDark.fill();
+	
+	ctxDark.fillStyle = 'black';
 };
 
 var lightning = function() {
