@@ -59,6 +59,11 @@ restartButton.src = "assets/ui/pauseMenu/restart.png";
 var quitButton = new Image();
 quitButton.src = "assets/ui/pauseMenu/quit.png";
 
+var paused = false;
+
+var mainMenu = new Image();
+mainMenu.src = "assets/ui/mainMenu/main_menu_bg.png"
+
 //behavior globals
 MOVEB = new MoveBehavior();
 CHASEB = new ChaseBehavior();
@@ -457,13 +462,14 @@ function draw() {
 	if (gameState == 1) //splash
 	{
 		setTimeout(function() {
-			gameState = 4;
+			gameState = 2;
+			document.getElementById('newGame').style.display =  "block";
 		}, 2000); //after xxx seconds, advances to the game
 		drawFullScreenImage(loadImg);
 
 	} else if (gameState == 2) //menu
 	{
-	
+		mainMenuDraw();
 	} else if (gameState == 3) //cutscene
 	{
 	
@@ -544,7 +550,10 @@ function gameDraw() {
 	
 	//}
 	
-	if (controls.isDown(controls.ESC)) {
+	if (controls.isDown(controls.ESC) && !paused) {
+		paused = true;
+	}
+	if (paused) {
 		gameState = 6;
 	}
 }
@@ -587,14 +596,10 @@ function pauseDraw() {
 	document.getElementById('resume').style.display =  "block";
 	document.getElementById('restart').style.display =  "block";
 	document.getElementById('quit').style.display =  "block";
-	
-	if (controls.isDown(controls.TILDE)) {
-		gameState = 4;
-		
-		document.getElementById('resume').style.display =  "none";
-		document.getElementById('restart').style.display =  "none";
-		document.getElementById('quit').style.display =  "none";
-	}
+}
+
+function mainMenuDraw() {
+	drawFullScreenImage(mainMenu);
 }
 
 function UIDraw() {
@@ -700,6 +705,7 @@ function createButtons() {
 	pauseResume.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 2.8)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5;");
 	topCanvas.appendChild(pauseResume);
 	pauseResume.style.display = 'none';
+	pauseResume.addEventListener("click", resumeHandler, false);
 	
 	var pauseRestart = document.createElement('div');
 	pauseRestart.id = 'restart';
@@ -707,6 +713,7 @@ function createButtons() {
 	pauseRestart.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 5.7)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5;");
 	topCanvas.appendChild(pauseRestart);
 	pauseRestart.style.display = 'none';
+	pauseRestart.addEventListener("click", restartHandler, false);
 	
 	var pauseQuit = document.createElement('div');
 	pauseQuit.id = 'quit';
@@ -716,6 +723,14 @@ function createButtons() {
 	pauseQuit.style.display = 'none';
 	pauseQuit.addEventListener("click", quitHandler, false);
 	
+	// main menu buttons
+	var mainNewGame = document.createElement('div');
+	mainNewGame.id = 'newGame';
+	mainNewGame.innerHTML = "<img src='assets/ui/mainMenu/main_menu_play.png' width='100%' height='100%' />";
+	mainNewGame.setAttribute('style', "width: " + MEASURE_UNIT * 2 + "px; height: " + MEASURE_UNIT + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5;");
+	topCanvas.appendChild(mainNewGame);
+	mainNewGame.style.display = 'none';
+	mainNewGame.addEventListener("click", newGameHandler, false);	
 	
 	//ctxDark.drawImage(resumeButton, GAME_WIDTH * .18, GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
 	//ctxDark.drawImage(restartButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 2.9), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
@@ -725,8 +740,35 @@ function createButtons() {
 	//$('#resume').on('click', clickedd());
 }
 
+function newGameHandler() {
+	gameState = 4;
+	document.getElementById('newGame').style.display =  "none";
+	initGame();
+}
+
+function resumeHandler() {
+	paused = false;
+	gameState = 4;
+	
+	document.getElementById('resume').style.display =  "none";
+	document.getElementById('restart').style.display =  "none";
+	document.getElementById('quit').style.display =  "none";
+}
+
+function restartHandler() {
+	document.getElementById('resume').style.display =  "none";
+	document.getElementById('restart').style.display =  "none";
+	document.getElementById('quit').style.display =  "none";
+	
+	initGame();
+}
+
 function quitHandler() {
 	gameState = 1;
+	
+	document.getElementById('resume').style.display =  "none";
+	document.getElementById('restart').style.display =  "none";
+	document.getElementById('quit').style.display =  "none";
 }
 // end UI
 
