@@ -46,7 +46,7 @@ Collisions.prototype.collisionContact = function()
        contactA = contact.GetFixtureA().GetBody().GetUserData();   // other (enemies, walls,...)
        contactB = contact.GetFixtureB().GetBody().GetUserData();  // player 
       }
-
+/*
       if(contactA.type === "enemy" && contactB.id === "player")
       {
           switch(contactA.id)
@@ -109,7 +109,7 @@ Collisions.prototype.collisionContact = function()
           }
           
       }
-                   
+*/                   
       if(contactA.type === "lamp" && contactB.id === "player" )
       {
 	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
@@ -177,7 +177,8 @@ Collisions.prototype.collisionContact = function()
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   //GetFixtureB().GetBody().GetUserData();
       }
-      
+ 
+ ///*     
       if(contactA.type === "door" && contactB.id === "player" )
       {
           //console.log("PLAYER HIT DO");
@@ -203,7 +204,85 @@ Collisions.prototype.collisionContact = function()
           thisLevel.goToWestRoom();
         }
       }
+      
+ //*/     
+ 
+ /*   
+    if(contactB.type === "door" && contactA.type === "enemy")
+     {
+         console.log("ENTERED ENEMY/DOOR -----------------");
+         
+        man = contact.GetManifold();
+         
+         if( man.m_pointCount !==0)
+         {
+              
+           wX = contactB.wPx;
+           wY = contactB.wPy;
+           sX = contactB.size[0];
+           sY = contactB.size[1];
+         
+           normals = man.m_localPlaneNormal;
+            
+              
+   //console.log("\n IN obst/ enemyPos x: " + contactA.xy.pos[0] + " , y: " + contactA.xy.pos[1] +" wX " + wX+ " sX " + sX+  " sx/2 " + sX/2+ " wY " + wY + " sY " + sY +   " boundSize(player) " );
+   //console.log(" contactA.BoundSize "+ contactA.BoundSize  + " contactA.BoundSize[0]/2 " + contactA.BoundSize[0]/2 + " contactA.BoundSize[1]/2 " + contactA.BoundSize[1]/2);
+   //console.log(normals); 
+               //LEFT SIDE                            
+                                           //-sX/2))- contactA.BoundSize[0]/2
+               if(contactA.xy.pos[0] > (wX- (sX*1.3) ) && normals.x >= .99) //-1
+               {
+                                    //- (sX/2))- contactA.BoundSize[0]/2)
+                   contactA.xy.pos[0] = wX-(sX*1.3);
+                   
+                   //console.log(" E/DW-- Ob-L ");
+                   
+                   if(contactA.hitSomething.hitLR === false)
+                   contactA.hitSomething.hitLR = true;
+               }    
+               // RIGHT SIDE
+                                          //+(sX/2)) + (contactA.BoundSize[0]/2)
+               else if(contactA.xy.pos[0] < (wX + (sX*.35))&& normals.x <= -.99) //1
+               {
+                   console.log(" E/D-- Ob-R ");
+                                        //+ (sX/2)) + (contactA.BoundSize[0]/2)
+                   contactA.xy.pos[0] = (wX +(sX*.35)); 
+                   
+                   if(contactA.hitSomething.hitLR === false)
+                   contactA.hitSomething.hitLR = true;
+               }
+               // TOP SIDE
+                                            //
+               else if(contactA.xy.pos[1] > (wY-(sY*1.5)) && normals.y >= .99)
+               {
+                   //console.log(" E/DW-- Ob-U ");
+                                     
+                   contactA.xy.pos[1] = (wY-(sY*1.5)); 
+                   
+                   if(contactA.hitSomething.hitUD === false)
+                   contactA.hitSomething.hitUD = true;
+               }
+               // BOTTOM SIDE
+                                          //+ (contactA.BoundSize[1]/2)
+               else if(contactA.xy.pos[1] < ((wY ) ) && normals.y <= -.99)  
+               {
+                   //console.log(" E/DW-- Ob-D ");
+                                        // + (contactA.BoundSize[1]/2)
+                   contactA.xy.pos[1] = ((wY));
+                   
+                   if(contactA.hitSomething.hitUD === false)
+                   contactA.hitSomething.hitUD = true; 
+               } 
+        }  
+     }
+ */
+    
+    
+    
+    
+      
   };
+  
   
   this.listener.PostSolve = function(contact)
   {
@@ -225,7 +304,78 @@ Collisions.prototype.collisionContact = function()
        contactB = contact.GetFixtureB().GetBody().GetUserData();  
         
       }
-      
+//*      
+      if(contactA.type === "enemy" && contactB.id === "player")
+      {
+          switch(contactA.id)
+          {
+            case "e1":
+            {
+                man = contact.GetManifold();
+         
+                if( man.m_pointCount !==0)
+                {
+                  if (!mainGuy.invul) { //added check for iframes
+                   contactB.health -= contactA.damage;  
+                 
+                   //two point method to move player when enemy hits:
+                   // use x,y of enemy and x,y of player to determine a line
+                   // move across that line to a little further away and move
+                   // player there.
+                     
+                   x1= contactA.xy.pos[0]; //pX;
+                   y1 = contactA.xy.pos[1]; //pY;
+    
+                   x2 = contactB.pos[0]; 
+                   y2 = contactB.pos[1];
+    
+                                  
+                     d = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2 - y1),2)); 
+                    
+                     r = ((2*MEASURE_UNIT)) / d; // r: amount knocked back                        
+    
+                    xmove = r * x2 + (1 - r) * x1;  
+                    ymove = r * y2 + (1 - r) * y1;  
+                    
+                    //uncomment for knockback
+                  // contactB.pos[0] = xmove;
+                  // contactB.pos[1] = ymove;
+                   
+                   mainGuy.hp = contactB.health;
+                   SOUNDS.playRandomGrunt();
+    
+                  // console.log(contactB);
+                   //console.log(contactA);
+                   
+                  //console.log("INSIDE >>>>>>> " +  mainGuy.invul); 
+                   //set timer for iframes
+                   mainGuy.invul = true;
+                   setTimeout(function() 
+                   {
+                    mainGuy.invul = false;
+                   }, 2000);
+                  
+                  }
+                  //console.log("OUTSIDE >>>>>>> " +  mainGuy.invul); 
+                }
+              break;  
+            }
+            case "e2":
+            {
+                
+                break;
+            }
+            
+            
+            
+            
+            default:
+            break;
+          
+          }
+          
+      }
+//*/      
 ///*      
      if(contactA.id === "wall" && contactB.id === "player")
      {
@@ -244,8 +394,8 @@ Collisions.prototype.collisionContact = function()
              wallPoints = man.m_localPoint;
              
              wp = wallPoints.x*30;
-                                      
-           newMove = Math.abs(Math.abs(wp-((MEASURE_UNIT/2)))- contactB.BoundSize/2);
+                                                                        
+           newMove = Math.abs(Math.abs(wp-((MEASURE_UNIT/2)))- contactB.BoundSize*.32);
                     
              if(contactB.pos[0] > newMove  && man.m_pointCount !==0)
              {
@@ -263,8 +413,8 @@ Collisions.prototype.collisionContact = function()
              wallPoints = man.m_localPoint;
 
              wp = wallPoints.x*30;
-          
-           newMove = Math.abs(wp- (contactB.BoundSize/1.458)); 
+                                                //  *.75
+           newMove = Math.abs(wp- (contactB.BoundSize*.80)); 
             
              if(contactB.pos[0] < newMove && man.m_pointCount !==0)
              {
@@ -282,8 +432,8 @@ Collisions.prototype.collisionContact = function()
              wallPoints = man.m_localPoint;
 
              wp = wallPoints.y*30;
-             
-           newMove = Math.abs(wp- (contactB.BoundSize/0.69)); 
+                                                  //  *0.55
+           newMove = Math.abs(wp- (contactB.BoundSize*1.60)); 
             
              if(contactB.pos[1] < newMove && man.m_pointCount !==0)
              {
@@ -307,7 +457,8 @@ Collisions.prototype.collisionContact = function()
              
 //             console.log("player pos before (DOWN) === " + contactB.pos[1] +" PT COUNT>>> " +man.m_pointCount + " wall " + wp);
           
-           newMove = Math.abs(wp- (contactB.BoundSize/0.435)); //Math.abs(wp- (contactB.BoundSize/2));
+                                                    // /0.435
+           newMove = Math.abs(wp- (contactB.BoundSize*2.1)); //Math.abs(wp- (contactB.BoundSize/2));
             
              if(contactB.pos[1] > newMove && man.m_pointCount !==0)
              {
@@ -722,22 +873,22 @@ Collisions.prototype.collisionContact = function()
               
                //LEFT SIDE                              // *.8 or / 5/4 reciprical of fraction form  NOTE: smaller screen boxes wX front side, larger wX middle
                                         //
-               if(contactA.xy.pos[0] > (wX-(sX)) && normals.x >= .99) // works with: (wX-((contactA.BoundSize[0]/(5/4)))) && normals.x >= -.99)
+               if(contactA.xy.pos[0] > (wX-(sX*.9)) && normals.x >= .99) // works with: (wX-((contactA.BoundSize[0]/(5/4)))) && normals.x >= -.99)
                
                //if(contactB.pos[0] > (contactA.L) && normals.x <= -1)
                {
                              //        
-                   contactA.xy.pos[0] = (wX)-(sX) ;
+                   contactA.xy.pos[0] = (wX)-(sX*.9) ;
                   // contactB.pos[0] = (contact.L);
                    
                    //console.log("\n AFTER MOVE play posX: " + contactA.pos[0] + " > value " + (wX-(contactA.BoundSize/(4/5))));
                   // console.log(" E-L ");
                }    
                // RIGHT SIDE
-               else if(contactA.xy.pos[0] < ((wX+sX))&& normals.x <= -.99)  // ((wX+sX) - (contactA.BoundSize[0]/2))&& normals.x <= -.99)
+               else if(contactA.xy.pos[0] < ((wX+(sX*.9)))&& normals.x <= -.99)  // ((wX+sX) - (contactA.BoundSize[0]/2))&& normals.x <= -.99)
                {
                   // console.log(" E-R ");
-                   contactA.xy.pos[0] = ((wX+sX)); 
+                   contactA.xy.pos[0] = ((wX+(sX*.9))); 
                }
                // TOP SIDE                       //      // //*.2
                else if(contactA.xy.pos[1] > ((wY-sY)) && normals.y >= .99)
@@ -771,6 +922,11 @@ Collisions.prototype.collisionContact = function()
                // use x,y of enemy and x,y of player to determine a line
                // move across that line to a little further away and move
                // player there.
+                
+             man = contact.GetManifold();
+         
+            if( man.m_pointCount !==0)
+            {    
                  
                x1= contactA.xy.pos[0]; //pX;
                y1 = contactA.xy.pos[1]; //pY;
@@ -780,8 +936,8 @@ Collisions.prototype.collisionContact = function()
 
                               
                  d = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2 - y1),2)); 
-                
-                 r = ((1.02*MEASURE_UNIT)) / d; // r: amount knocked back                        
+                  // 0.55
+                 r = ((0.55*MEASURE_UNIT)) / (d); // r: amount knocked back                        
 
                 xmove = r * x2 + (1 - r) * x1;  
                 ymove = r * y2 + (1 - r) * y1;  
@@ -789,7 +945,7 @@ Collisions.prototype.collisionContact = function()
                contactB.xy.pos[0] = xmove;
                contactB.xy.pos[1] = ymove;
                
-              
+          }  
               // console.log(contactB);
                //console.log(contactA);
                
@@ -844,22 +1000,22 @@ Collisions.prototype.collisionContact = function()
                }
                // TOP SIDE
                                     //- (sY/1.5))- contactA.BoundSize[1]/2
-               else if(contactA.xy.pos[1] > (wY-(sY*.97)) && normals.y >= .99)
+               else if(contactA.xy.pos[1] > (wY-(sY*1.05)) && normals.y >= .99)
                {
                    //console.log(" E-- Ob-U ");
                                       //- (sY/1.5))- contactA.BoundSize[1]/2
-                   contactA.xy.pos[1] = (wY-(sY*.97)); 
+                   contactA.xy.pos[1] = (wY-(sY*1.05)); 
                    
                    if(contactA.hitSomething.hitUD === false)
                    contactA.hitSomething.hitUD = true;
                }
                // BOTTOM SIDE
                                           //+ (contactA.BoundSize[1]/2)
-               else if(contactA.xy.pos[1] < ((wY +(sY*.35)) ) && normals.y <= -.99)  
+               else if(contactA.xy.pos[1] < ((wY +(sY*.37)) ) && normals.y <= -.99)  
                {
                    //console.log(" E-- Ob-D ");
                                         // + (contactA.BoundSize[1]/2)
-                   contactA.xy.pos[1] = ((wY+(sY*.35)));
+                   contactA.xy.pos[1] = ((wY+(sY*.37)));
                    
                    if(contactA.hitSomething.hitUD === false)
                    contactA.hitSomething.hitUD = true; 

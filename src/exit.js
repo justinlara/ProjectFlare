@@ -23,7 +23,7 @@ function Exit(posX, posY) {
   
    //
    //this.exitfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
-   this.exitfix.shape.SetAsBox((MEASURE_UNIT/30/3),  ( MEASURE_UNIT/30/3 ));
+   this.exitfix.shape.SetAsBox((MEASURE_UNIT/30/2),  ( MEASURE_UNIT/30/2 ));
    
    
   
@@ -36,7 +36,7 @@ function Exit(posX, posY) {
   this.exitboundBox.SetUserData( {type: 'exit', id: "l", 
                                   bodyPos: this.exitboundBox.GetPosition, 
                                   active: this.exitbox.active, wPx:this.posX, wPy:this.posY,  
-                                  size: [((((MEASURE_UNIT/30)/3)*30)*2), ((((MEASURE_UNIT/30)/3)*30)*2)]} );
+                                  size: [((((MEASURE_UNIT/30)/2)*30)*2), ((((MEASURE_UNIT/30)/2)*30)*2)]} );
   	
 	
 }
@@ -73,7 +73,7 @@ Exit.prototype.draw = function()
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  
   //w.drawImage(this.p.I, this.p.pos[0], this.p.pos[1], pw, ph);
-  this.exitboundBox.SetPosition(new b2Vec2( (this.posX/30+1), (this.posY/30+1)));  
+  this.exitboundBox.SetPosition(new b2Vec2( (1.07*this.posX/30), (1.1*this.posY/30)));  
   
 
 };

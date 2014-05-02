@@ -23,11 +23,11 @@ function Player()
   this.playerbox.awake = false;
   this.lightbox.awake = false;
   
-  this.playerbox.position.x = 1120/MEASURE_UNIT;
-  this.playerbox.position.y = 150/MEASURE_UNIT;
+  //this.playerbox.position.x = 1120/MEASURE_UNIT;
+  //this.playerbox.position.y = 150/MEASURE_UNIT;
   
-  this.lightbox.position.x = 50/MEASURE_UNIT;
-  this.lightbox.position.y = 70/MEASURE_UNIT;
+  //this.lightbox.position.x = 250/MEASURE_UNIT;
+  //this.lightbox.position.y = 270/MEASURE_UNIT;
   
   this.lightShiftX = 0;
   this.lightShiftY = 0;
@@ -151,7 +151,7 @@ function Player()
 			if (!thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
 				if (this.light > 0) {
 					ctxDark.globalCompositeOperation = 'destination-out';
-				//	ctxDark.globalCompositeOperation = 'xor';
+					ctxDark.globalCompositeOperation = 'xor';
 					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
 					ctxDark.globalCompositeOperation = 'source-over';
 				}

@@ -514,6 +514,7 @@ function gameDraw() {
 	//collisionWorld.DrawDebugData();
 
 	//only draw if not lit
+ ///*	
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;
 			
@@ -529,6 +530,7 @@ function gameDraw() {
 		// Draw the white arc to represent the light from the character's lantern.
 		//LIGHT MOVED TO Player.js!
 	}
+//*/	
 	if (flagLampEffect) {
 		lightlampEffect(thisLevel.currentRoom.lamp.posX,thisLevel.currentRoom.lamp.posY, effectR);
 		console.log(effectR);

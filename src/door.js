@@ -58,7 +58,7 @@ function Door(doorSide) {
   this.bFix = this.doorboundBox.CreateFixture(this.doorfix);
   
   
-  this.doorboundBox.SetUserData( {type: 'door', id: "d", side: this.side, pX:this.doorbox.position.x, pY: this.doorbox.position.y } );
+  this.doorboundBox.SetUserData( {type: 'door', id: "d", side: this.side, pX:this.doorbox.position.x, pY: this.doorbox.position.y, size:  [((1.2*MEASURE_UNIT/30/2)*30)*2,  ((1.2*MEASURE_UNIT/30/2 )*30)*2] } );
   	
 	
 	
