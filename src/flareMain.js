@@ -764,7 +764,9 @@ function restartHandler() {
 }
 
 function quitHandler() {
-	gameState = 1;
+	paused = false;
+	gameState = 2;
+	document.getElementById('newGame').style.display =  "block";
 	
 	document.getElementById('resume').style.display =  "none";
 	document.getElementById('restart').style.display =  "none";
