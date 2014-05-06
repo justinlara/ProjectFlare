@@ -27,9 +27,6 @@ function Level(numberOfRooms, floorNumber) {
 	this.doorWalls.push(new DoorWall("e"));
 	this.doorWalls.push(new DoorWall("s"));
 	this.doorWalls.push(new DoorWall("w"));
-	
-	console.log("created:"  + this.doorWalls);
-	
 	////
 
 	// Randomly generated structure from RandomLevelGeneratorAlgorithm.js

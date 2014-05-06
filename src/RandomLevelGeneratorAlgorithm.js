@@ -245,8 +245,21 @@ function makeExitRoom()
         {
             for (var c = 0; c < width; c++)
             {
+                var rowDiff = Math.abs(r - startRow);
+                var colDiff = Math.abs(c - startCol);
+                
+                // condition1 states that the exit room cannot be directly on top of or below the starting room.
+                var condition1 = true;
+                if (rowDiff == 1 && colDiff == 0)
+                    condition1 = false;
+                    
+                // condition2 states that the exit room cannot be directly to the left or right of the starting room.
+                var condition2 = true;
+                if (colDiff == 1 && rowDiff == 0)
+                    condition2 = false;
+                
                 // If this room is an active room... EXCLUDING the starting room.
-                if (level[r][c].length == 2 && level[r][c].indexOf(activeRoom) != -1)
+                if (level[r][c].length == 2 && level[r][c].indexOf(activeRoom) != -1 && condition1 && condition2)
                 {
                     // Increment the counter.
                     count++;
