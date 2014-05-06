@@ -13,7 +13,7 @@ function TMunge() {
 	this.escapeSpeed = MEASURE_UNIT * .02;
 	this.attackRange = MEASURE_UNIT * 0;
 	
-	this.enemyBehavior = new Behavior(this, 'wander', 'follow', 'none', 'none', 'none', 'none');
+	this.enemyBehavior = new Behavior(this, 'wander', 'follow', 'none', 'chase', 'none', 'none');
 	/*this.setSprite = function() {
 		
 	}*/
