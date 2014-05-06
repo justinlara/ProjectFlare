@@ -236,27 +236,33 @@ function makeExitRoom()
     // "count" = counter for when the choose'th active room is selected.
     var count = 0;
     
-    // Iterate to find the chosen active room.
-    for (var r = 0; r < height; r++)
+    var isNotDone = true;
+    
+    while(isNotDone)
     {
-        for (var c = 0; c < width; c++)
+        // Iterate to find the chosen active room.
+        for (var r = 0; r < height; r++)
         {
-            // If this room is an active room... EXCLUDING the starting room.
-            if (level[r][c].indexOf(activeRoom) != -1)
+            for (var c = 0; c < width; c++)
             {
-                // Increment the counter.
-                count++;
-                
-                // When the choose'th room is selected...
-                if (count == choose)
+                // If this room is an active room... EXCLUDING the starting room.
+                if (level[r][c].length == 2 && level[r][c].indexOf(activeRoom) != -1)
                 {
-                    // Make this active room an ending room instead.
-                    level[r][c] = level[r][c].replace(activeRoom, exitRoom);
-                    return -1;
-                
-                    //// Return the coordinates for this random active room.
-                    //return {pickedRow: r,
-                    //        pickedCol: c};
+                    // Increment the counter.
+                    count++;
+                    // When the choose'th room is selected...
+                    if (count == choose)
+                    {
+                        
+                        // Make this active room an ending room instead.
+                        level[r][c] = level[r][c].replace(activeRoom, exitRoom);
+                        isNotDone = false;
+                        return -1;
+                    
+                        //// Return the coordinates for this random active room.
+                        //return {pickedRow: r,
+                        //        pickedCol: c};
+                    }
                 }
             }
         }
