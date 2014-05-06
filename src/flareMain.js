@@ -729,7 +729,7 @@ function createButtons() {
 	var mainNewGame = document.createElement('div');
 	mainNewGame.id = 'newGame';
 	mainNewGame.innerHTML = "<img src='assets/ui/mainMenu/main_menu_play.png' width='100%' height='100%' />";
-	mainNewGame.setAttribute('style', "width: " + MEASURE_UNIT * 2 + "px; height: " + MEASURE_UNIT + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5;");
+	mainNewGame.setAttribute('style', "width: " + MEASURE_UNIT * 2 + "px; height: " + MEASURE_UNIT + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT * /*46*/ .70 + "px; position: absolute; z-index: 5;");
 	topCanvas.appendChild(mainNewGame);
 	mainNewGame.style.display = 'none';
 	mainNewGame.addEventListener("click", newGameHandler, false);	
