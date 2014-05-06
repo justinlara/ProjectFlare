@@ -99,11 +99,13 @@ function Level(numberOfRooms, floorNumber) {
 			
 			var newRoom = new Room(tileGrid);
 			
+			newRoom.isExit = true;
+			
 			// Set this room to have that room layout.
 			this.layout[r][c] = newRoom;
 			
 			// Set the setLit to be true for this room.
-			newRoom.setLit(true);
+			newRoom.setLit(false);
 		}
 		// Give this room its doors.
 		for (i = 1; i < this.structure.level[r][c].length; i++)
@@ -457,6 +459,7 @@ Level.prototype.checkDoorWalls = function(level)
 Level.prototype.checkLitDoors = function(level)
 //function checkLitDoors()
 {
+	//drawLevelToConsole();
 	//if (roomNorthExists(level))
 	//{
 	//	if (isRoomNorthLit(level))

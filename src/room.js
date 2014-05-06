@@ -12,6 +12,7 @@ function Room(gridObj) {
 	this.westLit = false;
 	
 	this.isEntrance = false;
+	this.isExit = false;
 	
 	//array of enemy objects present in the room
 	//this remains constant once set
@@ -128,7 +129,10 @@ function Room(gridObj) {
 	    
 	           //**** -- DEBUGGING --
 	           //collisionWorld.DrawDebugData();  
-	
+		
+		if (this.isExit == true)
+			this.isLit = true;
+		
 		//for each tile, draw it onto world
 		var gx = 0;
 		var gy = 0;
@@ -158,10 +162,10 @@ function Room(gridObj) {
 		}
 		
 		for (var i = 0; i < this.obstacles.length; ++i)
-        {
-            this.obstacles[i].setBox();
+		{
+			this.obstacles[i].setBox();
 			this.obstacles[i].draw();
-        }
+		}
 		
 		//draw lamp
 		if ('undefined' != typeof this.lamp)
