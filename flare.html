@@ -163,6 +163,16 @@
 	<script type ="text/javascript" src='src/obstacles.js'></script>
 	<script type ="text/javascript" src='src/lightEffects.js'></script>
 	
+	<!-- Prevents arrow keys from scrolling when the game is embedded -->
+	<script type="text/javascript">
+		window.addEventListener("keydown", function(e) {
+			// 37-40 are the codes for the arrow keys
+			if(e.keyCode > 36 && e.keyCode < 41) {
+				 e.preventDefault();
+			}
+		}, false);
+	</script>
+	
 	<!-- main script goes last -->
 	<script type ="text/javascript" src='src/flareMain.js'></script>
 	
