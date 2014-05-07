@@ -43,7 +43,8 @@ function Player()
        this.lightfix.shape.SetAsBox(((MEASURE_UNIT/30)*.7),  ( (MEASURE_UNIT/30)*1.2 )); 
        //this.lightfix.shape.Set();
      
-   
+     currentPress = 0;  // BUTTON PRESSED -=-=-=-=-=-==-=  
+     lastPressed = 0;
  
        this.lightBoundBox = collisionWorld.CreateBody(this.lightbox);
        this.lFix = this.lightBoundBox.CreateFixture(this.lightfix);
@@ -190,12 +191,59 @@ function Player()
 		//if (controls.isDown(controls.DOWN)) this.moveDown();
 		//if (controls.isDown(controls.RIGHT)) this.moveRight();
   
+      
+        switch(currentPress)
+        {
+            case 40:
+            {
+                //console.log("pressed D ");
+                
+                //if(currentPressed)
+                
+                this.moveDown();
+                break;
+            }
+            case 38:
+            {
+                //console.log("pressed U ");
+                this.moveUp();
+                break;
+            }
+            case 37:
+            {
+                //console.log("pressed L ");
+                this.moveLeft();
+                break;
+            }
+            case 39:
+            {
+                //console.log("pressed R ");
+                this.moveRight();
+                break;
+            }
+            default:
+            {
+                if(controls.isDown(controls.LEFT) || controls.isDown(controls.RIGHT)||
+                controls.isDown(controls.UP)|| controls.isDown(controls.DOWN))
+                //console.log("ENTERED DEFAULT: LAST PRESSED" + lastPressed);
+             if (lastPressed == 38 && controls.isDown(controls.UP)) this.moveUp();
+             else if (lastPressed == 37 && controls.isDown(controls.LEFT)) this.moveLeft();
+             else if (lastPressed == 40 && controls.isDown(controls.DOWN)) this.moveDown();
+             else if (lastPressed == 39 && controls.isDown(controls.RIGHT)) this.moveRight();
+      
+
+            }
+            
+        }
+  
+  
+  /*
 		if (controls.isDown(controls.UP)) this.moveUp();
 		else if (controls.isDown(controls.DOWN)) this.moveDown();
 	
 		if (controls.isDown(controls.LEFT)) this.moveLeft();
 		else if (controls.isDown(controls.RIGHT)) this.moveRight();
-		
+  */	
 		
 		if (controls.isDown(controls.PGU))
 		{

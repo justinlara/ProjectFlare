@@ -19,17 +19,25 @@ var controls =
   
   isDown: function(keyCode) 
   {
+      lastPressed = keyCode;
     return this._pressed[keyCode];
+    
   },
   
   onKeydown: function(event) 
   {
     this._pressed[event.keyCode] = true;
+    //console.log("pressing: ");
+    //console.log(event.keyCode);
+    currentPress = event.keyCode;
+    
+    
   },
   
   onKeyup: function(event) 
   {
     delete this._pressed[event.keyCode];
+    currentPress = 0;
   }
 };
 
