@@ -154,13 +154,12 @@ function Player()
 			if (!thisLevel.currentRoom.isLit) { //only draw the flashlight if you have lantern light
 				if (this.light > 0) {
 					ctxDark.globalCompositeOperation = 'destination-out';
-					ctxDark.globalCompositeOperation = 'xor';
 					this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
 					ctxDark.globalCompositeOperation = 'source-over';
 				}
 				//no light, draw base circle
 				else if (this.light <= 0) {
-					ctxDark.globalCompositeOperation = 'xor';
+					ctxDark.globalCompositeOperation = 'destination-out';
 					SpriteNoOil.draw(ctxDark, this.p.pos[0]-(MEASURE_UNIT/2), this.p.pos[1]-(MEASURE_UNIT/2));
 					ctxDark.globalCompositeOperation = 'source-over';
 				}
@@ -173,15 +172,19 @@ function Player()
 			var frame = this.frameCount % 10;
 			if (!thisLevel.currentRoom.isLit && frame <= 5 && this.light > 0) {//play with this to change flicker speed
 				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
-				ctxDark.globalCompositeOperation = 'xor';
+				ctxDark.globalCompositeOperation = 'destination-out';
 				this.lantern.currentLightSprite.draw(ctxDark, this.p.pos[0]+this.lantern.shiftX, this.p.pos[1]+this.lantern.shiftY);
 				ctxDark.globalCompositeOperation = 'source-over';
 			}
 			//no light, draw base circle
 			else if (!thisLevel.currentRoom.isLit && frame <= 5 && this.light <= 0) {
-				ctxDark.globalCompositeOperation = 'xor';
+				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
+				ctxDark.globalCompositeOperation = 'destination-out';
 				SpriteNoOil.draw(ctxDark, this.p.pos[0]-(MEASURE_UNIT/2), this.p.pos[1]-(MEASURE_UNIT/2));
 				ctxDark.globalCompositeOperation = 'source-over';
+			}
+			else if (thisLevel.currentRoom.isLit && frame <= 5) {
+				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
 			}
 		}
 	}
