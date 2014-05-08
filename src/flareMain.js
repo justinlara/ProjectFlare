@@ -15,6 +15,7 @@ var levelsTraversed;
 var fadeTimer = 0;
 var fadeDuration = 30;
 var flagLampEffect = false;
+var flagTorchlightEffect = false;
 var effectR = 0;
 
 //globals for sprites
@@ -557,8 +558,12 @@ function gameDraw() {
 //*/	
 	if (flagLampEffect) {
 		lightlampEffect(thisLevel.currentRoom.lamp.posX,thisLevel.currentRoom.lamp.posY, effectR);
-		console.log(effectR);
+		//console.log(effectR);
 		effectR += MEASURE_UNIT *.5;
+	}
+	if (flagTorchlightEffect) {
+		lightTorchEffect(effectR);
+		effectR += MEASURE_UNIT*.5;
 	}
 	//draw entities, including the player
 	entityManager.drawAllEntities();

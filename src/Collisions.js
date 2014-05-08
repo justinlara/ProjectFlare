@@ -127,7 +127,8 @@ Collisions.prototype.collisionContact = function()
 				
 				//play effect:
 				flagLampEffect = true;
-				setTimeout(function(){flagLampEffect = false;
+				setTimeout(function(){
+					flagLampEffect = false;
 					effectR = MEASURE_UNIT*.05;
 				}, 400);
 				

@@ -1,6 +1,6 @@
 function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, SpecialType) {
 
-	console.log("creation success");
+	//console.log("creation success");
 	
 	this.actor = actor;
 	

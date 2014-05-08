@@ -13,6 +13,7 @@ function Room(gridObj) {
 	
 	this.isEntrance = false;
 	this.isExit = false;
+	this.exitEffectplayed = false;
 	
 	this.isReverseDarkness = false;
 	this.setNewGrid = false;
@@ -192,6 +193,18 @@ function Room(gridObj) {
 			lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*4, MEASURE_UNIT, MEASURE_UNIT);	
 		}
 		if (this.isExit) {
+			var flag;
+			if (!this.exitEffectplayed) {
+				flag = setInterval(function() {
+					flagTorchlightEffect = true;
+				}, 50);
+				setTimeout(function() {
+					clearInterval(flag);
+					effectR = MEASURE_UNIT*.5;
+					flagTorchlightEffect = false;
+				}, 1500);
+				this.exitEffectplayed = true;
+			}
 			drawTorches();
 		}
 		
