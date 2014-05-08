@@ -170,6 +170,13 @@ function Room(gridObj) {
 		//draw lamp
 		if ('undefined' != typeof this.lamp)
 			this.lamp.draw();
+			
+		if (this.isEntrance) {
+			lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*4, MEASURE_UNIT, MEASURE_UNIT);	
+		}
+		if (this.isExit) {
+			drawTorches();
+		}
 		
 		//draw exit
 		if ('undefined' != typeof this.exit)

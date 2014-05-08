@@ -323,6 +323,30 @@ function loadAssets() {
 			}
 		}
 	);
+	lsSprite = new Sprite("assets/LightSource_Spreadsheet.png",
+		{
+			frameW: 64,
+			frameH: 64,
+			projectedW: MEASURE_UNIT,
+			projectedH: MEASURE_UNIT, 
+			interval: 150,
+			postInitCallback: function() {
+				lsSprite.startLoop();
+			}
+		}
+	);
+	torchSprite = new Sprite("assets/Torch_Spreadsheet.png", 
+		{
+			frameW: 64,
+			frameH: 64,
+			projectedW: MEASURE_UNIT,
+			projectedH: MEASURE_UNIT, 
+			interval: 150,
+			postInitCallback: function() {
+				torchSprite.startLoop();
+			}
+		}
+	);
 	
 	//ui sprites:
 	UIlight = new SpriteMap('assets/ui/light_sheet.png',//image

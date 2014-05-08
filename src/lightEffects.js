@@ -19,6 +19,11 @@ var lightlampEffect = function(lampX, lampY, r) {
 	ctxDark.fillStyle = 'black';
 };
 
-var lightning = function() {
+var lightTorchEffect = function() {
 
+};
+
+var drawTorches = function() {
+	torchSprite.draw(ctxWorld, MEASURE_UNIT*3, MEASURE_UNIT*0, MEASURE_UNIT, MEASURE_UNIT);
+	torchSprite.draw(ctxWorld, MEASURE_UNIT*11, MEASURE_UNIT*0, MEASURE_UNIT, MEASURE_UNIT);
 };

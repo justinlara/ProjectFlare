@@ -77,6 +77,7 @@ function Level(numberOfRooms, floorNumber) {
 			var newRoom = new Room(tileGrid);
 			
 			newRoom.isEntrance = true;
+			//newRoom.lamp = new lightSource(2, 2);
 			
 			// Set this room to have that room layout.
 			this.layout[r][c] = newRoom;
@@ -271,7 +272,7 @@ Level.prototype.goToNorthRoom = function() {
 			//need to add enemies to the manager!
 			entityManager.clearEnemies();
 			for (var i = 0; i<this.currentRoom.enemies.length; i++) {
-				console.log("going to push enemy");
+				//console.log("going to push enemy");
 				entityManager.addEntity(this.currentRoom.enemies[i]);
 			}
 			
