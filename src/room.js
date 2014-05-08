@@ -14,6 +14,9 @@ function Room(gridObj) {
 	this.isEntrance = false;
 	this.isExit = false;
 	
+	this.isReverseDarkness = false;
+	this.setNewGrid = false;
+	
 	//array of enemy objects present in the room
 	//this remains constant once set
 	this.enemies = new Array();
@@ -115,6 +118,13 @@ function Room(gridObj) {
 					this.grid[i][j] = new TileFloor();
 					this.exit = new Exit(j,i);
 					break;
+				case 8:
+					// This is the "Reverse Darkness" type of room.
+					this.isReverseDarkness = true;
+					
+					this.grid[i][j] = new TileFloor();
+					this.lamp = new Lamp(j,i);
+					break;
 					
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
@@ -129,6 +139,13 @@ function Room(gridObj) {
 	    
 	           //**** -- DEBUGGING --
 	           //collisionWorld.DrawDebugData();  
+		if (this.setNewGrid)
+		{
+			var newTileGrid = ALLTILES.reverse1;
+			this.changeRoomGrid(newTileGrid);
+			this.setNewGrid = false;
+		}
+		
 		
 		if (this.isExit == true)
 			this.isLit = true;
@@ -303,5 +320,111 @@ function Room(gridObj) {
 	
 	this.killEnemies = function() {
 		this.enemies.length = 0;
+	}
+}
+
+Room.prototype.changeRoomGrid = function(gridObj) {
+	//2D grid part, 15x11
+	//take info from 2d array passed in and create tiles
+	//if this is the entrance room, set isLit to true
+	//this.grid = new Array();
+	for (var i = 0; i < gridObj.length; i++) {
+		//this.grid[i] = new Array();
+		for (var j = 0; j<gridObj[i].length; j++) {
+			switch (gridObj[i][j]) {
+				case 1:
+					break;
+				////uncomment for sweet wall flipping
+				//	if (i==0) { //if corner, generic tile with appropriate corner
+				//		if (j==0) this.grid[i][j] = new Tile("assets/tiles/wall_castle_5.png", "wall"); //upperleft
+				//		else if (j==14) this.grid[i][j] = new Tile("assets/tiles/wall_castle_6.png", "wall"); //upperright
+				//		
+				//		                          //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) *****
+				//		                          //
+				//		else this.grid[i][j] = new Tile("assets/tiles/wall_castle_1.png", "wall"); //top row
+				//	}
+				//	else if (i==10) {
+				//		if (j==0) this.grid[i][j] = new Tile("assets/tiles/wall_castle_8.png", "wall"); //lowerleft
+				//		else if (j==14) this.grid[i][j] = new Tile("assets/tiles/wall_castle_7.png", "wall"); //lowerright
+				//		
+				//		                      //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) *****
+				//		                      //
+				//		else this.grid[i][j] = new Tile("assets/tiles/wall_castle_3.png", "wall"); //bottom row
+				//	}
+				//	else if (j==0) {//left side
+				//	                          
+				//	                          //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) ***** 
+				//	                          //
+				//		this.grid[i][j] = new Tile("assets/tiles/wall_castle_4.png", "wall");
+				//	}
+				//	else if (j==14) {//right side
+				//	                           
+				//	                           //*** COMMENT FOR DEBUGGING (PLACE BACK INTO Tile("")) *****
+				//	                           //
+				//		this.grid[i][j] = new Tile("assets/tiles/wall_castle_2.png", "wall");
+				//	}
+				//	else this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
+				//	break;
+				case 2:
+					this.grid[i][j] = new TileFloor();
+					break;
+				case 3:
+					//this.grid[i][j] = new TileLamp();
+					this.grid[i][j] = new TileFloor();
+					this.lamp = new Lamp(j,i);
+					//console.log(" created LAMP --------------------------------------------------------  ");
+					break;
+				case 4:
+					//this.grid[i][j] = new TileBlock();
+					this.grid[i][j] = new TileFloor();
+					//count = count+1;
+					 this.obstacles.push( new Obstacles(j,i));
+					 
+					 //this.ob = new Obstacles(j,i);
+					 
+				//	console.log("OBST -SIZE::::::::::::::::::::::::::::::=> "+this.obstacles.length+ " i " + i + " j " + j);
+					break;
+				case 5: //example enemy case, add a floor tile and make a new enemy
+					this.grid[i][j] = new TileFloor();
+					var miles = new Miles();
+					// console.log(" created ENEMY --------------------------------------------------------  ");
+                
+                	miles.posX = (MEASURE_UNIT * j);
+					miles.posY = (MEASURE_UNIT * i);
+			    
+					miles.positions.pos[0] = (MEASURE_UNIT * j);
+                    miles.positions.pos[1] = (MEASURE_UNIT * i);
+					
+					this.enemies.push(miles);
+					entityManager.addEntity(miles);
+					//console.log("size of enemy's is:  "+this.enemies.size());
+					break;
+				case 6:
+					this.grid[i][j] = new TileFloor();
+					var trombulentMunge = new TMunge();
+					// console.log(" created ENEMY2 --------------------------------------------------------  ");
+					trombulentMunge.posX = (MEASURE_UNIT * j);
+					trombulentMunge.posY = (MEASURE_UNIT * i);
+					trombulentMunge.positions.pos[0] = (MEASURE_UNIT * j);
+                    trombulentMunge.positions.pos[1] = (MEASURE_UNIT * i);
+					this.enemies.push(trombulentMunge);
+					entityManager.addEntity(trombulentMunge);
+					break;
+				case 7:
+					this.grid[i][j] = new TileFloor();
+					this.exit = new Exit(j,i);
+					break;
+				case 8:
+					// This is the "Reverse Darkness" type of room.
+					this.isReverseDarkness = true;
+					
+					this.grid[i][j] = new TileFloor();
+					this.lamp = new Lamp(j,i);
+					break;
+					
+				default:
+					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
+			}
+		}		
 	}
 }

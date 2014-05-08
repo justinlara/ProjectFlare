@@ -110,7 +110,7 @@ Collisions.prototype.collisionContact = function()
           
       }
 */                   
-      if(contactA.type === "lamp" && contactB.id === "player" )
+      if(contactA.type === "lamp" && contactB.id === "player" && !thisLevel.currentRoom.isReverseDarkness)
       {
 	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
 			   thisLevel.currentRoom.setLit(true);
@@ -141,6 +141,36 @@ Collisions.prototype.collisionContact = function()
 					mainGuy.lantern.height = MEASURE_UNIT;
 				}
 	      }
+      }
+      
+      // REVERSE LAMP ROOM
+      if(contactA.type === "lamp" && contactB.id === "player" && thisLevel.currentRoom.isReverseDarkness)
+      {
+	console.log("reverse darkness");
+	    if (thisLevel.currentRoom.isLit)
+	    {
+			   thisLevel.currentRoom.setLit(false);
+			   
+			   thisLevel.currentRoom.setNewGrid = true;
+			   //var newTileGrid = ALLTILES.reverse1;
+			   //thisLevel.currentRoom.changeRoomGrid(newTileGrid);
+//			   lightlampEffect(thisLevel.currentRoom.lamp.posX, thisLevel.currentRoom.lamp.posY);
+//               entityManager.clearEnemies();
+               mainGuy.light++;
+//               thisLevel.lightsLit++;
+//
+//			   // Lamp counter increases
+//			   lampsLit++;
+//			   
+//				//play sound
+//				soundManager.play('lamplight');
+//				
+//				//play effect:
+//				flagLampEffect = true;
+//				setTimeout(function(){flagLampEffect = false;
+//					effectR = MEASURE_UNIT*.05;
+//				}, 400);
+	    }
       }
       
       if (contactA.type == "exit" && contactB.id == "player")

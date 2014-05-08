@@ -17,6 +17,8 @@ var controls =
   END:  35,
   HOME: 36,
   
+  SPACE:  32,
+  
   isDown: function(keyCode) 
   {
       lastPressed = keyCode;

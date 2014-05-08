@@ -35,7 +35,9 @@ function Enemy() {
 
   this.enemybox.active = false;
   
+  
   this.enemyboundBox = collisionWorld.CreateBody(this.enemybox);
+   console.log("null? " + this.enemyboundBox);
   this.eFix = this.enemyboundBox.CreateFixture(this.enemyfix);
   
   this.positions = { pos: [this.posX, this.posY]};

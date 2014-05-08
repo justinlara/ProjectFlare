@@ -1,16 +1,30 @@
 function AllTiles() {
+	this.reverse1 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse1[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[2] = new Array(1,2,2,2,2,2,4,5,6,2,2,2,2,2,1);
+	this.reverse1[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
 	this.entrance = new Array(); //empty room, for entrance only and for templating
 	this.entrance[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.entrance[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.entrance[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.entrance[5] = new Array(1,2,2,2,2,2,2,8,2,2,2,2,2,2,1);
 	this.entrance[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.entrance[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
 	this.exit1 = new Array();
 	this.exit1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.exit1[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);

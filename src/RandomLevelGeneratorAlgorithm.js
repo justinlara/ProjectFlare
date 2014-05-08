@@ -236,6 +236,9 @@ function makeExitRoom()
     // "count" = counter for when the choose'th active room is selected.
     var count = 0;
     
+    // Have this variable because the exit room is only selectig end rooms (i.e. doors with one door) as a choice.
+    // So, the algorithm will constantly cycle through all of the end rooms with the counter, which may need
+    // more than one cycle.
     var isNotDone = true;
     
     while(isNotDone)
@@ -258,11 +261,16 @@ function makeExitRoom()
                 if (colDiff == 1 && rowDiff == 0)
                     condition2 = false;
                 
-                // If this room is an active room... EXCLUDING the starting room.
+                // The four conditions are as follows:
+                //      1.  Is an end room (i.e. have only one door)
+                //      2.  Is an active room (i.e. NOT the starting the room)
+                //      3.  Is not directly above or below the starting room
+                //      4.  Is not directly to the left or right of the starting room
                 if (level[r][c].length == 2 && level[r][c].indexOf(activeRoom) != -1 && condition1 && condition2)
                 {
                     // Increment the counter.
                     count++;
+                    
                     // When the choose'th room is selected...
                     if (count == choose)
                     {
@@ -271,10 +279,6 @@ function makeExitRoom()
                         level[r][c] = level[r][c].replace(activeRoom, exitRoom);
                         isNotDone = false;
                         return -1;
-                    
-                        //// Return the coordinates for this random active room.
-                        //return {pickedRow: r,
-                        //        pickedCol: c};
                     }
                 }
             }

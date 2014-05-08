@@ -1,5 +1,7 @@
 function Player() 
 {
+  this.runMeter = 10;
+  
   this.lantern = {
 	currentLightSprite: SpriteNoOil,
 	shiftX: 0,
@@ -260,6 +262,39 @@ function Player()
 		if (controls.isDown(controls.HOME))
 		{
 		  thisLevel.goToWestRoom();
+		}
+		
+		if (controls.isDown(controls.SPACE))
+		{
+		      if (this.runMeter > 0)
+		      {
+			 this.movespeed = 0.10;
+			 this.runMeter--;
+			 
+			 if (this.runMeter < 0)
+			 {
+			   this.runMeter = 0;
+			 }
+			 //console.log("running " + this.runMeter);
+		      }
+		      else
+		      {
+		       this.movespeed = 0.02;
+		       //console.log("tired" + this.runMeter);
+		      }
+		       //this.run = true;
+		       //thisLevel.goToWestRoom();
+		}
+		else
+		{
+		  this.movespeed = 0.04;
+		  this.runMeter += 0.1;
+		  
+		  if (this.runMeter > 10)
+		  {
+		    this.runMeter = 10;
+		  }
+		  //console.log("walking " + this.runMeter);
 		}
   
 		if ('undefined' != typeof loadSpriteP) {
