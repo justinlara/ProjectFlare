@@ -1,7 +1,7 @@
 function Exit(posX, posY) {
 	//exit base object
 	this.image = new Image();
-	this.image.src = "assets/Exit.png";
+	this.image.src = "assets/tiles/floor_castle_4.png";
 	
 	this.posX = posX * MEASURE_UNIT;
     this.posY =posY * MEASURE_UNIT;
