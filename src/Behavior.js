@@ -44,12 +44,15 @@ Behavior.prototype.move = function() {
 	}
 	else if(this.reacting == false) {
 		if( dist < this.actor.aquisitionRange) {
-			if( dist < this.actor.attackRange) {
 		
-			} else {
-				CHASEB.move(this.cStr, this.actor);
+			CHASEB.move(this.cStr, this.actor);
+			
+			if( dist < this.actor.attackRange) {
+				
 			}
-		} else {
+		}
+		else
+		{
 			MOVEB.move(this.mStr, this.actor);
 		}
 	}

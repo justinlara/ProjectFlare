@@ -13,7 +13,7 @@ var MoveBehavior = function(){
 			actor.ydelta -= actor.speed;
 		}
 		
-		if( actor.enemyBehavior.distanceToTarget() < (MEASURE_UNIT/2)) {
+		if( actor.entityBehavior.distanceToTarget() < (MEASURE_UNIT/2)) {
 			actor.newTarget();
 		}
 	};

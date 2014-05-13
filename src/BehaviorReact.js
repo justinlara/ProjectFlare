@@ -1,7 +1,7 @@
 var ReactBehavior = function() {
 	this.freeze = function(actor) {
 		actor.hitLight.hit = false;
-		actor.enemyBehavior.reacting = false;
+		actor.entityBehavior.reacting = false;
 	};
 	
 	this.run = function(actor) {
@@ -18,18 +18,18 @@ var ReactBehavior = function() {
             actor.ydelta += actor.speed;
         }
 		
-		if(actor.enemyBehavior.distanceToPlayer() > actor.escapeRange) {
+		if(actor.entityBehavior.distanceToPlayer() > actor.escapeRange) {
 			actor.hitLight.hit = false;
-			actor.enemyBehavior.reacting = false;
+			actor.entityBehavior.reacting = false;
 			actor.speed = actor.normalSpeed;
 			actor.newTarget();
 		}
 	};
 	
 	this.chase = function(actor) {
-		CHASEB.move(actor.enemyBehavior.cStr, actor);
+		CHASEB.move(actor.entityBehavior.cStr, actor);
 		actor.hitLight.hit = false;
-		actor.enemyBehavior.reacting = false;
+		actor.entityBehavior.reacting = false;
 	};
 	
 	this.move = function(movetype, actor) {
@@ -45,6 +45,6 @@ var ReactBehavior = function() {
 		else if(movetype == "attack") {
 
 		}
-		else { MOVEB.move(actor.enemyBehavior.mStr, actor); } //if any invalid type is given, don't act
+		else { MOVEB.move(actor.entityBehavior.mStr, actor); } //if any invalid type is given, don't act
 	};
 }
