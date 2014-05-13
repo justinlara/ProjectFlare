@@ -102,7 +102,7 @@ Enemy.prototype.newTarget = function() {
   };
 	
 //draw the enemy on ctxWorld
-Enemy.prototype.draw = function() { 
+Enemy.prototype.draw = function() {
 	this.update();
 	this.render();
 };

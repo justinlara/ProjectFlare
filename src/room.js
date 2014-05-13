@@ -2,7 +2,7 @@
 function Room(gridObj) {
 	//just pass the json object of the room you will build
 	//list of valid entities, tracked even when you leave the room
-
+var testbool = true;
 	//booleans, for lit
 	this.isLit = false;
 	
@@ -137,6 +137,7 @@ function Room(gridObj) {
 	//draw function
 	//parameters: tile width and height
 	this.draw = function() {
+		
 	    
 	           //**** -- DEBUGGING --
 	           //collisionWorld.DrawDebugData();  
@@ -146,8 +147,6 @@ function Room(gridObj) {
 			this.changeRoomGrid(newTileGrid);
 			this.setNewGrid = false;
 		}
-		
-		
 		if (this.isExit == true)
 			this.isLit = true;
 		
@@ -226,7 +225,7 @@ function Room(gridObj) {
 			ctxWorld.globalAlpha = 1.0;
 		
 			this.enemyFadeTimer++;
-		} else if (this.enemyFadeTimer >= this.enemyFadeDuration) {
+		} else if (this.enemyFadeTimer >= this.enemyFadeDuration && !this.isReverseDarkness) {
 			this.killEnemies();
 		}
 		
@@ -407,9 +406,12 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 			    
 					miles.positions.pos[0] = (MEASURE_UNIT * j);
                     miles.positions.pos[1] = (MEASURE_UNIT * i);
-					
+					console.log("before: " + this.enemies.length);
 					this.enemies.push(miles);
-					entityManager.addEntity(miles);
+					console.log("after: " + this.enemies.length);
+					console.log(this.enemies[0]);
+					//this.enemies[0].draw();
+					//entityManager.addEntity(miles);
 					//console.log("size of enemy's is:  "+this.enemies.size());
 					break;
 				case 6:
@@ -421,7 +423,7 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 					trombulentMunge.positions.pos[0] = (MEASURE_UNIT * j);
                     trombulentMunge.positions.pos[1] = (MEASURE_UNIT * i);
 					this.enemies.push(trombulentMunge);
-					entityManager.addEntity(trombulentMunge);
+					//entityManager.addEntity(trombulentMunge);
 					break;
 				case 7:
 					this.grid[i][j] = new TileFloor();
@@ -440,4 +442,9 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 			}
 		}		
 	}
+	for (var i = 0; i<this.enemies.length; i++) {
+	//console.log("going to push enemy");
+	entityManager.addEntity(this.enemies[i]);
+	}
+	console.log("create num: " + this.enemies.length);
 }

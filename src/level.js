@@ -406,6 +406,12 @@ Level.prototype.turnOffHitboxesForCurrentRoom = function()
 	this.previousX = this.currentX;
 	this.previousY = this.currentY;
 	
+	//if (this.layout[this.currentY][this.currentX].isReverseDarkness == true) {
+	//	console.log("hi");
+	//	entityManager.clearEnemies();
+	//}
+	
+	console.log("num of enems: " + this.layout[this.currentY][this.currentX].enemies.length);
 	
 	// Turn off the enemies hitboxes for the current room.
 	for (var i = 0; i < this.layout[this.currentY][this.currentX].enemies.length; i++)
