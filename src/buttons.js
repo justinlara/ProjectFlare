@@ -30,7 +30,7 @@ function createButtons() {
 	// main menu buttons
 	var mainNewGame = document.createElement('div');
 	mainNewGame.id = 'newGame';
-	mainNewGame.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .62 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_story_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	mainNewGame.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .38) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .62 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_story_button.png); background-size: 100% 400%; background-position: 0% 0%");
 	topCanvas.appendChild(mainNewGame);
 	mainNewGame.style.display = 'none';
 	mainNewGame.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
@@ -41,7 +41,7 @@ function createButtons() {
 	
 	var mainCredits = document.createElement('div');
 	mainCredits.id = 'mainCredits';
-	mainCredits.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .75 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_credits_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	mainCredits.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .38) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .75 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_credits_button.png); background-size: 100% 400%; background-position: 0% 0%");
 	topCanvas.appendChild(mainCredits);
 	mainCredits.style.display = 'none';
 	mainCredits.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
