@@ -1,6 +1,8 @@
 var lampsLit;
 var levelsTraversed;
 
+var showCredits = false;
+
 //UI Pole
 var pole = new Image();
 pole.src = "assets/ui/pole.png";
@@ -40,7 +42,10 @@ quitButton.src = "assets/ui/pauseMenu/quit.png";
 var paused = false;
 
 var mainMenu = new Image();
-mainMenu.src = "assets/ui/mainMenu/main_menu_bg.png"
+mainMenu.src = "assets/ui/mainMenu/main_menu_bg.png";
+
+var creditsScreen = new Image();
+creditsScreen.src = "assets/ui/credits/credits_bg.jpg";
 
 // Accepts an image and draws it over the whole screen, including UI and game
 function drawFullScreenImage(im) {
@@ -53,10 +58,17 @@ function drawFullScreenImage(im) {
 	ctxDark.drawImage(im, -(GAME_WIDTH * 0.15), 0, GAME_WIDTH, GAME_HEIGHT);
 }
 
+// Draw main menu background over both canvases
 function mainMenuDraw() {
-	drawFullScreenImage(mainMenu);
+	if (showCredits) {
+		drawFullScreenImage(creditsScreen);
+		seeMainMenuButtons(false);
+	} else {
+		drawFullScreenImage(mainMenu);
+	}
 }
 
+// Draw UI on the left canvase
 function UIDraw() {
 	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
 	

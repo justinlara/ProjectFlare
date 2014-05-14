@@ -453,7 +453,7 @@ function draw() {
 	{
 		setTimeout(function() {
 			gameState = 2;
-			document.getElementById('newGame').style.display =  "block";
+			seeMainMenuButtons(true);
 		}, 2000); //after xxx seconds, advances to the game
 		drawFullScreenImage(loadImg);
 
