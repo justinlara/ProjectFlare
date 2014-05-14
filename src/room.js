@@ -22,7 +22,7 @@ var testbool = true;
 	//this remains constant once set
 	this.enemies = new Array();
 	this.enemyFadeTimer = 0;
-	this.enemyFadeDuration = 30;
+	this.enemyFadeDuration = 50;
 	//var count = 0;
 	this.doors = new Array();
 	this.lamp;

@@ -130,7 +130,7 @@ Collisions.prototype.collisionContact = function()
 				setTimeout(function(){
 					flagLampEffect = false;
 					effectR = MEASURE_UNIT*.05;
-				}, 400);
+				}, 800);
 				
 				//switch to no lantern light sprite if out of light
 				if (mainGuy.light <= 0)
@@ -196,7 +196,15 @@ Collisions.prototype.collisionContact = function()
         
         //thisLevel = new Level(thisLevel.nRooms+1, thisLevel.floorNumber+1);
 		//var number = 10 + thisLevel.floorNumber;
-        thisLevel = new Level(thisLevel.nRooms+2, thisLevel.floorNumber+1);
+		
+		//check for end of game
+		if (/*lampsLit >= 30*/true) { //for test: set true
+			thisLevel = new LastLevel(5, thisLevel.floorNumber+1);
+			flagFinalLevel = true;
+		}
+		else {
+			thisLevel = new Level(thisLevel.nRooms+2, thisLevel.floorNumber+1);
+		}
         
         //mainGuy = new Player();
         //mainGuy.hp = currentHealth;

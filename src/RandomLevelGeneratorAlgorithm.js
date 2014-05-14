@@ -92,7 +92,58 @@ function createRandomLevel(nRooms)
 
 
 
+//adding special function to make the last level structure
+function createLastLevel() {
+	numberOfRooms = 3;
+	height = 3;
+    width = 1;
+    
+    // Make a 2D array to represent the rooms of the level.
+    level = new Array(height);
+    for (var r = 0; r < height; r++)
+    {
+        level[r] = new Array(width);
+    }
+    
+    // Initialize all rooms to be inactive rooms.
+    for (var r = 0; r < height; r++)
+    {
+        for (var c = 0; c < width; c++)
+        {
+            level[r][c] = inactiveRoom;
+        }
+    }
+    
+    startRow = 2;
+    startCol = 0;
+    
+    // Make this location the startingRoom of the level
+    level[startRow][startCol] = startingRoom;
+    
+    // Keep track of number of rooms generated so far.
+    roomCount = 1;
+    
+    // Generate rooms until desired number reached.
+    while (roomCount < numberOfRooms)
+    {
+        // Pick a random room.
+        var pick = pickRoom(roomCount);
+        
+        // If there is an inactive room adjacent to this randomly picked room...
+        if(pickNextRoom(pick))
+        {
+            roomCount++;
+        }
+    }
 
+	return {level: level,
+            height: height,
+            width: width,
+            activeRoom: activeRoom,
+            inactiveRoom: inactiveRoom,
+            startingRoom: startingRoom,
+            exitRoom: exitRoom};
+}
 
 
 // *** FUNCTIONS ***

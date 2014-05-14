@@ -8,6 +8,8 @@ var SOUNDS;
 var mainGuy;
 var entityManager;
 var thisLevel;
+var lastLevel;
+var flagFinalLevel = false;
 
 var lampsLit;
 var levelsTraversed;

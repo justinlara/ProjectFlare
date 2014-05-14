@@ -38,6 +38,43 @@ function AllTiles() {
 	this.exit1[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.exit1[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
+	this.end1 = new Array();
+	this.end1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.end1[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.end2 = new Array();
+	this.end2[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.end2[1] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[2] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[3] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[4] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[5] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[6] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[7] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[8] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[9] = new Array(1,2,2,2,2,4,2,2,2,4,2,2,2,2,1);
+	this.end2[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.end3 = new Array();
+	this.end3[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.end3[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
 	this.r1 = new Array();//an open room with a lamp in the center, guarded by mileses
 	this.r1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.r1[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
@@ -734,6 +771,13 @@ AllTiles.prototype.getHard = function() {
 	var r = Math.floor((Math.random()*this.hardRooms.length));
 	return this.hardRooms[r];
 };
+
+AllTiles.prototype.getEnd = function(number){
+	
+	if (number = 1) return this.end1;
+	else if (number = 2) return this.end2;
+	else if (number = 3) return this.end3;
+}
 
 //pick a random room weighted in difficulty based on the given floor
 //I imagine this is what we'll use most often
