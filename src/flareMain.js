@@ -10,6 +10,7 @@ var entityManager;
 var thisLevel;
 var lastLevel;
 var flagFinalLevel = false;
+var storymode = true;
 
 var fadeTimer = 0;
 var fadeDuration = 30;

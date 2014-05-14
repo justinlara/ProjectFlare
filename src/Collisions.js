@@ -198,7 +198,7 @@ Collisions.prototype.collisionContact = function()
 		//var number = 10 + thisLevel.floorNumber;
 		
 		//check for end of game
-		if (/*lampsLit >= 30*/true) { //for test: set true
+		if (storymode && lampsLit >= 30) { //for test: set true
 			thisLevel = new LastLevel(5, thisLevel.floorNumber+1);
 			flagFinalLevel = true;
 		}
