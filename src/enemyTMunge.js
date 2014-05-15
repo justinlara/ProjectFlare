@@ -3,12 +3,15 @@ function TMunge() {
 	
 	this.sprite = loadSpriteTMunge;
 	
-	this.speed = MEASURE_UNIT * .01;
+	this.normalSpeed = MEASURE_UNIT * 0.01;
 	this.aquisitionRange = MEASURE_UNIT * 5;
-	this.escapeSpeed = MEASURE_UNIT * .02;
-	this.attackRange = MEASURE_UNIT * 0;
+	this.escapeSpeed = MEASURE_UNIT * 0.005;
+	this.escapeRange = MEASURE_UNIT * 2;
+	this.attackRange = MEASURE_UNIT * 0.01;
 	
-	this.entityBehavior = new Behavior(this, 'wander', 'follow', 'none', 'chase', 'none', 'none');
+	this.speed = this.normalSpeed;
+	
+	this.entityBehavior = new Behavior(this, 'wander', 'follow', 'none', 'chase', 'run', 'none');
 	/*this.setSprite = function() {
 		
 	}*/

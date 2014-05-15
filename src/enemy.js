@@ -116,34 +116,18 @@ Enemy.prototype.render = function() {
 ///*	
 	if (!this.dying)
 	{
-		this.sprite.use("idle");
-		this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
+		if(!this.entityBehavior.attacking)
+			this.sprite.use("idle");
+		else
+			this.sprite.use("attack");
 		//ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-  
 	}
-//*/
-	if(this.entityBehavior.inRange)  //(this.attack.attack1)
-    {
-        //console.log("\nBEFORE ,.,.,. ");
-        //console.log(this.attack.attack1);
-        this.sprite.use("attack");
-       
-        //this.attack.attack1 = false;
-        
-        //console.log("ENTERED ATTACK RENDER ><><<>><><><><>< ");
-        //console.log(this.attack.attack1);
-        
-        this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
-        
-        this.entityBehavior.inRange = false;
-    }
-	else if (this.dying)
+	else
 	{
 		this.sprite.use("death");
 		//this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-		
-		this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);	
 	}
+	this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
 /*	
 	else if(this.attack.lung)
 	{

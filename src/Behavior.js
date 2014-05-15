@@ -14,6 +14,7 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 	this.sStr = SpecialType;
 	
 	this.reacting = false;
+	this.attacking = false;
 }
 
 Behavior.prototype.distanceToPlayer = function() {
@@ -32,6 +33,27 @@ Behavior.prototype.distanceToTarget = function() {
     );
 }
 
+Behavior.prototype.attackReaction = function(dist) {
+	if( dist < this.actor.attackRange)
+	{
+		if(!this.attacking)
+		{
+			//change to initial attack sprite
+		}
+		else
+		{
+			//change to continuing attack sprite
+		}
+		this.attacking = true;
+	}
+	else
+	{
+		//if not in attack range anymore, reset to normal sprite
+		
+		this.attacking = false;
+	}
+};
+
 Behavior.prototype.move = function() {
 
 	var dist = this.distanceToPlayer();
@@ -41,26 +63,20 @@ Behavior.prototype.move = function() {
 	if(this.actor.hitLight.hit == true) {
 		this.reacting = true;
 		REACTB.move(this.rStr, this.actor);
+		
+		if(this.rStr == 'attack' || this.rStr == 'chase') {
+			this.attackReaction(dist);
+		}
 	}
 	else if(this.reacting == false) {
 		if( dist < this.actor.aquisitionRange) {
 		
 			CHASEB.move(this.cStr, this.actor);
 			
-			if( dist < this.actor.attackRange) 
-			{
-				this.inRange = true;
-				//console.log("info IN RANGE ======= ");
-				//console.log(dist);
-				//console.log(this.actor.attackRange);
-			}
+			this.attackReaction(dist);
 		}
 		else
 		{
-		    //console.log("\ninfo NOT IN RANGE ++++++ ");
-            //    console.log(dist);
-            //    console.log(this.actor.attackRange);
-                
 			MOVEB.move(this.mStr, this.actor);
 		}
 	}

@@ -22,6 +22,7 @@ var effectR = 0;
 var loadSpriteP;
  var loadSpriteMiles;
  //loadSpriteMiles = null;
+var loadSpriteTMunge;
 var loadSpriteMouse;
 
 var loadImg; //load screen image (splash/team logo)

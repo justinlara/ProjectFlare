@@ -55,10 +55,7 @@ function Soundloader() {
                  autoLoad: true,
                  autoPlay: true, //  turn on/off music for debugging 
                  stream: true,
-				 volume: 50,
-                 onfinish: function () {
-                     this.play();
-                 }
+				 volume: 50
     });
 	
 	/* Sound Start */
