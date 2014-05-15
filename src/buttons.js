@@ -63,6 +63,29 @@ function createButtons() {
 	creditsBack.addEventListener("click", creditsBackHandler, false);
 	
 	
+	// game over buttons
+	var gameOverReplay = document.createElement('div');
+	gameOverReplay.id = 'gameOverReplay';
+	gameOverReplay.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * .55 + "px; top: " + GAME_HEIGHT *  .82 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/endscreen_restart_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	topCanvas.appendChild(gameOverReplay);
+	gameOverReplay.style.display = 'none';
+	gameOverReplay.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
+	gameOverReplay.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
+	gameOverReplay.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
+	gameOverReplay.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
+	gameOverReplay.addEventListener("click", gameOverReplayHandler, false);
+
+	var gameOverQuit = document.createElement('div');
+	gameOverQuit.id = 'gameOverQuit';
+	gameOverQuit.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * .80 + "px; top: " + GAME_HEIGHT *  .82 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/endscreen_quit_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	topCanvas.appendChild(gameOverQuit);
+	gameOverQuit.style.display = 'none';
+	gameOverQuit.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
+	gameOverQuit.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
+	gameOverQuit.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
+	gameOverQuit.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
+	gameOverQuit.addEventListener("click", gameOverQuitHandler, false);	
+	
 	
 	//mainNewGame.addEventListener("click", newGameHandler, false);
 	
@@ -75,9 +98,9 @@ function createButtons() {
 }
 
 function newGameHandler() {
-	gameState = 4;
 	seeMainMenuButtons(false);
 	initGame();
+	gameState = 4;
 }
 
 function mainCreditsHandler() {
@@ -113,10 +136,20 @@ function quitHandler() {
 	seePauseButtons(false);
 }
 
+function gameOverReplayHandler() {
+
+}
+
+function gameOverQuitHandler() {
+	seeGameOverButtons(false);
+	seeMainMenuButtons(true);
+	gameState = 2;
+}
+
 function seePauseButtons(buttonFlag) {
 	if (buttonFlag) {
 		document.getElementById('resume').style.display =  "block";
-		document.getElementById('restart').style.display =  "block";
+		document.getElementById('restart').style.display =  "none";
 		document.getElementById('quit').style.display =  "block";
 	} else {
 		document.getElementById('resume').style.display =  "none";
@@ -140,5 +173,15 @@ function seeCreditsButtons(buttonFlag) {
 		document.getElementById('creditsBack').style.display = "block";
 	} else {
 		document.getElementById('creditsBack').style.display = "none";
+	}
+}
+
+function seeGameOverButtons(buttonFlag) {
+	if (buttonFlag) {
+		document.getElementById('gameOverReplay').style.display = "none";
+		document.getElementById('gameOverQuit').style.display = "block";
+	} else {
+		document.getElementById('gameOverReplay').style.display = "none";
+		document.getElementById('gameOverQuit').style.display = "none";
 	}
 }

@@ -502,6 +502,7 @@ function gameDraw() {
 	
 	// During each gameDraw, check if the player has died
 	if (mainGuy.hp <= 0) { // Player is dead, change gameState
+		seeGameOverButtons(true);
 		gameState = 5;
 	}
     
