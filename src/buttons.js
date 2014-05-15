@@ -96,15 +96,11 @@ function resumeHandler() {
 	paused = false;
 	gameState = 4;
 	
-	document.getElementById('resume').style.display =  "none";
-	document.getElementById('restart').style.display =  "none";
-	document.getElementById('quit').style.display =  "none";
+	seePauseButtons(false);
 }
 
 function restartHandler() {
-	document.getElementById('resume').style.display =  "none";
-	document.getElementById('restart').style.display =  "none";
-	document.getElementById('quit').style.display =  "none";
+	seePauseButtons(false);
 	
 	initGame();
 }
@@ -114,9 +110,19 @@ function quitHandler() {
 	gameState = 2;
 	seeMainMenuButtons(true);
 	
-	document.getElementById('resume').style.display =  "none";
-	document.getElementById('restart').style.display =  "none";
-	document.getElementById('quit').style.display =  "none";
+	seePauseButtons(false);
+}
+
+function seePauseButtons(buttonFlag) {
+	if (buttonFlag) {
+		document.getElementById('resume').style.display =  "block";
+		document.getElementById('restart').style.display =  "block";
+		document.getElementById('quit').style.display =  "block";
+	} else {
+		document.getElementById('resume').style.display =  "none";
+		document.getElementById('restart').style.display =  "none";
+		document.getElementById('quit').style.display =  "none";
+	}
 }
 
 function seeMainMenuButtons(flag) {
