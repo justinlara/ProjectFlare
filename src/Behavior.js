@@ -47,12 +47,20 @@ Behavior.prototype.move = function() {
 		
 			CHASEB.move(this.cStr, this.actor);
 			
-			if( dist < this.actor.attackRange) {
-				
+			if( dist < this.actor.attackRange) 
+			{
+				this.inRange = true;
+				//console.log("info IN RANGE ======= ");
+				//console.log(dist);
+				//console.log(this.actor.attackRange);
 			}
 		}
 		else
 		{
+		    //console.log("\ninfo NOT IN RANGE ++++++ ");
+            //    console.log(dist);
+            //    console.log(this.actor.attackRange);
+                
 			MOVEB.move(this.mStr, this.actor);
 		}
 	}

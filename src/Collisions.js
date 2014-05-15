@@ -46,7 +46,8 @@ Collisions.prototype.collisionContact = function()
        contactA = contact.GetFixtureA().GetBody().GetUserData();   // other (enemies, walls,...)
        contactB = contact.GetFixtureB().GetBody().GetUserData();  // player 
       }
-/*
+
+/*    // MOVED TO PRESOLVE
       if(contactA.type === "enemy" && contactB.id === "player")
       {
           switch(contactA.id)
@@ -246,7 +247,7 @@ Collisions.prototype.collisionContact = function()
       
  //*/     
  
- /*   
+ /*   // AI handling enemies from moving out the door
     if(contactB.type === "door" && contactA.type === "enemy")
      {
          console.log("ENTERED ENEMY/DOOR -----------------");
@@ -351,12 +352,17 @@ Collisions.prototype.collisionContact = function()
             case "e1":
             {
                 man = contact.GetManifold();
-         
+                 
+                 if(contactA.attack.attack1 == false)
+                    contactA.attack.attack1 = true;
+                    
                 if( man.m_pointCount !==0)
                 {
                   if (!mainGuy.invul) { //added check for iframes
                    contactB.health -= contactA.damage;  
                  
+                   
+                   
                    //two point method to move player when enemy hits:
                    // use x,y of enemy and x,y of player to determine a line
                    // move across that line to a little further away and move
@@ -433,6 +439,12 @@ Collisions.prototype.collisionContact = function()
              wallPoints = man.m_localPoint;
              
              wp = wallPoints.x*30;
+             wpy = wallPoints.y*30;             
+              console.log("TOP PART(RIGHT):::::: ");
+              console.log(wp);
+              console.log("\n Y ----- ");
+              console.log(wpy);
+                          
                                                                         
            newMove = Math.abs(Math.abs(wp-((MEASURE_UNIT/2)))- contactB.BoundSize*.32);
                     
@@ -1098,7 +1110,7 @@ Collisions.prototype.collisionContact = function()
                     enemy.hitLight.hit = true;
                 }
                 
-
+              
             
             break;
           }

@@ -265,7 +265,7 @@ Level.prototype.goToNorthRoom = function() {
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
-			mainGuy.p.pos[1] = 8 * GAME_HEIGHT/11;
+			mainGuy.p.pos[1] = 8.6*MEASURE_UNIT;
 			
 			this.currentY--;
 			this.currentRoom = this.layout[this.currentY][this.currentX];
@@ -300,7 +300,7 @@ Level.prototype.goToEastRoom = function() {
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
-			mainGuy.p.pos[0] = 1 * GAME_WIDTH/15;
+			mainGuy.p.pos[0] = 1.1*MEASURE_UNIT; 
 			
 			this.currentX++;
 			this.currentRoom = this.layout[this.currentY][this.currentX];
@@ -335,7 +335,7 @@ Level.prototype.goToSouthRoom = function() {
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
-			mainGuy.p.pos[1] = 1 * GAME_HEIGHT/11;
+			mainGuy.p.pos[1] = .75*MEASURE_UNIT; 
 			
 			this.currentY++;
 			this.currentRoom = this.layout[this.currentY][this.currentX];
@@ -369,7 +369,7 @@ Level.prototype.goToWestRoom = function() {
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
-			mainGuy.p.pos[0] = 10 * GAME_WIDTH/15;
+			mainGuy.p.pos[0] = 12.9*MEASURE_UNIT;  //10 * GAME_WIDTH/15;
 			
 			this.currentX--;
 			this.currentRoom = this.layout[this.currentY][this.currentX];

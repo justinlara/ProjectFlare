@@ -140,7 +140,8 @@ var testbool = true;
 		
 	    
 	           //**** -- DEBUGGING --
-	           //collisionWorld.DrawDebugData();  
+	           //collisionWorld.DrawDebugData();
+	             
 		if (this.setNewGrid)
 		{
 			var newTileGrid = ALLTILES.reverse1;

@@ -9,6 +9,7 @@ function Enemy() {
 	//this.imageDying = new Image();
 	this.dying = false;
 	
+	
    this.enemyfix = new b2FixtureDef;
    this.enemybox = new b2BodyDef;
   
@@ -50,6 +51,9 @@ function Enemy() {
 	this.hit = false;
 	this.hitLight = {hit: this.hit };
 	
+	this.attack1 = false;
+	this.attack = {attack1: this.attack1 };
+	
 	this.hitLR = false;
 	this.hitUD = false;
 	this.hitSomething = {hitLR: this.hitLR, hitUD: this.hitUD};
@@ -58,7 +62,8 @@ function Enemy() {
   this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
                                     hitLight: this.hitLight, 
-                                    hitSomething: this.hitSomething } ); 
+                                    hitSomething: this.hitSomething, 
+                                    attack: this.attack } ); 
   //this.enemybox.position.y  	
 	
 	//sprite defaults:
@@ -108,6 +113,7 @@ Enemy.prototype.draw = function() {
 };
 
 Enemy.prototype.render = function() {
+///*	
 	if (!this.dying)
 	{
 		this.sprite.use("idle");
@@ -115,6 +121,22 @@ Enemy.prototype.render = function() {
 		//ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
   
 	}
+//*/
+	if(this.entityBehavior.inRange)  //(this.attack.attack1)
+    {
+        //console.log("\nBEFORE ,.,.,. ");
+        //console.log(this.attack.attack1);
+        this.sprite.use("attack");
+       
+        //this.attack.attack1 = false;
+        
+        //console.log("ENTERED ATTACK RENDER ><><<>><><><><>< ");
+        //console.log(this.attack.attack1);
+        
+        this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
+        
+        this.entityBehavior.inRange = false;
+    }
 	else if (this.dying)
 	{
 		this.sprite.use("death");
@@ -122,7 +144,19 @@ Enemy.prototype.render = function() {
 		
 		this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);	
 	}
-}
+/*	
+	else if(this.attack.lung)
+	{
+	    this.sprite.use("attack");
+        //this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+        this.attack.attack1 = false;
+        
+        console.log("ENTERED ATTACK RENDER ><><<>><><><><>< ");
+        console.log(this.attack.attack1);
+        this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
+	}
+*/
+};
 
 Enemy.prototype.update = function() {
 	if (!this.dying) {
@@ -137,7 +171,8 @@ Enemy.prototype.update = function() {
 		this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
                                     hitLight: this.hitLight,
-                                    hitSomething: this.hitSomething  } ); 
+                                    hitSomething: this.hitSomething,  
+                                    attack: this.attack} ); 
 	}
 	
 	this.posX = this.positions.pos[0];

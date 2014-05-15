@@ -20,7 +20,8 @@ var effectR = 0;
 
 //globals for sprites
 var loadSpriteP;
-var loadSpriteMiles;
+ var loadSpriteMiles;
+ //loadSpriteMiles = null;
 var loadSpriteMouse;
 
 var loadImg; //load screen image (splash/team logo)
@@ -253,7 +254,9 @@ function loadAssets() {
 	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
-			death: {startRow: 0, startCol: 2, endRow: 0, endCol: 3}
+			death: {startRow: 0, startCol: 2, endRow: 0, endCol: 3},
+			// added this
+			attack:{startRow: 1, startCol: 0, endRow: 1, endCol: 0}
 		},
 		{
 			frameW: 128, // Width of each frame of the animation in pixels
