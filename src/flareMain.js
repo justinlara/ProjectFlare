@@ -423,6 +423,9 @@ function initGame() {
 	lampsLit = 0;
 	levelsTraversed = 1;
 	
+	// Play music
+	soundManager.play('spookyMusic');
+	
 	//init measure unit dependant variables
 	effectR = MEASURE_UNIT *.5;
 }
