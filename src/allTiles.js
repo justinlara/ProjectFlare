@@ -1,16 +1,159 @@
 function AllTiles() {
+	this.reverseStart = new Array(); //empty room, for reverse1 only and for templating
+	this.reverseStart[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverseStart[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[5] = new Array(1,2,2,2,2,2,2,8,2,2,2,2,2,2,1);
+	this.reverseStart[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseStart[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
 	this.reverse1 = new Array(); //empty room, for reverse1 only and for templating
 	this.reverse1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.reverse1[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.reverse1[2] = new Array(1,2,2,2,2,2,4,5,6,2,2,2,2,2,1);
-	this.reverse1[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.reverse1[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.reverse1[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.reverse1[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.reverse1[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.reverse1[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse1[2] = new Array(1,2,4,2,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse1[3] = new Array(1,2,4,2,2,5,5,5,5,5,5,5,4,2,1);
+	this.reverse1[4] = new Array(1,2,4,2,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse1[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse1[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse1[7] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse1[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
 	this.reverse1[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.reverse1[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse2 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse2[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse2[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse2[2] = new Array(1,2,4,4,4,4,2,4,4,4,4,4,4,2,1);
+	this.reverse2[3] = new Array(1,2,4,5,5,2,2,2,5,5,5,5,4,2,1);
+	this.reverse2[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse2[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse2[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse2[7] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse2[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse2[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse2[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse3 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse3[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse3[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse3[2] = new Array(1,2,4,4,4,4,4,4,4,4,2,4,4,2,1);
+	this.reverse3[3] = new Array(1,2,4,5,5,5,5,5,5,2,2,2,4,2,1);
+	this.reverse3[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse3[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse3[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse3[7] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse3[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse3[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse3[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse4 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse4[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse4[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse4[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,2,4,2,1);
+	this.reverse4[3] = new Array(1,2,4,5,5,5,5,5,5,5,2,2,4,2,1);
+	this.reverse4[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,2,4,2,1);
+	this.reverse4[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse4[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse4[7] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse4[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse4[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse4[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse5 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse5[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse5[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse5[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse5[3] = new Array(1,2,4,5,5,5,5,5,5,5,5,2,4,2,1);
+	this.reverse5[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse5[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,2,4,2,1);
+	this.reverse5[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse5[7] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse5[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse5[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse5[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse6 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse6[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse6[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse6[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse6[3] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse6[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse6[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse6[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,2,4,2,1);
+	this.reverse6[7] = new Array(1,2,4,5,5,5,5,5,5,5,2,2,4,2,1);
+	this.reverse6[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,2,4,2,1);
+	this.reverse6[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse6[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse7 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse7[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse7[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse7[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse7[3] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse7[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse7[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse7[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse7[7] = new Array(1,2,4,5,5,5,5,5,2,2,2,5,4,2,1);
+	this.reverse7[8] = new Array(1,2,4,4,4,4,4,4,4,2,4,4,4,2,1);
+	this.reverse7[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse7[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse8 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse8[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse8[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse8[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse8[3] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse8[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse8[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse8[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse8[7] = new Array(1,2,4,5,5,2,2,2,5,5,5,5,4,2,1);
+	this.reverse8[8] = new Array(1,2,4,4,4,4,2,4,4,4,4,4,4,2,1);
+	this.reverse8[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse8[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse9 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse9[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse9[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse9[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse9[3] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse9[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse9[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse9[6] = new Array(1,2,4,2,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse9[7] = new Array(1,2,4,2,2,5,5,5,5,5,5,5,4,2,1);
+	this.reverse9[8] = new Array(1,2,4,2,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse9[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse9[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse10 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse10[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse10[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse10[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse10[3] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse10[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse10[5] = new Array(1,2,4,2,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse10[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse10[7] = new Array(1,2,4,2,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse10[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse10[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse10[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
+	this.reverse11 = new Array(); //empty room, for reverse1 only and for templating
+	this.reverse11[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverse11[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse11[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse11[3] = new Array(1,2,4,2,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse11[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse11[5] = new Array(1,2,4,2,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse11[6] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse11[7] = new Array(1,2,4,5,5,5,5,5,5,5,5,5,4,2,1);
+	this.reverse11[8] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
+	this.reverse11[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverse11[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
 	this.entrance = new Array(); //empty room, for entrance only and for templating
 	this.entrance[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
@@ -739,6 +882,10 @@ function AllTiles() {
 		this.hardRooms.push(this.r19, this.r20, this.r23, this.r24, this.r25, this.r26, this.r27, this.r29, 
 		this.r30, this.r31, this.r32, this.r33, this.r34, this.r35, this.r36, this.r37, this.r39, this.r40,
 		this.r44, this.r45, this.r46, this.r47, this.r48, this.r49, this.r50);
+	this.reverseRooms = new Array();
+		this.reverseRooms.push(this.reverse1, this.reverse2, this.reverse3, this.reverse4, this.reverse5,
+				       this.reverse6, this.reverse7, this.reverse8, this.reverse9, this.reverse10,
+				       this.reverse11);
 }
 
 //methods to return room arrays
@@ -777,6 +924,12 @@ AllTiles.prototype.getEnd = function(number){
 	if (number = 1) return this.end1;
 	else if (number = 2) return this.end2;
 	else if (number = 3) return this.end3;
+}
+
+AllTiles.prototype.getReverse = function(){
+	//console.log("REVERSE ROOM");
+	var r = Math.floor((Math.random()*this.reverseRooms.length));
+	return this.reverseRooms[r];
 }
 
 //pick a random room weighted in difficulty based on the given floor

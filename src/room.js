@@ -144,7 +144,7 @@ var testbool = true;
 	             
 		if (this.setNewGrid)
 		{
-			var newTileGrid = ALLTILES.reverse1;
+			var newTileGrid = ALLTILES.getReverse();
 			this.changeRoomGrid(newTileGrid);
 			this.setNewGrid = false;
 		}
@@ -312,16 +312,39 @@ var testbool = true;
 		}
 	};
 	
+	this.setDoorAsNotLit = function(door) {
+		//change the correct tile in the grid to a door
+		switch (door) {
+			case "n"://change from generic tile to door type; assign the correctly flipped image
+				this.grid[0][7].image.src = "assets/tiles/door_castle_1.png";
+				this.northLit = false;
+				break;
+			case "s":
+				this.grid[10][7].image.src = "assets/tiles/door_castle_3.png";
+				this.southLit = false;
+				break;
+			case "e":
+				this.grid[5][14].image.src = "assets/tiles/door_castle_2.png";
+				this.eastLit = false;
+				break;
+			case "w":
+				this.grid[5][0].image.src = "assets/tiles/door_castle_4.png";
+				this.westLit = false;
+				break;
+			default:
+		}
+	};
+	
 	this.setLit = function(lit) {
 		this.isLit = lit; //disabled for debugging
 		
-		if (this.lamp != null)
-		{
-			this.lamp.image.src = "assets/Lamp1_Lit.png";
-		}
-		
 		if (lit == true)
-		{	
+		{
+			if (this.lamp != null)
+			{
+				this.lamp.image.src = "assets/Lamp1_Lit.png";
+			}
+			
 			for (var i = 0; i < this.enemies.length; i++)
 			{
 				this.enemies[i].enemyboundBox.SetActive(false);
@@ -447,5 +470,4 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 	//console.log("going to push enemy");
 	entityManager.addEntity(this.enemies[i]);
 	}
-	console.log("create num: " + this.enemies.length);
 }

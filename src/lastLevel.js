@@ -26,7 +26,6 @@ function LastLevel(numberOfRooms, floorNumber) {
 	
 	this.structure = createLastLevel();//createRandomLevel(this.nRooms);
 	drawLevelToConsole();
-	
 	//levelWidth = structure.
 
 
@@ -63,7 +62,7 @@ function LastLevel(numberOfRooms, floorNumber) {
         {
             // If this room is an active room...
             if (this.structure.level[r][c].indexOf(this.structure.activeRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.startingRoom) != -1
-			|| this.structure.level[r][c].indexOf(this.structure.exitRoom) != -1)
+			|| this.structure.level[r][c].indexOf(this.structure.exitRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.reverseRoom) != -1)
             {
 				var tileGrid = ALLTILES.getEnd(number);
 				number--;
@@ -109,6 +108,24 @@ function LastLevel(numberOfRooms, floorNumber) {
 					// Set the setLit to be true for this room.
 					newRoom.setLit(false);
 				}
+				
+				if (this.structure.level[r][c].indexOf(this.structure.reverseRoom) != -1)
+				{
+					var tileGrid = ALLTILES.reverseStart;
+					
+					var newRoom = new Room(tileGrid);
+					
+					newRoom.isReverseDarkness = true;
+					
+					//newRoom.isLit = true;
+					
+					// Set this room to have that room layout.
+					this.layout[r][c] = newRoom;
+					
+					// Set the setLit to be true for this room.
+					newRoom.setLit(true);
+				}
+		
 				// Give this room its doors.
 				for (i = 1; i < this.structure.level[r][c].length; i++)
 				{	
@@ -265,7 +282,8 @@ LastLevel.prototype.goToNorthRoom = function() {
 	{
 		if(this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.startingRoom) != -1 ||
-		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.exitRoom) != -1)
+		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.exitRoom) != -1 ||
+		   this.structure.level[this.currentY-1][this.currentX].indexOf(this.structure.reverseRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
@@ -300,7 +318,8 @@ LastLevel.prototype.goToEastRoom = function() {
 	{
 		if(this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.startingRoom) != -1 ||
-		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.exitRoom) != -1)
+		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.exitRoom) != -1 ||
+		   this.structure.level[this.currentY][this.currentX+1].indexOf(this.structure.reverseRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
@@ -335,7 +354,8 @@ LastLevel.prototype.goToSouthRoom = function() {
 	{
 		if(this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.startingRoom) != -1 ||
-		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.exitRoom) != -1)
+		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.exitRoom) != -1 ||
+		   this.structure.level[this.currentY+1][this.currentX].indexOf(this.structure.reverseRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
@@ -369,7 +389,8 @@ LastLevel.prototype.goToWestRoom = function() {
 	{
 		if(this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.activeRoom) != -1 ||
 		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.startingRoom) != -1 ||
-		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.exitRoom) != -1)
+		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.exitRoom) != -1 ||
+		   this.structure.level[this.currentY][this.currentX-1].indexOf(this.structure.reverseRoom) != -1)
 		{
 			this.turnOffHitboxesForCurrentRoom();
 			
@@ -412,10 +433,9 @@ LastLevel.prototype.turnOffHitboxesForCurrentRoom = function()
 	
 	//if (this.layout[this.currentY][this.currentX].isReverseDarkness == true) {
 	//	console.log("hi");
+	//	this.layout[this.currentY][this.currentX].killEnemies();
 	//	entityManager.clearEnemies();
 	//}
-	
-	console.log("num of enems: " + this.layout[this.currentY][this.currentX].enemies.length);
 	
 	// Turn off the enemies hitboxes for the current room.
 	for (var i = 0; i < this.layout[this.currentY][this.currentX].enemies.length; i++)
@@ -491,6 +511,10 @@ LastLevel.prototype.checkLitDoors = function(level)
 		{
 			this.layout[this.currentY][this.currentX].setDoorAsLit("n");
 		}
+		else
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsNotLit("n");
+		}
 	}
 	
 	if (roomEastExists(level))
@@ -498,6 +522,10 @@ LastLevel.prototype.checkLitDoors = function(level)
 		if (isRoomEastLit(level))
 		{
 			this.layout[this.currentY][this.currentX].setDoorAsLit("e");
+		}
+		else
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsNotLit("e");
 		}
 	}
 	
@@ -507,6 +535,10 @@ LastLevel.prototype.checkLitDoors = function(level)
 		{
 			this.layout[this.currentY][this.currentX].setDoorAsLit("s");
 		}
+		else
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsNotLit("s");
+		}
 	}
 	
 	if (roomWestExists(level))
@@ -514,6 +546,10 @@ LastLevel.prototype.checkLitDoors = function(level)
 		if (isRoomWestLit(level))
 		{
 			this.layout[this.currentY][this.currentX].setDoorAsLit("w");
+		}
+		else
+		{
+			this.layout[this.currentY][this.currentX].setDoorAsNotLit("w");
 		}
 	}
 }

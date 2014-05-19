@@ -22,6 +22,7 @@ const inactiveRoom = "\u00A0"; // this is a space, e.g. " "
 const activeRoom = "O";
 const startingRoom = "$";
 const exitRoom = "X";
+const reverseRoom = "R";
 //}
 
 function createRandomLevel(nRooms)
@@ -78,6 +79,9 @@ function createRandomLevel(nRooms)
     // Make an exit room for this level.
     makeExitRoom();
     
+    // Make reverse room(s).
+    makeReverseRoom();
+    
     // Draw the level.
     //drawLevel();
     
@@ -87,7 +91,8 @@ function createRandomLevel(nRooms)
             activeRoom: activeRoom,
             inactiveRoom: inactiveRoom,
             startingRoom: startingRoom,
-            exitRoom: exitRoom};
+            exitRoom: exitRoom,
+            reverseRoom: reverseRoom};
 }
 
 
@@ -142,7 +147,8 @@ function createLastLevel() {
             activeRoom: activeRoom,
             inactiveRoom: inactiveRoom,
             startingRoom: startingRoom,
-            exitRoom: exitRoom};
+            exitRoom: exitRoom,
+            reverseRoom: reverseRoom};
 }
 
 
@@ -339,6 +345,43 @@ function makeExitRoom()
     // This value should never return.
     return -1;
 }
+
+
+function makeReverseRoom()
+{
+    // "choose" = random integer between 1 and roomCount-2.  Minus 2 to not count starting & exit rooms.
+    var choose = Math.floor((Math.random()*(roomCount-2)) + 1);
+    
+    // "count" = counter for when the choose'th active room is selected.
+    var count = 0;
+    
+    // Iterate to find the chosen active room.
+    for (var r = 0; r < height; r++)
+    {
+        for (var c = 0; c < width; c++)
+        {
+            if (level[r][c].indexOf(activeRoom) != -1)
+            {
+                // Increment the counter.
+                count++;
+                
+                // When the choose'th room is selected...
+                if (count == choose)
+                {
+                    
+                    // Make this active room an ending room instead.
+                    level[r][c] = level[r][c].replace(activeRoom, reverseRoom);
+                    isNotDone = false;
+                    return -1;
+                }
+            }
+        }
+    }
+    
+    // This value should never return.
+    return -1;
+}
+
 //
 
 // Ghetto text representation of the level.
