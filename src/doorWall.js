@@ -12,7 +12,7 @@ function DoorWall(doorWallSide) {
 	if (this.side == "n")
 	{
 		this.posX =(((((MEASURE_UNIT))*15.0)/2));	//(((((MEASURE_UNIT))/2))*30)*2;
-		this.posY = ((MEASURE_UNIT*.530)/2);	//((MEASURE_UNIT*.55));
+		this.posY = ((MEASURE_UNIT*.620)/2);	//((MEASURE_UNIT*.55));
 	}
 	else if (this.side == "e")
 	{

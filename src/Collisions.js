@@ -441,10 +441,6 @@ Collisions.prototype.collisionContact = function()
              
              wp = wallPoints.x*30;
              wpy = wallPoints.y*30;             
-              console.log("TOP PART(RIGHT):::::: ");
-              console.log(wp);
-              console.log("\n Y ----- ");
-              console.log(wpy);
                           
                                                                         
            newMove = Math.abs(Math.abs(wp-((MEASURE_UNIT/2)))- contactB.BoundSize*.32);
@@ -704,10 +700,75 @@ Collisions.prototype.collisionContact = function()
         
         
      }
-  ///*
+     
+     if(contactA.type === "lightSource" && contactB.id === "player")
+     {
+         man = contact.GetManifold();
+         
+         if( man.m_pointCount !==0)
+         {
+           wX = contactA.wPx;
+           wY = contactA.wPy;
+           sX = contactA.size[0];
+           sY = contactA.size[1];
+         
+           normals = man.m_localPlaneNormal;
+                
+                //--------------------------
+                
+                //** FOUND PROBLEM: THE +1 IN LAMP draw()  setPosition doesn't scale correctly
+                // take size and divide by some number to place it correctly 
+                
+                wallPoints = man.m_localPoint;
+    
+                wp = wallPoints.x*30;
+
+              
+              
+               //LEFT SIDE                              //*.8 or / 5/4 reciprical of fraction form  NOTE: smaller screen boxes wX front side, larger wX middle
+               
+                            //** want to use MEASURE_UNIT to have boundSize scale with large and small windows
+               if(contactB.pos[0] > (wX-((contactB.BoundSize)*1.5)) && normals.x <= -1) 
+               
+               //if(contactB.pos[0] > (contactA.L) && normals.x <= -1)
+               {
+                   
+                   
+                   
+                                                        //*.8 or 4/5
+                   contactB.pos[0] = (wX-((contactB.BoundSize)*1.5));
+                  // contactB.pos[0] = (contact.L);
+                   
+                   //console.log("\n AFTER MOVE play posX: " + contactB.pos[0] + " > value " + (wX-(contactB.BoundSize/(4/5))));
+                   //console.log(" L ");
+               }    
+               // RIGHT SIDE
+               else if(contactB.pos[0] < ((wX+sX) - (contactB.BoundSize*.05))&& normals.x >= 1)
+               {
+                   //console.log(" R ");
+                   contactB.pos[0] = ((wX+sX) - (contactB.BoundSize*.05)); 
+               }
+               // TOP SIDE                                           //*.2
+               else if(contactB.pos[1] > ((wY-sY)) && normals.y <= -1)
+               {
+                   //console.log(" U ");
+                   contactB.pos[1] = (((wY-sY))); 
+               }
+               // BOTTOM SIDE
+               else if(contactB.pos[1] < ((wY) + (contactB.BoundSize/2)) && normals.y >= 1)
+               {
+                   //console.log(" D ");
+                   contactB.pos[1] = ((wY) + (contactB.BoundSize/2)); 
+               }
+                     
+           
+        }
+        
+        
+     }  
   
   
-  ///*
+  
   if(contactA.type === "doorWall" && contactB.id === "player")
      {
          //console.log("YES " + contactA.active);

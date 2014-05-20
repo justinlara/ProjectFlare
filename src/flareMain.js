@@ -559,7 +559,7 @@ function gameDraw() {
 	//collisionWorld.DrawDebugData();
 
 	//only draw if not lit
-
+ //COMMENT OUT FOR COLLISON BOX DEBUGGING/*	
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;
 			

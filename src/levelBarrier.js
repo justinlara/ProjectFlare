@@ -87,10 +87,10 @@ function levelBarrier()
   //                                     new b2Vec2(UBoxX, UBoxY), 0);
   
   this.Ulevelfix.shape.SetAsOrientedBox((((MEASURE_UNIT)/4) -((1.1*MEASURE_UNIT/30))), ((MEASURE_UNIT/30)/4),
-                                       new b2Vec2(DBoxX, UBoxY*1.1), 0);
+                                       new b2Vec2(DBoxX, UBoxY*1.2), 0);
   
   this.U2levelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4)-((1.1*MEASURE_UNIT/30))), ((MEASURE_UNIT/30)/4),
-                                       new b2Vec2((((((MEASURE_UNIT))*14.5)/30)) , UBoxY*1.1), 0);
+                                       new b2Vec2((((((MEASURE_UNIT))*14.5)/30)) , UBoxY*1.2), 0);
   
   
 //ORIGINAL:  this.Dlevelfix.shape.SetAsOrientedBox( ( GAME_WIDTH/MEASURE_UNIT ),  ((MEASURE_UNIT/30)*.55),  

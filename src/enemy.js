@@ -128,18 +128,7 @@ Enemy.prototype.render = function() {
 		//this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 	}
 	this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
-/*	
-	else if(this.attack.lung)
-	{
-	    this.sprite.use("attack");
-        //this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
-        this.attack.attack1 = false;
-        
-        console.log("ENTERED ATTACK RENDER ><><<>><><><><>< ");
-        console.log(this.attack.attack1);
-        this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
-	}
-*/
+    this.entityBehavior.attacking = false;
 };
 
 Enemy.prototype.update = function() {
