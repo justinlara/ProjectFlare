@@ -5,7 +5,7 @@ function createButtons() {
 	// Pause buttons
 	var pauseResume = document.createElement('div');
 	pauseResume.id = 'resume';
-	pauseResume.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 2.8)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/pauseMenu/resume_spritesheet.png); background-size: 400% 200%; background-position: -1% 0%");
+	pauseResume.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 2.8)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/pauseMenu/resume_spritesheet.png); background-size: 400% 200%; background-position: 0% 0%");
 	topCanvas.appendChild(pauseResume);
 	pauseResume.style.display = 'none';
 	pauseResume.setAttribute('onmouseover', "this.style.backgroundPosition='-100% 0%'");
@@ -16,7 +16,7 @@ function createButtons() {
 	
 	var pauseRestart = document.createElement('div');
 	pauseRestart.id = 'restart';
-	pauseRestart.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 5.7)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/pauseMenu/restart_spritesheet.png); background-size: 400% 200%; background-position: -1% 0%");
+	pauseRestart.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 5.7)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/pauseMenu/restart_spritesheet.png); background-size: 400% 200%; background-position: 0% 0%");
 	topCanvas.appendChild(pauseRestart);
 	pauseRestart.style.display = 'none';
 	pauseRestart.setAttribute('onmouseover', "this.style.backgroundPosition='-100% 0%'");
