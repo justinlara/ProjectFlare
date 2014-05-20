@@ -11,7 +11,7 @@ function RTMunge() {
 	
 	this.speed = this.normalSpeed;
 	
-	this.entityBehavior = new Behavior(this, 'wander', 'follow', 'none', 'chase', 'run', 'none');
+	this.entityBehavior = new Behavior(this, 'wander', 'follow', 'none', 'freeze', 'run', 'none');
 	/*this.setSprite = function() {
 		
 	}*/
