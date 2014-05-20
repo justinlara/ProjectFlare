@@ -46,7 +46,7 @@ function createButtons() {
 	mainCredits.style.display = 'none';
 	mainCredits.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
 	mainCredits.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
-	mainCredits.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
+	mainCredits.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%'");
 	mainCredits.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
 	mainCredits.addEventListener("click", mainCreditsHandler, false);
 	
@@ -58,7 +58,7 @@ function createButtons() {
 	creditsBack.style.display = 'none';
 	creditsBack.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
 	creditsBack.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
-	creditsBack.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
+	creditsBack.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%'");
 	creditsBack.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
 	creditsBack.addEventListener("click", creditsBackHandler, false);
 	
@@ -66,12 +66,12 @@ function createButtons() {
 	// game over buttons
 	var gameOverReplay = document.createElement('div');
 	gameOverReplay.id = 'gameOverReplay';
-	gameOverReplay.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * .55 + "px; top: " + GAME_HEIGHT *  .82 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/endscreen_restart_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	gameOverReplay.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * .55 + "px; top: " + GAME_HEIGHT *  .82 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/endscreen_replay_button.png); background-size: 100% 400%; background-position: 0% 0%");
 	topCanvas.appendChild(gameOverReplay);
 	gameOverReplay.style.display = 'none';
 	gameOverReplay.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
 	gameOverReplay.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
-	gameOverReplay.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
+	gameOverReplay.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%'");
 	gameOverReplay.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
 	gameOverReplay.addEventListener("click", gameOverReplayHandler, false);
 
@@ -82,7 +82,7 @@ function createButtons() {
 	gameOverQuit.style.display = 'none';
 	gameOverQuit.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
 	gameOverQuit.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
-	gameOverQuit.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
+	gameOverQuit.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%'");
 	gameOverQuit.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
 	gameOverQuit.addEventListener("click", gameOverQuitHandler, false);	
 	
@@ -137,7 +137,9 @@ function quitHandler() {
 }
 
 function gameOverReplayHandler() {
-
+	seeGameOverButtons(false);
+	initGame();
+	gameState = 4;
 }
 
 function gameOverQuitHandler() {
@@ -149,7 +151,7 @@ function gameOverQuitHandler() {
 function seePauseButtons(buttonFlag) {
 	if (buttonFlag) {
 		document.getElementById('resume').style.display =  "block";
-		document.getElementById('restart').style.display =  "none";
+		document.getElementById('restart').style.display =  "block";
 		document.getElementById('quit').style.display =  "block";
 	} else {
 		document.getElementById('resume').style.display =  "none";
@@ -178,7 +180,7 @@ function seeCreditsButtons(buttonFlag) {
 
 function seeGameOverButtons(buttonFlag) {
 	if (buttonFlag) {
-		document.getElementById('gameOverReplay').style.display = "none";
+		document.getElementById('gameOverReplay').style.display = "block";
 		document.getElementById('gameOverQuit').style.display = "block";
 	} else {
 		document.getElementById('gameOverReplay').style.display = "none";
