@@ -28,16 +28,16 @@ function createButtons() {
 	pauseQuit.addEventListener("click", quitHandler, false);
 	
 	// main menu buttons
-	var mainNewGame = document.createElement('div');
-	mainNewGame.id = 'newGame';
-	mainNewGame.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .38) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .62 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_story_button.png); background-size: 100% 400%; background-position: 0% 0%");
-	topCanvas.appendChild(mainNewGame);
-	mainNewGame.style.display = 'none';
-	mainNewGame.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
-	mainNewGame.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
-	mainNewGame.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
-	mainNewGame.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
-	mainNewGame.addEventListener("click", newGameHandler, false);
+	var mainStory = document.createElement('div');
+	mainStory.id = 'mainStory';
+	mainStory.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .38) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .62 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_story_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	topCanvas.appendChild(mainStory);
+	mainStory.style.display = 'none';
+	mainStory.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
+	mainStory.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
+	mainStory.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%%'");
+	mainStory.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
+	mainStory.addEventListener("click", mainStoryHandler, false);
 	
 	var mainCredits = document.createElement('div');
 	mainCredits.id = 'mainCredits';
@@ -97,7 +97,7 @@ function createButtons() {
 	//$('#resume').on('click', clickedd());
 }
 
-function newGameHandler() {
+function mainStoryHandler() {
 	seeMainMenuButtons(false);
 	initGame();
 	gameState = 4;
@@ -162,10 +162,10 @@ function seePauseButtons(buttonFlag) {
 
 function seeMainMenuButtons(flag) {
 	if (flag) {
-		document.getElementById('newGame').style.display = "block";
+		document.getElementById('mainStory').style.display = "block";
 		document.getElementById('mainCredits').style.display = "block";
 	} else {
-		document.getElementById('newGame').style.display = "none";
+		document.getElementById('mainStory').style.display = "none";
 		document.getElementById('mainCredits').style.display = "none";
 	}
 }
