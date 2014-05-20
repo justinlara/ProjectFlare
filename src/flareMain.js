@@ -378,6 +378,9 @@ function loadAssets() {
 }
 
 function initGame() {
+	//physics:
+    collisionWorld = new b2World( new b2Vec2(0,0), true);
+
 	//set up sound manager
 	soundManager.setup({
         url: 'src/swf/',
@@ -513,7 +516,7 @@ function gameDraw() {
 	//collisionWorld.DrawDebugData();
 
 	//only draw if not lit
- ///*	
+
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;
 			
@@ -572,8 +575,6 @@ function initDrawUpdate() {
     ctxDark = document.getElementById('dark').getContext('2d');
     ctxUI = document.getElementById('ui').getContext('2d');
 	
-	//physics:
-    collisionWorld = new b2World( new b2Vec2(0,0), true);
     
     //load images
     loadAssets();
