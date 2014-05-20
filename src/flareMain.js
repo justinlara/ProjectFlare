@@ -8,7 +8,6 @@ var SOUNDS;
 var mainGuy;
 var entityManager;
 var thisLevel;
-//var lastLevel;
 var flagFinalLevel = false;
 var storymode = true;
 
@@ -18,10 +17,13 @@ var flagLampEffect = false;
 var flagTorchlightEffect = false;
 var effectR = 0;
 
+var redEnemyThreshhold = 101; //global for how often to spawn red enemy (inverse %)
+//note that red enemies will only spawn on floor 3+ (subject to change)
+
 //globals for sprites
 var loadSpriteP;
- var loadSpriteMiles;
- //loadSpriteMiles = null;
+var loadSpriteMiles;
+var loadSpriteRMiles;
 var loadSpriteTMunge;
 var loadSpriteRTMunge;
 var loadSpriteMouse;
@@ -259,7 +261,7 @@ function loadAssets() {
 	loadSpriteMiles = new SpriteMap("assets/enemies/miles_test_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
-			death: {startRow: 0, startCol: 2, endRow: 0, endCol: 3},
+			death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
 			// added this
 			attack:{startRow: 1, startCol: 0, endRow: 1, endCol: 0}
 		},
@@ -272,6 +274,25 @@ function loadAssets() {
 			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
 			postInitCallback: function() {
 				loadSpriteMiles.start('idle');
+			}
+		}
+	);
+	loadSpriteRMiles = new SpriteMap("assets/enemies/red_miles_sheet.png",
+		{
+			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+			death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+			// added this
+			attack:{startRow: 1, startCol: 0, endRow: 1, endCol: 0}
+		},
+		{
+			frameW: 128, // Width of each frame of the animation in pixels
+			frameH: 128, // Height of each frame of the animation in pixels
+			projectedW: MEASURE_UNIT, // Displayed width
+			projectedH: MEASURE_UNIT, // Displayed height 
+			interval: 150, // Switch frames every xxx ms
+			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+			postInitCallback: function() {
+				loadSpriteRMiles.start('idle');
 			}
 		}
 	);
@@ -305,7 +326,7 @@ function loadAssets() {
 			interval: 150, // Switch frames every xxx ms
 			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
 			postInitCallback: function() {
-				loadSpriteTMunge.start('idle');
+				loadSpriteRTMunge.start('idle');
 			}
 		}
 	);
@@ -422,6 +443,7 @@ function initGame() {
     
     //generate the level
     thisLevel = new Level(10, 1);
+	gFloor = 1;
     levelBox = new levelBarrier();
     
     //add current enemies to manager

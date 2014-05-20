@@ -93,7 +93,11 @@ var testbool = true;
 				case 5: //example enemy case, add a floor tile and make a new enemy
 					this.grid[i][j] = new TileFloor();
 					var miles = new Miles();
-					// console.log(" created ENEMY --------------------------------------------------------  ");
+					// random chance of spawning a red miles:
+					var r = Math.floor((Math.random()*100));
+					if (r > redEnemyThreshhold) {
+						miles = new RedMiles();
+					}
                 
                 	miles.posX = (MEASURE_UNIT * j);
 					miles.posY = (MEASURE_UNIT * i);
@@ -108,7 +112,12 @@ var testbool = true;
 				case 6:
 					this.grid[i][j] = new TileFloor();
 					var trombulentMunge = new TMunge();
-					// console.log(" created ENEMY2 --------------------------------------------------------  ");
+					//random chance of spawning a brown munge:
+					var r = Math.floor((Math.random()*100));
+					if (r > redEnemyThreshhold) {
+						trombulentMunge = new RTMunge();
+					}
+					
 					trombulentMunge.posX = (MEASURE_UNIT * j);
 					trombulentMunge.posY = (MEASURE_UNIT * i);
 					trombulentMunge.positions.pos[0] = (MEASURE_UNIT * j);
@@ -126,7 +135,9 @@ var testbool = true;
 					this.grid[i][j] = new TileFloor();
 					this.lamp = new Lamp(j,i);
 					break;
-					
+				case 9:
+					//reserved for critter spawners!
+					break;
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
 			}

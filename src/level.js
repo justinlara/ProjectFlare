@@ -11,6 +11,10 @@ function Level(numberOfRooms, floorNumber) {
 	this.nRooms = numberOfRooms;
 	this.floorNumber = floorNumber;
 	//this.layout = new Array();
+	
+	//set chance of red enemies based on floor#
+	redEnemyThreshhold = redEnemyThreshhold - floorNumber;
+	
 	this.currentRoom;
 	this.currentX = -1;
 	this.currentY = -1;

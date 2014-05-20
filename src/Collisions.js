@@ -205,6 +205,7 @@ Collisions.prototype.collisionContact = function()
 		}
 		else {
 			thisLevel = new Level(thisLevel.nRooms+2, thisLevel.floorNumber+1);
+			console.log(redEnemyThreshhold);
 		}
         
         //mainGuy = new Player();
