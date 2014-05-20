@@ -8,7 +8,7 @@ var SOUNDS;
 var mainGuy;
 var entityManager;
 var thisLevel;
-var lastLevel;
+//var lastLevel;
 var flagFinalLevel = false;
 var storymode = true;
 
@@ -23,9 +23,11 @@ var loadSpriteP;
  var loadSpriteMiles;
  //loadSpriteMiles = null;
 var loadSpriteTMunge;
+var loadSpriteRTMunge;
 var loadSpriteMouse;
 
 var loadImg; //load screen image (splash/team logo)
+var controlsImg;
 
 //behavior globals
 MOVEB = new MoveBehavior();
@@ -81,6 +83,8 @@ function loadAssets() {
     // when we put this on a website, we can simplify this with PHP
 	loadImg = new Image();
 	loadImg.src = "assets/loading.png";
+	controlsImg = new Image();
+	controlsImg.src = "assets/ui/controls_decal_test.png";
 	
     var images = new Array();
     var imgNumber = 36;
@@ -272,6 +276,23 @@ function loadAssets() {
 		}
 	);
 	loadSpriteTMunge = new SpriteMap("assets/enemies/munge_idle_sheet.png",
+		{
+			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 17},
+			death: {startRow: 1, startCol: 0, endRow: 1, endCol: 17}
+		},
+		{
+			frameW: 64, // Width of each frame of the animation in pixels
+			frameH: 64, // Height of each frame of the animation in pixels
+			projectedW: MEASURE_UNIT, // Displayed width
+			projectedH: MEASURE_UNIT, // Displayed height 
+			interval: 150, // Switch frames every xxx ms
+			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+			postInitCallback: function() {
+				loadSpriteTMunge.start('idle');
+			}
+		}
+	);
+	loadSpriteRTMunge = new SpriteMap("assets/enemies/brown_munge_idle_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 17},
 			death: {startRow: 1, startCol: 0, endRow: 1, endCol: 17}
