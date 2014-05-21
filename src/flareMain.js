@@ -469,6 +469,9 @@ function initGame() {
 	lampsLit = 0;
 	levelsTraversed = 1;
 	
+	// initUI found in flareUI.js
+	initUI();
+	
 	// Play music
 	soundManager.play('spookyMusic');
 	

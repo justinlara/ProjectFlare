@@ -108,6 +108,7 @@ function createButtons() {
 
 function mainStoryHandler() {
 	seeMainMenuButtons(false);
+	seeGameElements(true);
 	initGame();
 	gameState = 4;
 }
@@ -143,6 +144,7 @@ function quitHandler() {
 	seeMainMenuButtons(true);
 	
 	seePauseButtons(false);
+	seeGameElements(false);
 }
 
 function gameOverReplayHandler() {
@@ -154,6 +156,7 @@ function gameOverReplayHandler() {
 function gameOverQuitHandler() {
 	seeGameOverButtons(false);
 	seeMainMenuButtons(true);
+	seeGameElements(false);
 	gameState = 2;
 }
 
@@ -194,5 +197,13 @@ function seeGameOverButtons(buttonFlag) {
 	} else {
 		document.getElementById('gameOverReplay').style.display = "none";
 		document.getElementById('gameOverQuit').style.display = "none";
+	}
+}
+
+function seeGameElements(buttonFlag) {
+	if (buttonFlag) {
+		document.getElementById('dashMeter').style.display = "block";
+	} else {
+		document.getElementById('dashMeter').style.display = "none";
 	}
 }

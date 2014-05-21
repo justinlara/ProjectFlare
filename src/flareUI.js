@@ -5,7 +5,7 @@ var showCredits = false;
 
 //UI Pole
 var pole = new Image();
-pole.src = "assets/ui/pole.png";
+pole.src = "assets/ui/pole_with_pause.png";
 
 // UI health
 var heart = new Image();
@@ -56,6 +56,15 @@ function drawFullScreenImage(im) {
 	// Draw image on the UI canvas, then again off the left side of the Dark canvas
 	ctxUI.drawImage(im, 0, 0, GAME_WIDTH, GAME_HEIGHT);
 	ctxDark.drawImage(im, -(GAME_WIDTH * 0.15), 0, GAME_WIDTH, GAME_HEIGHT);
+}
+
+function initUI() {
+	// Create dash UI
+	var dashMeter = document.createElement('div');
+	dashMeter.id = 'dashMeter';
+	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 1.5 + "px; height: " + MEASURE_UNIT * .7 + "px; left: " + GAME_WIDTH * 0.038 + "px; top: " + GAME_HEIGHT * .64 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#000), to(#bbb)); background-size: 0% 0%; background-repeat: no-repeat;");
+	document.getElementById('gameScreen').appendChild(dashMeter);
+	dashMeter.style.display = 'block';
 }
 
 // Draw main menu background over both canvases
@@ -159,6 +168,10 @@ function UIDraw() {
 		ctxUI.drawImage(UINums[Math.floor((levelsTraversed % 100) / 10)], singleX, Y2, numSide, numSide);
 		ctxUI.drawImage(UINums[levelsTraversed % 10], tripleX3, Y2, numSide, numSide);
 	}
+	
+	// Update dash meter
+	runFill = mainGuy.runMeter * 10;
+	document.getElementById('dashMeter').style.backgroundSize = runFill + "% 100%";
 }
 
 function pauseDraw() {
