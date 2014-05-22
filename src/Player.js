@@ -1,6 +1,8 @@
 function Player() 
 {
   this.runMeter = 10;
+  this.runDelay = 0;
+  this.runDelayMax = 60;
   
   this.lantern = {
 	currentLightSprite: SpriteNoOil,
@@ -269,6 +271,7 @@ function Player()
 		
 		if (controls.isDown(controls.SPACE))
 		{
+		  this.runDelay = 0;
 		      if (this.runMeter > 0)
 		      {
 			 this.movespeed = 0.10;
@@ -285,13 +288,17 @@ function Player()
 		       this.movespeed = 0.02;
 		       //console.log("tired" + this.runMeter);
 		      }
-		       //this.run = true;
-		       //thisLevel.goToWestRoom();
 		}
 		else
 		{
+		  this.runDelay++;
+		  
 		  this.movespeed = 0.04;
-		  this.runMeter += 0.1;
+		  
+		  if (this.runDelay >= this.runDelayMax) {
+		    this.runDelay = this.runDelayMax;
+		    this.runMeter += 0.1;
+		  }
 		  
 		  if (this.runMeter > 10)
 		  {
