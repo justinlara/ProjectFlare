@@ -442,6 +442,10 @@ function loadAssets() {
 }
 
 function initGame() {
+	//reset flags:
+	var flagFinalLevel = false;
+	var flagEndSequenceInitiated = false;
+
 	//physics:
     collisionWorld = new b2World( new b2Vec2(0,0), true);
 
@@ -469,10 +473,10 @@ function initGame() {
     levelBox = new levelBarrier();
     
     //add current enemies to manager
-    for (var i = 0; i<thisLevel.currentRoom.enemies.length; i++)
+  /*  for (var i = 0; i<thisLevel.currentRoom.enemies.length; i++)
     {
 		entityManager.addEntity(thisLevel.currentRoom.enemies[i]);
-    }
+    }*/
     
     //initialize collision detections
     collisionDetection = new Collisions(); 
