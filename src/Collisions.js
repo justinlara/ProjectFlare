@@ -1067,7 +1067,7 @@ Collisions.prototype.collisionContact = function()
            
      }
     
-    if((contactA.type === "enemy" &&  contactB.type === "obstacle" )) 
+    if((contactA.type === "enemy" &&  contactB.type === "obstacle" ) && !contactA.flying) 
      {
           
          man = contact.GetManifold();

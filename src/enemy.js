@@ -9,6 +9,8 @@ function Enemy() {
 	//this.imageDying = new Image();
 	this.dying = false;
 	
+	this.flying = false;
+	
 	
    this.enemyfix = new b2FixtureDef;
    this.enemybox = new b2BodyDef;
@@ -63,7 +65,8 @@ function Enemy() {
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
                                     hitLight: this.hitLight, 
                                     hitSomething: this.hitSomething, 
-                                    attack: this.attack } ); 
+                                    attack: this.attack,
+				    flying: this.flying} ); 
   //this.enemybox.position.y  	
 	
 	//sprite defaults:
@@ -145,7 +148,8 @@ Enemy.prototype.update = function() {
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
                                     hitLight: this.hitLight,
                                     hitSomething: this.hitSomething,  
-                                    attack: this.attack} ); 
+                                    attack: this.attack,
+				    flying: this.flying} ); 
 	}
 	
 	this.posX = this.positions.pos[0];
