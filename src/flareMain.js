@@ -10,6 +10,7 @@ var entityManager;
 var thisLevel;
 var flagFinalLevel = false;
 var storymode;
+var flagEndSequenceInitiated = false;
 
 var fadeTimer = 0;
 var fadeDuration = 30;
@@ -17,7 +18,7 @@ var flagLampEffect = false;
 var flagTorchlightEffect = false;
 var effectR = 0;
 
-var redEnemyThreshhold = 101; //global for how often to spawn red enemy (inverse %)
+var redEnemyThreshhold = 105; //global for how often to spawn red enemy (inverse %)
 //note that red enemies will only spawn on floor 3+ (subject to change)
 
 //globals for sprites
@@ -27,6 +28,7 @@ var loadSpriteRMiles;
 var loadSpriteTMunge;
 var loadSpriteRTMunge;
 var loadSpriteMouse;
+var dRaito;
 
 var loadImg; //load screen image (splash/team logo)
 var controlsImg;
@@ -149,6 +151,26 @@ function loadAssets() {
 					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
 				}
 	});
+	dRaito = new SpriteMap('assets/player/DARK_RAITO.png',
+			{ //anim sequences
+				idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
+				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3},
+				walkLeft: {startRow: 3, startCol: 0, endRow: 3, endCol: 3},
+				walkRight: {startRow: 1, startCol: 0, endRow: 1, endCol: 3},
+				walkUp: {startRow: 2, startCol: 0, endRow: 2, endCol: 3}
+			}, { //options
+				frameW: 64, // Width of each frame of the animation in pixels
+				frameH: 64, // Height of each frame of the animation in pixels
+				projectedW: MEASURE_UNIT, // Displayed width
+				projectedH: MEASURE_UNIT, // Displayed height 
+				interval: 150, // Switch frames every xxx ms
+				useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+				postInitCallback: function() {
+					//dRaito.use('idle');//start the idle anim
+					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
+				}
+			}
+	);
 	scaleLight = 1;
 	SpriteNoOil = new Sprite("assets/New light filters/LightOverlay_NoOil.png",
 		{

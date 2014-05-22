@@ -14,6 +14,10 @@ var testbool = true;
 	this.isEntrance = false;
 	this.isExit = false;
 	this.exitEffectplayed = false;
+	this.EndRoom = false;
+	this.FINALroom = false;
+	this.escapeRoom = false;
+	this.setup = false; //setup for final room sequence
 	
 	this.isReverseDarkness = false;
 	this.setNewGrid = false;
@@ -139,6 +143,13 @@ var testbool = true;
 				case 9:
 					//reserved for critter spawners!
 					break;
+				case 10: //special dark raito
+					this.grid[i][j] = new TileFloor();
+					var dr = new darkRaito();
+					dr.positions.pos[0] = (MEASURE_UNIT * j);
+                    dr.positions.pos[1] = (MEASURE_UNIT * i);
+					this.enemies.push(dr);
+					break;
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
 			}
@@ -153,15 +164,32 @@ var testbool = true;
 	    
 	           //**** -- DEBUGGING --
 	           //collisionWorld.DrawDebugData();
-	             
+	    //using this as an update block
 		if (this.setNewGrid)
 		{
 			var newTileGrid = ALLTILES.getReverse();
 			this.changeRoomGrid(newTileGrid);
 			this.setNewGrid = false;
 		}
-		if (this.isExit == true)
+		if (this.isExit || this.EndRoom) {
 			this.isLit = true;
+		}
+		if (flagEndSequenceInitiated) {
+			this.isLit = false;
+			if (!this.setup) {
+				this.setup = true;
+				thisLevel.roomFleeingSetup();
+			}
+		}
+		if (this.FINALroom) {
+			thisLevel.darkRaitoAttack();
+		}
+		if (this.escapeRoom && flagEndSequenceInitiated) {
+			var newTileGrid = ALLTILES.exit1;
+			this.changeRoomGrid(newTileGrid);
+			this.isExit = true;
+		}
+		//end update
 		
 		//for each tile, draw it onto world
 		var gx = 0;
@@ -198,16 +226,18 @@ var testbool = true;
 		}
 		
 		//draw lamp
-		if ('undefined' != typeof this.lamp)
+		if ('undefined' != typeof this.lamp) {
 			this.lamp.draw();
+			if (this.isReverseDarkness) lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*5, MEASURE_UNIT, MEASURE_UNIT);
+		}
 			
 		if (this.isEntrance) { //if entrance, draw lamp, controls
-			lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*4, MEASURE_UNIT, MEASURE_UNIT);
+			//lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*4, MEASURE_UNIT, MEASURE_UNIT);
 			if (thisLevel.floorNumber == 1) {
 				ctxWorld.drawImage(controlsImg, MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*3, MEASURE_UNIT*3);
 			}
 		}
-		if (this.isExit) {
+		if (this.isExit || this.EndRoom) {
 			var flag;
 			if (!this.exitEffectplayed) {
 				flag = setInterval(function() {
@@ -217,10 +247,11 @@ var testbool = true;
 					clearInterval(flag);
 					effectR = MEASURE_UNIT*.5;
 					flagTorchlightEffect = false;
+					if (this.EndRoom) this.isLit = true;
 				}, 1500);
 				this.exitEffectplayed = true;
 			}
-			drawTorches();
+			if (!flagEndSequenceInitiated) drawTorches();
 		}
 		
 		//draw exit

@@ -87,7 +87,7 @@ function Level(numberOfRooms, floorNumber) {
 			var newRoom = new Room(tileGrid);
 			
 			newRoom.isEntrance = true;
-			newRoom.lamp = new lightSource(7,4);//(2, 2);
+			//newRoom.lamp = new lightSource(7,4);//(2, 2);
 			
 			// Set this room to have that room layout.
 			this.layout[r][c] = newRoom;

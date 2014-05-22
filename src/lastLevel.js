@@ -65,18 +65,30 @@ function LastLevel(numberOfRooms, floorNumber) {
             if (this.structure.level[r][c].indexOf(this.structure.activeRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.startingRoom) != -1
 			|| this.structure.level[r][c].indexOf(this.structure.exitRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.reverseRoom) != -1)
             {
-		
-				if (this.structure.level[r][c].indexOf(this.structure.activeRoom) != -1) {
-					var tileGrid = ALLTILES.getEnd(number);
-					number--;
-					
+				console.log("number = " + number);
+				if (number == 3) {
+					var tileGrid = ALLTILES.end3;
 					var newRoom = new Room(tileGrid);
-					
-					// Set this room to have that room layout.
-					this.layout[r][c] = newRoom;
-					
-					this.lightsTotal++;
+					newRoom.EndRoom = true;
+					newRoom.FINALroom = true;
 				}
+				else if (number == 2) {
+					var tileGrid = ALLTILES.end2;
+					var newRoom = new Room(tileGrid);
+					newRoom.EndRoom = true;
+				}
+				else if (number == 1) {
+					var tileGrid = ALLTILES.end1;
+					var newRoom = new Room(tileGrid);
+					newRoom.EndRoom = true;
+					newRoom.escapeRoom = true;
+				}
+				number--;
+				
+				// Set this room to have that room layout.
+				this.layout[r][c] = newRoom;
+				this.lightsTotal++;
+
 				// If this is the starting room, set it to the currentRoom (denoted by $ as the first char)
 				if (this.structure.level[r][c].indexOf(this.structure.startingRoom) != -1)
 				{
@@ -571,4 +583,34 @@ LastLevel.prototype.fade = function()
 {
 	gameState = 7;
 }
-;
+
+
+// scripted sequences for final level
+LastLevel.prototype.darkRaitoAttack = function() {
+	/*var dR = new darkRaito();
+	dR.positions.pos[0] = MEASURE_UNIT * 7;
+	dR.positions.pos[1] = MEASURE_UNIT * 3;
+	entityManager.addEntity(dR);*/
+	
+	setTimeout( function() { //knocks the lantern away
+		flagEndSequenceInitiated = true;
+		mainGuy.light = 0;
+	}, 4000);
+	
+	/*setTimeout(function() { //stop raito drawing
+		clearInterval(sequence);
+	}, 4500);*/
+}
+LastLevel.prototype.roomFleeingSetup = function() {
+	//spawn in enemies at top doorway
+	setTimeout(function() {
+		setInterval(function() {
+			var spawnIn = new RedMiles();
+			spawnIn.positions.pos[0] = MEASURE_UNIT * 7;
+			spawnIn.positions.pos[1] = MEASURE_UNIT * 1;
+			//add to entitymanager
+			entityManager.addEntity(spawnIn);
+	
+		}, 1000);
+	}, 2000);
+}

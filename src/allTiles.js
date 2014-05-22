@@ -184,7 +184,7 @@ function AllTiles() {
 	this.end1 = new Array();
 	this.end1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.end1[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.end1[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end1[2] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
 	this.end1[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.end1[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.end1[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
@@ -208,7 +208,7 @@ function AllTiles() {
 	this.end3 = new Array();
 	this.end3[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.end3[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.end3[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.end3[2] = new Array(1,2,2,2,2,2,4,10,4,2,2,2,2,2,1);
 	this.end3[3] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.end3[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.end3[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
@@ -920,10 +920,17 @@ AllTiles.prototype.getHard = function() {
 };
 
 AllTiles.prototype.getEnd = function(number){
-	
-	if (number = 1) return this.end1;
-	else if (number = 2) return this.end2;
-	else if (number = 3) return this.end3;
+	//console.log("getting end room" + number);
+	if (number = 1) {
+		return this.end1;
+	}
+	else if (number = 2) {
+		return this.end2;
+	}
+	else if (number = 3) {
+		return this.end3;
+	}
+	//return this.end2;
 }
 
 AllTiles.prototype.getReverse = function(){

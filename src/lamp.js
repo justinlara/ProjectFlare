@@ -69,7 +69,8 @@ Lamp.prototype.draw = function()
     this.lampboundBox.SetActive(true);
     this.lampboundBox.SetAwake(false); //this makes it awake (counter-intuitive)
     
-	ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+	if (!thisLevel.currentRoom.isReverseDarkness)
+		ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
   
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  

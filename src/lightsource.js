@@ -2,7 +2,7 @@ function lightSource(posX, posY) {
 	
 	this.sprite = lsSprite;
 	
-	///*
+
 	  
 	 this.posX = posX * MEASURE_UNIT;
     this.posY =posY * MEASURE_UNIT;
