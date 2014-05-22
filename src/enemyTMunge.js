@@ -2,6 +2,7 @@ function TMunge() {
 	Enemy.call(this);
 	
 	this.sprite = loadSpriteTMunge;
+	this.flying = true; //red munge inherits
 	
 	this.normalSpeed = MEASURE_UNIT * 0.01;
 	this.aquisitionRange = MEASURE_UNIT * 5;
