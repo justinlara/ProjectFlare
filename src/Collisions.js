@@ -112,6 +112,7 @@ Collisions.prototype.collisionContact = function()
       }
 */                   
       if(contactA.type === "lamp" && contactB.id === "player" && !thisLevel.currentRoom.isReverseDarkness)
+      //if (contactA.type === "lightSource" && contactB.id === "player")
       {
 	    if (mainGuy.light>0 && !thisLevel.currentRoom.isLit) {
 			   thisLevel.currentRoom.setLit(true);
@@ -158,7 +159,7 @@ Collisions.prototype.collisionContact = function()
 			   //thisLevel.currentRoom.changeRoomGrid(newTileGrid);
 //			   lightlampEffect(thisLevel.currentRoom.lamp.posX, thisLevel.currentRoom.lamp.posY);
 //               entityManager.clearEnemies();
-               mainGuy.light++;
+               mainGuy.light = 6;
 //               thisLevel.lightsLit++;
 //
 //			   // Lamp counter increases

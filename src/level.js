@@ -21,6 +21,7 @@ function Level(numberOfRooms, floorNumber) {
 	mainGuy.light = maxLight;
 	
 	this.lightsLit = 0;
+	this.lightsTotal = 0;
 	
 	this.turnOffPreviousDoors = false;
 	this.previousX = -1;

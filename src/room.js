@@ -78,6 +78,7 @@ var testbool = true;
 					//this.grid[i][j] = new TileLamp();
 					this.grid[i][j] = new TileFloor();
 					this.lamp = new Lamp(j,i);
+					//thisLevel.lightsTotal++;
 					//console.log(" created LAMP --------------------------------------------------------  ");
 					break;
 				case 4:
@@ -134,6 +135,7 @@ var testbool = true;
 					
 					this.grid[i][j] = new TileFloor();
 					this.lamp = new Lamp(j,i);
+					//this.lamp = new lightSource(j,i);
 					break;
 				case 9:
 					//reserved for critter spawners!

@@ -1,6 +1,9 @@
 function Player() 
 {
-  this.runMeter = 10;
+  this.runMeterMax = 10;
+  this.runMeter = this.runMeterMax;
+  this.runMeterDecAmount = 0.5;
+  
   this.runDelay = 0;
   this.runDelayMax = 60;
   
@@ -275,7 +278,7 @@ function Player()
 		      if (this.runMeter > 0)
 		      {
 			 this.movespeed = 0.10;
-			 this.runMeter--;
+			 this.runMeter -= this.runMeterDecAmount;
 			 
 			 if (this.runMeter < 0)
 			 {
@@ -285,6 +288,7 @@ function Player()
 		      }
 		      else
 		      {
+			//console.log("lit/total: " + thisLevel.lightsLit + " " + thisLevel.lightsTotal);
 		       this.movespeed = 0.02;
 		       //console.log("tired" + this.runMeter);
 		      }
@@ -300,9 +304,9 @@ function Player()
 		    this.runMeter += 0.1;
 		  }
 		  
-		  if (this.runMeter > 10)
+		  if (this.runMeter > this.runMeterMax)
 		  {
-		    this.runMeter = 10;
+		    this.runMeter = this.runMeterMax;
 		  }
 		  //console.log("walking " + this.runMeter);
 		}
