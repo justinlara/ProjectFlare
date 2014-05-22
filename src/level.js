@@ -161,6 +161,8 @@ function Level(numberOfRooms, floorNumber) {
 	//when you want to add a door:
 	//var door = ""; //can be n, s, e, w
 	//newRoom.setDoor(door);
+	
+	
 }
 
 //Level.proto
