@@ -67,12 +67,17 @@ function Level(numberOfRooms, floorNumber) {
             {
 		// Give this room its room layout.
 		//var tileGrid = ALLTILES.entrance; //ALLTILES.getRandom(); //or ALLTILES.entrance when you want that specifically
-		var tileGrid = ALLTILES.getWeighted(this.floorNumber);
-		
-		var newRoom = new Room(tileGrid);
-		
-		// Set this room to have that room layout.
-		this.layout[r][c] = newRoom;
+		if (this.structure.level[r][c].indexOf(this.structure.activeRoom) != -1) {
+				
+			var tileGrid = ALLTILES.getWeighted(this.floorNumber);
+			
+			var newRoom = new Room(tileGrid);
+			
+			// Set this room to have that room layout.
+			this.layout[r][c] = newRoom;
+			
+			this.lightsTotal++;
+		}
 		
 		// If this is the starting room, set it to the currentRoom (denoted by $ as the first char)
 		if (this.structure.level[r][c].indexOf(this.structure.startingRoom) != -1)
