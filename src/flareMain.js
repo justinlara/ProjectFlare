@@ -9,7 +9,7 @@ var mainGuy;
 var entityManager;
 var thisLevel;
 var flagFinalLevel = false;
-var storymode = true;
+var storymode;
 
 var fadeTimer = 0;
 var fadeDuration = 30;
@@ -552,6 +552,7 @@ function gameDraw() {
 	// During each gameDraw, check if the player has died
 	if (mainGuy.hp <= 0) { // Player is dead, change gameState
 		seeGameOverButtons(true);
+		seeGameElements(false);
 		gameState = 5;
 	}
     

@@ -39,7 +39,7 @@ function createButtons() {
 	// main menu buttons
 	var mainStory = document.createElement('div');
 	mainStory.id = 'mainStory';
-    mainStory.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .38) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .62 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_story_button.png); background-size: 100% 400%; background-position: 0% 0%");
+    mainStory.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * .78 + "px; top: " + GAME_HEIGHT *  .47 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_story_button.png); background-size: 100% 400%; background-position: 0% 0%");
 	topCanvas.appendChild(mainStory);
 	mainStory.style.display = 'none';
 	mainStory.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
@@ -48,9 +48,20 @@ function createButtons() {
 	mainStory.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
 	mainStory.addEventListener("click", mainStoryHandler, false);
 	
+	var mainEndless = document.createElement('div');
+	mainEndless.id = 'mainEndless';
+	mainEndless.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * .78 + "px; top: " + GAME_HEIGHT *  .6 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_endless_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	topCanvas.appendChild(mainEndless);
+	mainEndless.style.display = 'none';
+	mainEndless.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
+	mainEndless.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
+	mainEndless.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%'");
+	mainEndless.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
+	mainEndless.addEventListener("click", mainEndlessHandler, false);
+	
 	var mainCredits = document.createElement('div');
 	mainCredits.id = 'mainCredits';
-	mainCredits.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + ((GAME_WIDTH * .38) + (MEASURE_UNIT * 8.6)) + "px; top: " + GAME_HEIGHT *  .75 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_credits_button.png); background-size: 100% 400%; background-position: 0% 0%");
+	mainCredits.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * .78 + "px; top: " + GAME_HEIGHT *  .75 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mainMenu/main_credits_button.png); background-size: 100% 400%; background-position: 0% 0%");
 	topCanvas.appendChild(mainCredits);
 	mainCredits.style.display = 'none';
 	mainCredits.setAttribute('onmouseover', "this.style.backgroundPosition='0% -100%'");
@@ -109,6 +120,15 @@ function createButtons() {
 function mainStoryHandler() {
 	seeMainMenuButtons(false);
 	seeGameElements(true);
+	storymode = true;
+	initGame();
+	gameState = 4;
+}
+
+function mainEndlessHandler() {
+	seeMainMenuButtons(false);
+	seeGameElements(true);
+	storymode = false;
 	initGame();
 	gameState = 4;
 }
@@ -175,9 +195,11 @@ function seePauseButtons(buttonFlag) {
 function seeMainMenuButtons(flag) {
 	if (flag) {
 		document.getElementById('mainStory').style.display = "block";
+		document.getElementById('mainEndless').style.display = "block";
 		document.getElementById('mainCredits').style.display = "block";
 	} else {
 		document.getElementById('mainStory').style.display = "none";
+		document.getElementById('mainEndless').style.display = "none";
 		document.getElementById('mainCredits').style.display = "none";
 	}
 }
