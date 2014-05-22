@@ -499,6 +499,7 @@ function initGame() {
 	initUI();
 	
 	// Play music
+	soundManager.stop('spookyMusic');
 	soundManager.play('spookyMusic');
 	
 	//init measure unit dependant variables
