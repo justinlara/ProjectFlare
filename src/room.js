@@ -25,6 +25,7 @@ var testbool = true;
 	//array of enemy objects present in the room
 	//this remains constant once set
 	this.enemies = new Array();
+	this.critters = new Array();
 	this.enemyFadeTimer = 0;
 	this.enemyFadeDuration = 50;
 	//var count = 0;
@@ -142,6 +143,17 @@ var testbool = true;
 					break;
 				case 9:
 					//reserved for critter spawners!
+					this.grid[i][j] = new TileFloor();
+					var r = Math.floor((Math.random()*100));
+					if (r < 10) { //%chance of mouse appearing
+						var mouse = new Mouse();
+						mouse.posX = (MEASURE_UNIT * j);
+						mouse.posY = (MEASURE_UNIT * i);
+						mouse.positions.pos[0] = (MEASURE_UNIT * j);
+						mouse.positions.pos[1] = (MEASURE_UNIT * i);
+						this.critters.push(mouse);
+						console.log("mice!");
+					}
 					break;
 				case 10: //special dark raito
 					this.grid[i][j] = new TileFloor();
@@ -206,6 +218,10 @@ var testbool = true;
 			gx = 0;
 		}
 		
+		//draw critters:
+		for (var i = 0; i < this.critters.length; i++) {
+			this.critters[i].draw();
+		}
 
 		// Draw the doors.
 		for (var i = 0; i < this.doors.length; i++)
@@ -228,7 +244,12 @@ var testbool = true;
 		//draw lamp
 		if ('undefined' != typeof this.lamp) {
 			this.lamp.draw();
-			if (this.isReverseDarkness) lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*5, MEASURE_UNIT, MEASURE_UNIT);
+			if (this.isReverseDarkness) {
+				if (!this.isLit) {
+					lsSprite.use("dark");
+				}
+				lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*5, MEASURE_UNIT, MEASURE_UNIT);
+			}
 		}
 			
 		if (this.isEntrance) { //if entrance, draw lamp, controls
@@ -507,14 +528,31 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 					this.grid[i][j] = new TileFloor();
 					this.lamp = new Lamp(j,i);
 					break;
-					
+				case 9:
+					//reserved for critter spawners!
+					this.grid[i][j] = new TileFloor();
+					var r = Math.floor((Math.random()*100));
+					if (r < 10) { //%chance of mouse appearing
+						var mouse = new Mouse();
+						mouse.posX = (MEASURE_UNIT * j);
+						mouse.posY = (MEASURE_UNIT * i);
+						mouse.positions.pos[0] = (MEASURE_UNIT * j);
+						mouse.positions.pos[1] = (MEASURE_UNIT * i);
+						this.critters.push(mouse);
+						
+					}
+					break;
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
 			}
 		}		
 	}
 	for (var i = 0; i<this.enemies.length; i++) {
-	//console.log("going to push enemy");
-	entityManager.addEntity(this.enemies[i]);
+		//console.log("going to push enemy");
+		entityManager.addEntity(this.enemies[i]);
+	}
+	for (var i = 0; i<this.critters.length; i++) {
+		//console.log("going to push enemy");
+		entityManager.addEntity(this.critters[i]);
 	}
 }

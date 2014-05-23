@@ -369,7 +369,11 @@ function loadAssets() {
 			postInitCallback: function() {}
 		}
 	);
-	lsSprite = new Sprite("assets/LightSource_Spreadsheet.png",
+	lsSprite = new SpriteMap("assets/LightSource_Spreadsheet2.png",
+		{ //anim sequences
+			lit: {startRow: 0, startCol: 0, endRow: 0, endCol: 7},
+			dark: {startRow: 0, startCol: 8, endRow: 0, endCol: 8},
+		},
 		{
 			frameW: 64,
 			frameH: 64,
@@ -377,7 +381,7 @@ function loadAssets() {
 			projectedH: MEASURE_UNIT, 
 			interval: 150,
 			postInitCallback: function() {
-				lsSprite.startLoop();
+				lsSprite.use("lit");
 			}
 		}
 	);

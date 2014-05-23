@@ -200,13 +200,13 @@ Collisions.prototype.collisionContact = function()
 		//var number = 10 + thisLevel.floorNumber;
 		
 		//check for end of game
-		if (storymode && lampsLit >= 30) { //for test: set true
-			thisLevel = new LastLevel(5, thisLevel.floorNumber+1);
+		if (/*storymode && lampsLit >= 30*/ true) { //for test: set true
+			thisLevel = new LastLevel(3, thisLevel.floorNumber+1);
 			flagFinalLevel = true;
 		}
 		else {
 			thisLevel = new Level(thisLevel.nRooms+2, thisLevel.floorNumber+1);
-			console.log(redEnemyThreshhold);
+			//console.log(redEnemyThreshhold);
 		}
         
         //mainGuy = new Player();
