@@ -225,7 +225,9 @@ function seeGameOverButtons(buttonFlag) {
 function seeGameElements(buttonFlag) {
 	if (buttonFlag) {
 		document.getElementById('dashMeter').style.display = "block";
+		document.getElementById('dashMask').style.display = "block";
 	} else {
 		document.getElementById('dashMeter').style.display = "none";
+		document.getElementById('dashMask').style.display = "block";
 	}
 }

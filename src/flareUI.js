@@ -5,7 +5,7 @@ var showCredits = false;
 
 //UI Pole
 var pole = new Image();
-pole.src = "assets/ui/pole_with_pause.png";
+pole.src = "assets/ui/pole.png";
 
 // UI health
 var heart = new Image();
@@ -62,9 +62,15 @@ function initUI() {
 	// Create dash UI
 	var dashMeter = document.createElement('div');
 	dashMeter.id = 'dashMeter';
-	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 1.5 + "px; height: " + MEASURE_UNIT * .7 + "px; left: " + GAME_WIDTH * 0.038 + "px; top: " + GAME_HEIGHT * .64 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#000), to(#bbb)); background-size: 0% 0%; background-repeat: no-repeat;");
+	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .58 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 0% 0%; background-repeat: no-repeat;");
 	document.getElementById('gameScreen').appendChild(dashMeter);
 	dashMeter.style.display = 'block';
+	
+	var dashMask = document.createElement('div');
+	dashMask.id = 'dashMask';
+	dashMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .58 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/dash_bar.png); background-size: 100% 100%;");
+	document.getElementById('gameScreen').appendChild(dashMask);
+	dashMask.style.display = 'none';
 }
 
 // Draw main menu background over both canvases
