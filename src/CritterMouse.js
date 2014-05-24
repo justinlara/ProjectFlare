@@ -8,7 +8,7 @@ function Mouse() {
 	this.escapeSpeed = MEASURE_UNIT * 0;
 	this.attackRange = MEASURE_UNIT * 0;
 	
-	this.entityBehavior = new Behavior(this, 'wander', 'none', 'none', 'none', 'none', 'none');
+	this.entityBehavior = new Behavior(this, 'ortho', 'none', 'none', 'none', 'none', 'none');
 }
 
 Mouse.prototype = Object.create(Critter.prototype);
