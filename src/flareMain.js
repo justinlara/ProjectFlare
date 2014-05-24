@@ -366,7 +366,9 @@ function loadAssets() {
 			projectedH: MEASURE_UNIT, // Displayed height 
 			interval: 150, // Switch frames every xxx ms
 			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
-			postInitCallback: function() {}
+			postInitCallback: function() {
+				loadSpriteMouse.use("walkDown");
+			}
 		}
 	);
 	lsSprite = new SpriteMap("assets/LightSource_Spreadsheet2.png",
@@ -381,7 +383,7 @@ function loadAssets() {
 			projectedH: MEASURE_UNIT, 
 			interval: 150,
 			postInitCallback: function() {
-				lsSprite.use("lit");
+				lsSprite.start("lit");
 			}
 		}
 	);
@@ -620,6 +622,7 @@ function gameDraw() {
 		lightTorchEffect(effectR);
 		effectR += MEASURE_UNIT*.5;
 	}
+	
 	//draw entities, including the player
 	entityManager.drawAllEntities();
 	thisLevel.currentRoom.drawOverlays();

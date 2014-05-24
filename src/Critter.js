@@ -23,6 +23,9 @@ function Critter() {
 	
 	//sprite defaults:
 	this.sprite = loadSpriteMiles;
+	
+	this.direction = "down";
+	this.directionChanged = false;
 }
 
 //carry over position and image properties
@@ -48,19 +51,54 @@ Critter.prototype.newTarget = function() {
 //draw the critter on ctxWorld
 Critter.prototype.draw = function() { 
 	//console.log("critter being drawn");
-	this.update();
+	if (gameState != 6) this.update();
 	this.render();
 };
 
 Critter.prototype.render = function() {
-
-	this.sprite.use("walkDown");
 	this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT*.4, MEASURE_UNIT*.4);	
 }
 
 Critter.prototype.update = function() {
-
+	var prePosX = this.positions.pos[0];
+	var prePosY = this.positions.pos[1];
+	
 	this.move();
+	
+	/*if (prePosX > this.positions.pos[0]) { //moving left
+		if (this.sprite.activeLoop != "walkLeft") this.sprite.use("walkLeft");
+	}
+	else if (prePosX < this.positions.pos[0]) { //moving right
+		if (this.sprite.activeLoop != "walkRight") this.sprite.use("walkRight");
+	}
+	else if (prePosX == this.positions.pos[0]) {
+		if (prePosY > this.positions.pos[1]) { //moving up
+			if (this.sprite.activeLoop != "walkUp") this.sprite.use("walkUp");
+		}
+		else if (prePosY < this.positions.pos[1]) { //moving down
+			if (this.sprite.activeLoop != "walkDown") this.sprite.use("walkDown");
+		}
+	}*/
+	
+	/*if (this.directionchanged) {
+		switch(this.direction) {
+			case "down":
+				this.sprite.use("walkDown");
+				break;
+			case "up":
+				this.sprite.use("walkUp");
+				break;
+			case "right":
+				this.sprite.use("walkRight");
+				break;
+			case "left":
+				this.sprite.use("walkLeft");
+				break;
+			default:
+				break;
+		}
+		this.directionChanged = false;
+	}*/
 	
 	this.posX = this.positions.pos[0];
 	this.posY = this.positions.pos[1];

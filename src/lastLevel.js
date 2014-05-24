@@ -594,7 +594,7 @@ LastLevel.prototype.darkRaitoAttack = function() {
 	
 	setTimeout( function() { //knocks the lantern away
 		flagEndSequenceInitiated = true;
-		mainGuy.light = 0;
+		//mainGuy.light = 0;
 	}, 4000);
 	
 	/*setTimeout(function() { //stop raito drawing
@@ -603,14 +603,18 @@ LastLevel.prototype.darkRaitoAttack = function() {
 }
 LastLevel.prototype.roomFleeingSetup = function() {
 	//spawn in enemies at top doorway
+	//clear enemies
+	entityManager.clearEnemies();
+	//spawn new enemies
 	setTimeout(function() {
+		console.log("timeout fleeing ttriggered");
 		setInterval(function() {
 			var spawnIn = new RedMiles();
 			spawnIn.positions.pos[0] = MEASURE_UNIT * 7;
 			spawnIn.positions.pos[1] = MEASURE_UNIT * 1;
 			//add to entitymanager
 			entityManager.addEntity(spawnIn);
-	
-		}, 1000);
-	}, 2000);
+			console.log("spawnd miles");
+		}, 3000);
+	}, 1000);
 }
