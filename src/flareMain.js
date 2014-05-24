@@ -18,7 +18,7 @@ var flagLampEffect = false;
 var flagTorchlightEffect = false;
 var effectR = 0;
 
-var redEnemyThreshhold = 105; //global for how often to spawn red enemy (inverse %)
+var redEnemyThreshhold = 103; //global for how often to spawn red enemy (inverse %)
 //note that red enemies will only spawn on floor 3+ (subject to change)
 
 //globals for sprites
