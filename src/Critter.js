@@ -65,7 +65,7 @@ Critter.prototype.update = function() {
 	
 	this.move();
 	
-	/*if (prePosX > this.positions.pos[0]) { //moving left
+	if (prePosX > this.positions.pos[0]) { //moving left
 		if (this.sprite.activeLoop != "walkLeft") this.sprite.use("walkLeft");
 	}
 	else if (prePosX < this.positions.pos[0]) { //moving right
@@ -78,7 +78,7 @@ Critter.prototype.update = function() {
 		else if (prePosY < this.positions.pos[1]) { //moving down
 			if (this.sprite.activeLoop != "walkDown") this.sprite.use("walkDown");
 		}
-	}*/
+	}
 	
 	/*if (this.directionchanged) {
 		switch(this.direction) {
