@@ -47,7 +47,7 @@ Critter.prototype.newTarget = function() {
 	
 //draw the critter on ctxWorld
 Critter.prototype.draw = function() { 
-
+	//console.log("critter being drawn");
 	this.update();
 	this.render();
 };
@@ -55,7 +55,7 @@ Critter.prototype.draw = function() {
 Critter.prototype.render = function() {
 
 	this.sprite.use("walkDown");
-	this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT*.03, MEASURE_UNIT*.03);	
+	this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT*.4, MEASURE_UNIT*.4);	
 }
 
 Critter.prototype.update = function() {

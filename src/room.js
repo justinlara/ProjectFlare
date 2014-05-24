@@ -145,14 +145,14 @@ var testbool = true;
 					//reserved for critter spawners!
 					this.grid[i][j] = new TileFloor();
 					var r = Math.floor((Math.random()*100));
-					if (r < 10) { //%chance of mouse appearing
+					if (r < 20) { //%chance of mouse appearing
 						var mouse = new Mouse();
 						mouse.posX = (MEASURE_UNIT * j);
 						mouse.posY = (MEASURE_UNIT * i);
 						mouse.positions.pos[0] = (MEASURE_UNIT * j);
 						mouse.positions.pos[1] = (MEASURE_UNIT * i);
 						this.critters.push(mouse);
-						console.log("mice!");
+						//console.log("mice! "+ this.critters.length);
 					}
 					break;
 				case 10: //special dark raito
@@ -219,7 +219,10 @@ var testbool = true;
 		}
 		
 		//draw critters:
+		
 		for (var i = 0; i < this.critters.length; i++) {
+			//console.log("critter length: "+this.critters.length);
+			//console.log(" calling on critter draw");
 			this.critters[i].draw();
 		}
 
@@ -551,8 +554,8 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 		//console.log("going to push enemy");
 		entityManager.addEntity(this.enemies[i]);
 	}
-	for (var i = 0; i<this.critters.length; i++) {
+	/*for (var i = 0; i<this.critters.length; i++) {
 		//console.log("going to push enemy");
 		entityManager.addEntity(this.critters[i]);
-	}
+	}*/
 }

@@ -3,7 +3,7 @@ function Mouse() {
 	
 	this.sprite = loadSpriteMouse;
 
-	this.speed = MEASURE_UNIT * .01;
+	this.speed = MEASURE_UNIT * .025;
 	this.aquisitionRange = MEASURE_UNIT * 0;
 	this.escapeSpeed = MEASURE_UNIT * 0;
 	this.attackRange = MEASURE_UNIT * 0;
