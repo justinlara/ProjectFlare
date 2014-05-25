@@ -1,5 +1,7 @@
 function Player() 
 {
+  this.facingDirection = "down";
+  
   this.runMeterMax = 10;
   this.runMeter = this.runMeterMax;
   this.runMeterDecAmount = 0.5;
@@ -233,6 +235,8 @@ function Player()
             }
             default:
             {
+	      this.facingDirection = "down";
+	      
                 if(controls.isDown(controls.LEFT) || controls.isDown(controls.RIGHT)||
                 controls.isDown(controls.UP)|| controls.isDown(controls.DOWN))
                 //console.log("ENTERED DEFAULT: LAST PRESSED" + lastPressed);
@@ -257,7 +261,8 @@ function Player()
 		
 		if (controls.isDown(controls.PGU))
 		{
-		  thisLevel.goToNorthRoom();
+		  console.log(this.facingDirection);
+		  //thisLevel.goToNorthRoom();
 		}
   		if (controls.isDown(controls.PGD))
 		{
@@ -338,6 +343,8 @@ function Player()
 	  
 	     //console.log(" rotateLightBox--- L --- " + this.horizSetBox);
 	   */
+		this.facingDirection = "left";
+	   
 		this.lantern.currentLightSprite = SpriteLanternLEFT;
 		this.lantern.shiftX = -MEASURE_UNIT*4.5;
 		this.lantern.shiftY = -MEASURE_UNIT*2;
@@ -368,6 +375,8 @@ function Player()
 	   
         //console.log(" rotateLightBox--- R --- " + this.horizSetBox);
 	  */
+		this.facingDirection = "right";
+		
 		this.lantern.currentLightSprite = SpriteLanternRIGHT;
 		this.lantern.shiftX = -MEASURE_UNIT*.5;
 		this.lantern.shiftY = -MEASURE_UNIT*2;
@@ -396,6 +405,8 @@ function Player()
 	    
 	    //console.log(" rotateLightBox--- U --- " + this.vertSetBox);
 	    
+		this.facingDirection = "up";
+		
 		this.lantern.currentLightSprite = SpriteLanternUP;
 		this.lantern.shiftX = -MEASURE_UNIT*2;
 		this.lantern.shiftY = -MEASURE_UNIT*4.5;
@@ -426,6 +437,8 @@ function Player()
        // console.log(" rotateLightBox--- D --- " + this.vertSetBox);
 	  */
 	 
+		this.facingDirection = "down";
+		
 		this.lantern.currentLightSprite = SpriteLanternDOWN;
 		this.lantern.shiftX = -MEASURE_UNIT*2;
 		this.lantern.shiftY = -MEASURE_UNIT*.5;
