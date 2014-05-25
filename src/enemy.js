@@ -127,6 +127,7 @@ Enemy.prototype.render = function() {
 	}
 	else
 	{
+	    
 		this.sprite.use("death");
 		//this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 	}

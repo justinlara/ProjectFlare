@@ -26,10 +26,10 @@ var MoveBehavior = function(){
 		}
 		if(Math.floor(actor.positions.pos[0]) < Math.floor(actor.targetPosX)){
 			actor.xdelta += Math.floor(actor.speed);
-			console.log("going right " + actor.positions.pos[0]+ " " +actor.targetPosX);
+			//console.log("going right " + actor.positions.pos[0]+ " " +actor.targetPosX);
 		} else if (Math.floor(actor.positions.pos[0]) > Math.floor(actor.targetPosX)) {
 			actor.xdelta -= Math.floor(actor.speed);
-			console.log("going left" + actor.positions.pos[0]+ " " + actor.targetPosX);
+			//console.log("going left" + actor.positions.pos[0]+ " " + actor.targetPosX);
 		}
 		else if(Math.floor(actor.positions.pos[1]) < Math.floor(actor.targetPosY)){
 			actor.ydelta += actor.speed;

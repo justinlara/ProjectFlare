@@ -162,7 +162,25 @@ var testbool = true;
                     dr.positions.pos[1] = (MEASURE_UNIT * i);
 					this.enemies.push(dr);
 					break;
-				default:
+				
+			
+			    case 11:
+			    {
+			      this.grid[i][j] = new TileFloor();
+                    
+                    var statMiles = new statueMiles();
+                    
+                    statMiles.posX = (MEASURE_UNIT * j);
+                    statMiles.posY = (MEASURE_UNIT * i);
+                
+                    statMiles.positions.pos[0] = (MEASURE_UNIT * j);
+                    statMiles.positions.pos[1] = (MEASURE_UNIT * i);
+                    
+                    this.enemies.push(statMiles);
+			        
+			        break;
+			    }
+			    default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
 			}
 		}		
@@ -175,7 +193,8 @@ var testbool = true;
 		
 	    
 	           //**** -- DEBUGGING --
-	           //collisionWorld.DrawDebugData();
+	      //collisionWorld.DrawDebugData();
+	           
 	    //using this as an update block
 		if (this.setNewGrid)
 		{
@@ -287,15 +306,17 @@ var testbool = true;
 		// Fade animation for the 1 second after the room is lit.
 		if (thisLevel.currentRoom.isLit && this.enemyFadeTimer < this.enemyFadeDuration)
 		{
+		    ////--- debug statueMiles COMMENTED OUT -- 
 			var opacity = 1 - (this.enemyFadeTimer/this.enemyFadeDuration);
-			
+			////--- debug statueMiles COMMENTED OUT --
 			ctxWorld.globalAlpha = opacity;
 			for (var i = 0; i < this.enemies.length; i++)
 			{
 				this.enemies[i].draw();
 			}	
+			////--- debug statueMiles COMMENTED OUT --
 			ctxWorld.globalAlpha = 1.0;
-		
+		    ////--- debug statueMiles COMMENTED OUT --
 			this.enemyFadeTimer++;
 		} else if (this.enemyFadeTimer >= this.enemyFadeDuration && !this.isReverseDarkness) {
 			this.killEnemies();
@@ -419,7 +440,10 @@ var testbool = true;
 			for (var i = 0; i < this.enemies.length; i++)
 			{
 				this.enemies[i].enemyboundBox.SetActive(false);
+				
+				//--- debug statueMiles COMMENTED OUT --  
 				this.enemies[i].dying = true;
+				
 				//this.enemies[i].enemyboundBox.SetAwake(true);
 			}
 		}
@@ -501,10 +525,10 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 			    
 					miles.positions.pos[0] = (MEASURE_UNIT * j);
                     miles.positions.pos[1] = (MEASURE_UNIT * i);
-					console.log("before: " + this.enemies.length);
+					//console.log("before: " + this.enemies.length);
 					this.enemies.push(miles);
-					console.log("after: " + this.enemies.length);
-					console.log(this.enemies[0]);
+					//console.log("after: " + this.enemies.length);
+					//console.log(this.enemies[0]);
 					//this.enemies[0].draw();
 					//entityManager.addEntity(miles);
 					//console.log("size of enemy's is:  "+this.enemies.size());
@@ -544,6 +568,9 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 						this.critters.push(mouse);
 						
 					}
+					
+			// NOT SURE IF TO ADD STATUEMILES HERE ?
+			
 					break;
 				default:
 					this.grid[i][j] = new Tile("assets/tiles/errorTile.png", "error");
