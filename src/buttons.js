@@ -228,6 +228,6 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('dashMask').style.display = "block";
 	} else {
 		document.getElementById('dashMeter').style.display = "none";
-		document.getElementById('dashMask').style.display = "block";
+		document.getElementById('dashMask').style.display = "none";
 	}
 }
