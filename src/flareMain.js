@@ -18,7 +18,7 @@ var flagLampEffect = false;
 var flagTorchlightEffect = false;
 var effectR = 0;
 
-var redEnemyThreshhold = 103; //global for how often to spawn red enemy (inverse %)
+var redEnemyThreshhold; //global for how often to spawn red enemy (inverse %)
 //note that red enemies will only spawn on floor 3+ (subject to change)
 
 //globals for sprites
@@ -451,7 +451,8 @@ function initGame() {
 	//reset flags:
 	var flagFinalLevel = false;
 	var flagEndSequenceInitiated = false;
-
+	redEnemyThreshhold = 103;
+	
 	//physics:
     collisionWorld = new b2World( new b2Vec2(0,0), true);
 

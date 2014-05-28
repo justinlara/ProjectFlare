@@ -218,7 +218,7 @@ var testbool = true;
 		if (this.escapeRoom && flagEndSequenceInitiated) {
 			var newTileGrid = ALLTILES.exit1;
 			this.changeRoomGrid(newTileGrid);
-			this.isExit = true;
+			//this.isExit = true;
 		}
 		//end update
 		
@@ -547,6 +547,7 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 				case 7:
 					this.grid[i][j] = new TileFloor();
 					this.exit = new Exit(j,i);
+					console.log("added exit tile");
 					break;
 				case 8:
 					// This is the "Reverse Darkness" type of room.

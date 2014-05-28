@@ -584,7 +584,7 @@ LastLevel.prototype.fade = function()
 	gameState = 7;
 }
 
-
+var interval;
 // scripted sequences for final level
 LastLevel.prototype.darkRaitoAttack = function() {
 	/*var dR = new darkRaito();
@@ -595,7 +595,7 @@ LastLevel.prototype.darkRaitoAttack = function() {
 	setTimeout( function() { //knocks the lantern away
 		flagEndSequenceInitiated = true;
 		//mainGuy.light = 0;
-	}, 4000);
+	}, 2000);
 	
 	/*setTimeout(function() { //stop raito drawing
 		clearInterval(sequence);
@@ -604,17 +604,18 @@ LastLevel.prototype.darkRaitoAttack = function() {
 LastLevel.prototype.roomFleeingSetup = function() {
 	//spawn in enemies at top doorway
 	//clear enemies
+	if ('undefined' != typeof interval) clearInterval(interval);
 	entityManager.clearEnemies();
 	//spawn new enemies
 	setTimeout(function() {
-		console.log("timeout fleeing ttriggered");
-		setInterval(function() {
+		//console.log("timeout fleeing ttriggered");
+		interval = setInterval(function() {
 			var spawnIn = new RedMiles();
 			spawnIn.positions.pos[0] = MEASURE_UNIT * 7;
 			spawnIn.positions.pos[1] = MEASURE_UNIT * 1;
 			//add to entitymanager
 			entityManager.addEntity(spawnIn);
-			console.log("spawnd miles");
-		}, 3000);
+			//console.log("spawnd miles");
+		}, 2000);
 	}, 1000);
 }
