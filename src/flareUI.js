@@ -62,7 +62,7 @@ function initUI() {
 	// Create dash UI
 	var dashMeter = document.createElement('div');
 	dashMeter.id = 'dashMeter';
-	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .58 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 0% 0%; background-repeat: no-repeat;");
+	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.05 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.015 + "px; top: " + GAME_HEIGHT * .58 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 0% 0%; background-repeat: no-repeat;");
 	document.getElementById('gameScreen').appendChild(dashMeter);
 	dashMeter.style.display = 'block';
 	
