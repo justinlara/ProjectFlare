@@ -15,6 +15,8 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 	
 	this.reacting = false;
 	this.attacking = false;
+	
+	this.dist = 0;
 }
 
 Behavior.prototype.distanceToPlayer = function() {
@@ -39,6 +41,7 @@ Behavior.prototype.attackReaction = function(dist) {
 		if(!this.attacking)
 		{
 			//change to initial attack sprite
+			soundManager.play(this.actor.attackSound);
 		}
 		else
 		{
@@ -55,25 +58,25 @@ Behavior.prototype.attackReaction = function(dist) {
 };
 
 Behavior.prototype.move = function() {
-
-	var dist = this.distanceToPlayer();
 	this.actor.xdelta = 0;
 	this.actor.ydelta = 0;
+	
+	this.dist = this.distanceToPlayer()
 	
 	if(this.actor.hitLight.hit == true) {
 		this.reacting = true;
 		REACTB.move(this.rStr, this.actor);
 		
 		if(this.rStr == 'attack' || this.rStr == 'chase') {
-			this.attackReaction(dist);
+			this.attackReaction(this.dist);
 		}
 	}
 	else if(this.reacting == false) {
-		if( dist < this.actor.aquisitionRange) {
+		if( this.dist < this.actor.aquisitionRange) {
 		
 			CHASEB.move(this.cStr, this.actor);
 			
-			this.attackReaction(dist);
+			this.attackReaction(this.dist);
 		}
 		else
 		{

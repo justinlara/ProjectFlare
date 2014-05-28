@@ -2,6 +2,8 @@ function Miles() {
 	Enemy.call(this);
 	
 	this.sprite = loadSpriteMiles;
+	this.attackSound = 'miles_attack';
+	this.deathSound = 'miles_death';
 	
 	this.normalSpeed = MEASURE_UNIT * .01;
 	this.aquisitionRange = MEASURE_UNIT * 1.5;

@@ -18,11 +18,10 @@ var ReactBehavior = function() {
             actor.ydelta += actor.speed;
         }
 		
-		if(actor.entityBehavior.distanceToPlayer() > actor.escapeRange) {
+		if(actor.entityBehavior.dist > actor.escapeRange) {
 			actor.hitLight.hit = false;
 			actor.entityBehavior.reacting = false;
 			actor.speed = actor.normalSpeed;
-			actor.newTarget();
 		}
 	};
 	
@@ -38,13 +37,15 @@ var ReactBehavior = function() {
 		}
 		else if(movetype == "run") {
 			this.run(actor);
+			actor.newTarget();
 		}
 		else if(movetype == "chase") {
 			this.chase(actor);
+			actor.newTarget();
 		}
 		else if(movetype == "attack") {
 
 		}
-		else { MOVEB.move(actor.entityBehavior.mStr, actor); } //if any invalid type is given, don't act
+		else { MOVEB.move(actor.entityBehavior.mStr, actor); } //if any invalid type is given, activate default movement
 	};
 }

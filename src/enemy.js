@@ -116,7 +116,6 @@ Enemy.prototype.draw = function() {
 };
 
 Enemy.prototype.render = function() {
-///*	
 	if (!this.dying)
 	{
 		if(!this.entityBehavior.attacking)
@@ -129,10 +128,10 @@ Enemy.prototype.render = function() {
 	{
 	    
 		this.sprite.use("death");
+		SOUNDS.playDeath(this.deathSound);
 		//this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 	}
 	this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
-    this.entityBehavior.attacking = false;
 };
 
 Enemy.prototype.update = function() {
@@ -158,11 +157,7 @@ Enemy.prototype.update = function() {
 	
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.posX + " , " + this.posY );
   //console.log(">>>>  CHECK POS OF ENEMY CHANGES " + this.positions.pos[0] + " , " + this.positions.pos[1] );
-}
-
-
-
-
+};
 
 
 

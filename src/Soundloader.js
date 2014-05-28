@@ -3,25 +3,39 @@
 		//Eg.  SOUNDS.footstep1.play();
 
 /**	LIST OF ALL SOUNDS
-**		MUSICS:
-**			music1: "spookyMusic"
-**
-**
-**
-**		SFX:
-**			SFXFOOTSTEP : "footstep"
-**			SFXGRUNT# (EG. SFXGRUNT1) : "grunt" + #(1-7)
-**			SFXSNARL# (EG. SFXSNARL1) : "snarl" + #(1-3)
+		MUSICS:
+			music1: "spookyMusic"
+
+		SFX:
+			for miles--
+			SFXMILESATTACK	: "miles_attack"
+			SFXMILESDEATH	: "miles_death"
+			
+			SFXLIGHTLAMP	: "lamplight"
+			SFXFOOTSTEP + #	: "footstep" + #(1-3)
+			SFXGRUNT + #	: "grunt" + #(1-7)
+			SFXSNARL + #	: "snarl" + #(1-3)
 **/
 
 function Soundloader() {
 	var musicpath = './assets/sound/Music/';
 	var sfxpath = './assets/sound/SFX/';
 	
-	/* Ease of play methods*/
 	
+	/* Ease of play methods*/
 	this.randint = function(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	
+	this.playDeath = function (soundID) {
+		try {
+			if (soundManager.getSoundById(soundID).playState == 0) {
+				soundManager.play(soundID);
+			}
+		}
+		catch(err) {
+			//just don't play anything if this fails (thing calling has no named sound)
+		}
 	}
 	
 	this.playRandomGrunt = function() {
@@ -29,7 +43,7 @@ function Soundloader() {
 	}
 	
 	this.playRandomSnarl = function() {
-		soundManager.play("snarl" + SOUNDS.randint(1,3));
+		soundManager.play("snarl" + SOUNDS.randint(1,2));
 	}
 	
 	this.playRandomFootstep = function() {
@@ -62,6 +76,27 @@ function Soundloader() {
     });
 	
 	/* Sound Start */
+	
+		//Miles
+			//attack hiss
+	this.SFXMILESATTACK = soundManager.createSound({
+				id: 'miles_attack',
+				url: sfxpath + 'miles_snarl.wav',
+				autoLoad: true,
+				stream: true,
+				onplay: function () {this.setVolume(SOUNDS.randint(30, 100));}
+	});
+			//death fade(faze?)
+	this.SFXMILESDEATH = soundManager.createSound({
+				id: 'miles_death',
+				url: sfxpath + 'miles_death.wav',
+				autoLoad: true,
+				stream: true,
+				multishot: true,
+				onplay: function () {this.setVolume(SOUNDS.randint(10, 50));}
+				
+	});
+	
 	
 		//lamp lighting
 	this.SFXLAMPLIGHT = soundManager.createSound({
