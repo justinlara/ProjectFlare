@@ -5,7 +5,7 @@ var showCredits = false;
 
 //UI Pole
 var pole = new Image();
-pole.src = "assets/ui/pole.png";
+pole.src = "assets/ui/pole_bare.png";
 
 // UI health
 var heart = new Image();
@@ -61,18 +61,40 @@ function drawFullScreenImage(im) {
 }
 
 function initUI() {
+
+	
 	// Create dash UI
 	var dashMeter = document.createElement('div');
 	dashMeter.id = 'dashMeter';
-	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.05 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.015 + "px; top: " + GAME_HEIGHT * .58 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 0% 0%; background-repeat: no-repeat;");
+	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 0% 0%; background-repeat: no-repeat;");
 	document.getElementById('gameScreen').appendChild(dashMeter);
-	dashMeter.style.display = 'block';
+	dashMeter.style.display = 'none';
 	
 	var dashMask = document.createElement('div');
 	dashMask.id = 'dashMask';
-	dashMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .58 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/dash_bar.png); background-size: 100% 100%;");
+	dashMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/dash_bar.png); background-size: 100% 100%;");
 	document.getElementById('gameScreen').appendChild(dashMask);
 	dashMask.style.display = 'none';
+	
+	
+	var lampsMeter = document.createElement('div');
+	lampsMeter.id = 'lampsMeter';
+	lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left bottom, left top, from(#630), to(#fc4)); background-size: 0% 0%; background-repeat: no-repeat;");
+	document.getElementById('gameScreen').appendChild(lampsMeter);
+	lampsMeter.style.display = 'none';
+	
+	var lampsMask = document.createElement('div');
+	lampsMask.id = 'lampsMask';
+	lampsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 3 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .28 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/lamps_bar.png); background-size: 100% 100%;");
+	document.getElementById('gameScreen').appendChild(lampsMask);
+	lampsMask.style.display = 'none';
+	
+	var floorsMask = document.createElement('div');
+	floorsMask.id = 'floorsMask';
+	floorsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .68 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/floor_bar.png); background-size: 100% 100%;");
+	document.getElementById('gameScreen').appendChild(floorsMask);
+	floorsMask.style.display = 'none';
+
 }
 
 // Draw main menu background over both canvases
@@ -146,7 +168,7 @@ function UIDraw() {
 	// COUNTERS
 		
 	var Y1 = GAME_HEIGHT * 0.38;
-	var Y2 = GAME_HEIGHT * 0.482;
+	var Y2 = GAME_HEIGHT * 0.742;
 	var numSide = MEASURE_UNIT / 3;
 	
 	var singleX = GAME_WIDTH * 0.0615;
@@ -178,8 +200,13 @@ function UIDraw() {
 	}
 	
 	// Update dash meter
-	runFill = mainGuy.runMeter * 10;
-	document.getElementById('dashMeter').style.backgroundSize = runFill + "% 100%";
+	var runPercentage = mainGuy.runMeter * 10;
+	document.getElementById('dashMeter').style.backgroundSize = runPercentage + "% 100%";
+	
+	var lampPercentage = Math.floor((lampsLit / thisLevel.lightsTotal) * 100);
+	document.getElementById('lampsMeter').style.backgroundSize = "100% " + lampPercentage + "%";
+	document.getElementById('lampsMeter').style.backgroundPosition = "100% " + (100 - lampPercentage) + "%";
+	
 }
 
 function pauseDraw() {

@@ -226,8 +226,14 @@ function seeGameElements(buttonFlag) {
 	if (buttonFlag) {
 		document.getElementById('dashMeter').style.display = "block";
 		document.getElementById('dashMask').style.display = "block";
+		document.getElementById('lampsMeter').style.display = "block";
+		document.getElementById('lampsMask').style.display = "block";
+		document.getElementById('floorsMask').style.display = "block";
 	} else {
 		document.getElementById('dashMeter').style.display = "none";
 		document.getElementById('dashMask').style.display = "none";
+		document.getElementById('lampsMeter').style.display = "none";
+		document.getElementById('lampsMask').style.display = "none";
+		document.getElementById('floorsMask').style.display = "none";
 	}
 }
