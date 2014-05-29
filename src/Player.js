@@ -301,8 +301,8 @@ function Player()
 		      }
 		      else
 		      {
-			//console.log("lit/total: " + thisLevel.lightsLit + " " + thisLevel.lightsTotal);
-		       this.movespeed = 0.005;
+			this.movespeed = 0.04;
+		       //this.movespeed = 0.005;
 		       //console.log("tired" + this.runMeter);
 		      }
 		}
