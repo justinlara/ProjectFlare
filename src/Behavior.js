@@ -100,6 +100,7 @@ Behavior.prototype.move = function() {
 		this.actor.positions.pos[1] += this.actor.ydelta;
 	}
 	
+	if ( this.dist >= this.actor.attackRange) this.attacking = false;
 	this.actor.hitSomething.hitLR = false;
 	this.actor.hitSomething.hitUD = false;
 };
