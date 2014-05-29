@@ -152,11 +152,10 @@ Enemy.prototype.render = function() {
 	{
 	    
 		this.sprite.use("death");
-		SOUNDS.playDeath(this.deathSound);
+		SOUNDS.playSoundOnce(this.deathSound);
 		//this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 	}
 	this.sprite.draw(ctxWorld, this.positions.pos[0], this.positions.pos[1], MEASURE_UNIT, MEASURE_UNIT);
-	this.entityBehavior.attacking = false;
 };
 
 Enemy.prototype.update = function() {

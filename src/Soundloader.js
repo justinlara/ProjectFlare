@@ -27,7 +27,7 @@ function Soundloader() {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 	
-	this.playDeath = function (soundID) {
+	this.playSoundOnce = function (soundID) {
 		try {
 			if (soundManager.getSoundById(soundID).playState == 0) {
 				soundManager.play(soundID);
