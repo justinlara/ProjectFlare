@@ -118,7 +118,14 @@ Collisions.prototype.collisionContact = function()
 			   thisLevel.currentRoom.setLit(true);
 			   lightlampEffect(thisLevel.currentRoom.lamp.posX, thisLevel.currentRoom.lamp.posY);
                entityManager.clearEnemies();
-               mainGuy.light--;
+	       
+               mainGuy.light = mainGuy.light - 10;
+	       
+	       if (mainGuy.light < 0)
+	       {
+		mainGuy.light = 0;
+	       }
+	       
                thisLevel.lightsLit++;
 
 			   // Lamp counter increases
@@ -159,7 +166,7 @@ Collisions.prototype.collisionContact = function()
 			   //thisLevel.currentRoom.changeRoomGrid(newTileGrid);
 //			   lightlampEffect(thisLevel.currentRoom.lamp.posX, thisLevel.currentRoom.lamp.posY);
 //               entityManager.clearEnemies();
-               mainGuy.light = 6;
+               mainGuy.giveMaxLight();
 //               thisLevel.lightsLit++;
 //
 //			   // Lamp counter increases
@@ -180,10 +187,20 @@ Collisions.prototype.collisionContact = function()
       {
         // Player gains health points relative to how many lamps lit this level.
         var currentHealth = contactB.health;
-        var lightsLit = thisLevel.lightsLit;
-        
-        var newHealth = currentHealth + lightsLit;
-        if (newHealth > 6) newHealth = 6;
+        console.log(contactB.health);
+	var lightsLit = thisLevel.lightsLit;
+	var addHealth = lightsLit * 5;
+	//mainGuy.giveHealth(addHealth);
+	
+	var newHealth = currentHealth + addHealth;
+	if (newHealth > mainGuy.healthMax) {
+	  newHealth = mainGuy.healthMax;
+	}
+        console.log(newHealth);
+	
+//	var lightsLit = thisLevel.lightsLit;
+//        var newHealth = currentHealth + lightsLit;
+//        if (newHealth > 6) newHealth = 6;
 		
 		// Level counter increases
 		levelsTraversed++;

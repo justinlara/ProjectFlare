@@ -1,6 +1,10 @@
 function Player() 
 {
-  this.facingDirection = "down";
+  this.healthMax = 100;
+  this.hp = this.healthMax;
+  
+  this.lightMax = 100;
+  this.light = this.lightMax;
   
   this.runMeterMax = 10;
   this.runMeter = this.runMeterMax;
@@ -8,6 +12,14 @@ function Player()
   
   this.runDelay = 0;
   this.runDelayMax = 60;
+  
+  this.movespeed = 0.04;
+  
+  this.facingDirection = "down";
+  
+  //Old default values;
+  //this.hp = 6;
+  //this.light = 5;
   
   this.lantern = {
 	currentLightSprite: SpriteNoOil,
@@ -77,7 +89,7 @@ function Player()
            };
 
            
-	this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+	this.playerBoundBox.SetUserData( {id: "player", health: this.hp, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
 	
 	this.lightBoundBox.SetUserData({id: "light", lightPos:  [(((this.p.pos[0]+((this.lightShiftX )+  (this.lantern.width)/2 )))),
                                                              (((this.p.pos[1]+((this.lightShiftY )+  (this.lantern.height)/2)))) ] , 
@@ -86,10 +98,6 @@ function Player()
 	                                             });
 	
 	this.p.I.src = "assets/Character.png";
-	
-	this.hp = 6;
-	this.light = 5;
-	this.movespeed = 0.04;
 	
 	//for sorting:
 	this.posY = this.p.pos[1];
@@ -115,7 +123,7 @@ function Player()
 		this.pFix = this.playerBoundBox.CreateFixture(newfix);
 		
 		// health: 100
-	  this.playerBoundBox.SetUserData( {id: "player", health: 6, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
+	  this.playerBoundBox.SetUserData( {id: "player", health: this.hp, BoundSize: ((((MEASURE_UNIT/30)*.23)*30)*2), pos: this.p.pos} );
        
        
 	};
@@ -561,5 +569,9 @@ Player.prototype.giveCollisionBox = function(newHealth)
 	this.hp = newHealth;
 }
 
+Player.prototype.giveMaxLight = function()
+{
+  this.light = this.lightMax;
+}
 
 ;

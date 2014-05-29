@@ -5,7 +5,7 @@ function LastLevel(numberOfRooms, floorNumber) {
 	this.currentRoom;
 	this.currentX = -1;
 	this.currentY = -1;
-	mainGuy.light = maxLight;
+	mainGuy.light = mainGuy.lightMax;
 	
 	this.lightsLit = 0;
 	this.lightsTotal = 0;

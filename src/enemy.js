@@ -11,6 +11,8 @@ function Enemy() {
 	
 	this.flying = false;
 	
+	this.damage = 10;
+	
 	
    this.enemyfix = new b2FixtureDef;
    this.enemybox = new b2BodyDef;
@@ -61,7 +63,7 @@ function Enemy() {
 	this.hitSomething = {hitLR: this.hitLR, hitUD: this.hitUD};
 	
   // damage: 5
-  this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
+  this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: this.damage, xy: this.positions , pX: this.posX, pY: this.posY, 
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
                                     hitLight: this.hitLight, 
                                     hitSomething: this.hitSomething, 
@@ -144,7 +146,7 @@ Enemy.prototype.update = function() {
 		//this.enemyboundBox.SetPosition(new b2Vec2( ((this.posX+ (0.5*MEASURE_UNIT))/30), ((this.posY+ (0.85*MEASURE_UNIT))/30))); 
 		this.enemyboundBox.SetPosition(new b2Vec2( ((this.positions.pos[0]+ (0.5*MEASURE_UNIT))/30), ((this.positions.pos[1]+ (0.85*MEASURE_UNIT))/30)));                                  
 		
-		this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: 1, xy: this.positions , pX: this.posX, pY: this.posY, 
+		this.enemyboundBox.SetUserData( { type: 'enemy', id: "e1", damage: this.damage, xy: this.positions , pX: this.posX, pY: this.posY, 
                                     BoundSize: [((((MEASURE_UNIT/30)/4)*30)*2),  (((( MEASURE_UNIT/30 )/5)*30)*2)],
                                     hitLight: this.hitLight,
                                     hitSomething: this.hitSomething,  
