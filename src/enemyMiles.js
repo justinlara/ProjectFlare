@@ -7,9 +7,9 @@ function Miles() {
 	
 	this.sprite = new SpriteMap("assets/enemies/miles_test_sheet.png",
         {
-            idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+             idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
             death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
-            // added this
+           
             attack:{startRow: 1, startCol: 0, endRow: 1, endCol: 0}
         },
         {

@@ -221,12 +221,12 @@ function AllTiles() {
 	this.r1 = new Array();//an open room with a lamp in the center, guarded by mileses
 	this.r1[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.r1[1] = new Array(1,9,2,2,2,2,2,2,2,2,2,2,2,9,1);  // TESTING STATUE MILES
-	this.r1[2] = new Array(1,2,2,4,2,2,2,2,2,2,2,4,2,2,1);
+	this.r1[2] = new Array(1,2,2,11,2,2,2,2,2,2,2,11,2,2,1);
 	this.r1[3] = new Array(1,2,2,2,2,2,2,5,2,2,2,2,2,2,1);
 	this.r1[4] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.r1[5] = new Array(1,2,2,2,2,5,2,3,2,5,2,2,2,2,1);
 	this.r1[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.r1[7] = new Array(1,2,2,4,2,2,2,5,2,2,9,4,2,2,1);
+	this.r1[7] = new Array(1,2,2,11,2,2,2,5,2,2,9,11,2,2,1);
 	this.r1[8] = new Array(1,2,2,2,2,4,2,2,2,2,2,2,2,2,1);
 	this.r1[9] = new Array(1,9,2,2,2,2,2,2,2,2,2,2,2,9,1);
 	this.r1[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);

@@ -4,11 +4,31 @@ function statueMiles()
     
     //this.sprite = // load in statueMiles sprite;
     
-    this.normalSpeed = MEASURE_UNIT * .02;
+    this.sprite  = new SpriteMap("assets/enemies/Enemy3.png",
+        {
+            idle: {startRow: 1, startCol: 0, endRow: 1, endCol: 3},
+            death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+            
+            attack:{startRow: 2, startCol: 0, endRow: 2, endCol: 3}
+        },
+        {
+            frameW: 64, // Width of each frame of the animation in pixels
+            frameH: 64, // Height of each frame of the animation in pixels
+            projectedW: MEASURE_UNIT, // Displayed width
+            projectedH: MEASURE_UNIT, // Displayed height 
+            interval: 150, // Switch frames every xxx ms
+            useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+            postInitCallback: function() {
+                //loadSpriteMiles.start('idle');
+            }
+        }
+    );
+    
+    this.normalSpeed = MEASURE_UNIT * .023;
     this.aquisitionRange = MEASURE_UNIT * 3;
     this.escapeSpeed = MEASURE_UNIT * .015;
     this.escapeRange = MEASURE_UNIT * 3;
-    this.attackRange = MEASURE_UNIT * 2; //0;
+    this.attackRange = MEASURE_UNIT * 1; //0;
 
     this.speed = this.normalSpeed;
     
