@@ -23,8 +23,8 @@ function Lamp(posX, posY) {
   
    //
    //this.lampfix.shape.SetAsBox((30/MEASURE_UNIT),  ( 30/MEASURE_UNIT ));
-   this.lampfix.shape.SetAsBox((MEASURE_UNIT/30/3),  ( MEASURE_UNIT/30/2 ));
-                                                                 //was --> /3
+   this.lampfix.shape.SetAsBox((MEASURE_UNIT/30*.5),  ( MEASURE_UNIT/30/2 ));
+                                                                 
    
   
   this.lampbox.active = false;
@@ -38,7 +38,7 @@ function Lamp(posX, posY) {
                                   
                                   active: this.lampbox.active, wPx:this.posX, wPy:this.posY,  
                                   size: [((((MEASURE_UNIT/30)/3)*30)*2), ((((MEASURE_UNIT/30)/2)*30)*2)]} );
-  	                                                                                   // was --> /3
+  	                                                                                   
 	
 }
 

@@ -36,11 +36,10 @@ statueMiles.prototype.move = function () {
     {
         if(!this.entityBehavior.attacking)
         {
-            //this.sprite.use("idle");
+            this.sprite.use("idle");
         }
         else
         {
-            //console.log(" === " + this.dying);
             
             this.sprite.use("attack");
         //ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
@@ -49,7 +48,6 @@ statueMiles.prototype.move = function () {
     }
     else
     {
-        //console.log("IN ENEMY RENDER === " + this.dying);
         this.sprite.use("death");
         //this.sprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
     }

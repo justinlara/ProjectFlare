@@ -24,6 +24,7 @@ var redEnemyThreshhold; //global for how often to spawn red enemy (inverse %)
 
 //globals for sprites
 var loadSpriteP;
+
 var loadSpriteMiles;
 var loadSpriteRMiles;
 var loadSpriteTMunge;
@@ -304,7 +305,7 @@ function loadAssets() {
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
 			death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
-			// added this
+			
 			attack:{startRow: 1, startCol: 0, endRow: 1, endCol: 0}
 		},
 		{
@@ -603,7 +604,8 @@ function gameDraw() {
 	//collisionWorld.DrawDebugData();
 
 	//only draw if not lit
- //COMMENT OUT FOR COLLISON BOX DEBUGGING/*	
+ //COMMENT OUT FOR COLLISON BOX DEBUGGING
+ ///*	
 	if (!thisLevel.currentRoom.isLit) {
 		ctxDark.globalAlpha = 0.90;
 			

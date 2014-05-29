@@ -269,8 +269,8 @@ function Player()
 		
 		if (controls.isDown(controls.PGU))
 		{
-		  console.log(this.facingDirection);
-		  //thisLevel.goToNorthRoom();
+		  //console.log(this.facingDirection);
+		  thisLevel.goToNorthRoom();
 		}
   		if (controls.isDown(controls.PGD))
 		{

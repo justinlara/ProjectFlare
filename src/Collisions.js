@@ -683,7 +683,7 @@ Collisions.prototype.collisionContact = function()
                //LEFT SIDE                              //*.8 or / 5/4 reciprical of fraction form  NOTE: smaller screen boxes wX front side, larger wX middle
                
                             //** want to use MEASURE_UNIT to have boundSize scale with large and small windows
-               if(contactB.pos[0] > (wX-((contactB.BoundSize)/(5/4))) && normals.x <= -1) 
+               if(contactB.pos[0] > (wX-((contactB.BoundSize)*1.5)) && normals.x <= -1) 
                
                //if(contactB.pos[0] > (contactA.L) && normals.x <= -1)
                {
@@ -691,17 +691,17 @@ Collisions.prototype.collisionContact = function()
                    
                    
                                                         //*.8 or 4/5
-                   contactB.pos[0] = (wX-((contactB.BoundSize)/(5/4)));
+                   contactB.pos[0] = (wX-((contactB.BoundSize)*1.5));
                   // contactB.pos[0] = (contact.L);
                    
                    //console.log("\n AFTER MOVE play posX: " + contactB.pos[0] + " > value " + (wX-(contactB.BoundSize/(4/5))));
                    //console.log(" L ");
                }    
                // RIGHT SIDE
-               else if(contactB.pos[0] < ((wX+sX) - (contactB.BoundSize/2))&& normals.x >= 1)
+               else if(contactB.pos[0] < ((wX+sX) - (contactB.BoundSize*.05))&& normals.x >= 1)
                {
                    //console.log(" R ");
-                   contactB.pos[0] = ((wX+sX) - (contactB.BoundSize/2)); 
+                   contactB.pos[0] = ((wX+sX) - (contactB.BoundSize*.05)); 
                }
                // TOP SIDE                                           //*.2
                else if(contactB.pos[1] > ((wY-sY)) && normals.y <= -1)

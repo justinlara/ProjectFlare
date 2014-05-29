@@ -1,7 +1,27 @@
 function RedMiles() {
 	Miles.call(this);
 	
-	this.sprite = loadSpriteRMiles;
+	//this.sprite = loadSpriteRMiles;
+	
+	this.sprite = new SpriteMap("assets/enemies/red_miles_sheet.png",
+        {
+            idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+            death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+            // added this
+            attack:{startRow: 1, startCol: 0, endRow: 1, endCol: 0}
+        },
+        {
+            frameW: 128, // Width of each frame of the animation in pixels
+            frameH: 128, // Height of each frame of the animation in pixels
+            projectedW: MEASURE_UNIT, // Displayed width
+            projectedH: MEASURE_UNIT, // Displayed height 
+            interval: 150, // Switch frames every xxx ms
+            useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+            postInitCallback: function() {
+                //loadSpriteRMiles.start('idle');
+            }
+        }
+    );
 	
 	this.normalSpeed = MEASURE_UNIT * .02;
 	this.aquisitionRange = MEASURE_UNIT * 3;
