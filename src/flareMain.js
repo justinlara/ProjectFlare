@@ -11,6 +11,7 @@ var thisLevel;
 var flagFinalLevel = false;
 var storymode;
 var flagEndSequenceInitiated = false;
+var finalsetup = false;
 
 var fadeTimer = 0;
 var fadeDuration = 30;
@@ -451,6 +452,7 @@ function initGame() {
 	//reset flags:
 	var flagFinalLevel = false;
 	var flagEndSequenceInitiated = false;
+	var finalsetup = false;
 	redEnemyThreshhold = 103;
 	
 	//physics:
@@ -573,6 +575,10 @@ function draw() {
 			gameState = 4;
 		}, fadeDurationInMillis); //after 0.5 seconds, fade stops and game resumes
 		drawFade();
+	}
+	else if (gameState == 8) { //happy ending
+		drawFullScreenImage(complete);
+		seeGameOverButtons(true);
 	}
 }
 

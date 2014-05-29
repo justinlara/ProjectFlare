@@ -21,6 +21,8 @@ for (var i = 0; i < 10; i++) {
 // Game Over
 var gameOver = new Image();
 gameOver.src = "assets/ui/endscreen_mock.jpg";
+var complete = new Image();
+complete.src = "assets/ui/credits/credits_bg.jpg";
 
 // maxHealth = 100;
 const maxHealth = 6;

@@ -17,7 +17,7 @@ var testbool = true;
 	this.EndRoom = false;
 	this.FINALroom = false;
 	this.escapeRoom = false;
-	this.setup = false; //setup for final room sequence
+	this.setup = false;
 	
 	this.isReverseDarkness = false;
 	this.setNewGrid = false;
@@ -207,18 +207,18 @@ var testbool = true;
 		}
 		if (flagEndSequenceInitiated) {
 			this.isLit = false;
-			if (!this.setup) {
-				this.setup = true;
+			if (!finalsetup) {
+				finalsetup = true;
 				thisLevel.roomFleeingSetup();
 			}
 		}
 		if (this.FINALroom) {
 			thisLevel.darkRaitoAttack();
 		}
-		if (this.escapeRoom && flagEndSequenceInitiated) {
+		if (this.escapeRoom && flagEndSequenceInitiated && !this.setup) {
 			var newTileGrid = ALLTILES.exit1;
 			this.changeRoomGrid(newTileGrid);
-			//this.isExit = true;
+			this.setup = true;
 		}
 		//end update
 		
@@ -547,7 +547,6 @@ Room.prototype.changeRoomGrid = function(gridObj) {
 				case 7:
 					this.grid[i][j] = new TileFloor();
 					this.exit = new Exit(j,i);
-					console.log("added exit tile");
 					break;
 				case 8:
 					// This is the "Reverse Darkness" type of room.

@@ -65,7 +65,6 @@ function LastLevel(numberOfRooms, floorNumber) {
             if (this.structure.level[r][c].indexOf(this.structure.activeRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.startingRoom) != -1
 			|| this.structure.level[r][c].indexOf(this.structure.exitRoom) != -1 || this.structure.level[r][c].indexOf(this.structure.reverseRoom) != -1)
             {
-				console.log("number = " + number);
 				if (number == 3) {
 					var tileGrid = ALLTILES.end3;
 					var newRoom = new Room(tileGrid);
@@ -97,6 +96,7 @@ function LastLevel(numberOfRooms, floorNumber) {
 					var newRoom = new Room(tileGrid);
 					
 					newRoom.isEntrance = true;
+					newRoom.escapeRoom = true;
 					//newRoom.lamp = new lightSource(2, 2);
 					
 					// Set this room to have that room layout.

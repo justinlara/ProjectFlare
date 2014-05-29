@@ -225,6 +225,9 @@ Collisions.prototype.collisionContact = function()
 			thisLevel = new Level(thisLevel.nRooms+2, thisLevel.floorNumber+1);
 			//console.log(redEnemyThreshhold);
 		}
+		if (flagEndSequenceInitiated) {
+			gameState = 8;
+		}
         
         //mainGuy = new Player();
         //mainGuy.hp = currentHealth;
