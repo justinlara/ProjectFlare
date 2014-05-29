@@ -287,24 +287,31 @@ function Player()
 		
 		if (controls.isDown(controls.SPACE))
 		{
-		  this.runDelay = 0;
-		      if (this.runMeter > 0)
-		      {
-			 this.movespeed = 0.10;
-			 this.runMeter -= this.runMeterDecAmount;
-			 
-			 if (this.runMeter < 0)
-			 {
-			   this.runMeter = 0;
-			 }
-			 //console.log("running " + this.runMeter);
-		      }
-		      else
-		      {
-			this.movespeed = 0.04;
-		       //this.movespeed = 0.005;
-		       //console.log("tired" + this.runMeter);
-		      }
+		  if (thisLevel.currentRoom.isLit) {
+		    this.movespeed = 0.10;
+		  }
+		  
+		  else
+		  {
+		      this.runDelay = 0;
+			  if (this.runMeter > 0)
+			  {
+			     this.movespeed = 0.10;
+			     this.runMeter -= this.runMeterDecAmount;
+			     
+			     if (this.runMeter < 0)
+			     {
+			       this.runMeter = 0;
+			     }
+			     //console.log("running " + this.runMeter);
+			  }
+			  else
+			  {
+			    this.movespeed = 0.04;
+			   //this.movespeed = 0.005;
+			   //console.log("tired" + this.runMeter);
+			  }
+		  }
 		}
 		else
 		{
