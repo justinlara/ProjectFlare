@@ -182,7 +182,7 @@ function Player()
 			
 			this.frameCount = 0;
 		}
-		else { //flicker player sprite and lantern
+		else if (!paused) { //flicker player sprite and lantern
 			this.frameCount++;
 			var frame = this.frameCount % 10;
 			if (!thisLevel.currentRoom.isLit && frame <= 5 && this.light > 0) {//play with this to change flicker speed

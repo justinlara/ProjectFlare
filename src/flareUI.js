@@ -214,7 +214,7 @@ function pauseDraw() {
 	}
 	
 	entityManager.renderAllEntities();
-	
+	ctxDark.globalCompositeOperation = 'source-over';
 	// Draw pause menu and buttons
 	ctxDark.drawImage(pauseMenu, -MEASURE_UNIT, GAME_HEIGHT * .16, GAME_WIDTH * .9, GAME_HEIGHT * .60);
 	seePauseButtons(true);

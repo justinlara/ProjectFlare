@@ -89,7 +89,7 @@ function loadAssets() {
 	loadImg = new Image();
 	loadImg.src = "assets/loading.png";
 	controlsImg = new Image();
-	controlsImg.src = "assets/ui/controls_decal_test.png";
+	controlsImg.src = "assets/ui/carpet_controls.png";
 	
     var images = new Array();
     var imgNumber = 36;

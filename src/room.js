@@ -277,7 +277,7 @@ var testbool = true;
 		if (this.isEntrance) { //if entrance, draw lamp, controls
 			//lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*4, MEASURE_UNIT, MEASURE_UNIT);
 			if (thisLevel.floorNumber == 1) {
-				ctxWorld.drawImage(controlsImg, MEASURE_UNIT, MEASURE_UNIT, MEASURE_UNIT*3, MEASURE_UNIT*3);
+				ctxWorld.drawImage(controlsImg, MEASURE_UNIT*5, MEASURE_UNIT*3.5, MEASURE_UNIT*5, MEASURE_UNIT*4);
 			}
 			drawTorches();
 		}
