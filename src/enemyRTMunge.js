@@ -3,7 +3,7 @@ function RTMunge() {
 	
 	this.sprite = loadSpriteRTMunge;
 	
-	this.normalSpeed = MEASURE_UNIT * 0.02;
+	this.normalSpeed = MEASURE_UNIT * 0.021;
 	this.aquisitionRange = MEASURE_UNIT * 10;
 	this.escapeSpeed = MEASURE_UNIT * 0.005;
 	this.escapeRange = MEASURE_UNIT * 2;

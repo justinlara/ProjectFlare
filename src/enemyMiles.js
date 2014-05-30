@@ -26,7 +26,7 @@ function Miles() {
     );
 	
 	
-	this.normalSpeed = MEASURE_UNIT * .01;
+	this.normalSpeed = MEASURE_UNIT * .015;
 	this.aquisitionRange = MEASURE_UNIT * 1.5;
 	this.escapeSpeed = MEASURE_UNIT * .015;
 	this.escapeRange = MEASURE_UNIT * 3;

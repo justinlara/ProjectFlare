@@ -23,8 +23,8 @@ function RedMiles() {
         }
     );
 	
-	this.normalSpeed = MEASURE_UNIT * .02;
-	this.aquisitionRange = MEASURE_UNIT * 3;
+	this.normalSpeed = MEASURE_UNIT * .021;
+	this.aquisitionRange = MEASURE_UNIT * 4;
 	this.escapeSpeed = MEASURE_UNIT * .015;
 	this.escapeRange = MEASURE_UNIT * 3;
 	this.attackRange = MEASURE_UNIT * 2; //0;

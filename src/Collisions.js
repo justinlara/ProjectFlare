@@ -187,7 +187,7 @@ Collisions.prototype.collisionContact = function()
       {
         // Player gains health points relative to how many lamps lit this level.
         var currentHealth = contactB.health;
-        console.log(contactB.health);
+        //console.log(contactB.health);
 	var lightsLit = thisLevel.lightsLit;
 	var addHealth = lightsLit * 5;
 	//mainGuy.giveHealth(addHealth);
@@ -196,7 +196,7 @@ Collisions.prototype.collisionContact = function()
 	if (newHealth > mainGuy.healthMax) {
 	  newHealth = mainGuy.healthMax;
 	}
-        console.log(newHealth);
+        //console.log(newHealth);
 	
 //	var lightsLit = thisLevel.lightsLit;
 //        var newHealth = currentHealth + lightsLit;
