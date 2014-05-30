@@ -8,6 +8,8 @@ function Mouse() {
 	this.escapeSpeed = MEASURE_UNIT * 0;
 	this.attackRange = MEASURE_UNIT * 0;
 	
+	this.size = .4;
+	
 	this.entityBehavior = new Behavior(this, 'ortho', 'none', 'none', 'none', 'none', 'none');
 }
 

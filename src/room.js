@@ -145,7 +145,7 @@ var testbool = true;
 					//reserved for critter spawners!
 					this.grid[i][j] = new TileFloor();
 					var r = Math.floor((Math.random()*100));
-					if (r < 20) { //%chance of mouse appearing
+					if (r < 10) { //%chance of mouse appearing
 						var mouse = new Mouse();
 						mouse.posX = (MEASURE_UNIT * j);
 						mouse.posY = (MEASURE_UNIT * i);
@@ -153,6 +153,14 @@ var testbool = true;
 						mouse.positions.pos[1] = (MEASURE_UNIT * i);
 						this.critters.push(mouse);
 						//console.log("mice! "+ this.critters.length);
+					}
+					else if (r > 90) { //%chance of bug appearing
+						var bug = new Bug();
+						bug.posX = (MEASURE_UNIT * j);
+						bug.posY = (MEASURE_UNIT * i);
+						bug.positions.pos[0] = (MEASURE_UNIT * j);
+						bug.positions.pos[1] = (MEASURE_UNIT * i);
+						this.critters.push(bug);
 					}
 					break;
 				case 10: //special dark raito

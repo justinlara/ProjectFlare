@@ -373,6 +373,37 @@ function loadAssets() {
 			}
 		}
 	);
+	loadSpriteBug = new SpriteMap("assets/critters/bug_spritesheet.png",
+		{ //anim sequences
+			walkUp: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+			walkDown: {startRow: 0, startCol: 2, endRow: 0, endCol: 3},
+			walkRight: {startRow: 1, startCol: 0, endRow: 1, endCol: 1},
+			walkLeft: {startRow: 1, startCol: 2, endRow: 1, endCol: 3}
+		},
+		{ //options
+			frameW: 16, // Width of each frame of the animation in pixels
+			frameH: 16, // Height of each frame of the animation in pixels
+			projectedW: MEASURE_UNIT, // Displayed width
+			projectedH: MEASURE_UNIT, // Displayed height 
+			interval: 150, // Switch frames every xxx ms
+			useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+			postInitCallback: function() {
+				loadSpriteBug.use("walkDown");
+			}
+		}
+	);
+	lampSprite = new Sprite("assets/Lamp1_Spreadsheet.png", 
+		{
+			frameW: 64,
+			frameH: 64,
+			projectedW: MEASURE_UNIT,
+			projectedH: MEASURE_UNIT, 
+			interval: 150,
+			postInitCallback: function() {
+				lampSprite.startLoop();
+			}
+		}
+	);
 	lsSprite = new SpriteMap("assets/LightSource_Spreadsheet2.png",
 		{ //anim sequences
 			lit: {startRow: 0, startCol: 0, endRow: 0, endCol: 7},
