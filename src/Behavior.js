@@ -40,6 +40,9 @@ Behavior.prototype.distanceToPoint = function (pos1x, pos1y, pos2x, pos2y) {
 }
 
 Behavior.prototype.attackReaction = function(dist) {
+	this.actor.targetPosX = mainGuy.p.pos[0];
+	this.actor.targetPosY = mainGuy.p.pos[1];
+	
 	if( dist < this.actor.attackRange)
 	{
 		if(!this.attacking)

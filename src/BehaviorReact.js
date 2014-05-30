@@ -7,19 +7,26 @@ var ReactBehavior = function() {
 	this.run = function(actor) {
 		actor.speed = actor.escapeSpeed;
 		
-		if (mainGuy.p.pos[0] > actor.positions.pos[0]) {
-			actor.xdelta -= actor.speed;
-		} else {
-			actor.xdelta += actor.speed;
+		if (mainGuy.p.pos[0] == actor.targetPosX && mainGuy.p.pos[1] == actor.targetPosY) {
+		
 		}
-		//move vertically
-		if (mainGuy.p.pos[1] > actor.positions.pos[1]) {
-			actor.ydelta -= actor.speed;
-		} else {
-			actor.ydelta += actor.speed;
+		else {
+			actor.targetPosX = mainGuy.p.pos[0];
+			actor.targetPosY = mainGuy.p.pos[1];
+			
+			if (actor.targetPosX > actor.positions.pos[0]) {
+				actor.xdelta -= actor.speed;
+			} else {
+				actor.xdelta += actor.speed;
+			}
+			if (actor.targetPosY > actor.positions.pos[1]) {
+				actor.ydelta -= actor.speed;
+			} else {
+				actor.ydelta += actor.speed;
+			}
 		}
 		
-		if(actor.entityBehavior.reactDist > actor.escapeRange) {
+		if(actor.entityBehavior.dist > actor.escapeRange) {
 			actor.hitLight.hit = false;
 			actor.entityBehavior.reacting = false;
 			actor.speed = actor.normalSpeed;
@@ -38,11 +45,9 @@ var ReactBehavior = function() {
 		}
 		else if(movetype == "run") {
 			this.run(actor);
-			actor.newTarget();
 		}
 		else if(movetype == "chase") {
 			this.chase(actor);
-			actor.newTarget();
 		}
 		else if(movetype == "attack") {
 
