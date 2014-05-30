@@ -25,7 +25,7 @@ const exitRoom = "X";
 const reverseRoom = "R";
 //}
 
-function createRandomLevel(nRooms)
+function createRandomLevel(nRooms, numberOfReverseRooms)
 //RandomLevelGeneratorAlgorithm.prototype.createRandomLevel = function(nRooms) {
 {
     numberOfRooms = nRooms;
@@ -80,7 +80,10 @@ function createRandomLevel(nRooms)
     makeExitRoom();
     
     // Make reverse room(s).
-    makeReverseRoom();
+    for (var i = 0; i < numberOfReverseRooms; i++)
+    {
+	makeReverseRoom();
+    }
     
     // Draw the level.
     //drawLevel();

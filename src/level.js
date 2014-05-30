@@ -40,7 +40,9 @@ function Level(numberOfRooms, floorNumber) {
 	//var generator = new RandomLevelGeneratorAlgorithm();
 	//var structure = generator.createRandomLevel(this.nRooms);
 	
-	this.structure = createRandomLevel(this.nRooms);
+	this.numberOfReverseRooms = 1;
+	
+	this.structure = createRandomLevel(this.nRooms, this.numberOfReverseRooms);
 	drawLevelToConsole();
 	
 	//levelWidth = structure.
