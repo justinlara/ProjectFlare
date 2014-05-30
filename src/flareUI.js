@@ -148,6 +148,14 @@ function initUI() {
 		document.getElementById('gameScreen').appendChild(lightMask);
 		lightMask.style.display = 'none';
 	}
+	
+	if (!document.getElementById('lightCtrSingle')) {
+		var lightCtrSingle = document.createElement('div');
+		lightCtrSingle.id = 'lightCtrSingle';
+		lightCtrSingle.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.055 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 8; background-image: url(assets/ui/0.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(lightCtrSingle);
+		lightCtrSingle.style.display = 'block';
+	}
 }
 
 // Draw main menu background over both canvases.
@@ -163,13 +171,9 @@ function mainMenuDraw() {
 // Draw UI on the left canvas
 function UIDraw() {
 	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
+	ctxUI.drawImage(pole, 0, 0, GAME_WIDTH * 0.15, GAME_HEIGHT);// MEASURE_UNIT * 2.25, MEASURE_UNIT * 11);	
 	
-	var lmeter, hmeter = '';
-	var UIHeight = GAME_HEIGHT;
-	var UIWidth = GAME_WIDTH * 0.15;
-	ctxUI.drawImage(pole, 0, 0, UIWidth, UIHeight);// MEASURE_UNIT * 2.25, MEASURE_UNIT * 11);	
-	
-	// COUNTERS
+	// Floor counter - drawn directly onto the canvas
 	var floorCounterY = GAME_HEIGHT * 0.742;
 	var numSide = MEASURE_UNIT / 3;
 	
