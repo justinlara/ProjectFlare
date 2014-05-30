@@ -11,7 +11,7 @@ function Enemy() {
 	
 	this.flying = false;
 	
-	this.damage = 10;
+	this.damage = 15;
 	
 	
    this.enemyfix = new b2FixtureDef;
