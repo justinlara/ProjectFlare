@@ -2,6 +2,7 @@ var lampsLit;
 var levelsTraversed;
 
 var showCredits = false;
+var firstInit = true;
 
 //UI Pole
 var pole = new Image();
@@ -61,43 +62,67 @@ function drawFullScreenImage(im) {
 }
 
 function initUI() {
-
-	
+	soundManager.mute();
 	// Create dash UI
-	var dashMeter = document.createElement('div');
-	dashMeter.id = 'dashMeter';
-	dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 0% 0%; background-repeat: no-repeat;");
-	document.getElementById('gameScreen').appendChild(dashMeter);
-	dashMeter.style.display = 'none';
+	if (!document.getElementById('dashMeter')) {
+		var dashMeter = document.createElement('div');
+		dashMeter.id = 'dashMeter';
+		dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 100% 100%; background-repeat: no-repeat;");
+		document.getElementById('gameScreen').appendChild(dashMeter);
+		dashMeter.style.display = 'none';
+	}
 	
-	var dashMask = document.createElement('div');
-	dashMask.id = 'dashMask';
-	dashMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/dash_bar.png); background-size: 100% 100%;");
-	document.getElementById('gameScreen').appendChild(dashMask);
-	dashMask.style.display = 'none';
+	if (!document.getElementById('dashMask')) {
+		var dashMask = document.createElement('div');
+		dashMask.id = 'dashMask';
+		dashMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 7; background-image: url(assets/ui/dash_bar.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(dashMask);
+		dashMask.style.display = 'none';
+	}
 	
+	if (!document.getElementById('lampsMeter')) {
+		var lampsMeter = document.createElement('div');
+		lampsMeter.id = 'lampsMeter';
+		//lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left bottom, left top, from(#630), to(#fc4)); background-size: 100% 100%; background-repeat: no-repeat; border:1px solid white");
+		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 0%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat; border:1px solid white");
+		document.getElementById('gameScreen').appendChild(lampsMeter);
+		lampsMeter.style.display = 'none';
+	}
 	
-	var lampsMeter = document.createElement('div');
-	lampsMeter.id = 'lampsMeter';
-	lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left bottom, left top, from(#630), to(#fc4)); background-size: 0% 0%; background-repeat: no-repeat;");
-	document.getElementById('gameScreen').appendChild(lampsMeter);
-	lampsMeter.style.display = 'none';
+	if (!document.getElementById('lampsMask')) {
+		var lampsMask = document.createElement('div');
+		lampsMask.id = 'lampsMask';
+		lampsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 3 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .28 + "px; position: absolute; z-index: 7; background-image: url(assets/ui/lamps_bar.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(lampsMask);
+		lampsMask.style.display = 'none';
+	}
 	
-	var lampsMask = document.createElement('div');
-	lampsMask.id = 'lampsMask';
-	lampsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 3 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .28 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/lamps_bar.png); background-size: 100% 100%;");
-	document.getElementById('gameScreen').appendChild(lampsMask);
-	lampsMask.style.display = 'none';
+	if (!document.getElementById('floorsMask')) {
+		var floorsMask = document.createElement('div');
+		floorsMask.id = 'floorsMask';
+		floorsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .68 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/floor_bar.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(floorsMask);
+		floorsMask.style.display = 'none';
+	}
 	
-	var floorsMask = document.createElement('div');
-	floorsMask.id = 'floorsMask';
-	floorsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * -0.0228 + "px; top: " + GAME_HEIGHT * .68 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/floor_bar.png); background-size: 100% 100%;");
-	document.getElementById('gameScreen').appendChild(floorsMask);
-	floorsMask.style.display = 'none';
-
+	if (!document.getElementById('healthMeter')) {
+		var healthMeter = document.createElement('div');
+		healthMeter.id = 'healthMeter';
+		healthMeter.setAttribute('style', "width: " + MEASURE_UNIT * 1.25 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + GAME_WIDTH * 0.081 + "px; top: " + GAME_HEIGHT * 0.128 + "px; position: absolute; z-index: 5; background-color: #f00; background-size: 100% 100%; background-repeat: no-repeat;");
+		document.getElementById('gameScreen').appendChild(healthMeter);
+		healthMeter.style.display = 'none';
+	}
+	
+	if (!document.getElementById('healthMask')) {
+		var healthMask = document.createElement('div');
+		healthMask.id = 'healthMask';
+		healthMask.setAttribute('style', "width: " + MEASURE_UNIT * 1.25 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + GAME_WIDTH * 0.081 + "px; top: " + GAME_HEIGHT * 0.128 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/heart_black.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(healthMask);
+		healthMask.style.display = 'none';
+	}
 }
 
-// Draw main menu background over both canvases
+// Draw main menu background over both canvases.129*.1
 function mainMenuDraw() {
 	if (showCredits) {
 		drawFullScreenImage(creditsScreen);
@@ -204,8 +229,7 @@ function UIDraw() {
 	document.getElementById('dashMeter').style.backgroundSize = runPercentage + "% 100%";
 	
 	var lampPercentage = Math.floor((lampsLit / thisLevel.lightsTotal) * 100);
-	document.getElementById('lampsMeter').style.backgroundSize = "100% " + lampPercentage + "%";
-	document.getElementById('lampsMeter').style.backgroundPosition = "100% " + (100 - lampPercentage) + "%";
+	document.getElementById('lampsMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - lampPercentage) + "%, white 2%, #fc4, #630)";
 	
 }
 
