@@ -4,7 +4,7 @@ function TMunge() {
 	this.sprite = loadSpriteTMunge;
 	this.flying = true; //red munge inherits
 	
-	this.normalSpeed = MEASURE_UNIT * 0.017;
+	this.normalSpeed = MEASURE_UNIT * 0.018;
 	this.aquisitionRange = MEASURE_UNIT * 8;
 	this.escapeSpeed = MEASURE_UNIT * 0.03;
 	this.escapeRange = MEASURE_UNIT * 3;
