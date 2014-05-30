@@ -2,6 +2,7 @@ function Player()
 {
   this.healthMax = 100;
   this.hp = this.healthMax;
+  this.dead = false;
   
   this.lightMax = 100;
   this.light = this.lightMax;
@@ -131,8 +132,12 @@ function Player()
 	//draw, overwrites entity draw
 	this.draw = function(w) 
 	{
-		this.update();
-		this.render();
+		if (this.dead) {
+			this.drawDead();
+		} else {
+			this.update();
+			this.render();
+		}
 	};
 	
 	this.render = function() {
@@ -202,7 +207,14 @@ function Player()
 				this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
 			}
 		}
-	}
+	};
+	
+	this.drawDead = function() {
+		ctxDark.globalCompositeOperation = 'destination-out';
+		SpriteNoOil.draw(ctxDark, this.p.pos[0]-(MEASURE_UNIT/2), this.p.pos[1]-(MEASURE_UNIT/2));
+		ctxDark.globalCompositeOperation = 'source-over';
+		this.pSprite.draw(ctxWorld, this.p.pos[0], this.p.pos[1]);
+	};
 	
 	this.update = function() 
 	{

@@ -564,6 +564,7 @@ function draw() {
 	}
 	else if (gameState == 8) { //happy ending
 		drawFullScreenImage(complete);
+		seeGameElements(false);
 		seeGameOverButtons(true);
 	}
 }
@@ -577,9 +578,15 @@ function gameDraw() {
 	
 	// During each gameDraw, check if the player has died
 	if (mainGuy.hp <= 0) { // Player is dead, change gameState
-		seeGameOverButtons(true);
-		seeGameElements(false);
-		gameState = 5;
+		
+		mainGuy.dead = true;
+		//mainGuy.pSprite.use('death');
+		
+		setTimeout(function() {
+			seeGameOverButtons(true);
+			seeGameElements(false);
+			gameState = 5;
+		}, 200);
 	}
     
 	//draw room

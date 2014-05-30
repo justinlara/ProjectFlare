@@ -22,6 +22,8 @@ function Level(numberOfRooms, floorNumber) {
 	this.currentY = -1;
 	mainGuy.light = mainGuy.lightMax;
 	
+	lsSprite.use('lit');
+	
 	this.lightsLit = 0;
 	this.lightsTotal = 0;
 	
