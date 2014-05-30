@@ -498,6 +498,7 @@ function initGame() {
 	
 	//init measure unit dependant variables
 	effectR = MEASURE_UNIT *.5;
+
 }
 
 function drawFade() {

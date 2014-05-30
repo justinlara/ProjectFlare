@@ -108,7 +108,7 @@ function createButtons() {
 
 	var gameMute = document.createElement('div');
 	gameMute.id = 'gameMute';
-	gameMute.setAttribute('style', "width: " + MEASURE_UNIT * .5 + "px; height: " + MEASURE_UNIT * .5 + "px; left: " + GAME_WIDTH * 0 + "px; top: " + (GAME_HEIGHT - (MEASURE_UNIT * .5))  + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mute_button.png); background-size: 400% 100%; background-position: 0% 0%");
+	gameMute.setAttribute('style', "width: " + MEASURE_UNIT * .5 + "px; height: " + MEASURE_UNIT * .5 + "px; left: " + MEASURE_UNIT * 0.4 + "px; top: " + (GAME_HEIGHT - MEASURE_UNIT)  + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mute_button.png); background-size: 400% 100%; background-position: 0% 0%");
 	topCanvas.appendChild(gameMute);
 	gameMute.style.display = 'none';
 	gameMute.addEventListener("click", gameMuteHandler, false);

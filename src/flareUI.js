@@ -72,7 +72,7 @@ function initUI() {
 	if (!document.getElementById('dashMeter')) {
 		var dashMeter = document.createElement('div');
 		dashMeter.id = 'dashMeter';
-		dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: linear-gradient(to right, #934900, #df7000); background-size: 100% 100%; background-repeat: no-repeat;");
+		dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: linear-gradient(to right, #3f2407, #ad6518 75%, #df7000 100%); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(dashMeter);
 		dashMeter.style.display = 'none';
 	}
@@ -88,8 +88,7 @@ function initUI() {
 	if (!document.getElementById('lampsMeter')) {
 		var lampsMeter = document.createElement('div');
 		lampsMeter.id = 'lampsMeter';
-		//lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left bottom, left top, from(#630), to(#fc4)); background-size: 100% 100%; background-repeat: no-repeat; border:1px solid white");
-		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.95 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 100%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat;");
+		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.95 + "px; height: " + MEASURE_UNIT * 1.68 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 50%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(lampsMeter);
 		lampsMeter.style.display = 'none';
 	}
@@ -199,7 +198,7 @@ function UIDraw() {
 	if (currentLampsMeter != lampsPercentage) {
 		currentLampsMeter < lampsPercentage ? currentLampsMeter++ : currentLampsMeter--;
 	}
-	document.getElementById('lampsMeter').style.backgroundImage = "linear-gradient(transparent " + 0 + "%, #808080 1%, #808080, #333)";
+	document.getElementById('lampsMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - currentLampsMeter) + "%, #808080 1%, #333)";
 	
 	
 	if (currentHealthMeter != mainGuy.hp) {
