@@ -671,8 +671,9 @@ function initDrawUpdate() {
     loadAssets();
     
     //set up gameplay elements
-    initGame();
-    
+    //initGame();
+    initUI();
+	
     //return setInterval(function(){draw()}, 30);//ms between updates
     //more efficient version using requestAnimationFrame:
 
