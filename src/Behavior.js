@@ -17,22 +17,26 @@ function Behavior(actor, MoveType, ChaseType, AttackType, ReactType, RunType, Sp
 	this.attacking = false;
 	
 	this.dist = 0;
+	this.reactDist = 0;
+	this.reactPosX = MEASURE_UNIT;
+	this.reactPosY = MEASURE_UNIT;
 }
 
 Behavior.prototype.distanceToPlayer = function() {
- return Math.sqrt(
-        Math.pow((this.actor.positions.pos[0] - mainGuy.p.pos[0]), 2)
-            +
-        Math.pow((this.actor.positions.pos[1] - mainGuy.p.pos[1]), 2)
-    );
+	return this.distanceToPoint(this.actor.positions.pos[0], this.actor.positions.pos[1], mainGuy.p.pos[0], mainGuy.p.pos[1]);
 }
 
 Behavior.prototype.distanceToTarget = function() {
+	return this.distanceToPoint(this.actor.positions.pos[0], this.actor.positions.pos[1], this.actor.targetPosX, this.actor.targetPosY);
+}
+
+Behavior.prototype.distanceToPoint = function (pos1x, pos1y, pos2x, pos2y) {
  return Math.sqrt(
-        Math.pow((this.actor.positions.pos[0] - this.actor.targetPosX), 2)
+        Math.pow((pos1x - pos2x), 2)
             +
-        Math.pow((this.actor.positions.pos[1] - this.actor.targetPosY), 2)
+        Math.pow((pos1y - pos2y), 2)
     );
+
 }
 
 Behavior.prototype.attackReaction = function(dist) {
@@ -64,6 +68,11 @@ Behavior.prototype.move = function() {
 	this.dist = this.distanceToPlayer()
 	
 	if(this.actor.hitLight.hit == true) {
+		if(this.reacting == false) {
+			this.reactPosX = this.actor.positions.pos[0];
+			this.reactPosY = this.actor.positions.pos[1];
+		}
+		this.reactDist = this.distanceToPoint(this.actor.positions.pos[0], this.actor.positions.pos[1], this.reactPosX, this.reactPosY);
 		this.reacting = true;
 		REACTB.move(this.rStr, this.actor);
 		
@@ -84,6 +93,7 @@ Behavior.prototype.move = function() {
 		}
 	}
 	
+	//nullify further movement into an object when colliding.
 	if(this.actor.hitSomething.hitLR == true || this.actor.hitSomething.hitUD == true) {
 		if(this.actor.hitSomething.hitLR == true) {
 			this.actor.targetPosX = this.actor.positions.pos[0];
@@ -103,4 +113,5 @@ Behavior.prototype.move = function() {
 	if ( this.dist >= this.actor.attackRange) this.attacking = false;
 	this.actor.hitSomething.hitLR = false;
 	this.actor.hitSomething.hitUD = false;
+	//this.actor.hitLight.hit = false;
 };

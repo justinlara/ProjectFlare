@@ -8,17 +8,18 @@ var ReactBehavior = function() {
 		actor.speed = actor.escapeSpeed;
 		
 		if (mainGuy.p.pos[0] > actor.positions.pos[0]) {
-            actor.xdelta -= actor.speed;
-        } else {
-            actor.xdelta += actor.speed;
-        }
-        if (mainGuy.p.pos[1] > actor.positions.pos[1]) {
-            actor.ydelta -= actor.speed;
-        } else {
-            actor.ydelta += actor.speed;
-        }
+			actor.xdelta -= actor.speed;
+		} else {
+			actor.xdelta += actor.speed;
+		}
+		//move vertically
+		if (mainGuy.p.pos[1] > actor.positions.pos[1]) {
+			actor.ydelta -= actor.speed;
+		} else {
+			actor.ydelta += actor.speed;
+		}
 		
-		if(actor.entityBehavior.dist > actor.escapeRange) {
+		if(actor.entityBehavior.reactDist > actor.escapeRange) {
 			actor.hitLight.hit = false;
 			actor.entityBehavior.reacting = false;
 			actor.speed = actor.normalSpeed;
