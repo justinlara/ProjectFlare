@@ -229,11 +229,21 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('lampsMeter').style.display = "block";
 		document.getElementById('lampsMask').style.display = "block";
 		document.getElementById('floorsMask').style.display = "block";
+		document.getElementById('healthMeter').style.display = "block";
+		document.getElementById('healthMask').style.display = "block";
+		document.getElementById('healthUndermask').style.display = "block";
+		document.getElementById('lightMeter').style.display = "block";
+		document.getElementById('lightMask').style.display = "block";
 	} else {
 		document.getElementById('dashMeter').style.display = "none";
 		document.getElementById('dashMask').style.display = "none";
 		document.getElementById('lampsMeter').style.display = "none";
 		document.getElementById('lampsMask').style.display = "none";
 		document.getElementById('floorsMask').style.display = "none";
+		document.getElementById('healthMeter').style.display = "none";
+		document.getElementById('healthMask').style.display = "none";
+		document.getElementById('healthUndermask').style.display = "none";
+		document.getElementById('lightMeter').style.display = "none";
+		document.getElementById('lightMask').style.display = "none";
 	}
 }

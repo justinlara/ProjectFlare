@@ -67,7 +67,7 @@ function initUI() {
 	if (!document.getElementById('dashMeter')) {
 		var dashMeter = document.createElement('div');
 		dashMeter.id = 'dashMeter';
-		dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left top, right top, from(#003), to(#06f)); background-size: 100% 100%; background-repeat: no-repeat;");
+		dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: linear-gradient(to right, #003, #06f); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(dashMeter);
 		dashMeter.style.display = 'none';
 	}
@@ -84,7 +84,7 @@ function initUI() {
 		var lampsMeter = document.createElement('div');
 		lampsMeter.id = 'lampsMeter';
 		//lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left bottom, left top, from(#630), to(#fc4)); background-size: 100% 100%; background-repeat: no-repeat; border:1px solid white");
-		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 100%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat;");
+		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.95 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 100%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(lampsMeter);
 		lampsMeter.style.display = 'none';
 	}
@@ -108,7 +108,7 @@ function initUI() {
 	if (!document.getElementById('healthMeter')) {
 		var healthMeter = document.createElement('div');
 		healthMeter.id = 'healthMeter';
-		healthMeter.setAttribute('style', "width: " + MEASURE_UNIT * 1.25 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + GAME_WIDTH * 0.081 + "px; top: " + GAME_HEIGHT * 0.128 + "px; position: absolute; z-index: 5; background-color: #f00; background-size: 100% 100%; background-repeat: no-repeat;");
+		healthMeter.setAttribute('style', "width: " + MEASURE_UNIT * 1 + "px; height: " + MEASURE_UNIT * 0.93 + "px; left: " + GAME_WIDTH * 0.080 + "px; top: " + GAME_HEIGHT * 0.172 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 0%, #f00 1%, #f00); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(healthMeter);
 		healthMeter.style.display = 'none';
 	}
@@ -116,9 +116,33 @@ function initUI() {
 	if (!document.getElementById('healthMask')) {
 		var healthMask = document.createElement('div');
 		healthMask.id = 'healthMask';
-		healthMask.setAttribute('style', "width: " + MEASURE_UNIT * 1.25 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + GAME_WIDTH * 0.081 + "px; top: " + GAME_HEIGHT * 0.128 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/heart_black.png); background-size: 100% 100%;");
+		healthMask.setAttribute('style', "width: " + MEASURE_UNIT * 1.25 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + GAME_WIDTH * 0.075 + "px; top: " + GAME_HEIGHT * 0.128 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/heart_black.png); background-size: 100% 100%;");
 		document.getElementById('gameScreen').appendChild(healthMask);
 		healthMask.style.display = 'none';
+	}
+	
+	if (!document.getElementById('healthUndermask')) {
+		var healthUndermask = document.createElement('div');
+		healthUndermask.id = 'healthUndermask';
+		healthUndermask.setAttribute('style', "width: " + MEASURE_UNIT * 1.25 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + GAME_WIDTH * 0.075 + "px; top: " + GAME_HEIGHT * 0.128 + "px; position: absolute; z-index: 4; background-image: url(assets/ui/heart_black_bg.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(healthUndermask);
+		healthUndermask.style.display = 'none';
+	}
+	
+	if (!document.getElementById('lightMeter')) {
+		var lightMeter = document.createElement('div');
+		lightMeter.id = 'lightMeter';
+		lightMeter.setAttribute('style', "width: " + MEASURE_UNIT * 1 + "px; height: " + MEASURE_UNIT * 0.6 + "px; left: " + GAME_WIDTH * 0.014 + "px; top: " + GAME_HEIGHT * 0.17 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 0%, #ff0 1%, #ff0, #fff); background-size: 100% 100%; background-repeat: no-repeat;");
+		document.getElementById('gameScreen').appendChild(lightMeter);
+		lightMeter.style.display = 'none';
+	}
+	
+	if (!document.getElementById('lightMask')) {
+		var lightMask = document.createElement('div');
+		lightMask.id = 'lightMask';
+		lightMask.setAttribute('style', "width: " + MEASURE_UNIT * 1.25 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + GAME_WIDTH * 0.014 + "px; top: " + GAME_HEIGHT * 0.044 + "px; position: absolute; z-index: 6; background-image: url(assets/ui/lantern_black.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(lightMask);
+		lightMask.style.display = 'none';
 	}
 }
 
@@ -189,6 +213,9 @@ function UIDraw() {
 	var lampPercentage = Math.floor((lampsLit / thisLevel.lightsTotal) * 100);
 	document.getElementById('lampsMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - lampPercentage) + "%, white 2%, #fc4, #630)";
 	
+	document.getElementById('healthMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - mainGuy.hp) + "%, #f00 1%, #f00)";
+	
+	document.getElementById('lightMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - mainGuy.light) + "%, #ff0 1%, #ff0, #fff)";
 }
 
 function pauseDraw() {
