@@ -62,7 +62,7 @@ function drawFullScreenImage(im) {
 }
 
 function initUI() {
-	soundManager.mute();
+	//soundManager.mute();
 	// Create dash UI
 	if (!document.getElementById('dashMeter')) {
 		var dashMeter = document.createElement('div');
@@ -84,7 +84,7 @@ function initUI() {
 		var lampsMeter = document.createElement('div');
 		lampsMeter.id = 'lampsMeter';
 		//lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: -webkit-gradient(linear, left bottom, left top, from(#630), to(#fc4)); background-size: 100% 100%; background-repeat: no-repeat; border:1px solid white");
-		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 0%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat; border:1px solid white");
+		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 1.66 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 100%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(lampsMeter);
 		lampsMeter.style.display = 'none';
 	}
@@ -143,55 +143,13 @@ function UIDraw() {
 	
 	// LIGHT METER
 	var pLight = mainGuy.light;
-	switch(pLight)
-	{	
-	case 5:
-	  lmeter = 'first_use';
-	  break;
-	case 4:
-	  lmeter = 'second_use';
-	  break;
-	case 3:
-	  lmeter = 'third_use';
-	  break;
-	case 2:
-	  lmeter = 'fourth_use';
-	  break;
-	case 1:
-	  lmeter = 'fifth_use';
-	  break;
-	case 0:
-	  lmeter = 'empty';
-	  break;
-	default:
-	  lmeter = 'full';
-	}
-				
-	UIlight.use(lmeter);
-	UIlight.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	//	UIlight.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
 	
-// HEALTH
+	// HEALTH
 	var pHealth = mainGuy.hp;
-	if (pHealth == 6) //100 || pHealth > 95)
-		hmeter = 'full';
-	else if (pHealth == 5) //95 && pHealth > 75)
-		hmeter = 'one';
-	else if (pHealth == 4) //75 && pHealth > 55)
-		hmeter = 'two';
-	else if (pHealth == 3) //55 && pHealth > 35)
-		hmeter = 'three';
-	else if (pHealth == 2) //35 && pHealth > 15)
-		hmeter = 'four';
-	else if (pHealth == 1) //15 && pHealth > 10)
-		hmeter = 'five';
-	else if (pHealth == 0 || pHealth < 0)
-		hmeter = 'empty';
-	
-	UIhealth.use(hmeter);
-	UIhealth.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
+	//	UIhealth.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
 	
 	// COUNTERS
-		
 	var Y1 = GAME_HEIGHT * 0.38;
 	var Y2 = GAME_HEIGHT * 0.742;
 	var numSide = MEASURE_UNIT / 3;

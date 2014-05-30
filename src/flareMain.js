@@ -433,50 +433,6 @@ function loadAssets() {
 		}
 	);
 	
-	//ui sprites:
-	UIlight = new SpriteMap('assets/ui/light_sheet.png',//image
-			{ //anim sequences
-				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
-				first_use: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
-				second_use: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
-				third_use: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
-				fourth_use: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
-				fifth_use: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
-				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
-			}, { //options
-				frameW: 128, // Width of each frame of the animation in pixels
-				frameH: 256, // Height of each frame of the animation in pixels
-				projectedW: 1024, // Displayed width
-				projectedH: 256, // Displayed height 
-				interval: 150, // Switch frames every xxx ms
-				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
-				postInitCallback: function() {
-					UIlight.start('full');//start the idle anim
-					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
-				}
-	});
-	UIhealth = new SpriteMap('assets/ui/heart_sheet.png',//image
-			{ //anim sequences
-				full: {startRow: 0, startCol: 0, endRow: 0, endCol: 0},
-				one: {startRow: 0, startCol: 1, endRow: 0, endCol: 1},
-				two: {startRow: 0, startCol: 2, endRow: 0, endCol: 2},
-				three: {startRow: 0, startCol: 3, endRow: 0, endCol: 3},
-				four: {startRow: 0, startCol: 4, endRow: 0, endCol: 4},
-				five: {startRow: 0, startCol: 5, endRow: 0, endCol: 5},
-				empty: {startRow: 0, startCol: 6, endRow: 0, endCol: 6}
-			}, { //options
-				frameW: 128, // Width of each frame of the animation in pixels
-				frameH: 256, // Height of each frame of the animation in pixels
-				projectedW: 1024, // Displayed width
-				projectedH: 256, // Displayed height 
-				interval: 150, // Switch frames every xxx ms
-				useTimer: true, // Rely on requestAnimFrame to update frames instead of setInterval
-				postInitCallback: function() {
-					UIhealth.start('full');//start the idle anim
-					//when/where you want to switch anim sequences, use sprite.use(stringAnimName);
-				}
-	});
-	
 	createButtons();
 }
 
@@ -535,9 +491,6 @@ function initGame() {
 	// initialize UI counters
 	lampsLit = 0;
 	levelsTraversed = 1;
-	
-	// initUI found in flareUI.js
-	initUI();
 	
 	// Play music
 	soundManager.stop('spookyMusic');
