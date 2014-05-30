@@ -100,8 +100,8 @@ function loadAssets() {
     images[0].src = "assets/player/Walking.png";
     images[1].src = "assets/enemies/miles_test_sheet.png";
     images[2].src = "assets/tiles/errorTile.png";
-    images[3].src = "assets/tiles/lamp_castle_1.png";
-    images[4].src = "assets/tiles/lamp_castle_2.png";
+    images[3].src = "assets/ui_rod.png";
+    images[4].src = "assets/tiles/wall_castle_9.png";
     images[5].src = "assets/tiles/block_castle_1.png";
     images[6].src = "assets/tiles/floor_castle_1.png";
     images[7].src = "assets/tiles/floor_castle_2.png";

@@ -97,7 +97,7 @@ function Player()
 	                                             angle:     this.p.playerLight.GetAngle() 
 	                                             });
 	
-	this.p.I.src = "assets/Character.png";
+	//this.p.I.src = "assets/Character.png";
 	
 	//for sorting:
 	this.posY = this.p.pos[1];
