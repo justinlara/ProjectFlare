@@ -104,17 +104,24 @@ function createButtons() {
 	gameOverQuit.setAttribute('onmouseout', "this.style.backgroundPosition='0% 0%'");
 	gameOverQuit.setAttribute('onmousedown', "this.style.backgroundPosition='0% -200%'");
 	gameOverQuit.setAttribute('onmouseup', "this.style.backgroundPosition='0% -100%'");
-	gameOverQuit.addEventListener("click", gameOverQuitHandler, false);	
+	gameOverQuit.addEventListener("click", gameOverQuitHandler, false);
+
+	var gameMute = document.createElement('div');
+	gameMute.id = 'gameMute';
+	gameMute.setAttribute('style', "width: " + MEASURE_UNIT * .5 + "px; height: " + MEASURE_UNIT * .5 + "px; left: " + GAME_WIDTH * 0 + "px; top: " + (GAME_HEIGHT - (MEASURE_UNIT * .5))  + "px; position: absolute; z-index: 5; background-image:url(assets/ui/mute_button.png); background-size: 400% 100%; background-position: 0% 0%");
+	topCanvas.appendChild(gameMute);
+	gameMute.style.display = 'none';
+	gameMute.addEventListener("click", gameMuteHandler, false);
 	
-	
-	//mainNewGame.addEventListener("click", newGameHandler, false);
-	
-	//ctxDark.drawImage(resumeButton, GAME_WIDTH * .18, GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
-	//ctxDark.drawImage(restartButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 2.9), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
-	//ctxDark.drawImage(quitButton, (GAME_WIDTH * .18) + (MEASURE_UNIT * 5.8), GAME_HEIGHT * .46, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5);
-	
-	//resume.drawImage(resumeButton, 0, 0, MEASURE_UNIT * 2.5, MEASURE_UNIT * 2.5); //GAME_WIDTH * .18, GAME_HEIGHT * .46
-	//$('#resume').on('click', clickedd());
+}
+function gameMuteHandler() {
+	if (soundManager.muted) {
+		soundManager.unmute();
+		document.getElementById('gameMute').style.backgroundPosition = "0% 0%";
+	} else {
+		soundManager.mute();
+		document.getElementById('gameMute').style.backgroundPosition = "-200% 0%";
+	}
 }
 
 function mainStoryHandler() {
@@ -234,6 +241,7 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('healthUndermask').style.display = "block";
 		document.getElementById('lightMeter').style.display = "block";
 		document.getElementById('lightMask').style.display = "block";
+		document.getElementById('gameMute').style.display = "block";
 	} else {
 		document.getElementById('dashMeter').style.display = "none";
 		document.getElementById('dashMask').style.display = "none";
@@ -245,5 +253,6 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('healthUndermask').style.display = "none";
 		document.getElementById('lightMeter').style.display = "none";
 		document.getElementById('lightMask').style.display = "none";
+		document.getElementById('gameMute').style.display = "none";
 	}
 }

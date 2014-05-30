@@ -5,6 +5,10 @@ var showCredits = false;
 
 var currentHealthMeter = 100;
 var currentLightMeter = 100;
+var currentLampsMeter = 0;
+
+var healthDifference = 0;
+var lightDifference = 0;
 
 //UI Pole
 var pole = new Image();
@@ -64,12 +68,11 @@ function drawFullScreenImage(im) {
 }
 
 function initUI() {
-	soundManager.mute();
 	// Create dash UI
 	if (!document.getElementById('dashMeter')) {
 		var dashMeter = document.createElement('div');
 		dashMeter.id = 'dashMeter';
-		dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: linear-gradient(to right, #003, #06f); background-size: 100% 100%; background-repeat: no-repeat;");
+		dashMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.1 + "px; height: " + MEASURE_UNIT * 1.5 + "px; left: " + GAME_WIDTH * 0.0145 + "px; top: " + GAME_HEIGHT * .55 + "px; position: absolute; z-index: 5; background-image: linear-gradient(to right, #934900, #df7000); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(dashMeter);
 		dashMeter.style.display = 'none';
 	}
@@ -148,7 +151,7 @@ function initUI() {
 	}
 }
 
-// Draw main menu background over both canvases.129*.1
+// Draw main menu background over both canvases.
 function mainMenuDraw() {
 	if (showCredits) {
 		drawFullScreenImage(creditsScreen);
@@ -158,7 +161,7 @@ function mainMenuDraw() {
 	}
 }
 
-// Draw UI on the left canvase
+// Draw UI on the left canvas
 function UIDraw() {
 	ctxUI.clearRect(0, 0, GAME_WIDTH*.15, GAME_HEIGHT);
 	
@@ -167,17 +170,8 @@ function UIDraw() {
 	var UIWidth = GAME_WIDTH * 0.15;
 	ctxUI.drawImage(pole, 0, 0, UIWidth, UIHeight);// MEASURE_UNIT * 2.25, MEASURE_UNIT * 11);	
 	
-	// LIGHT METER
-	var pLight = mainGuy.light;
-	//	UIlight.draw(ctxUI, (0.129 * UIWidth), (0.048 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
-	
-	// HEALTH
-	var pHealth = mainGuy.hp;
-	//	UIhealth.draw(ctxUI, (0.540 * UIWidth), (0.128 * UIHeight), MEASURE_UNIT * 1.25, MEASURE_UNIT * 2.5);
-	
 	// COUNTERS
-	var Y1 = GAME_HEIGHT * 0.38;
-	var Y2 = GAME_HEIGHT * 0.742;
+	var floorCounterY = GAME_HEIGHT * 0.742;
 	var numSide = MEASURE_UNIT / 3;
 	
 	var singleX = GAME_WIDTH * 0.0615;
@@ -185,40 +179,34 @@ function UIDraw() {
 	var doubleX2 = GAME_WIDTH * 0.068;
 	var tripleX1 = GAME_WIDTH * 0.0485;
 	var tripleX3 = GAME_WIDTH * 0.0745;
-
-	if (lampsLit < 10) { // Single digit on top
-		ctxUI.drawImage(UINums[lampsLit], singleX, Y1, numSide, numSide);
-	} else if (lampsLit < 100) { // Double digits on top
-		ctxUI.drawImage(UINums[Math.floor(lampsLit / 10)], doubleX1, Y1, numSide, numSide);
-		ctxUI.drawImage(UINums[lampsLit % 10], doubleX2, Y1, numSide, numSide);
-	} else { // Triple digits on top
-		ctxUI.drawImage(UINums[Math.floor(lampsLit / 100)], tripleX1, Y1, numSide, numSide);
-		ctxUI.drawImage(UINums[Math.floor((lampsLit % 100) / 10)], singleX, Y1, numSide, numSide);
-		ctxUI.drawImage(UINums[lampsLit % 10], tripleX3, Y1, numSide, numSide);
-	}
 	
 	if (levelsTraversed < 10) { // Single digit on the bottom
-		ctxUI.drawImage(UINums[levelsTraversed], singleX, Y2, numSide, numSide);
+		ctxUI.drawImage(UINums[levelsTraversed], singleX, floorCounterY, numSide, numSide);
 	} else if (levelsTraversed < 100) { // Double digits on the bottom
-		ctxUI.drawImage(UINums[Math.floor(levelsTraversed / 10)], doubleX1, Y2, numSide, numSide);
-		ctxUI.drawImage(UINums[levelsTraversed % 10], doubleX2, Y2, numSide, numSide);
+		ctxUI.drawImage(UINums[Math.floor(levelsTraversed / 10)], doubleX1, floorCounterY, numSide, numSide);
+		ctxUI.drawImage(UINums[levelsTraversed % 10], doubleX2, floorCounterY, numSide, numSide);
 	} else { // Triple digits on the bottom
-		ctxUI.drawImage(UINums[Math.floor(levelsTraversed / 100)], tripleX1, Y2, numSide, numSide);
-		ctxUI.drawImage(UINums[Math.floor((levelsTraversed % 100) / 10)], singleX, Y2, numSide, numSide);
-		ctxUI.drawImage(UINums[levelsTraversed % 10], tripleX3, Y2, numSide, numSide);
+		ctxUI.drawImage(UINums[Math.floor(levelsTraversed / 100)], tripleX1, floorCounterY, numSide, numSide);
+		ctxUI.drawImage(UINums[Math.floor((levelsTraversed % 100) / 10)], singleX, floorCounterY, numSide, numSide);
+		ctxUI.drawImage(UINums[levelsTraversed % 10], tripleX3, floorCounterY, numSide, numSide);
 	}
 	
 	// Update dash meter
 	var runPercentage = mainGuy.runMeter * 10;
 	document.getElementById('dashMeter').style.backgroundSize = runPercentage + "% 100%";
 	
-	var lampPercentage = Math.floor((lampsLit / thisLevel.lightsTotal) * 100);
-	document.getElementById('lampsMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - lampPercentage) + "%, white 2%, #fc4, #630)";
+	var lampsPercentage = Math.floor((lampsLit / thisLevel.lightsTotal) * 100);
+	if (currentLampsMeter != lampsPercentage) {
+		currentLampsMeter < lampsPercentage ? currentLampsMeter++ : currentLampsMeter--;
+	}
+	document.getElementById('lampsMeter').style.backgroundImage = "linear-gradient(transparent " + 0 + "%, #808080 1%, #808080, #333)";
+	
 	
 	if (currentHealthMeter != mainGuy.hp) {
 		currentHealthMeter < mainGuy.hp ? currentHealthMeter++ : currentHealthMeter--;
+		healthDifference = Math.abs((currentHealthMeter - mainGuy.hp) / 10);
 	}
-	document.getElementById('healthMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - currentHealthMeter) + "%, #f00 1%, #f00)";
+	document.getElementById('healthMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - currentHealthMeter) + "%, #f00 1%, #f00";
 	
 	if (currentLightMeter != mainGuy.light) {
 		currentLightMeter < mainGuy.light ? currentLightMeter++ : currentLightMeter--;
