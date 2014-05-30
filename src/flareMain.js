@@ -553,6 +553,7 @@ function draw() {
 
 	} else if (gameState == 2) //menu
 	{
+		seeGameElements(false);
 		mainMenuDraw();
 	} else if (gameState == 3) //cutscene
 	{
