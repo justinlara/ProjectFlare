@@ -2,7 +2,9 @@ var lampsLit;
 var levelsTraversed;
 
 var showCredits = false;
-var firstInit = true;
+
+var currentHealthMeter = 100;
+var currentLightMeter = 100;
 
 //UI Pole
 var pole = new Image();
@@ -62,7 +64,7 @@ function drawFullScreenImage(im) {
 }
 
 function initUI() {
-	//soundManager.mute();
+	soundManager.mute();
 	// Create dash UI
 	if (!document.getElementById('dashMeter')) {
 		var dashMeter = document.createElement('div');
@@ -213,9 +215,15 @@ function UIDraw() {
 	var lampPercentage = Math.floor((lampsLit / thisLevel.lightsTotal) * 100);
 	document.getElementById('lampsMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - lampPercentage) + "%, white 2%, #fc4, #630)";
 	
-	document.getElementById('healthMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - mainGuy.hp) + "%, #f00 1%, #f00)";
+	if (currentHealthMeter != mainGuy.hp) {
+		currentHealthMeter < mainGuy.hp ? currentHealthMeter++ : currentHealthMeter--;
+	}
+	document.getElementById('healthMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - currentHealthMeter) + "%, #f00 1%, #f00)";
 	
-	document.getElementById('lightMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - mainGuy.light) + "%, #ff0 1%, #ff0, #fff)";
+	if (currentLightMeter != mainGuy.light) {
+		currentLightMeter < mainGuy.light ? currentLightMeter++ : currentLightMeter--;
+	}
+	document.getElementById('lightMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - currentLightMeter) + "%, #ff0 1%, #ff0, #fff)";
 }
 
 function pauseDraw() {
