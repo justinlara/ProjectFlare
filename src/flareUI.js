@@ -214,7 +214,7 @@ function UIDraw() {
 	var runPercentage = mainGuy.runMeter * 10;
 	document.getElementById('dashMeter').style.backgroundSize = runPercentage + "% 100%";
 	
-	var lampsPercentage = Math.floor((lampsLit / thisLevel.lightsTotal) * 100);
+	var lampsPercentage = Math.floor((thisLevel.lightsLit / thisLevel.lightsTotal) * 100);
 	if (currentLampsMeter != lampsPercentage) {
 		currentLampsMeter < lampsPercentage ? currentLampsMeter++ : currentLampsMeter--;
 	}
