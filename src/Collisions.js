@@ -128,8 +128,9 @@ Collisions.prototype.collisionContact = function()
 	       
                thisLevel.lightsLit++;
 
-			   // Lamp counter increases
+			   // Lamp counter increases and counters update
 			   lampsLit++;
+			   updateLampCounters();
 			   
 				//play sound
 				soundManager.play('lamplight');

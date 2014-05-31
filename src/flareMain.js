@@ -491,6 +491,7 @@ function initGame() {
 	// initialize UI counters
 	lampsLit = 0;
 	levelsTraversed = 1;
+	updateLampCounters();
 	
 	// Play music
 	soundManager.stop('spookyMusic');

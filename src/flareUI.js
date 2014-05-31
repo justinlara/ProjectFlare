@@ -88,7 +88,7 @@ function initUI() {
 	if (!document.getElementById('lampsMeter')) {
 		var lampsMeter = document.createElement('div');
 		lampsMeter.id = 'lampsMeter';
-		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.95 + "px; height: " + MEASURE_UNIT * 1.68 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent 50%, white 2%, #fc4, #630); background-size: 100% 100%; background-repeat: no-repeat;");
+		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.95 + "px; height: " + MEASURE_UNIT * 1.68 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent, transparent); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(lampsMeter);
 		lampsMeter.style.display = 'none';
 	}
@@ -149,12 +149,28 @@ function initUI() {
 		lightMask.style.display = 'none';
 	}
 	
-	if (!document.getElementById('lightCtrSingle')) {
-		var lightCtrSingle = document.createElement('div');
-		lightCtrSingle.id = 'lightCtrSingle';
-		lightCtrSingle.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.055 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 8; background-image: url(assets/ui/0.png); background-size: 100% 100%;");
-		document.getElementById('gameScreen').appendChild(lightCtrSingle);
-		lightCtrSingle.style.display = 'block';
+	if (!document.getElementById('lampsCtrSingle')) {
+		var lampsCtrSingle = document.createElement('div');
+		lampsCtrSingle.id = 'lampsCtrSingle';
+		lampsCtrSingle.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.055 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 9; background-image: url(assets/ui/1.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(lampsCtrSingle);
+		lampsCtrSingle.style.display = 'block';
+	}
+	
+	if (!document.getElementById('lampsCtrDouble1')) {
+		var lampsCtrDouble1 = document.createElement('div');
+		lampsCtrDouble1.id = 'lampsCtrDouble1';
+		lampsCtrDouble1.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.0485 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 9; background-image: url(assets/ui/1.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(lampsCtrDouble1);
+		lampsCtrDouble1.style.display = 'block';
+	}
+	
+	if (!document.getElementById('lampsCtrDouble2')) {
+		var lampsCtrDouble2 = document.createElement('div');
+		lampsCtrDouble2.id = 'lampsCtrDouble2';
+		lampsCtrDouble2.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.0615 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 9; background-image: url(assets/ui/1.png); background-size: 100% 100%;");
+		document.getElementById('gameScreen').appendChild(lampsCtrDouble2);
+		lampsCtrDouble2.style.display = 'block';
 	}
 }
 
@@ -215,6 +231,26 @@ function UIDraw() {
 		currentLightMeter < mainGuy.light ? currentLightMeter++ : currentLightMeter--;
 	}
 	document.getElementById('lightMeter').style.backgroundImage = "linear-gradient(transparent " + (100 - currentLightMeter) + "%, #ff0 1%, #ff0, #fff)";
+}
+
+function updateLampCounters() {
+	// Lamp counter - done with divs over the Lamps Counter Mask
+	if (lampsLit < 10) { // Single digit
+		document.getElementById('lampsCtrSingle').style.display = "block";
+		document.getElementById('lampsCtrDouble1').style.display = "none";
+		document.getElementById('lampsCtrDouble2').style.display = "none";
+		
+		// Draw value on single digit counter
+		document.getElementById('lampsCtrSingle').style.backgroundImage = "url(assets/ui/" + lampsLit + ".png)";
+	}
+	else if (lampsLit < 100) { // Double digits
+		document.getElementById('lampsCtrSingle').style.display = "none";
+		document.getElementById('lampsCtrDouble1').style.display = "block";
+		document.getElementById('lampsCtrDouble2').style.display = "block";
+		
+		document.getElementById('lampsCtrDouble1').style.backgroundImage = "url(assets/ui/" + Math.floor(lampsLit / 10) + ".png)";
+		document.getElementById('lampsCtrDouble2').style.backgroundImage = "url(assets/ui/" + (lampsLit % 10) + ".png)";	
+	}
 }
 
 function pauseDraw() {
