@@ -17,6 +17,7 @@ function Player()
   this.movespeed = 0.04;
   
   this.facingDirection = "down";
+  this.facingChanged = false;
   
   //Old default values;
   //this.hp = 6;
@@ -255,7 +256,7 @@ function Player()
             }
             default:
             {
-	      this.facingDirection = "down";
+				//this.facingDirection = "down";
 	      
                 if(controls.isDown(controls.LEFT) || controls.isDown(controls.RIGHT)||
                 controls.isDown(controls.UP)|| controls.isDown(controls.DOWN))
@@ -370,6 +371,9 @@ function Player()
 	  
 	     //console.log(" rotateLightBox--- L --- " + this.horizSetBox);
 	   */
+		if(this.facingDirection != "left") { this.facingChanged = true; }
+		else { this.facingChanged = false; }
+		
 		this.facingDirection = "left";
 	   
 		this.lantern.currentLightSprite = SpriteLanternLEFT;
@@ -402,6 +406,8 @@ function Player()
 	   
         //console.log(" rotateLightBox--- R --- " + this.horizSetBox);
 	  */
+		if(this.facingDirection != "right") this.facingChanged = true;
+		else this.facingChanged = false;
 		this.facingDirection = "right";
 		
 		this.lantern.currentLightSprite = SpriteLanternRIGHT;
@@ -431,7 +437,8 @@ function Player()
 	    
 	    
 	    //console.log(" rotateLightBox--- U --- " + this.vertSetBox);
-	    
+		if(this.facingDirection != "up") this.facingChanged = true;
+		else this.facingChanged = false;	    
 		this.facingDirection = "up";
 		
 		this.lantern.currentLightSprite = SpriteLanternUP;
@@ -463,7 +470,8 @@ function Player()
         
        // console.log(" rotateLightBox--- D --- " + this.vertSetBox);
 	  */
-	 
+		if(this.facingDirection != "down") this.facingChanged = true;
+		else this.facingChanged = false;
 		this.facingDirection = "down";
 		
 		this.lantern.currentLightSprite = SpriteLanternDOWN;

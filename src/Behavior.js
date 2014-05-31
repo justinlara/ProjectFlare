@@ -70,7 +70,7 @@ Behavior.prototype.move = function() {
 	
 	this.dist = this.distanceToPlayer()
 	
-	if(this.actor.hitLight.hit == true) {
+	if(this.actor.hitLight.hit == true || this.reacting == true) {
 		if(this.reacting == false) {
 			this.reactPosX = this.actor.positions.pos[0];
 			this.reactPosY = this.actor.positions.pos[1];
@@ -116,5 +116,5 @@ Behavior.prototype.move = function() {
 	if ( this.dist >= this.actor.attackRange) this.attacking = false;
 	this.actor.hitSomething.hitLR = false;
 	this.actor.hitSomething.hitUD = false;
-	//this.actor.hitLight.hit = false;
+	this.actor.hitLight.hit = false;
 };
