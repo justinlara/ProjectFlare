@@ -154,7 +154,7 @@ function initUI() {
 		lampsCtrSingle.id = 'lampsCtrSingle';
 		lampsCtrSingle.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.055 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 9; background-image: url(assets/ui/1.png); background-size: 100% 100%;");
 		document.getElementById('gameScreen').appendChild(lampsCtrSingle);
-		lampsCtrSingle.style.display = 'block';
+		lampsCtrSingle.style.display = 'none';
 	}
 	
 	if (!document.getElementById('lampsCtrDouble1')) {
@@ -162,7 +162,7 @@ function initUI() {
 		lampsCtrDouble1.id = 'lampsCtrDouble1';
 		lampsCtrDouble1.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.0485 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 9; background-image: url(assets/ui/1.png); background-size: 100% 100%;");
 		document.getElementById('gameScreen').appendChild(lampsCtrDouble1);
-		lampsCtrDouble1.style.display = 'block';
+		lampsCtrDouble1.style.display = 'none';
 	}
 	
 	if (!document.getElementById('lampsCtrDouble2')) {
@@ -170,7 +170,7 @@ function initUI() {
 		lampsCtrDouble2.id = 'lampsCtrDouble2';
 		lampsCtrDouble2.setAttribute('style', "width: " + MEASURE_UNIT / 3 + "px; height: " + MEASURE_UNIT / 3 + "px; left: " + GAME_WIDTH * 0.0615 + "px; top: " + GAME_HEIGHT * 0.376 + "px; position: absolute; z-index: 9; background-image: url(assets/ui/1.png); background-size: 100% 100%;");
 		document.getElementById('gameScreen').appendChild(lampsCtrDouble2);
-		lampsCtrDouble2.style.display = 'block';
+		lampsCtrDouble2.style.display = 'none';
 	}
 }
 

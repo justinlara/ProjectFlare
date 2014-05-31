@@ -242,6 +242,10 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('lightMeter').style.display = "block";
 		document.getElementById('lightMask').style.display = "block";
 		document.getElementById('gameMute').style.display = "block";
+		
+		document.getElementById('lampsCtrSingle').style.display = "block";
+		document.getElementById('lampsCtrDouble1').style.display = "block";
+		document.getElementById('lampsCtrDouble2').style.display = "block";
 	} else {
 		document.getElementById('dashMeter').style.display = "none";
 		document.getElementById('dashMask').style.display = "none";
@@ -254,5 +258,9 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('lightMeter').style.display = "none";
 		document.getElementById('lightMask').style.display = "none";
 		document.getElementById('gameMute').style.display = "none";
+		
+		document.getElementById('lampsCtrSingle').style.display = "none";
+		document.getElementById('lampsCtrDouble1').style.display = "none";
+		document.getElementById('lampsCtrDouble2').style.display = "none";
 	}
 }
