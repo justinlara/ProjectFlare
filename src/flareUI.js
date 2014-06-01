@@ -236,17 +236,17 @@ function UIDraw() {
 function updateLampCounters() {
 	// Lamp counter - done with divs over the Lamps Counter Mask
 	if (lampsLit < 10) { // Single digit
-		document.getElementById('lampsCtrSingle').style.display = "block";
-		document.getElementById('lampsCtrDouble1').style.display = "none";
-		document.getElementById('lampsCtrDouble2').style.display = "none";
+		document.getElementById('lampsCtrSingle').style.zIndex = "8";
+		document.getElementById('lampsCtrDouble1').style.zIndex = "-1";
+		document.getElementById('lampsCtrDouble2').style.zIndex = "-1";
 		
 		// Draw value on single digit counter
 		document.getElementById('lampsCtrSingle').style.backgroundImage = "url(assets/ui/" + lampsLit + ".png)";
 	}
 	else if (lampsLit < 100) { // Double digits
-		document.getElementById('lampsCtrSingle').style.display = "none";
-		document.getElementById('lampsCtrDouble1').style.display = "block";
-		document.getElementById('lampsCtrDouble2').style.display = "block";
+		document.getElementById('lampsCtrSingle').style.zIndex = "-1";
+		document.getElementById('lampsCtrDouble1').style.zIndex = "8";
+		document.getElementById('lampsCtrDouble2').style.zIndex = "8";
 		
 		document.getElementById('lampsCtrDouble1').style.backgroundImage = "url(assets/ui/" + Math.floor(lampsLit / 10) + ".png)";
 		document.getElementById('lampsCtrDouble2').style.backgroundImage = "url(assets/ui/" + (lampsLit % 10) + ".png)";	
