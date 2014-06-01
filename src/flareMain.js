@@ -587,6 +587,9 @@ function gameDraw() {
 		mainGuy.dead = true;
 		mainGuy.pSprite.use('death');
 		
+		// Hide so health doesn't appear to be full during death sequence.
+		document.getElementById('healthMeter').style.display = "none";
+		
 		setTimeout(function() {
 			seeGameOverButtons(true);
 			seeGameElements(false);
