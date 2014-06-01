@@ -140,7 +140,8 @@ function loadAssets() {
 				walkDown: {startRow: 0, startCol: 0, endRow: 0, endCol: 3},
 				walkLeft: {startRow: 3, startCol: 0, endRow: 3, endCol: 3},
 				walkRight: {startRow: 1, startCol: 0, endRow: 1, endCol: 3},
-				walkUp: {startRow: 2, startCol: 0, endRow: 2, endCol: 3}
+				walkUp: {startRow: 2, startCol: 0, endRow: 2, endCol: 3},
+				death: {startRow: 4, startCol: 0, endRow: 4, endCol: 20}
 			}, { //options
 				frameW: 64, // Width of each frame of the animation in pixels
 				frameH: 64, // Height of each frame of the animation in pixels
@@ -547,6 +548,7 @@ function draw() {
 	
 	} else if (gameState == 4) //game
 	{
+		seeGameElements(true);
 		gameDraw(); 
 		UIDraw();
 	} else if (gameState == 5) //death
@@ -583,13 +585,13 @@ function gameDraw() {
 	if (mainGuy.hp <= 0) { // Player is dead, change gameState
 		
 		mainGuy.dead = true;
-		//mainGuy.pSprite.use('death');
+		mainGuy.pSprite.use('death');
 		
 		setTimeout(function() {
 			seeGameOverButtons(true);
 			seeGameElements(false);
 			gameState = 5;
-		}, 200);
+		}, 3150);
 	}
     
 	//draw room

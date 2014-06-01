@@ -135,7 +135,7 @@ Enemy.prototype.newTarget = function() {
 	
 //draw the enemy on ctxWorld
 Enemy.prototype.draw = function() {
-	this.update();
+	if (!mainGuy.dead) { this.update(); }
 	this.render();
 };
 
