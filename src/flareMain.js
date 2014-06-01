@@ -305,7 +305,6 @@ function loadAssets() {
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
 			death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
-			
 			attack:{startRow: 1, startCol: 0, endRow: 1, endCol: 0}
 		},
 		{
@@ -323,7 +322,8 @@ function loadAssets() {
 	loadSpriteTMunge = new SpriteMap("assets/enemies/munge_idle_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 17},
-			death: {startRow: 1, startCol: 0, endRow: 1, endCol: 17}
+			death: {startRow: 1, startCol: 0, endRow: 1, endCol: 17},
+			attack: {startRow: 1, startCol: 0, endRow: 1, endCol: 17}
 		},
 		{
 			frameW: 64, // Width of each frame of the animation in pixels
@@ -340,7 +340,8 @@ function loadAssets() {
 	loadSpriteRTMunge = new SpriteMap("assets/enemies/brown_munge_idle_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 17},
-			death: {startRow: 1, startCol: 0, endRow: 1, endCol: 17}
+			death: {startRow: 1, startCol: 0, endRow: 1, endCol: 17},
+			attack: {startRow: 1, startCol: 0, endRow: 1, endCol: 17}
 		},
 		{
 			frameW: 64, // Width of each frame of the animation in pixels
