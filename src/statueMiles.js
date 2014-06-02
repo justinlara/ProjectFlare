@@ -28,7 +28,7 @@ function statueMiles()
     this.aquisitionRange = MEASURE_UNIT * 3;
     this.escapeSpeed = MEASURE_UNIT * .015;
     this.escapeRange = MEASURE_UNIT * 3;
-    this.attackRange = MEASURE_UNIT * 1; //0;
+    this.attackRange = MEASURE_UNIT * 1.4;
 
     this.speed = this.normalSpeed;
     

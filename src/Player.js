@@ -279,7 +279,9 @@ function Player()
 		if (controls.isDown(controls.LEFT)) this.moveLeft();
 		else if (controls.isDown(controls.RIGHT)) this.moveRight();
   */	
-		
+
+//FOR DEGGING - easy way to move through rooms
+/*		
 		if (controls.isDown(controls.PGU))
 		{
 		  //console.log(this.facingDirection);
@@ -297,7 +299,7 @@ function Player()
 		{
 		  thisLevel.goToWestRoom();
 		}
-		
+*/
 		if (controls.isDown(controls.SPACE))
 		{
 		  if (thisLevel.currentRoom.isLit) {
