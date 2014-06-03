@@ -575,7 +575,7 @@ LastLevel.prototype.giveLightMeter = function()
 {
 	//if (this.structure[this.currentY][this.currentX].indexOf(this.structure.startingRoom) != -1) {
 	if (this.currentRoom.isEntrance) {
-		mainGuy.light = maxLight;
+		//mainGuy.light = maxLight;
 	}
 }
 
