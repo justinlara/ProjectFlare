@@ -88,7 +88,7 @@ function initUI() {
 	if (!document.getElementById('lampsMeter')) {
 		var lampsMeter = document.createElement('div');
 		lampsMeter.id = 'lampsMeter';
-		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.95 + "px; height: " + MEASURE_UNIT * 1.68 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent, transparent); background-size: 100% 100%; background-repeat: no-repeat;");
+		lampsMeter.setAttribute('style', "width: " + MEASURE_UNIT * 2.95 + "px; height: " + MEASURE_UNIT * 1.68 + "px; left: " + GAME_WIDTH * -0.02282 + "px; top: " + GAME_HEIGHT * .333 + "px; position: absolute; z-index: 5; background-image: linear-gradient(transparent, transparent); background-size: 100% 100%; background-repeat: no-repeat;");
 		document.getElementById('gameScreen').appendChild(lampsMeter);
 		lampsMeter.style.display = 'none';
 	}
@@ -96,7 +96,7 @@ function initUI() {
 	if (!document.getElementById('lampsMask')) {
 		var lampsMask = document.createElement('div');
 		lampsMask.id = 'lampsMask';
-		lampsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 3 + "px; left: " + GAME_WIDTH * -0.02281 + "px; top: " + GAME_HEIGHT * .28 + "px; position: absolute; z-index: 7; background-image: url(assets/ui/lamps_bar.png); background-size: 100% 100%;");
+		lampsMask.setAttribute('style', "width: " + MEASURE_UNIT * 3 + "px; height: " + MEASURE_UNIT * 3 + "px; left: " + GAME_WIDTH * -0.02282 + "px; top: " + GAME_HEIGHT * .28 + "px; position: absolute; z-index: 7; background-image: url(assets/ui/lamps_bar.png); background-size: 100% 100%;");
 		document.getElementById('gameScreen').appendChild(lampsMask);
 		lampsMask.style.display = 'none';
 	}
