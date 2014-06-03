@@ -228,6 +228,7 @@ function Player()
         switch(currentPress)
         {
             case 40:
+			case 83:
             {
                 //console.log("pressed D ");
                 
@@ -237,18 +238,21 @@ function Player()
                 break;
             }
             case 38:
+			case 87:
             {
                 //console.log("pressed U ");
                 this.moveUp();
                 break;
             }
             case 37:
+			case 65:
             {
                 //console.log("pressed L ");
                 this.moveLeft();
                 break;
             }
             case 39:
+			case 68:
             {
                 //console.log("pressed R ");
                 this.moveRight();
@@ -259,12 +263,15 @@ function Player()
 				//this.facingDirection = "down";
 	      
                 if(controls.isDown(controls.LEFT) || controls.isDown(controls.RIGHT)||
-                controls.isDown(controls.UP)|| controls.isDown(controls.DOWN))
+                controls.isDown(controls.UP)|| controls.isDown(controls.DOWN) ||
+				controls.isDown(controls.W) || controls.isDown(controls.A) ||
+				controls.isDown(controls.S) || controls.isDown(controls.D)) {
                 //console.log("ENTERED DEFAULT: LAST PRESSED" + lastPressed);
-             if (lastPressed == 38 && controls.isDown(controls.UP)) this.moveUp();
-             else if (lastPressed == 37 && controls.isDown(controls.LEFT)) this.moveLeft();
-             else if (lastPressed == 40 && controls.isDown(controls.DOWN)) this.moveDown();
-             else if (lastPressed == 39 && controls.isDown(controls.RIGHT)) this.moveRight();
+					 if ((lastPressed == 38 && controls.isDown(controls.UP)) || (lastPressed == 87 && controls.isDown(controls.W))) this.moveUp();
+					 else if ((lastPressed == 37 && controls.isDown(controls.LEFT)) || (lastPressed == 65 && controls.isDown(controls.A))) this.moveLeft();
+					 else if ((lastPressed == 40 && controls.isDown(controls.DOWN)) || (lastPressed == 83 && controls.isDown(controls.S))) this.moveDown();
+					 else if ((lastPressed == 39 && controls.isDown(controls.RIGHT)) ||(lastPressed == 68 && controls.isDown(controls.D))) this.moveRight();
+				}
       
 
             }
@@ -350,7 +357,11 @@ function Player()
 			if (!controls.isDown(controls.LEFT) &&
 				!controls.isDown(controls.RIGHT) &&
 				!controls.isDown(controls.UP) &&
-				!controls.isDown(controls.DOWN)){
+				!controls.isDown(controls.DOWN) &&
+				!controls.isDown(controls.W) &&
+				!controls.isDown(controls.A) &&
+				!controls.isDown(controls.S) &&
+				!controls.isDown(controls.D)){
 					loadSpriteP.use('idle');
 				}
 		}

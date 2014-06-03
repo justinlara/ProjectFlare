@@ -7,6 +7,11 @@ var controls =
   TILDE: 192,
   ESC: 27,
   
+  W: 87,
+  A: 65,
+  S: 83,
+  D: 68,
+  
   LEFT: 37,
   UP: 38,
   RIGHT: 39,
