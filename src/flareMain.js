@@ -557,6 +557,8 @@ function draw() {
 	} else if (gameState == 6) // paused
 	{
 		pauseDraw();
+		
+
 	}
 	else if (gameState == 7) //fade
 	{

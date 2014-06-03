@@ -113,6 +113,13 @@ function createButtons() {
 	gameMute.style.display = 'none';
 	gameMute.addEventListener("click", gameMuteHandler, false);
 	
+	var gamePause = document.createElement('div');
+	gamePause.id = 'gamePause';
+	gamePause.setAttribute('style', "width: " + MEASURE_UNIT * .5 + "px; height: " + MEASURE_UNIT * .5 + "px; left: " + MEASURE_UNIT * 0.9 + "px; top: " + (GAME_HEIGHT - MEASURE_UNIT)  + "px; position: absolute; z-index: 5; background-image:url(assets/ui/pause_button.png); background-size: 200% 100%; background-position: -100% 0%");
+	topCanvas.appendChild(gamePause);
+	gamePause.style.display = 'none';
+	gamePause.addEventListener("click", gamePauseHandler, false);
+	
 }
 function gameMuteHandler() {
 	if (soundManager.muted) {
@@ -121,6 +128,13 @@ function gameMuteHandler() {
 	} else {
 		soundManager.mute();
 		document.getElementById('gameMute').style.backgroundPosition = "-200% 0%";
+	}
+}
+
+function gamePauseHandler() {
+	if (!paused) {
+		paused = true;
+		gameState = 6;
 	}
 }
 
@@ -242,6 +256,7 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('lightMeter').style.display = "block";
 		document.getElementById('lightMask').style.display = "block";
 		document.getElementById('gameMute').style.display = "block";
+		document.getElementById('gamePause').style.display = "block";
 		
 		document.getElementById('lampsCtrSingle').style.display = "block";
 		document.getElementById('lampsCtrDouble1').style.display = "block";
@@ -258,6 +273,7 @@ function seeGameElements(buttonFlag) {
 		document.getElementById('lightMeter').style.display = "none";
 		document.getElementById('lightMask').style.display = "none";
 		document.getElementById('gameMute').style.display = "none";
+		document.getElementById('gamePause').style.display = "none";
 		
 		document.getElementById('lampsCtrSingle').style.display = "none";
 		document.getElementById('lampsCtrDouble1').style.display = "none";
