@@ -31,23 +31,6 @@ gameOver.src = "assets/ui/endscreen_mock.jpg";
 var complete = new Image();
 complete.src = "assets/ui/credits/credits_bg.jpg";
 
-// maxHealth = 100;
-const maxHealth = 6;
-const maxLight = 6;
-
-// Pause menu
-var pauseMenu = new Image();
-pauseMenu.src = "assets/ui/pauseMenu/pauseMenu.png";
-
-var resumeButton = new Image();
-resumeButton.src = "assets/ui/pauseMenu/resume.png";
-
-var restartButton = new Image();
-restartButton.src = "assets/ui/pauseMenu/restart.png";
-
-var quitButton = new Image();
-quitButton.src = "assets/ui/pauseMenu/quit.png";
-
 var paused = false;
 
 var mainMenu = new Image();
@@ -286,7 +269,6 @@ function pauseDraw() {
 	
 	entityManager.renderAllEntities();
 	ctxDark.globalCompositeOperation = 'source-over';
-	// Draw pause menu and buttons
-	ctxDark.drawImage(pauseMenu, -MEASURE_UNIT, GAME_HEIGHT * .16, GAME_WIDTH * .9, GAME_HEIGHT * .60);
+
 	seePauseButtons(true);
 }

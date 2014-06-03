@@ -3,6 +3,13 @@ function createButtons() {
 	var topCanvas = document.getElementById('gameScreen');
 
 	// Pause buttons
+	
+	var pauseBG = document.createElement('div');
+	pauseBG.id = 'pauseBG';
+	pauseBG.setAttribute('style', "width: " + GAME_WIDTH * .9 + "px; height: " + GAME_HEIGHT * .60 + "px; left: " + (GAME_WIDTH * .15 - MEASURE_UNIT) + "px; top: " + GAME_HEIGHT * .16 + "px; position: absolute; z-index: 4; background-image:url(assets/ui/pauseMenu/pauseMenu.png); background-size: 100% 100%;");
+	topCanvas.appendChild(pauseBG);
+	pauseBG.style.display = 'none';
+	
 	var pauseResume = document.createElement('div');
 	pauseResume.id = 'resume';
 	pauseResume.setAttribute('style', "width: " + MEASURE_UNIT * 2.5 + "px; height: " + MEASURE_UNIT * 2.5 + "px; left: " + ((GAME_WIDTH * .18) + (MEASURE_UNIT * 2.8)) + "px; top: " + GAME_HEIGHT * .46 + "px; position: absolute; z-index: 5; background-image:url(assets/ui/pauseMenu/resume_spritesheet.png); background-size: 400% 200%; background-position: 0% 0%");
@@ -206,10 +213,12 @@ function seePauseButtons(buttonFlag) {
 		document.getElementById('resume').style.display =  "block";
 		document.getElementById('restart').style.display =  "block";
 		document.getElementById('quit').style.display =  "block";
+		document.getElementById('pauseBG').style.display =  "block";
 	} else {
 		document.getElementById('resume').style.display =  "none";
 		document.getElementById('restart').style.display =  "none";
 		document.getElementById('quit').style.display =  "none";
+		document.getElementById('pauseBG').style.display =  "none";
 	}
 }
 
