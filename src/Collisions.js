@@ -197,6 +197,9 @@ Collisions.prototype.collisionContact = function()
 	if (newHealth > mainGuy.healthMax) {
 	  newHealth = mainGuy.healthMax;
 	}
+	
+	var newLight = mainGuy.light;
+	console.log(newLight);
         //console.log(newHealth);
 	
 //	var lightsLit = thisLevel.lightsLit;
@@ -237,6 +240,7 @@ Collisions.prototype.collisionContact = function()
   //mainGuy.playerbox.position.y = 150/MEASURE_UNIT; GetFixtureB().GetBody().GetUserData();
   mainGuy.p.pos = [(GAME_WIDTH/2), (GAME_HEIGHT/2)];
   mainGuy.giveCollisionBox(newHealth);
+  console.log(mainGuy.light + "after");
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   //GetFixtureB().GetBody().GetUserData();
       }

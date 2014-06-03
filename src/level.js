@@ -20,7 +20,7 @@ function Level(numberOfRooms, floorNumber) {
 	this.currentRoom;
 	this.currentX = -1;
 	this.currentY = -1;
-	mainGuy.light = mainGuy.lightMax;
+	//mainGuy.light = mainGuy.lightMax;
 	
 	lsSprite.use('lit');
 	
