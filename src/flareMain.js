@@ -93,7 +93,7 @@ function loadAssets() {
 	controlsImg.src = "assets/ui/carpet_controls.png";
 	
     var images = new Array();
-    var imgNumber = 36;
+    var imgNumber = 37; //36;
     for (var i = 0; i < imgNumber; i++) {
         images[i] = new Image();
     }
@@ -133,6 +133,7 @@ function loadAssets() {
 	images[33].src = "assets/tiles/door_castle_6.png";
 	images[34].src = "assets/tiles/door_castle_7.png";
 	images[35].src = "assets/tiles/door_castle_8.png";
+	images[36].src = "assets/enemies/Enemy3.png";  
 	
 	loadSpriteP =  new SpriteMap('assets/player/Walking.png',//image
 			{ //anim sequences
@@ -302,6 +303,26 @@ function loadAssets() {
 			}
 		}
 	);
+    statueM = new SpriteMap("assets/enemies/Enemy3.png",
+        {
+            idle: {startRow: 1, startCol: 0, endRow: 1, endCol: 3},
+            death: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
+            
+            attack:{startRow: 2, startCol: 0, endRow: 2, endCol: 3}
+        },
+        {
+            frameW: 128, // Width of each frame of the animation in pixels
+            frameH: 128, // Height of each frame of the animation in pixels
+            projectedW: MEASURE_UNIT, // Displayed width
+            projectedH: MEASURE_UNIT, // Displayed height 
+            interval: 150, // Switch frames every xxx ms
+            useTimer: false, // Rely on requestAnimFrame to update frames instead of setInterval
+            postInitCallback: function() {
+                statueM.start('idle');
+            }
+        }
+    );	
+	
 	loadSpriteRMiles = new SpriteMap("assets/enemies/red_miles_sheet.png",
 		{
 			idle: {startRow: 0, startCol: 0, endRow: 0, endCol: 1},
