@@ -157,7 +157,6 @@ Collisions.prototype.collisionContact = function()
       // REVERSE LAMP ROOM
       if(contactA.type === "lamp" && contactB.id === "player" && thisLevel.currentRoom.isReverseDarkness)
       {
-	console.log("reverse darkness");
 	    if (thisLevel.currentRoom.isLit)
 	    {
 			   thisLevel.currentRoom.setLit(false);
@@ -198,10 +197,6 @@ Collisions.prototype.collisionContact = function()
 	  newHealth = mainGuy.healthMax;
 	}
 	
-	var newLight = mainGuy.light;
-	console.log(newLight);
-        //console.log(newHealth);
-	
 //	var lightsLit = thisLevel.lightsLit;
 //        var newHealth = currentHealth + lightsLit;
 //        if (newHealth > 6) newHealth = 6;
@@ -240,7 +235,6 @@ Collisions.prototype.collisionContact = function()
   //mainGuy.playerbox.position.y = 150/MEASURE_UNIT; GetFixtureB().GetBody().GetUserData();
   mainGuy.p.pos = [(GAME_WIDTH/2), (GAME_HEIGHT/2)];
   mainGuy.giveCollisionBox(newHealth);
-  console.log(mainGuy.light + "after");
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   //GetFixtureB().GetBody().GetUserData();
       }

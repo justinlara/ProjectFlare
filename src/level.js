@@ -45,7 +45,9 @@ function Level(numberOfRooms, floorNumber) {
 	this.numberOfReverseRooms = 1;
 	
 	this.structure = createRandomLevel(this.nRooms, this.numberOfReverseRooms);
-	drawLevelToConsole();
+	
+	// Comment out to see a rudimentary map in the console.
+	//drawLevelToConsole();
 	
 	//levelWidth = structure.
 
