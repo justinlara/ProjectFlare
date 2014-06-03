@@ -357,30 +357,36 @@ function makeReverseRoom()
     
     // "count" = counter for when the choose'th active room is selected.
     var count = 0;
+        // Have this variable because the exit room is only selectig end rooms (i.e. doors with one door) as a choice.
+    // So, the algorithm will constantly cycle through all of the end rooms with the counter, which may need
+    // more than one cycle.
+    var isNotDone = true;
     
-    // Iterate to find the chosen active room.
-    for (var r = 0; r < height; r++)
+    while(isNotDone)
     {
-        for (var c = 0; c < width; c++)
+        // Iterate to find the chosen active room.
+        for (var r = 0; r < height; r++)
         {
-            if (level[r][c].indexOf(activeRoom) != -1)
+            for (var c = 0; c < width; c++)
             {
-                // Increment the counter.
-                count++;
-                
-                // When the choose'th room is selected...
-                if (count == choose)
+                if (level[r][c].indexOf(activeRoom) != -1)
                 {
+                    // Increment the counter.
+                    count++;
                     
-                    // Make this active room an ending room instead.
-                    level[r][c] = level[r][c].replace(activeRoom, reverseRoom);
-                    isNotDone = false;
-                    return -1;
+                    // When the choose'th room is selected...
+                    if (count == choose)
+                    {
+                        
+                        // Make this active room an ending room instead.
+                        level[r][c] = level[r][c].replace(activeRoom, reverseRoom);
+                        isNotDone = false;
+                        return -1;
+                    }
                 }
             }
         }
     }
-    
     // This value should never return.
     return -1;
 }
