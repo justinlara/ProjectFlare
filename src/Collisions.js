@@ -234,7 +234,7 @@ Collisions.prototype.collisionContact = function()
         //entityManager.addEntity(mainGuy);
   //mainGuy.playerbox.position.x = 1120/MEASURE_UNIT;
   //mainGuy.playerbox.position.y = 150/MEASURE_UNIT; GetFixtureB().GetBody().GetUserData();
-  mainGuy.p.pos = [(MEASURE_UNIT*6), (MEASURE_UNIT*5)];
+  mainGuy.p.pos = [(MEASURE_UNIT*7), (MEASURE_UNIT*6)];
   mainGuy.giveCollisionBox(newHealth);
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   //GetFixtureB().GetBody().GetUserData();
@@ -244,7 +244,7 @@ Collisions.prototype.collisionContact = function()
       if(contactA.type === "door" && contactB.id === "player" )
       {
           //console.log("PLAYER HIT DO");
-          
+         // console.log(flagFinalLevel +" "+ flagEndSequenceInitiated + " "+ finalsetup + " " +thisLevel.floorNumber);
       //  console.log(contactA.side);
         if (contactA.side == "n")
         {

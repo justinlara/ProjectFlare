@@ -978,6 +978,19 @@ function AllTiles() {
 	this.reverse18[9] = new Array(1,6,2,4,2,4,4,6,4,2,2,2,2,6,1);
 	this.reverse18[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
+	this.reverseEasy = new Array(); // easy intro reverse room for f1
+	this.reverseEasy[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	this.reverseEasy[1] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
+	this.reverseEasy[2] = new Array(1,4,5,9,2,2,2,2,2,2,2,2,5,4,1);
+	this.reverseEasy[3] = new Array(1,2,2,2,4,4,2,2,2,4,4,2,9,2,1);
+	this.reverseEasy[4] = new Array(1,2,2,2,4,2,2,2,2,2,4,2,2,2,1);
+	this.reverseEasy[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseEasy[6] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
+	this.reverseEasy[7] = new Array(1,2,5,2,2,2,2,2,2,2,2,2,5,2,1);
+	this.reverseEasy[8] = new Array(1,4,9,2,2,2,2,2,2,2,2,2,9,4,1);
+	this.reverseEasy[9] = new Array(1,2,4,2,2,2,2,2,2,2,2,2,4,2,1);
+	this.reverseEasy[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+	
 	//
 	//this.reverse0 = new Array();
 	//this.reverse0[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
@@ -1096,7 +1109,7 @@ AllTiles.prototype.getWeighted = function(floor) {
 	if (floor == 1) //easy floors
 	{
 		//get easy or medium
-		var medChance = floor*15;
+		var medChance = floor*5;
 		var r = Math.floor((Math.random()*100));
 		if (r<medChance) {
 			return this.getMedium();

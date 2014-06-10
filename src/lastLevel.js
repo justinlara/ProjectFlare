@@ -26,7 +26,7 @@ function LastLevel(numberOfRooms, floorNumber) {
 	//var structure = generator.createRandomLevel(this.nRooms);
 	
 	this.structure = createLastLevel();//createRandomLevel(this.nRooms);
-	drawLevelToConsole();
+	//drawLevelToConsole();
 	//levelWidth = structure.
 
 
@@ -595,6 +595,7 @@ LastLevel.prototype.darkRaitoAttack = function() {
 	setTimeout( function() { //knocks the lantern away
 		flagEndSequenceInitiated = true;
 		//mainGuy.light = 0;
+		console.log("end sequence init");
 	}, 2000);
 	
 	/*setTimeout(function() { //stop raito drawing

@@ -103,7 +103,7 @@ function levelBarrier()
  this.D2levelfix.shape.SetAsOrientedBox( (((MEASURE_UNIT)/4)-((1.1*MEASURE_UNIT/30)) ),  ((MEASURE_UNIT/30)*.55),  
                                        new b2Vec2((((((MEASURE_UNIT))*14.5)/30)) , DBoxY), 0);
   
-  console.log("d y lenght: " + (((MEASURE_UNIT)/4) -((MEASURE_UNIT/30))) + " y center :" + ((((MEASURE_UNIT))/2)/30) );
+  //console.log("d y lenght: " + (((MEASURE_UNIT)/4) -((MEASURE_UNIT/30))) + " y center :" + ((((MEASURE_UNIT))/2)/30) );
   
 //*/  
   

@@ -207,6 +207,7 @@ var testbool = true;
 		if (this.setNewGrid)
 		{
 			var newTileGrid = ALLTILES.getReverse();
+			if (thisLevel.floorNumber == 1) newTileGrid = ALLTILES.reverseEasy; //level 1 reverse room force roll
 			this.changeRoomGrid(newTileGrid);
 			this.setNewGrid = false;
 		}

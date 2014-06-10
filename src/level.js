@@ -12,6 +12,10 @@ function Level(numberOfRooms, floorNumber) {
 	this.floorNumber = floorNumber;
 	//this.layout = new Array();
 	
+	flagFinalLevel = false;
+	flagEndSequenceInitiated = false;
+	finalsetup = false;
+	
 	//set chance of red enemies based on floor#
 	if (this.floorNumber < 3) redEnemyThreshhold = 100;
 	else if (this.floorNumber < 6) redEnemyThreshhold = 90;
@@ -22,7 +26,7 @@ function Level(numberOfRooms, floorNumber) {
 	this.currentY = -1;
 	//mainGuy.light = mainGuy.lightMax;
 	
-	lsSprite.use('lit');
+	//lsSprite.use('lit');
 	
 	this.lightsLit = 0;
 	this.lightsTotal = 0;
@@ -44,6 +48,9 @@ function Level(numberOfRooms, floorNumber) {
 	
 	//this.numberOfReverseRooms = 1;
 	this.numberOfReverseRooms = Math.floor(this.nRooms/5);
+	if (this.floorNumber == 1) {
+		this.numberOfReverseRooms = 1;
+	}
 	//console.log("rooms:  " + this.nRooms + ".  reverse:  " + this.numberOfReverseRooms);
 	
 	this.structure = createRandomLevel(this.nRooms, this.numberOfReverseRooms);

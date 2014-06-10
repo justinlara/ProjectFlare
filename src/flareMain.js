@@ -467,6 +467,7 @@ function initGame() {
 	var flagFinalLevel = false;
 	var flagEndSequenceInitiated = false;
 	var finalsetup = false;
+	if ('undefined' != typeof interval) clearInterval(interval);
 	redEnemyThreshhold = 103;
 	
 	//physics:
