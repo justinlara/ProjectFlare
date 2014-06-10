@@ -31,6 +31,7 @@ var loadSpriteTMunge;
 var loadSpriteRTMunge;
 var loadSpriteMouse;
 var dRaito;
+var imageReverseLampDark;
 
 var loadImg; //load screen image (splash/team logo)
 var controlsImg;
@@ -91,6 +92,8 @@ function loadAssets() {
 	loadImg.src = "assets/loading.png";
 	controlsImg = new Image();
 	controlsImg.src = "assets/ui/carpet_controls.png";
+	imageReverseLampDark = new Image();
+	imageReverseLampDark.src = "assets/lsDark.png";
 	
     var images = new Array();
     var imgNumber = 37; //36;

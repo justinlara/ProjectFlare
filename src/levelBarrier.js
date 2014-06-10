@@ -45,13 +45,13 @@ function levelBarrier()
   var DBoxX = ((((MEASURE_UNIT))/2)/30);//UBoxX; 
   var DBoxY = (MEASURE_UNIT*.355);
   
-  console.log("WALLS ::::: MU = " + MEASURE_UNIT, " GH " + GAME_HEIGHT + " GW " + GAME_WIDTH);
+ /* console.log("WALLS ::::: MU = " + MEASURE_UNIT, " GH " + GAME_HEIGHT + " GW " + GAME_WIDTH);
    console.log("L " + LBoxX +  " , " + LBoxY);
    console.log("R " + RBoxX +  " , " + RBoxY);
    console.log("U " + UBoxX +  " , " + UBoxY);
    console.log("D " + DBoxX +  " , " + DBoxY);
  
- console.log("D/2 " + (DBoxX)/3);
+ console.log("D/2 " + (DBoxX)/3);*/
  
  
  

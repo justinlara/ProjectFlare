@@ -274,12 +274,6 @@ var testbool = true;
 		//draw lamp
 		if ('undefined' != typeof this.lamp) {
 			this.lamp.draw();
-			if (this.isReverseDarkness) {
-				if (!this.isLit) {
-					lsSprite.use("dark");
-				}
-				lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*5, MEASURE_UNIT, MEASURE_UNIT);
-			}
 		}
 			
 		if (this.isEntrance) { //if entrance, draw lamp, controls

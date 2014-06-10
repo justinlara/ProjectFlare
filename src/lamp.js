@@ -73,6 +73,15 @@ Lamp.prototype.draw = function()
 		ctxWorld.drawImage(this.image, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
 	if (!thisLevel.currentRoom.isReverseDarkness && thisLevel.currentRoom.isLit)
 		lampSprite.draw(ctxWorld, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+		
+		
+	if (thisLevel.currentRoom.isReverseDarkness) {
+		if (!thisLevel.currentRoom.isLit) {
+			ctxWorld.drawImage(imageReverseLampDark, this.posX, this.posY, MEASURE_UNIT, MEASURE_UNIT);
+		} else {
+			lsSprite.draw(ctxWorld, MEASURE_UNIT*7, MEASURE_UNIT*5, MEASURE_UNIT, MEASURE_UNIT);
+		}
+	}
   
   //var sx = offset.x ;//* MEASURE_UNIT;    
   //var sy = offset.y ;//* MEASURE_UNIT;  

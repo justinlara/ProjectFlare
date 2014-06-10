@@ -189,7 +189,7 @@ Collisions.prototype.collisionContact = function()
         var currentHealth = contactB.health;
         //console.log(contactB.health);
 	var lightsLit = thisLevel.lightsLit;
-	var addHealth = lightsLit * 5;
+	var addHealth = lightsLit * 8;
 	//mainGuy.giveHealth(addHealth);
 	
 	var newHealth = currentHealth + addHealth;
@@ -219,6 +219,7 @@ Collisions.prototype.collisionContact = function()
 		if (storymode && lampsLit >= 30) { //for test: set true
 			thisLevel = new LastLevel(3, thisLevel.floorNumber+1);
 			flagFinalLevel = true;
+			newHealth = mainGuy.healthMax;
 		}
 		else {
 			thisLevel = new Level(thisLevel.nRooms+2, thisLevel.floorNumber+1);
@@ -233,7 +234,7 @@ Collisions.prototype.collisionContact = function()
         //entityManager.addEntity(mainGuy);
   //mainGuy.playerbox.position.x = 1120/MEASURE_UNIT;
   //mainGuy.playerbox.position.y = 150/MEASURE_UNIT; GetFixtureB().GetBody().GetUserData();
-  mainGuy.p.pos = [(GAME_WIDTH/2), (GAME_HEIGHT/2)];
+  mainGuy.p.pos = [(MEASURE_UNIT*6), (MEASURE_UNIT*5)];
   mainGuy.giveCollisionBox(newHealth);
   //mainGuy.playerBoundBox = collisionWorld.CreateBody(this.playerbox);
   //GetFixtureB().GetBody().GetUserData();
