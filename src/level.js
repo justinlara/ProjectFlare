@@ -18,7 +18,7 @@ function Level(numberOfRooms, floorNumber) {
 	
 	//set chance of red enemies based on floor#
 	if (this.floorNumber < 3) redEnemyThreshhold = 100;
-	else if (this.floorNumber < 6) redEnemyThreshhold = 90;
+	else if (this.floorNumber < 6) redEnemyThreshhold = 95;
 	else redEnemyThreshhold = 100 - (this.floorNumber * 2);
 	
 	this.currentRoom;

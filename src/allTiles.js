@@ -245,13 +245,13 @@ function AllTiles() {
 	this.r15 = new Array();
 	this.r15[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.r15[1] = new Array(1,2,2,2,2,2,4,2,4,2,2,2,2,2,1);
-	this.r15[2] = new Array(1,2,2,4,11,4,4,2,4,4,4,4,2,2,1);
+	this.r15[2] = new Array(1,2,2,4,11,4,2,2,2,4,4,4,2,2,1);
 	this.r15[3] = new Array(1,2,2,4,2,2,2,2,2,2,2,4,2,2,1);
-	this.r15[4] = new Array(1,4,4,4,2,2,5,2,5,2,2,4,4,4,1);
+	this.r15[4] = new Array(1,4,4,2,2,2,5,2,5,2,2,2,4,4,1);
 	this.r15[5] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.r15[6] = new Array(1,4,4,4,2,2,5,2,5,2,2,4,4,4,1);
+	this.r15[6] = new Array(1,4,4,4,4,2,5,2,5,2,2,2,4,4,1);
 	this.r15[7] = new Array(1,2,2,2,2,2,2,2,2,2,2,4,2,2,1);
-	this.r15[8] = new Array(1,2,2,4,4,4,4,2,4,4,11,4,2,2,1);
+	this.r15[8] = new Array(1,2,2,4,4,4,2,2,2,4,11,4,2,2,1);
 	this.r15[9] = new Array(1,3,2,2,2,2,4,2,4,2,2,2,2,2,1);
 	this.r15[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
@@ -786,9 +786,9 @@ function AllTiles() {
 	this.reverse4[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.reverse4[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.reverse4[2] = new Array(1,2,4,4,4,4,4,4,4,4,4,4,4,2,1);
-	this.reverse4[3] = new Array(1,2,4,5,5,5,2,2,2,5,5,5,4,2,1);
+	this.reverse4[3] = new Array(1,2,4,5,5,5,2,5,2,5,5,5,4,2,1);
 	this.reverse4[4] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
-	this.reverse4[5] = new Array(1,2,4,5,2,2,2,2,2,2,2,5,4,2,1);
+	this.reverse4[5] = new Array(1,2,4,2,2,2,2,2,2,2,2,5,4,2,1);
 	this.reverse4[6] = new Array(1,2,4,2,2,2,2,2,2,2,2,5,4,2,1);
 	this.reverse4[7] = new Array(1,2,2,2,2,2,2,2,2,5,5,5,4,2,1);
 	this.reverse4[8] = new Array(1,2,2,2,4,4,4,4,4,4,4,4,4,2,1);
@@ -799,11 +799,11 @@ function AllTiles() {
 	this.reverse5[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	this.reverse5[1] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.reverse5[2] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
-	this.reverse5[3] = new Array(1,2,2,2,2,6,6,6,6,6,2,2,2,2,1);
-	this.reverse5[4] = new Array(1,2,2,2,2,6,2,2,2,6,2,2,2,2,1);
-	this.reverse5[5] = new Array(1,2,2,2,2,6,2,2,2,6,2,2,2,2,1);
-	this.reverse5[6] = new Array(1,2,2,2,2,6,2,2,2,6,2,2,2,2,1);
-	this.reverse5[7] = new Array(1,2,2,2,2,6,6,6,6,6,2,2,2,2,1);
+	this.reverse5[3] = new Array(1,2,2,2,2,2,2,6,2,6,2,2,2,2,1);
+	this.reverse5[4] = new Array(1,2,2,2,2,6,2,2,2,2,2,2,2,2,1);
+	this.reverse5[5] = new Array(1,2,2,2,2,2,2,2,2,2,6,2,2,2,1);
+	this.reverse5[6] = new Array(1,2,2,2,2,6,2,2,2,2,2,2,2,2,1);
+	this.reverse5[7] = new Array(1,2,2,2,2,2,2,6,2,2,2,2,2,2,1);
 	this.reverse5[8] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.reverse5[9] = new Array(1,2,2,2,2,2,2,2,2,2,2,2,2,2,1);
 	this.reverse5[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
@@ -876,59 +876,59 @@ function AllTiles() {
 		
 	this.reverse11 = new Array();
 	this.reverse11[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse11[1] = new Array(1,6,2,2,2,2,4,6,4,2,2,2,4,6,1);
+	this.reverse11[1] = new Array(1,6,2,2,2,2,4,6,4,2,2,2,4,2,1);
 	this.reverse11[2] = new Array(1,4,2,4,2,4,2,2,2,2,4,2,2,2,1);
 	this.reverse11[3] = new Array(1,4,2,2,2,4,4,4,4,4,2,4,4,2,1);
 	this.reverse11[4] = new Array(1,2,2,4,2,4,2,2,2,4,2,2,4,2,1);
-	this.reverse11[5] = new Array(1,6,4,4,2,2,2,2,2,4,4,2,4,6,1);
+	this.reverse11[5] = new Array(1,2,4,4,2,2,2,2,2,4,4,2,4,6,1);
 	this.reverse11[6] = new Array(1,2,4,2,2,4,2,2,2,4,2,2,4,2,1);
 	this.reverse11[7] = new Array(1,2,4,4,4,4,4,4,4,4,2,4,2,2,1);
 	this.reverse11[8] = new Array(1,2,4,4,2,2,2,2,2,2,2,2,4,2,1);
-	this.reverse11[9] = new Array(1,6,2,2,2,4,4,6,4,4,4,2,2,6,1);
+	this.reverse11[9] = new Array(1,6,2,2,2,4,4,6,4,4,4,2,2,2,1);
 	this.reverse11[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 		
 	this.reverse12 = new Array();
 	this.reverse12[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse12[1] = new Array(1,6,2,2,2,2,4,6,4,2,2,2,4,6,1);
+	this.reverse12[1] = new Array(1,2,2,2,2,2,4,6,4,2,2,2,4,6,1);
 	this.reverse12[2] = new Array(1,4,2,4,2,4,2,2,2,2,4,2,2,2,1);
 	this.reverse12[3] = new Array(1,4,2,4,2,4,4,4,4,4,2,4,4,2,1);
 	this.reverse12[4] = new Array(1,2,2,4,2,4,2,2,2,4,2,2,4,2,1);
-	this.reverse12[5] = new Array(1,6,4,4,2,2,2,2,2,4,4,2,4,6,1);
+	this.reverse12[5] = new Array(1,6,4,4,2,2,2,2,2,4,4,2,4,2,1);
 	this.reverse12[6] = new Array(1,4,2,2,2,4,2,2,2,4,2,2,4,2,1);
 	this.reverse12[7] = new Array(1,2,2,4,4,4,4,4,4,4,2,4,2,2,1);
 	this.reverse12[8] = new Array(1,2,4,4,2,2,2,2,2,2,2,2,4,2,1);
-	this.reverse12[9] = new Array(1,6,2,2,2,4,4,6,4,4,4,2,2,6,1);
+	this.reverse12[9] = new Array(1,2,2,2,2,4,4,6,4,4,4,2,2,6,1);
 	this.reverse12[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 		
 	this.reverse13 = new Array();
 	this.reverse13[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse13[1] = new Array(1,6,2,2,2,2,4,6,4,2,2,4,4,6,1);
+	this.reverse13[1] = new Array(1,6,2,2,2,2,4,6,4,2,2,4,4,2,1);
 	this.reverse13[2] = new Array(1,4,2,4,2,4,2,2,2,2,2,2,2,2,1);
 	this.reverse13[3] = new Array(1,4,2,4,2,4,4,4,4,4,2,4,4,2,1);
 	this.reverse13[4] = new Array(1,2,2,4,2,4,2,2,2,4,2,2,4,2,1);
-	this.reverse13[5] = new Array(1,6,4,4,2,2,2,2,2,4,2,4,4,6,1);
+	this.reverse13[5] = new Array(1,2,4,4,2,2,2,2,2,4,2,4,4,6,1);
 	this.reverse13[6] = new Array(1,4,2,2,2,4,2,2,2,4,2,2,4,4,1);
 	this.reverse13[7] = new Array(1,2,2,4,4,4,4,4,4,4,4,2,4,2,1);
 	this.reverse13[8] = new Array(1,2,4,4,2,2,2,2,2,2,4,2,4,2,1);
-	this.reverse13[9] = new Array(1,6,2,2,2,4,4,6,4,2,2,2,2,6,1);
+	this.reverse13[9] = new Array(1,6,2,2,2,4,4,6,4,2,2,2,2,2,1);
 	this.reverse13[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 		
 	this.reverse14 = new Array();
 	this.reverse14[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse14[1] = new Array(1,6,2,2,2,2,4,6,4,2,4,4,2,6,1);
+	this.reverse14[1] = new Array(1,6,2,2,2,2,4,6,4,2,4,4,2,2,1);
 	this.reverse14[2] = new Array(1,4,2,4,2,4,2,2,2,2,2,2,2,4,1);
 	this.reverse14[3] = new Array(1,4,2,4,2,4,4,4,4,4,2,4,4,4,1);
 	this.reverse14[4] = new Array(1,2,2,4,2,4,2,2,2,4,2,2,2,2,1);
-	this.reverse14[5] = new Array(1,6,4,4,2,2,2,2,2,4,2,4,4,6,1);
+	this.reverse14[5] = new Array(1,2,4,4,2,2,2,2,2,4,2,4,4,6,1);
 	this.reverse14[6] = new Array(1,4,2,2,2,4,2,2,2,4,2,2,4,4,1);
 	this.reverse14[7] = new Array(1,2,2,4,4,4,4,4,4,4,4,2,4,2,1);
 	this.reverse14[8] = new Array(1,2,4,4,2,2,2,2,2,2,4,2,4,2,1);
-	this.reverse14[9] = new Array(1,6,2,2,2,4,4,6,4,2,2,2,2,6,1);
+	this.reverse14[9] = new Array(1,6,2,2,2,4,4,6,4,2,2,2,2,2,1);
 	this.reverse14[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 		
 	this.reverse15 = new Array();
 	this.reverse15[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse15[1] = new Array(1,6,2,2,2,2,2,6,4,2,2,2,2,6,1);
+	this.reverse15[1] = new Array(1,2,2,2,2,2,2,6,4,2,2,2,2,2,1);
 	this.reverse15[2] = new Array(1,4,2,4,2,4,4,2,2,2,4,2,4,2,1);
 	this.reverse15[3] = new Array(1,4,2,4,2,4,4,4,4,4,2,2,4,2,1);
 	this.reverse15[4] = new Array(1,2,2,4,2,4,2,2,2,4,2,4,4,2,1);
@@ -936,12 +936,12 @@ function AllTiles() {
 	this.reverse15[6] = new Array(1,4,2,2,2,4,2,2,2,4,2,2,4,4,1);
 	this.reverse15[7] = new Array(1,2,2,4,4,4,4,4,4,4,4,2,4,2,1);
 	this.reverse15[8] = new Array(1,2,4,4,2,4,2,2,2,2,4,2,4,2,1);
-	this.reverse15[9] = new Array(1,6,2,2,2,4,4,6,4,2,2,2,2,6,1);
+	this.reverse15[9] = new Array(1,2,2,2,2,4,4,6,4,2,2,2,2,2,1);
 	this.reverse15[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 		
 	this.reverse16 = new Array();
 	this.reverse16[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse16[1] = new Array(1,6,2,2,2,2,2,6,4,2,2,2,2,6,1);
+	this.reverse16[1] = new Array(1,2,2,2,2,2,2,6,4,2,2,2,2,2,1);
 	this.reverse16[2] = new Array(1,4,2,4,2,4,4,2,2,2,4,2,4,2,1);
 	this.reverse16[3] = new Array(1,4,2,4,2,4,4,4,4,4,2,2,4,2,1);
 	this.reverse16[4] = new Array(1,2,2,4,2,4,2,2,2,4,2,4,4,4,1);
@@ -949,33 +949,33 @@ function AllTiles() {
 	this.reverse16[6] = new Array(1,4,2,2,2,4,2,2,2,4,2,2,4,2,1);
 	this.reverse16[7] = new Array(1,2,2,4,4,4,4,4,4,4,4,2,2,2,1);
 	this.reverse16[8] = new Array(1,2,4,4,2,4,2,2,2,2,4,2,4,2,1);
-	this.reverse16[9] = new Array(1,6,2,2,2,4,4,6,4,2,2,2,4,6,1);
+	this.reverse16[9] = new Array(1,2,2,2,2,4,4,6,4,2,2,2,4,2,1);
 	this.reverse16[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 		
 	this.reverse17 = new Array();
 	this.reverse17[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse17[1] = new Array(1,6,2,2,2,2,2,6,4,4,2,2,4,6,1);
+	this.reverse17[1] = new Array(1,6,2,2,2,2,2,2,4,4,2,2,4,6,1);
 	this.reverse17[2] = new Array(1,4,2,4,2,4,4,2,2,2,2,4,4,2,1);
 	this.reverse17[3] = new Array(1,4,2,4,2,4,4,4,4,4,2,4,4,2,1);
 	this.reverse17[4] = new Array(1,2,2,4,2,4,2,2,2,4,2,2,2,4,1);
-	this.reverse17[5] = new Array(1,6,4,4,2,2,2,2,2,4,2,4,2,6,1);
+	this.reverse17[5] = new Array(1,2,4,4,2,2,2,2,2,4,2,4,2,2,1);
 	this.reverse17[6] = new Array(1,4,2,2,2,4,2,2,2,4,2,2,4,4,1);
 	this.reverse17[7] = new Array(1,2,2,4,4,4,4,4,4,4,4,2,2,2,1);
 	this.reverse17[8] = new Array(1,2,4,4,2,4,2,2,2,2,4,4,4,2,1);
-	this.reverse17[9] = new Array(1,6,2,2,2,4,4,6,4,2,2,2,2,6,1);
+	this.reverse17[9] = new Array(1,6,2,2,2,4,4,2,4,2,2,2,2,6,1);
 	this.reverse17[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 		
 	this.reverse18 = new Array();
 	this.reverse18[0] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-	this.reverse18[1] = new Array(1,6,2,2,2,2,2,6,4,4,2,2,4,6,1);
+	this.reverse18[1] = new Array(1,6,2,2,2,2,2,2,4,4,2,2,4,6,1);
 	this.reverse18[2] = new Array(1,4,2,4,2,4,4,2,2,2,2,4,4,2,1);
 	this.reverse18[3] = new Array(1,4,2,4,2,4,4,4,4,4,2,4,4,2,1);
 	this.reverse18[4] = new Array(1,4,2,4,2,4,2,2,2,4,2,2,2,4,1);
-	this.reverse18[5] = new Array(1,6,4,4,2,2,2,2,2,4,2,4,2,6,1);
+	this.reverse18[5] = new Array(1,2,4,4,2,2,2,2,2,4,2,4,2,2,1);
 	this.reverse18[6] = new Array(1,2,4,2,2,4,2,2,2,4,2,2,4,4,1);
 	this.reverse18[7] = new Array(1,2,4,2,4,4,4,4,4,4,4,2,2,2,1);
 	this.reverse18[8] = new Array(1,2,2,2,2,4,2,2,2,2,4,4,4,2,1);
-	this.reverse18[9] = new Array(1,6,2,4,2,4,4,6,4,2,2,2,2,6,1);
+	this.reverse18[9] = new Array(1,6,2,4,2,4,4,2,4,2,2,2,2,6,1);
 	this.reverse18[10] = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
 	
 	this.reverseEasy = new Array(); // easy intro reverse room for f1
@@ -1043,9 +1043,11 @@ function AllTiles() {
 		}
 		
 		// maze
-		this.reverseRooms.push(this.reverse7, this.reverse8, this.reverse9, this.reverse10,
-				       this.reverse11, this.reverse12, this.reverse13, this.reverse14,
+		this.reverseRooms.push(this.reverse11, this.reverse12, this.reverse13, this.reverse14,
 				       this.reverse15, this.reverse16, this.reverse17, this.reverse18);
+		//harder:
+		this.reverseRoomsHard = new Array();
+		this.reverseRoomsHard.push(this.reverse7, this.reverse8, this.reverse9, this.reverse10);
 }
 
 //methods to return room arrays
@@ -1096,6 +1098,10 @@ AllTiles.prototype.getEnd = function(number){
 AllTiles.prototype.getReverse = function(){
 	//console.log("REVERSE ROOM");
 	var r = Math.floor((Math.random()*this.reverseRooms.length));
+	if (thisLevel.floorNumber > 5) {
+		r = Math.floor((Math.random()*this.reverseRoomsHard.length));
+		return this.reverseRoomHard[r];
+	}
 	return this.reverseRooms[r];
 }
 
@@ -1109,7 +1115,7 @@ AllTiles.prototype.getWeighted = function(floor) {
 	if (floor == 1) //easy floors
 	{
 		//get easy or medium
-		var medChance = floor*5;
+		var medChance = floor*8;
 		var r = Math.floor((Math.random()*100));
 		if (r<medChance) {
 			return this.getMedium();
@@ -1119,8 +1125,8 @@ AllTiles.prototype.getWeighted = function(floor) {
 		}
 	}
 	else if (floor >= 2 && floor <= 5) { //medium floors 2-5
-		var hardChance = floor*10;
-		var medChance = floor*20; //this is actually the chance of medium OR hard
+		var hardChance = floor*7;
+		var medChance = floor*25; //this is actually the chance of medium OR hard
 		var r = Math.floor((Math.random()*100));
 		if (r<hardChance) {
 			return this.getHard();
