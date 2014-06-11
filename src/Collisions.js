@@ -246,6 +246,15 @@ Collisions.prototype.collisionContact = function()
           //console.log("PLAYER HIT DO");
          // console.log(flagFinalLevel +" "+ flagEndSequenceInitiated + " "+ finalsetup + " " +thisLevel.floorNumber);
       //  console.log(contactA.side);
+	  
+		mainGuy.invulDoor = true;
+		console.log("invuldoor true");
+		setTimeout(function() 
+		   {
+			console.log("invuldoor false");
+			mainGuy.invulDoor = false;
+		   }, 2000);
+	  
         if (contactA.side == "n")
         {
           thisLevel.goToNorthRoom();
@@ -380,7 +389,7 @@ Collisions.prototype.collisionContact = function()
                     
                 if( man.m_pointCount !==0)
                 {
-                  if (!mainGuy.invul) { //added check for iframes
+                  if (!mainGuy.invul && !mainGuy.invulDoor) { //added check for iframes
                    contactB.health -= contactA.damage;  
                  
                    

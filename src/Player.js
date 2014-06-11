@@ -110,6 +110,9 @@ function Player()
 	//for iframes:
 	this.invul = false;
 	this.frameCount = 0;
+	
+	//for door mercy
+	this.invulDoor = false;
 
 	//Resize:
 	this.Resize = function()
