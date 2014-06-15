@@ -248,10 +248,10 @@ Collisions.prototype.collisionContact = function()
       //  console.log(contactA.side);
 	  
 		mainGuy.invulDoor = true;
-		console.log("invuldoor true");
+		//console.log("invuldoor true");
 		setTimeout(function() 
 		   {
-			console.log("invuldoor false");
+			//console.log("invuldoor false");
 			mainGuy.invulDoor = false;
 		   }, 2000);
 	  
